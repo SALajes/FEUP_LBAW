@@ -1,13 +1,13 @@
-# ProductName (e.g. MediaLibrary 2018)
+# LBAWster
 
 ## Project
 
 ### Team
 
-* Group member 1 name, email
-* Group member 2 name, email
-* Group member 3 name, email
-* Group member 4 name, email
+* Carlos Eduardo da Nova Duarte, up201708804@fe.up.pt
+* Pedro Maria Passos Ribeiro do Carmo Pereira, up201708807@fe.up.pt
+* Simão Pereira de Oliveira, up201603173@fe.up.pt
+* Sofia de Araújo Lajes, up201704066@fe.up.pt
 
 ### Artefacts
 
