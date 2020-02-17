@@ -1,4 +1,4 @@
-# LBrAW
+# lbaw 2013 - LBrAWl
 
 ## Project
 
@@ -9,22 +9,9 @@
 * Simão Pereira de Oliveira, up201603173@fe.up.pt
 * Sofia de Araújo Lajes, up201704066@fe.up.pt
 
-### Artefacts
+## Tema 2 - Social network
 
-* User Requirements specification
-  * [A1: Project presentation](a1)
-  * [A2: Actors and User stories](a2)
-  * [A3: User Interfaces Prototype](a3)
-* Database specification
-  * [A4: Conceptual Data Model](a4)
-  * [A5: Relational schema, validation and schema refinement](a5)
-  * [A6: Integrity constraints. Indexes, triggers, user functions, transactions and database populated with data](a6)
-* Architecture specification and Prototype
-  * [A7: High-level architecture. Privileges. Web resources specification](a7)
-  * [A8: Vertical Prototype](a8)
-* Product and Presentation
-  * [A9: Product](a9)
-  * [A10: Presentation and discussion](a10)
+LBrAWl aims to be the most effective communication experience between students. It allows them to share course materials, chat, evaluate peers, teachers, and classes, and even ease the chaotic start of every semester caused by schedule selection and group formation, all in one easy-to-use platform, saving them time, energy and sanity as a result.
 
 ***
-GROUP20gg, DD/MM/2020
+GROUP2013, 17/02/2020
