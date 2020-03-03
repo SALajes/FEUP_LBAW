@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+
+<body>
+    <header>
+        <nav id="header"
+            class="navbar d-flex align-items-center justify-content-between fixed-top navbar-expand-lg navbar-dark"
+            style="background-color: #49d49d;">
+            <a class="navbar-brand" href="#"><img id="logo" src="assets/icons/logo.png" alt="logo"></a>
+            <form id="search" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search">
+                <button id="search" type="button" class="btn btn-light"><i class="fas fa-search"></i></button>
+            </form>
+            <div data-toggle="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <i class="far fa-bell"></i>
+                    </li>
+                    <li class="nav-item">
+                        <i class="far fa-comment-dots"></i>
+                    </li>
+                    <li class="nav-item">
+                        <i class="far fa-user-circle"></i>
+                    </li>
+                    <li class="nav-item">
+                        <i class="far fa-question-circle"></i>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        <div class="container-fuild">
+            <div class="row">
+                <div class="col-lg-3 sticky-top sticky-offset align-self-start" id="page-title">
+                    <div class="row-md-auto">
+                        <div class="text-center">
+                            <h2>Home</h2>
+                            <a class="nav-item nav-link" href="#"><i class="fas fa-user-circle"
+                                    style="font-size: 7rem;"></i></a>
+                            <p>John Doe</p>
+                            <p>up000000000</p>
+                            <p>#mieic</p>
+                        </div>
+                    </div>
+
+                    <hr class="featurette-divider">
+
+                    <div class="row-md-auto">
+                        <h4 class="text-center">My CU's</h4>
+                        <ul>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                COMP
+                                <span class="badge badge-primary badge-pill">14</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                IART
+                                <span class="badge badge-primary badge-pill">2</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                LBAW
+                                <span class="badge badge-primary badge-pill">1</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                PPIN
+                                <span class="badge badge-primary badge-pill">1</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Divisao Vertical -->
+
+                <div class="col-lg-9">
+                    <div class="container">
+                        <div class="col-sm-9">
+                            <div class="card post-margins">
+                                <div class="card-header">
+                                    To >
+                                    <select class="custom-select w-auto">
+                                        <option value="1" selected>General</option>
+                                        <option value="2">LBAW</option>
+                                        <option value="3">PPIN</option>
+                                      </select>
+                                </div>
+                                <div class="card-body">
+                                    <input type="text" class="form-control" aria-label="Sizing example input"
+                                        aria-describedby="inputGroup-sizing-default" placeholder="What's on your mind?">
+                                </div>
+                                <div class="card-footer d-flex justify-content-between">
+                                    <a href="#"><i class="fas fa-paperclip"></i></a>
+                                    <button id="search" type="button" class="btn btn-light">Post</button>
+                                </div>
+                            </div>
+
+                            <hr class="featurette-divider">
+
+                            <div class="card card-margins">
+                                <div class="card-header d-flex justify-content-between">
+                                    <a href="#"><i class="fas fa-user-circle"></i> Andreia</a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </div>
+                                <div class="card-body">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio pariatur doloremque
+                                    beatae blanditiis magnam, deserunt ipsam aspernatur amet eos minus error ullam
+                                    facilis quae quod tempore dicta inventore non neque?
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="comments-padding">8 comments</a>
+                                    <a href="#">2 likes</a>
+                                </div>
+                            </div>
+
+                            <div class="card card-margins">
+                                <div class="card-header d-flex justify-content-between">
+                                    <a href="#"><i class="fas fa-user-circle"></i> Andreia</a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </div>
+                                <div class="card-body">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. At culpa, iste adipisci
+                                    cum sit eligendi animi, suscipit tempora molestias temporibus, doloremque
+                                    reprehenderit natus quaerat quis assumenda quam aliquid? Deleniti aperiam eaque
+                                    iusto possimus dolorum, nemo quisquam nihil quae maxime necessitatibus accusantium
+                                    recusandae perspiciatis nobis itaque id quibusdam, eos odio quidem similique
+                                    doloremque officia. Delectus non porro doloribus perferendis tempore harum quod
+                                    inventore quia ad! Doloremque nemo aliquam eaque dolore tempore. Minima labore
+                                    cupiditate laboriosam dolorem hic esse tempora aperiam voluptatum ratione ut
+                                    repudiandae distinctio similique reprehenderit quas, numquam aliquam debitis eius
+                                    illo! Non officiis adipisci delectus quae, magni possimus mollitia.
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="comments-padding">8 comments</a>
+                                    <a href="#">2 likes</a>
+                                </div>
+                            </div>
+
+                            <div class="card card-margins">
+                                <div class="card-header d-flex justify-content-between">
+                                    <a href="#"><i class="fas fa-user-circle"></i> Andreia</a>
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </div>
+                                <div class="card-body">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio pariatur doloremque
+                                    beatae blanditiis magnam, deserunt ipsam aspernatur amet eos minus error ullam
+                                    facilis quae quod tempore dicta inventore non neque?
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="comments-padding">8 comments</a>
+                                    <a href="#">2 likes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>
