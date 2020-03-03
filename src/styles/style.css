@@ -1,0 +1,19 @@
+.background-gradient-blue {
+  background: #24c6dc; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #514a9d,
+    #24c6dc
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #514a9d,
+    #24c6dc
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.text-gradient-blue {
+  background: linear-gradient(to right, #514a9d, #24c6dc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
