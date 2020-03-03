@@ -15,14 +15,13 @@ include_once('../templates/header.php');
   <div class="position-relative overflow-hidden p-3 p-md-5 text-center text-white">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
       <h1 class="display-4 font-weight-normal">LBrAWl</h1>
-      <p class="lead font-weight-normal">The most effective communication experience for university students. Chat, share course materials and form groups - all in one platform.</p>
+      <p class="lead font-weight-normal">The most effective communication experience for university students. Chat, share course materials and form groups. All in one platform.</p>
       <a class="btn btn-outline-light" href="#">Sign up</a>
     </div>
     <div class="product-device shadow-sm d-none d-md-block"></div>
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
   </div>
 </div>
-
 
 <div class="container marketing mt-5">
 
@@ -35,8 +34,8 @@ include_once('../templates/header.php');
         and sharing with your peers has never been this easy.
       </p>
     </div>
-    <div class="col-md-5">
-      <i class="fa fa-download text-gradient-blue" style="font-size: 13rem;"></i>
+    <div class="col-5 text-center">
+      <i class="fa fa-download text-gradient-blue" style="font-size: 10rem;"></i>
     </div>
   </div>
 
@@ -44,14 +43,11 @@ include_once('../templates/header.php');
 
   <div class="row featurette">
     <div class="col-md-7 order-md-2">
-      <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
+      <h2 class="featurette-heading">Faster and more fluid group formation. <span class="text-info">Without the spam.</span></h2>
       <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
     </div>
-    <div class="col-md-5 order-md-1">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-      </svg>
+    <div class="col-md-5 text-center">
+      <i class="fa fa-users text-gradient-blue" style="font-size: 10rem;"></i>
     </div>
   </div>
 
@@ -59,26 +55,40 @@ include_once('../templates/header.php');
 
   <div class="row featurette">
     <div class="col-md-7">
-      <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-      <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      <h2 class="featurette-heading">Help and ask for help. <span class="text-info">Anytime, anywhere.</span></h2>
+      <p class="lead">No more going through several social media groups in order to get answers to your questions. LBrAWl provides 
+        a structured, fast and intuitive interface that allows you to quickly expose your doubts and get help from other 
+        peers. Don't forget to also lend a helping hand to your mates! 
+      </p>
     </div>
-    <div class="col-md-5">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-      </svg>
+    <div class="col-md-5 text-center">
+      <i class="fa fa-hands-helping text-gradient-blue" style="font-size: 10rem;"></i>
     </div>
   </div>
 
   <hr class="featurette-divider mt-3">
 
+  <div class="row featurette">
+    <div class="col-md-7 order-md-2">
+      <h2 class="featurette-heading">Boost self-improvement and encourage your colleagues. <span class="text-info">Rate them anonymously.</span></h2>
+      <p class="lead">One of the biggest obstacles students face is identifying their weaknesses. What if fellow students
+        that you have worked with could help you with that? And if you've worked hard enough, they can even upvote your profile.
+      </p>
+    </div>
+    <div class="col-md-5 text-center">
+      <i class="fa fa-angle-double-up text-gradient-blue" style="font-size: 10rem;"></i>
+    </div>
+  </div>
+
   <!-- /END THE FEATURETTES -->
+
+  <hr class="featurette-divider mb-4">
+
 
 </div>
 
 <div class="col text-center">
-  <p class="pb_font-14">© 2019 <a href="https://uicookies.com/">Landing</a> Free Bootstrap4. All Rights Reserved. <br> Designed &amp; Developed by <a href="https://uicookies.com/">uicookies.com</a> <small>(Don't remove credit link on this footer. See <a href="https://uicookies.com/license/" target="_blank">license</a>)</small></p>
-  <p class="pb_font-14">Demo Images: <a href="https://unsplash.com/" target="_blank" rel="nofollow">Unsplash</a></p>
+  <p>© 2020 LBrAWlers. All Rights Reserved.</p>
 </div>
 
 <?php
