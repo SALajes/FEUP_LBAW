@@ -1,0 +1,22 @@
+#logo{
+    height: 2.5rem;
+}
+
+#profile, #help{
+    height: 2rem;
+}
+
+#search > input{
+    width: 25rem;
+}
+
+#search > button{
+    color: #564946;
+    background-color: #f8f9fa;
+}
+
+#search > button:hover {
+    color: #49d49d;
+    background-color: #564946;
+    border-color: #564946;
+}
