@@ -1,0 +1,36 @@
+#header{
+    padding: 0 1rem 0 1rem;
+    background-color: white;
+    border-bottom: 0.2rem solid;
+    border-image-source: linear-gradient(to right, #3355ae, #0aedb3);
+    border-image-slice: 1;
+}
+
+#logo{
+    font-size: 2.7rem;
+    color: #3355ae;
+}
+
+#header > #icons i{
+    color: #0aedb3;
+    font-size: 1.5rem;
+}
+
+#header > #icons i:hover{
+    color: #564946;
+}
+
+#search > input{
+    width: 25rem;
+    color: #564946;
+}
+
+#search > button{
+    color: #13cad2;
+    background-color: #f8f9fa;
+}
+
+#search > button:hover {
+    background-color: #564946;
+    border-color: #564946;
+}
