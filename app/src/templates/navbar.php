@@ -1,11 +1,8 @@
-<link rel="stylesheet" href="../css/navbar.css">
+<link rel="stylesheet" href="../styles/navbar.css">
 
 <header>
     <nav id="header" class="navbar d-flex justify-content-between fixed-top navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#"><i id="logo" class="icon-logo align-middle"></i></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
         <form id="search" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search">

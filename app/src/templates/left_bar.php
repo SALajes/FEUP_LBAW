@@ -2,7 +2,7 @@
     <div class="row-md-auto">
         <div class="text-center">
             <h2>Home</h2>
-            <a class="nav-item nav-link" href="#"><i class="fas fa-user-circle" style="font-size: 7rem;"></i></a>
+            <a class="nav-item nav-link" href="#"><i class="icon-user" style="font-size: 7rem;"></i></a>
             <p>John Doe</p>
             <p>up000000000</p>
             <p>#mieic</p>

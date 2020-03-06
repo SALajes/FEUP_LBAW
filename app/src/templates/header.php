@@ -15,7 +15,7 @@
     
     <script src="https://kit.fontawesome.com/f24a6df81b.js" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="../assets/identity.css">
+    <link rel="stylesheet" href="../../assets/identity.css">
 
     <title>LBrAWl</title>
 </head>

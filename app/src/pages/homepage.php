@@ -17,7 +17,7 @@
                         <!-- Zona para o user dar post-->
                         <div class="card post-margins">
                             <div class="card-header">
-                                To >
+                                To > 
                                 <select class="custom-select w-auto">
                                     <option value="1" selected>General</option>
                                     <option value="2">LBAW</option>
@@ -29,7 +29,7 @@
                                     aria-describedby="inputGroup-sizing-default" placeholder="What's on your mind?">
                             </div>
                             <div class="card-footer d-flex justify-content-between">
-                                <a href="#"><i class="fas fa-paperclip"></i></a>
+                                <a href="#"><i class="icon-attach"></i></a>
                                 <button id="search" type="button" class="btn btn-light">Post</button>
                             </div>
                         </div> 
@@ -46,6 +46,7 @@
         </div>
     </div>
 </main>
+
 
 <?php
 	include_once('../templates/footer.php');
