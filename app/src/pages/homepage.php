@@ -1,16 +1,21 @@
 <?php
 	include_once('../templates/header.php');
 
-	include_once('../templates/navbar.php');
+    include_once('../templates/navbar.php');
+    
+    include_once('../templates/left_bar.php');
 ?>
 
-<main role="main">
+<body>
     <div class="container-fuild">
         <div class="row">
 
-            <?php include_once('../templates/left_bar.php'); ?>
+            <?php 
+                draw_leftBar_Top("Home", "John Doe", "up00000000", "#mieic"); 
+                draw_leftBar_Homepage();
+            ?>
             
-            <div class="col-lg-9">
+            <main class="col-lg-9">
                 <div class="container">
                     <div class="col-sm-9">
                         
@@ -42,11 +47,10 @@
                         <?php include('../templates/card.php'); ?>
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
     </div>
-</main>
-
+</body>
 
 <?php
 	include_once('../templates/footer.php');
