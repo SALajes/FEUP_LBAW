@@ -16,15 +16,19 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-notification align-middle"></i></a>
+                    <span class="d-lg-none"> Notifications</span>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-message align-middle"></i></a>
+                    <span class="d-lg-none"> Messages</span>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-user align-middle"></i></a>
+                    <span class="d-lg-none"> Profile</span>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-question align-middle"></i></a>
+                    <span class="d-lg-none"> Help</span>
                 </li>
             </ul>
         </div>

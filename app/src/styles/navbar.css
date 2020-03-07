@@ -24,6 +24,19 @@
     color: #564946;
 }
 
+#navbarCollapse > ul > li{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#navbarCollapse > ul > li > * {
+    display: inline;
+}
+
+#navbarCollapse > ul > li > span {
+    color: #564946;
+}
+
 #search{
     display: flex;
     flex-wrap: nowrap;
