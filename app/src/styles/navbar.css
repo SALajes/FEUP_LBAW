@@ -11,23 +11,36 @@
     color: #3355ae;
 }
 
-#icons_navbarcollapse i{
+#header > button .icon-menu{
+    color: #0aedb3;
+}
+
+#navbarCollapse > ul i{
     color: #0aedb3;
     font-size: 1.7rem;
 }
 
-#icons_navbarcollapse i:hover{
+#navbarCollapse > ul i:hover{
     color: #564946;
 }
 
+#search{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-basis: 40%;
+}
+
 #search > input{
-    width: 25rem;
+    display: flex;
+    flex-basis: 90%;
+    width: max-content;
     color: #564946;
 }
 
 #search > button{
     color: #13cad2;
     background-color: #f8f9fa;
+    margin: 0.25rem;
 }
 
 #search > button:hover {
