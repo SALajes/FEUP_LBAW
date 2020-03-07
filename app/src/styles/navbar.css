@@ -11,12 +11,12 @@
     color: #3355ae;
 }
 
-#header > #icons i{
+#icons_navbarcollapse i{
     color: #0aedb3;
     font-size: 1.7rem;
 }
 
-#header > #icons i:hover{
+#icons_navbarcollapse i:hover{
     color: #564946;
 }
 
