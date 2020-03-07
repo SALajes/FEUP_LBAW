@@ -1,3 +1,15 @@
 #butons {
     margin-bottom: 2rem;
 }
+
+.card {
+    margin-top: 2rem;
+}
+
+.card i {
+    padding: 1rem;
+}
+
+.card p {
+    padding-top: 1rem;
+}

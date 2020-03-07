@@ -5,7 +5,7 @@
         <section class="row-md-auto">
             <div class="text-center">
                 <h2><?= $breadcrumb ?></h2>
-                <a class="nav-item nav-link" href="profile.php"><i class="icon-user" style="font-size: 7rem;"></i></a>
+                <a class="nav-item nav-link" href="profile1.php"><i class="icon-user" style="font-size: 7rem;"></i></a>
                 <p><?= $username ?></p>
                 <p><?= $usrId ?></p>
                 <p><?= $tag ?></p>

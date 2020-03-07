@@ -2,7 +2,7 @@
 
 <header>
     <nav id="header" class="navbar d-flex justify-content-between fixed-top navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#"><i id="logo" class="icon-logo align-middle"></i></a>
+        <a class="navbar-brand" href="homepage.php"><i id="logo" class="icon-logo align-middle"></i></a>
 
         <form id="search" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search">
