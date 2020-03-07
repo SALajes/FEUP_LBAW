@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../styles/navbar.css">
 
 <header>
-    <nav id="header" class="navbar d-flex justify-content-between fixed-top navbar-expand-lg navbar-dark">
+    <nav id="header" class="navbar fixed-top navbar-expand-md navbar-dark">
         <a class="navbar-brand" href="#"><i id="logo" class="icon-logo align-middle"></i></a>
        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
