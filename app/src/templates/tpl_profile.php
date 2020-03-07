@@ -1,5 +1,5 @@
 <?php function draw_myCUs() { ?>
-    <div class="row">
+    <section class="row">
         <table class="table text-center table-hover">
             <thead>
                 <tr>
@@ -36,13 +36,13 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </section>
 <?php } ?>
 
 <?php function draw_myRatings() { ?>
     <link rel="stylesheet" href="../styles/profile.css">
 
-    <div class="row-md-auto">
+    <section class="row-md-auto">
         <div class="d-flex justify-content-around" style="margin-top: 2rem">
             <p><i class="far fa-thumbs-up"></i> 6</p>
             <p>3 comments</p>
@@ -50,22 +50,22 @@
 
         <hr class="featurette-divider">
 
-        <section class="card d-flex flex-row justify-content-between">
+        <section class="card d-flex flex-row justify-content-between align-items-center">
             <i class="icon-user"></i>
-            <p class="text-left">Awsome group partner</p>
-            <i class="icon-ellipsis"></i>
-        </section>
-
-        <section class="card d-flex flex-row justify-content-between">
-            <i class="icon-user"></i>
-            <p class="text-left">Very kind and considerate, always available and on topic</p>
+            <div class="card-body">Awsome group partner</div>
             <i class="icon-ellipsis"></i>
         </section>
 
         <section class="card d-flex flex-row justify-content-between align-items-center">
             <i class="icon-user"></i>
-            <p clas="text-left">Good Worker!!</p>
+            <div class="card-body">Very kind and considerate, always available and on topic</div>
             <i class="icon-ellipsis"></i>
         </section>
-    </div>
+
+        <section class="card d-flex flex-row justify-content-between align-items-center">
+            <i class="icon-user"></i>
+            <div class="card-body">Good Worker</div>
+            <i class="icon-ellipsis"></i>
+        </section>
+    </section>
 <?php } ?>

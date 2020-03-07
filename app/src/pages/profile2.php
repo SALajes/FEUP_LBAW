@@ -12,7 +12,7 @@
         <div class="row">
 
             <?php 
-                draw_leftBar_Top("My Profile", "John Doe", "up00000000", ""); 
+                draw_leftBar_Top("My Profile", "Alvaro Campos", "up188800613", ""); 
                 draw_leftBar_Profile();
             ?>
             

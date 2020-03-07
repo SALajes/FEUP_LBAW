@@ -11,7 +11,7 @@
         <div class="row">
 
             <?php 
-                draw_leftBar_Top("Home", "John Doe", "up00000000", "#mieic"); 
+                draw_leftBar_Top("My Profile", "Alvaro Campos", "up188800613", "#mieic"); 
                 draw_leftBar_Homepage();
             ?>
             
