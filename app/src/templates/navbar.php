@@ -11,12 +11,18 @@
         <div id="navbarCollapse" class="collapse navbar-collapse" >
             <section id="collapsed_profile" class="d-md-none d-flex flex-row justify-content-center align-items-center flex-wrap">
                 <a class="nav-link" href="#"><i class="icon-user align-middle"></i></a>
-                <section class="d-flex flex-column"><span> John doe </span><span> up000000000 </span><span> #mieic </span></section>
+                <section class="d-flex flex-column">
+                    <span> Alvaro Campos</span>
+                    <span> up18880613 </span>
+                    <span> #mieic </span>
+                </section>
             </section>
+
             <form id="search" class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search">
                 <button type="button" class="btn btn-light"><i class="icon-search"></i></button>
             </form>
+            
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-notification align-middle"></i></a>

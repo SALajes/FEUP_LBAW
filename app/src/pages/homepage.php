@@ -3,7 +3,9 @@
 <?php
 	include_once('../templates/header.php');
 
-	include_once('../templates/navbar.php');
+  include_once('../templates/navbar.php');
+  
+  include_once('../templates/card.php');
 ?>
 
 <body class="container-fluid">
@@ -16,9 +18,11 @@
 
         <?php include_once('../templates/publish_card.php'); ?>  
 
-        <?php include('../templates/card.php'); ?>
-        <?php include('../templates/card.php'); ?>
-        <?php include('../templates/card.php'); ?>      
+        <?php 
+          draw_card1();
+          draw_card2();
+        ?>
+          
     </main>
     <div class="col-3">
     </div>

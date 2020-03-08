@@ -3,9 +3,9 @@
         <div class="text-center">
             <h2>Home</h2>
             <a class="nav-item nav-link" href="#"><i class="icon-user" style="font-size: 7rem;"></i></a>
-            <p>John Doe</p>
-            <p>up000000000</p>
-            <p>#mieic</p>
+            <p> Alvaro Campos</p>
+            <p> up188800613</p>
+            <p> #mieic </p>
         </div>
     </div>
 
