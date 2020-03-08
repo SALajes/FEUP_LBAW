@@ -48,7 +48,10 @@ include_once('../templates/header.php');
         <section class="row featurette">
             <blockquote class="col-md-7 order-md-2">
                 <h2 class="featurette-heading">Faster and more fluid group formation. <span class="text-info">Without the spam.</span></h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                <p class="lead">An easy-to-use tool allows you to handpick who you want to join you in 
+                workgroups. Choose students that work the same way you do, and easily check if the students 
+                you want to work with aren't yet members of a team. This greatly diminishes spam messages of 
+                students asking each other if they want to team up.</p>
             </blockquote>
             <picture class="col-md-5 text-center">
                 <i class="fa fa-users text-gradient-blue" style="font-size: 10rem;"></i>
