@@ -14,11 +14,15 @@ include_once('../templates/sidebar.php');
             <div class="col-lg-9">
                 <div class="container">
                     <div class="col-sm-9">
-                        
                         <!-- Zona para o user dar post-->
                         <div class="card post-margins">
                             <div class="card-header">
-                                LBAW
+                             To > 
+                                <select class="custom-select w-auto">
+                                    <option value="1" selected>General</option>
+                                    <option value="2">Doubts</option>
+                                    <option value="3">Tuttoring</option>
+                                </select>
                             </div>
                             <div class="card-body">
                                 <input type="text" class="form-control" aria-label="Sizing example input"

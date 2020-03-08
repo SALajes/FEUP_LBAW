@@ -48,31 +48,35 @@ function draw_generic_sidebar(){
 }
 
 function draw_cu_sidebar(){
+?>  
+    <script src="test.js" defer></script>
+    <div class="col-lg-3 sticky-top sticky-offset align-self-start" id="page-title">
+    <div class="row-md-auto">
+     <div class="text-center">
+            <h2>LBAW</h2>
+            </div>
+        </div>
 
-    echo "<div class=\"col-lg-3 sticky-top sticky-offset align-self-start\" id=\"page-title\">";
-        
-        echo "<div class=\"row-md-auto\">";
-            echo "<div class=\"text-center\">";
-                echo "<h2>LBAW</h2>";
-            echo "</div>";
-        echo "</div>";
-
-        echo "<hr class=\"featurette-divider\">";
-        
-        echo "<div class=\"row-md-auto\">";
-
-            echo "<div class=\"btn-group-vertical\">";
-                echo "<button type=\"button\" class=\"btn btn-link\"><h3>General</h3></button>";
-                echo "<button type=\"button\" class=\"btn btn-link\"><h3>Drive</h3></button>";
-                echo "<button type=\"button\" class=\"btn btn-link\"><h3>Doubts</h3></button>";
-                echo "<button type=\"button\" class=\"btn btn-link\"><h3>Tuttoring</h3></button>";
-                echo "<button type=\"button\" class=\"btn btn-link\"><h3>Classes</h3></button>";
-                echo "<button type=\"button\" class=\"btn btn-link\"><h3>About</h3></button>";
-            echo "</div>";
-           
-        echo "</div>";
+        <hr class="featurette-divider">
+    
+        <div class="row-md-auto">
+            <div class="dropdown">
+            
+            <button class="btn btn-secondary dropdown-toggle d-md-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="dropdown-menu show" id="cu_selector">
+            <button type="button" class="btn btn-link dropdown-item"><h3>General</h3></button>
+            <button type="button" class="btn btn-link dropdown-item"><h3>Drive</h3></button>
+            <button type="button" class="btn btn-link dropdown-item"><h3>Doubts</h3></button>
+            <button type="button" class="btn btn-link dropdown-item"><h3>Tuttoring</h3></button>
+            <button type="button" class="btn btn-link dropdown-item"><h3>Classes</h3></button>
+            <button type="button" class="btn btn-link dropdown-item"><h3>About</h3></button>
+            </div>
+</div>
+        </div>
 
 
-    echo "</div>";    
-
+    </div>
+<?php
 }
+?>
