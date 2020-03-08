@@ -1,16 +1,15 @@
 <?php
-	include_once('../templates/header.php');
+include_once('../templates/header.php');
 
-    include_once('../templates/navbar.php');
-    
-    include_once('../templates/sidebar.php');
+include_once('../templates/navbar.php');
+
+include_once('../templates/sidebar.php');
 ?>
-
 <main role="main">
     <div class="container-fuild">
         <div class="row">
 
-            <?php draw_generic_sidebar(); ?>
+            <?php draw_cu_sidebar(); ?>
             
             <div class="col-lg-9">
                 <div class="container">
@@ -19,12 +18,7 @@
                         <!-- Zona para o user dar post-->
                         <div class="card post-margins">
                             <div class="card-header">
-                                To > 
-                                <select class="custom-select w-auto">
-                                    <option value="1" selected>General</option>
-                                    <option value="2">LBAW</option>
-                                    <option value="3">PPIN</option>
-                                </select>
+                                LBAW
                             </div>
                             <div class="card-body">
                                 <input type="text" class="form-control" aria-label="Sizing example input"
@@ -48,8 +42,6 @@
         </div>
     </div>
 </main>
-
-
 <?php
-	include_once('../templates/footer.php');
+include_once('../templates/footer.php');
 ?>
