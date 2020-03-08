@@ -18,6 +18,7 @@ include_once('../templates/header.php');
             <h1 class="display-4 font-weight-normal">LBrAWl</h1>
             <p class="lead font-weight-normal">The most effective communication experience for university students. Chat, share course materials and form groups. All in one platform.</p>
             <a class="btn btn-outline-light" href="#">Sign up</a>
+            <a class="btn btn-outline-light" href="#">Login</a>
         </div>
         <div class="product-device shadow-sm d-none d-md-block"></div>
         <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
