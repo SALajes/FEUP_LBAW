@@ -2,6 +2,8 @@
 include_once('../templates/header.php');
 ?>
 
+<link rel="stylesheet" href="../styles/landing.css">
+
 <header class="background-gradient-blue">
     <section class="masthead mb-auto pt-3 d-flex pr-5 justify-content-end">
         <div class="inner">
@@ -87,10 +89,6 @@ include_once('../templates/header.php');
         <hr class="featurette-divider mb-4">
     </main>
 </body>
-
-<footer class="col text-center">
-    <p>© 2020 LBrAWlers. All Rights Reserved.</p>
-</footer>
 
 <?php
 include_once('../templates/footer.php');
