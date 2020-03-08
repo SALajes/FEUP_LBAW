@@ -17,7 +17,8 @@ include_once('../templates/header.php');
 
     <section class="position-relative overflow-hidden p-3 p-md-5 text-center text-white">
         <div class="col-md-5 p-lg-5 mx-auto my-5">
-            <h1 class="display-4 font-weight-normal">LBrAWl</h1>
+            <i class="icon-logo" style="font-size: 10rem; color: white;"></i>
+            <h1 class="font-weight-normal">LBrAWl</h1>
             <p class="lead font-weight-normal">The most effective communication experience for university students. Chat, share course materials and form groups. All in one platform.</p>
             <a class="btn btn-outline-light" href="homepage.php">Sign up</a>
             <a class="btn btn-outline-light" href="homepage.php">Login</a>
@@ -39,7 +40,7 @@ include_once('../templates/header.php');
                 </p>
             </blockquote>
             <picture class="col-md-5 text-center">
-                <i class="fa fa-download text-gradient-blue" style="font-size: 10rem;"></i>
+                <i class="icon-download text-gradient-blue" style="font-size: 10rem;"></i>
             </picture>
         </section>
 
@@ -54,7 +55,7 @@ include_once('../templates/header.php');
                 students asking each other if they want to team up.</p>
             </blockquote>
             <picture class="col-md-5 text-center">
-                <i class="fa fa-users text-gradient-blue" style="font-size: 10rem;"></i>
+                <i class="icon-teamwork text-gradient-blue" style="font-size: 10rem;"></i>
             </picture>
         </section>
 
@@ -69,7 +70,7 @@ include_once('../templates/header.php');
                 </p>
             </blockquote>
             <picture class="col-md-5 text-center">
-                <i class="fa fa-hands-helping text-gradient-blue" style="font-size: 10rem;"></i>
+                <i class="icon-partner text-gradient-blue" style="font-size: 10rem;"></i>
             </picture>
         </section>
 
@@ -83,7 +84,7 @@ include_once('../templates/header.php');
                 </p>
             </blockquote>
             <picture class="col-md-5 text-center">
-                <i class="fa fa-angle-double-up text-gradient-blue" style="font-size: 10rem;"></i>
+                <i class="icon-goal text-gradient-blue" style="font-size: 10rem;"></i>
             </picture>
         </section>
 
