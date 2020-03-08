@@ -1,0 +1,7 @@
+@import "fonts/icon_fonts/style.css";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+
+*{
+    font-family: 'Roboto Mono', monospace;
+}
