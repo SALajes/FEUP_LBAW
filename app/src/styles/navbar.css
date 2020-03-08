@@ -1,5 +1,5 @@
 #header{
-    padding: 0 1rem 0 1rem;
+    padding: 0.25rem 1rem 0.25rem 1rem;
     background-color: white;
     border-bottom: 0.2rem solid;
     border-image-source: linear-gradient(to right, #3355ae, #0aedb3);
@@ -35,6 +35,7 @@
 
 #navbarCollapse > ul > li > span {
     color: #564946;
+    margin: 0.25rem;
 }
 
 #search{
@@ -59,6 +60,23 @@
 #search > button:hover {
     background-color: #564946;
     border-color: #564946;
+}
+
+@media only screen and (max-width: 768px) {
+    #navbarCollapse{
+        margin: 1rem 2rem;
+    }
+
+    #collapsed_profile i{
+        font-size: 3rem;
+    }
+    #collapsed_profile span{
+        color: #564946;
+    }
+
+    .icon-log-out, .icon-manage-uc, .icon-uc{
+        font-weight: bolder;
+    }
 }
 
 @media only screen and (min-width: 768px) {
