@@ -1,0 +1,17 @@
+html { height: 100%; }
+body {
+    min-height:100%; 
+    position:relative; 
+    padding-bottom:2rem; 
+}
+footer { 
+    position: absolute; 
+    left: 0 ; right: 0; bottom: 0; 
+    height:2rem;
+}
+
+footer > p{
+    padding-top: 1rem;
+    text-align: center;
+    font-size: small; 
+}
