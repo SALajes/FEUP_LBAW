@@ -4,11 +4,11 @@
     <aside class="col-lg-3 sticky-top sticky-offset align-self-start" id="page-title">
         <section class="row-md-auto">
             <div class="text-center">
-                <h2><?= $breadcrumb ?></h2>
-                <a class="nav-item nav-link" href="profile1.php"><i class="icon-user" style="font-size: 7rem;"></i></a>
-                <p><?= $username ?></p>
-                <p><?= $usrId ?></p>
-                <p><?= $tag ?></p>
+                <h2 class="d-block"><?= $breadcrumb ?></h2>
+                <a class="nav-item nav-link d-none" href="profile1.php"><i class="icon-user" style="font-size: 7rem;"></i></a>
+                <p class="d-none"><?= $username ?></p>
+                <p class="d-none"><?= $usrId ?></p>
+                <p class="d-none"><?= $tag ?></p>
             </div>
         </section>
 
@@ -16,7 +16,7 @@
 <?php } ?>
 
 <?php function draw_leftBar_Homepage() { ?>
-        <section class="row-md-auto">
+        <section class="row-md-auto d-none d-md-block d-md-none">
             <h4 class="text-center">My CU's</h4>
             <ul>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
