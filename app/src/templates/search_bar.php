@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../styles/homepage_bar.css">
 
 <div id="left_bar" class="d-flex text-wrap flex-column justify-content-center align-items-left">
-    <h2 class="float-left d-block text-truncate">Advanced search</h2>
+    <h2 class="float-left d-block text-truncate">Search</h2>
 
     <div class="form-check mt-5 py-3">
         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
