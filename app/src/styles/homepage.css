@@ -1,0 +1,17 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#posts{
+    background-color: rgb(245, 245, 245);
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+   #homepage .col-6 {
+       flex: 1 1 100%;
+       max-width: 100%;
+   }
+}

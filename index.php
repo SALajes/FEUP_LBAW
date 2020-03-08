@@ -1,1 +1,1 @@
-<?php header("Location: app/src/pages/homepage.php"); ?>
+<?php header("Location: app/src/pages/landing.php"); ?>

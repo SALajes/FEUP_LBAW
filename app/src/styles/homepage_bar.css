@@ -1,0 +1,33 @@
+#left_bar{
+    position: fixed;
+    overflow-y: scroll;
+}
+
+#left_bar{
+    padding-top: 6rem;
+    color: #564946;
+}
+
+#student_identification{
+    padding: 1rem;
+    margin: 0 1rem 1rem 1rem;
+    border-bottom: solid 0.1rem #13cad2;
+}
+
+#student_identification > p{
+    margin: 0;
+}
+
+#my_cus{
+    padding: 0;
+}
+
+#my_cus > li{
+    padding: 0.25rem 0.75rem;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 10rem;
+}
