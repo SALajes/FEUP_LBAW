@@ -47,7 +47,7 @@
         <section class="row-md-auto">
             <address class="text-center">Portuguese</address>
             <blockquote class="text-center col-md-10 mx-auto">
-                I'm an amazing student, eager to leran, 3rd grade of MIEIC
+                I'm an amazing student, eager to learn, 3rd grade of MIEIC
             </blockquote>
             <div class="d-flex justify-content-around">
                 <div>
