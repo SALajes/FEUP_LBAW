@@ -5,10 +5,10 @@
         <section class="row-md-auto">
             <div class="text-center">
                 <h2 class="d-block"><?= $breadcrumb ?></h2>
-                <a class="nav-item nav-link d-none" href="profile1.php"><i class="icon-user" style="font-size: 7rem;"></i></a>
-                <p class="d-none"><?= $username ?></p>
-                <p class="d-none"><?= $usrId ?></p>
-                <p class="d-none"><?= $tag ?></p>
+                <a class="nav-item nav-link d-none d-sm-block d-md-block" href="profile1.php"><i class="icon-user" style="font-size: 7rem;"></i></a>
+                <p class="d-none d-sm-block d-md-block"><?= $username ?></p>
+                <p class="d-none d-sm-block d-md-block"><?= $usrId ?></p>
+                <p class="d-none d-sm-block d-md-block"><?= $tag ?></p>
             </div>
         </section>
 

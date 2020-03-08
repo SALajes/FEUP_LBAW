@@ -1,8 +1,6 @@
 <?php
 	include_once('../templates/header.php');
-
-    // include_once('../templates/navbar.php');
-    
+    include_once('../templates/navbar.php');
     include_once('../templates/left_bar.php');
 ?>
 
