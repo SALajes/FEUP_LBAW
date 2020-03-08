@@ -4,7 +4,7 @@
     <h2>Home</h2>
 
     <section id="student_identification" class="d-flex flex-column align-items-center">
-            <a class="nav-item nav-link" href="#"><i class="icon-user" style="font-size: 7rem;"></i></a>
+            <a class="nav-item nav-link" href="profile1.php"><i class="icon-user" style="font-size: 7rem;"></i></a>
             <p> Alvaro Campos</p>
             <p> up188800613 </p>
             <p>#mieic</p>

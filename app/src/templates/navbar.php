@@ -2,7 +2,7 @@
 
 <header>
     <nav id="header" class="navbar fixed-top navbar-expand-md navbar-dark">
-        <a class="navbar-brand" href="#"><i id="logo" class="icon-logo align-middle"></i></a>
+        <a class="navbar-brand" href="homepage.php"><i id="logo" class="icon-logo align-middle"></i></a>
        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
             <i class="icon-menu"></i>
@@ -10,7 +10,7 @@
         
         <div id="navbarCollapse" class="collapse navbar-collapse" >
             <section id="collapsed_profile" class="d-md-none d-flex flex-row justify-content-center align-items-center flex-wrap">
-                <a class="nav-link" href="#"><i class="icon-user align-middle"></i></a>
+                <a class="nav-link" href="profile1.php"><i class="icon-user align-middle"></i></a>
                 <section class="d-flex flex-column">
                     <span> Alvaro Campos</span>
                     <span> up18880613 </span>
