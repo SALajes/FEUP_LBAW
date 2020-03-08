@@ -89,10 +89,6 @@ include_once('../templates/header.php');
     </main>
 </body>
 
-<footer class="col text-center">
-    <p>© 2020 LBrAWlers. All Rights Reserved.</p>
-</footer>
-
 <?php
 include_once('../templates/footer.php');
 ?>
