@@ -1,0 +1,11 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+#homepage{
+    padding-top: 5rem;
+}
+
+#posts{
+    background-color: rgb(245, 245, 245);
+}

@@ -1,4 +1,4 @@
-<div class="col-lg-3 sticky-top sticky-offset align-self-start" id="page-title">
+<div class="col-lg-3 sticky-top sticky-offset align-self-start overflow-auto" id="page-title">
     <div class="row-md-auto">
         <div class="text-center">
             <h2>Home</h2>

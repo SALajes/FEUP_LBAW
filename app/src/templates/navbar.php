@@ -26,7 +26,7 @@
                     <a class="nav-link" href="#"><i class="icon-message align-middle"></i></a>
                     <span class="d-md-none"> Messages</span>
                 </li>
-                <li class="nav-item d-none d-md-block d-xl-none">
+                <li class="nav-item d-none d-md-block">
                     <a class="nav-link" href="#"><i class="icon-user align-middle"></i></a>
                     <span class="d-md-none"> Profile</span>
                 </li>
