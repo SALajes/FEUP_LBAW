@@ -49,12 +49,12 @@
             <blockquote class="text-center col-md-10 mx-auto">
                 I'm an amazing student, eager to leran, 3rd grade of MIEIC
             </blockquote>
-            <div class="d-flex justify-content-around">
+            <div class="d-flex justify-content-around likes_friend">
                 <div>
-                    <i class="far fa-thumbs-up"></i> 6
+                    <i class="icon-like"></i> 6
                 </div>    
                 <div>
-                    <i class="fas fa-user-plus"></i>
+                    <i class="icon-add_friend"></i>
                 </div>
             </div>
         </section>

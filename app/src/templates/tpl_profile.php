@@ -43,8 +43,8 @@
     <link rel="stylesheet" href="../styles/profile.css">
 
     <section class="row-md-auto">
-        <div class="d-flex justify-content-around" style="margin-top: 2rem">
-            <p><i class="far fa-thumbs-up"></i> 6</p>
+        <div class="d-flex justify-content-around likes_friend" style="margin-top: 2rem">
+            <p><i class="icon-like"></i> 6</p>
             <p>3 comments</p>
         </div>
 
