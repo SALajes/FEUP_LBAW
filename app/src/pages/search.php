@@ -12,7 +12,7 @@ include_once('../templates/navbar.php');
       <?php include_once('../templates/search_bar.php'); ?>
     </div>
     <div id="posts" class="col-6">
-      <h1 class="d-block d-md-none text-center" style="padding-bottom: 1rem">Advanced search</h1>
+      <h1 class="d-block d-md-none text-center" style="padding-bottom: 1rem">Search</h1>
 
       <?php include('../templates/card_teacher.php'); ?>
       <?php include('../templates/card_cu.php'); ?>
