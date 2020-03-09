@@ -44,7 +44,7 @@
 
     <section class="row-md-auto">
         <div class="d-flex justify-content-around likes_friend" style="margin-top: 2rem">
-            <p><i class="icon-like"></i> 6</p>
+            <p><i class="icon-like" style="color: #0aedb3"></i> 6</p>
             <p>3 comments</p>
         </div>
 

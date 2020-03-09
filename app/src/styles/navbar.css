@@ -4,7 +4,9 @@
     border-bottom: 0.2rem solid;
     border-image-source: linear-gradient(to right, #3355ae, #0aedb3);
     border-image-slice: 1;
-    max-width: 100%;
+
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #logo{
