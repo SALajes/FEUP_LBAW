@@ -18,9 +18,9 @@
                 </section>
             </section>
 
-            <form id="search" class="form-inline my-2 my-lg-0">
+            <form id="search" class="form-inline my-2 my-lg-0" action="../pages/search.php">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                <button type="button" class="btn btn-light"><i class="icon-search"></i></button>
+                <button type="submit" class="btn btn-light"><i class="icon-search"></i></button>
             </form>
             
             <ul class="navbar-nav">

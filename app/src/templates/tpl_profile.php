@@ -52,7 +52,7 @@
 
         <section class="card d-flex flex-row justify-content-between align-items-center">
             <i class="icon-user"></i>
-            <div class="card-body">Awsome group partner</div>
+            <div class="card-body">Awesome group partner</div>
             <i class="icon-ellipsis"></i>
         </section>
 

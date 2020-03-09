@@ -51,10 +51,10 @@
             </blockquote>
             <div class="d-flex justify-content-around likes_friend">
                 <div>
-                    <i class="icon-like"></i> 6
+                    <i class="icon-like" style="color: #0aedb3"></i> 6
                 </div>    
                 <div>
-                    <i class="icon-add_friend"></i>
+                    <i class="icon-add_friend" style="color: #0aedb3"></i>
                 </div>
             </div>
         </section>
