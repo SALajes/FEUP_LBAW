@@ -1,9 +1,12 @@
 #header{
-    padding: 0 1rem 0 1rem;
+    padding: 0.25rem 1rem 0.25rem 1rem;
     background-color: white;
     border-bottom: 0.2rem solid;
     border-image-source: linear-gradient(to right, #3355ae, #0aedb3);
     border-image-slice: 1;
+
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #logo{
@@ -16,7 +19,7 @@
 }
 
 #navbarCollapse > ul i{
-    color: #0aedb3;
+    color: #3355ae;
     font-size: 1.7rem;
 }
 
@@ -35,12 +38,13 @@
 
 #navbarCollapse > ul > li > span {
     color: #564946;
+    margin: 0.25rem;
 }
 
 #search{
     display: flex;
     flex-wrap: nowrap;
-    flex-basis: 40%;
+    flex-basis: 60%;
 }
 
 #search > input{
@@ -59,4 +63,33 @@
 #search > button:hover {
     background-color: #564946;
     border-color: #564946;
+}
+
+@media only screen and (max-width: 768px) {
+    #navbarCollapse{
+        margin: 1rem 2rem;
+    }
+
+    #collapsed_profile i{
+        font-size: 3rem;
+    }
+    #collapsed_profile span{
+        color: #564946;
+    }
+
+    .icon-log-out, .icon-manage-uc, .icon-uc{
+        font-weight: bolder;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #navbarCollapse{
+        margin-left: 5rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #navbarCollapse > ul i{
+        color: #0aedb3;
+    }
 }

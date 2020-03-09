@@ -1,6 +1,6 @@
-    </body>
+<link rel="stylesheet" href="../styles/footer.css">
 
-    <footer style="margin-top: 2rem">
-
+    <footer>
+    <p>© 2020 LBrAWlers. All Rights Reserved.</p>
     </footer>
 </html>
