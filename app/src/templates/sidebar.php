@@ -69,8 +69,8 @@
 <?php function draw_sidebar_cu()
 { ?>
 
-    <section class="row d-md-block offset-xl-4">
-        <div class="btn-group-vertical btn-group-toggle col-lg-3 offset-xl-12" role="group" aria-label="Tabs" id="cu_tabs">
+    <section class="row d-md-block offset-xl-4 offset-lg-1">
+        <div class="btn-group-vertical btn-group-toggle col-lg-3" role="group" aria-label="Tabs" id="cu_tabs">
             <div class="row col-xl-6 col-lg-4">
             <button type="button" class="btn btn-link col-xl-12"><h3>Feed</h3></button>
             <button type="button" class="btn btn-link col-xl-12"><h3>Drive</h3></button>
@@ -94,7 +94,6 @@
         function vert_hor(){
             if(window.innerWidth < 992) btn_grp.className = "btn-group btn-group-toggle col-lg-3";
             else btn_grp.className = "btn-group-vertical btn-group-toggle col-lg-3";
-            console.log(window.innerWidth);
         }
         
         window.addEventListener("resize", vert_hor);
