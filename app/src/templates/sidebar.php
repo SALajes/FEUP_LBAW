@@ -71,12 +71,16 @@
 
     <section class="row d-md-block">
         <div class="btn-group-vertical btn-group-toggle text-center col-md-3" role="group" aria-label="Tabs" id="cu_tabs">
-            <button type="button" class="btn btn-link"><h3>Feed</h3></button>
-            <button type="button" class="btn btn-link"><h3>Drive</h3></button>
-            <button type="button" class="btn btn-link"><h3>Doubts</h3></button>
-            <button type="button" class="btn btn-link"><h3>Tuttoring</h3></button>
-            <button type="button" class="btn btn-link"><h3>Classes</h3></button>
-            <button type="button" class="btn btn-link"><h3>About</h3></button>
+            <div class="row">
+            <button type="button" class="btn btn-link col-md-12"><h3>Feed</h3></button>
+            <button type="button" class="btn btn-link col-md-12"><h3>Drive</h3></button>
+            <button type="button" class="btn btn-link col-md-12"><h3>Doubts</h3></button>
+            </div>
+            <div class="row">
+            <button type="button" class="btn btn-link col-md-12"><h3>Tuttoring</h3></button>
+            <button type="button" class="btn btn-link col-md-12"><h3>Classes</h3></button>
+            <button type="button" class="btn btn-link col-md-12"><h3>About</h3></button>
+            </div>
         </div>
     </section>
 
