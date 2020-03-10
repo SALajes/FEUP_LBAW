@@ -17,14 +17,15 @@
 
         <main id="posts" class="col-6">
             <h1 class="d-block d-md-none text-center" style="padding-bottom: 1rem">Home</h1>
-
+            
+            <div id="content">
             <?php include_once('../templates/publish_card.php'); ?>
 
             <?php
                 draw_card1();
                 draw_card2();
             ?>
-
+            </div>
         </main>
 
         <div class="col-3">
