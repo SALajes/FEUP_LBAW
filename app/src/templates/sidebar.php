@@ -59,7 +59,7 @@
             <div>
                 <i class="icon-add_friend" style="color: #0aedb3"></i>
             </div>
-        </div>
+        </div>md
     </section>
     </aside>
 
@@ -69,17 +69,19 @@
 <?php function draw_sidebar_cu()
 { ?>
 
-    <section class="row d-md-block">
-        <div class="btn-group-vertical btn-group-toggle text-center col-md-3" role="group" aria-label="Tabs" id="cu_tabs">
-            <div class="row">
-            <button type="button" class="btn btn-link col-md-12"><h3>Feed</h3></button>
-            <button type="button" class="btn btn-link col-md-12"><h3>Drive</h3></button>
-            <button type="button" class="btn btn-link col-md-12"><h3>Doubts</h3></button>
+    <section class="row d-md-block offset-xl-4">
+        <div class="btn-group-vertical btn-group-toggle col-lg-3 offset-xl-12" role="group" aria-label="Tabs" id="cu_tabs">
+            <div class="row col-xl-6 col-lg-4">
+            <button type="button" class="btn btn-link col-xl-12"><h3>Feed</h3></button>
+            <button type="button" class="btn btn-link col-xl-12"><h3>Drive</h3></button>
             </div>
-            <div class="row">
-            <button type="button" class="btn btn-link col-md-12"><h3>Tuttoring</h3></button>
-            <button type="button" class="btn btn-link col-md-12"><h3>Classes</h3></button>
-            <button type="button" class="btn btn-link col-md-12"><h3>About</h3></button>
+            <div class="row col-lg-4">
+            <button type="button" class="btn btn-link col-xl-12"><h3>Doubts</h3></button>
+            <button type="button" class="btn btn-link col-xl-12"><h3>Tuttoring</h3></button>
+            </div>
+            <div class="row col-lg-4">
+            <button type="button" class="btn btn-link col-xl-12"><h3>Classes</h3></button>
+            <button type="button" class="btn btn-link col-xl-12"><h3>About</h3></button>
             </div>
         </div>
     </section>
@@ -90,8 +92,9 @@
     <script>
         let btn_grp = document.getElementById("cu_tabs");
         function vert_hor(){
-            if(window.innerWidth < 992) btn_grp.className = "btn-group btn-group-toggle text-center";
-            else btn_grp.className = "btn-group-vertical btn-group-toggle text-center";
+            if(window.innerWidth < 992) btn_grp.className = "btn-group btn-group-toggle col-lg-3";
+            else btn_grp.className = "btn-group-vertical btn-group-toggle col-lg-3";
+            console.log(window.innerWidth);
         }
         
         window.addEventListener("resize", vert_hor);
