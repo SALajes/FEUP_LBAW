@@ -1,17 +1,21 @@
-<?php
+<div id="sec_title" class="row">
+	<h2>Drive</h2>
+</div>
+<br>
+<div class="row">
+	<div class="folder_1 col-4">
+		<i class="icon-log-out" style="font-size: 5rem"></i> <div>Slides</div>
+	</div>
 
-echo "<p> Lorem ipsum,
- dolor sit amet consectetur adipisicing elit.
-  Nulla libero, incidunt consequatur aliquam voluptatum aspern
-  atur cum qui rerum, hic natus doloribus quam nesciunt ab neque
-   magnam accusamus, deserunt ratione impedit nam dolorum? Fugiat
-   , iste cupiditate praesentium dicta voluptate incidunt facere similique
-	vel ut natus voluptatum sit non quibusdam! Nam, cupiditate ducimus veritatis
-	 quae exercitationem recusandae optio tenetur vero similique nobis amet illum. Id
-	  minus natus error consequuntur maiores architecto omnis, vel sapiente nesciunt explica
-	  bo? Rerum dicta totam nihil perferendis tempore ipsa sequi, minima accusantium fugiat
-	  ione, culpa quod quisquam delectus mag
-	  nam saepe eligendi mollitia vel necessitatibus qui repellat dignissimos minus suscipit at quo. Magni rem nemo dolore accusamus repellat ex vitae, quam perferendis consequuntur cupiditate aut porro illo voluptatum velit.</p>";
+	<div class="folder_1 col-4">
+		<i class="icon-log-out" style="font-size: 5rem"></i> <div>Exercises </div>
+	</div>
 
-
-?>
+	<div class="folder_1 col-4">
+		<i class="icon-log-out" style="font-size: 5rem"></i><div> Exams</div>
+	</div>
+</div>
+<br>
+<div class="row">
+	<button type="button" class="btn btn-primary" onclick='alert("Not yet implemented");'>Add Material</button>
+</div>

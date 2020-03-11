@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../styles/homepage.css">
 <?php
 include_once('../templates/header.php');
 
@@ -8,6 +9,7 @@ include_once('../templates/card.php');
 
 include_once('../templates/sidebar.php');
 ?>
+
 <script src="../scripts/cu_sidebar.js" defer></script>
 <body id="cupage" class="container-fuild ">
     

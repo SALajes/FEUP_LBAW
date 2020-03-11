@@ -6,7 +6,7 @@ html, body {
 
 #posts{
     background-color: rgb(245, 245, 245);
-    padding-top: 6rem;
+    padding-top: 5rem;
     padding-bottom: 2rem;
 }
 
@@ -15,4 +15,8 @@ html, body {
        flex: 1 1 100%;
        max-width: 100%;
    }
+}
+
+#sec_title{
+    margin-top: -4rem;
 }
