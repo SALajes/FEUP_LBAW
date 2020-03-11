@@ -1,10 +1,8 @@
 <?php
 
-echo "<p> Lorem ipsum,
+include_once('../templates/publish_card.php'); 
+include_once('../templates/card.php');
 
- dolor si vel necessitatibus qui repellat dignissimos minus suscipit at quo. Magni r
- 
- em nemo dolore accusamus repellat ex vitae, quam perferendis consequuntur cupiditate aut porro illo voluptatum velit.</p>";
-
-echo "<p>bsrvqeiopjbhiu</p>";
+draw_card_doubt1();
+draw_card_doubt2();
 ?>

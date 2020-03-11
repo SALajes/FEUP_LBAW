@@ -36,3 +36,39 @@
         </div>
     </div>
 <?php } ?>
+
+<?php function draw_card_doubt1() { ?>
+    <div class="card card-margins">
+        <div class="card-header d-flex justify-content-between">
+            <a href="#"><i class="icon-user"></i> Pedro Pereira</a>
+            <a href="#"><i class="icon-ellipsis"></i></a>
+        </div>
+
+        <div class="card-body">
+            What is Love?
+        </div>
+
+        <div class="card-footer">
+            <a href="#" class="comments-padding">1 comments</a>
+            <a href="#">777 likes</a>
+        </div>
+    </div>
+<?php } ?>
+
+<?php function draw_card_doubt2() { ?>
+    <div class="card card-margins">
+        <div class="card-header d-flex justify-content-between">
+            <a href="#"><i class="icon-user"></i> M. Firmino</a>
+            <a href="#"><i class="icon-ellipsis"></i></a>
+        </div>
+
+        <div class="card-body">
+            Sabiam que sou tipo, mm importante?
+        </div>
+
+        <div class="card-footer">
+            <a href="#" class="comments-padding">0 comments</a>
+            <a href="#">0 likes</a>
+        </div>
+    </div>
+<?php } ?>
