@@ -77,7 +77,7 @@
             </div>
             <div class="row col-lg-4">
             <button id="doubts_btn" type="button" class="btn btn-link col-xl-12"><h3>Doubts</h3></button>
-            <button id="tuttor_btn" type="button" class="btn btn-link col-xl-12"><h3>Tuttoring</h3></button>
+            <button id="tutor_btn" type="button" class="btn btn-link col-xl-12"><h3>Tutoring</h3></button>
             </div>
             <div class="row col-lg-4">
             <button id="classes_btn" type="button" class="btn btn-link col-xl-12"><h3>Classes</h3></button>
@@ -88,17 +88,5 @@
 
     <!-- Divisao Vertical -->
     </aside>
-
-    <script>
-        let btn_grp = document.getElementById("cu_tabs");
-        function vert_hor(){
-            if(window.innerWidth < 992) btn_grp.className = "btn-group btn-group-toggle col-lg-3";
-            else btn_grp.className = "btn-group-vertical btn-group-toggle col-lg-3";
-        }
-        
-        window.addEventListener("resize", vert_hor);
-        vert_hor();
-    </script>
-
 
 <?php } ?>
