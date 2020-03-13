@@ -85,7 +85,7 @@
             </div>
         </div>
     </section>
-
+    <hr>
     <!-- Divisao Vertical -->
     </aside>
 
