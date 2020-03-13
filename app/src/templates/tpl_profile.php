@@ -11,17 +11,17 @@
             <tbody>
                 <tr>
                     <td><a href="">COMP</a></td>
-                    <td>Enrolling</td>
+                    <td>Enrolled</td>
                     <td>Leave</td>
                 </tr>
                 <tr>
                     <td><a href="">IART</a></td>
-                    <td>Enrolling</td>
+                    <td>Enrolled</td>
                     <td>Leave</td>
                 </tr>
                 <tr>
                     <td><a href="">LBAW</a></td>
-                    <td>Enrolling</td>
+                    <td>Enrolled</td>
                     <td>Leave</td>
                 </tr>
                 <tr>
