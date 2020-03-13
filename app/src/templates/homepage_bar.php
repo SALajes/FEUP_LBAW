@@ -10,22 +10,22 @@
             <p>#mieic</p>
     </section>
 
-    <h5 class="text-center">My CU's</h4>
+    <h5 class="text-center">My CU's</h5>
     <ul id="my_cus">
         <li class="list-group-item">
-            <span> COMP </span>
+            <a href="cupage.php"> COMP </a>
             <span class="badge badge-primary badge-pill">14</span>
         </li>
         <li class="list-group-item">
-            <span> IART </span>
+            <a href="cupage.php"> IART </a>
             <span class="badge badge-primary badge-pill">2</span>
         </li>
         <li class="list-group-item">
-            <span> LBAW </span>
+            <a href="cupage.php"> LBAW </a>
             <span class="badge badge-primary badge-pill">1</span>
         </li>
         <li class="list-group-item">
-            <span> PPIN </span>
+            <a href="cupage.php"> PPIN </a>
             <span class="badge badge-primary badge-pill">1</span>
         </li>
     </ul>
