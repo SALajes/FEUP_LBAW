@@ -4,15 +4,15 @@
 <br>
 <div class="row">
 	<div class="folder_1 col-4">
-		<i class="icon-log-out" style="font-size: 5rem"></i> <div>Slides</div>
+		<i class="icon-folder" style="font-size: 5rem"></i> <div>Slides</div>
 	</div>
 
 	<div class="folder_1 col-4">
-		<i class="icon-log-out" style="font-size: 5rem"></i> <div>Exercises </div>
+		<i class="icon-folder" style="font-size: 5rem"></i> <div>Exercises </div>
 	</div>
 
 	<div class="folder_1 col-4">
-		<i class="icon-log-out" style="font-size: 5rem"></i><div> Exams</div>
+		<i class="icon-folder" style="font-size: 5rem"></i><div> Exams</div>
 	</div>
 </div>
 <br>
