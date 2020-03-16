@@ -18,6 +18,12 @@ function vert_hor() {
 }
 
 function getFeed() {
+	about_btn.style.textDecoration = "";
+	classes_btn.style.textDecoration = "";
+	tutor_btn.style.textDecoration = "";
+	doubts_btn.style.textDecoration = "";
+	drive_btn.style.textDecoration = "";
+	feed_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
 	req.open("GET", "../actions/action_feed.php", true);
 
@@ -29,6 +35,12 @@ function getFeed() {
 }
 
 function getDrive() {
+	about_btn.style.textDecoration = "";
+	classes_btn.style.textDecoration = "";
+	tutor_btn.style.textDecoration = "";
+	doubts_btn.style.textDecoration = "";
+	feed_btn.style.textDecoration = "";
+	drive_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
 	req.open("GET", "../actions/action_drive.php", true);
 
@@ -41,6 +53,12 @@ function getDrive() {
 }
 
 function getDoubts() {
+	about_btn.style.textDecoration = "";
+	classes_btn.style.textDecoration = "";
+	tutor_btn.style.textDecoration = "";
+	drive_btn.style.textDecoration = "";
+	feed_btn.style.textDecoration = "";
+	doubts_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
 	req.open("GET", "../actions/action_doubts.php", true);
 
@@ -52,6 +70,12 @@ function getDoubts() {
 }
 
 function getTutoring(){
+	about_btn.style.textDecoration = "";
+	classes_btn.style.textDecoration = "";
+	doubts_btn.style.textDecoration = "";
+	drive_btn.style.textDecoration = "";
+	feed_btn.style.textDecoration = "";
+	tutor_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
 	req.open("GET", "../actions/action_tutoring.php", true);
 
@@ -63,6 +87,12 @@ function getTutoring(){
 }
 
 function getClasses(){
+	about_btn.style.textDecoration = "";
+	tutor_btn.style.textDecoration = "";
+	doubts_btn.style.textDecoration = "";
+	drive_btn.style.textDecoration = "";
+	feed_btn.style.textDecoration = "";
+	classes_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
 	req.open("GET", "../actions/action_classes.php", true);
 
@@ -75,6 +105,12 @@ function getClasses(){
 
 
 function getAbout(){
+	classes_btn.style.textDecoration = "";
+	tutor_btn.style.textDecoration = "";
+	doubts_btn.style.textDecoration = "";
+	drive_btn.style.textDecoration = "";
+	feed_btn.style.textDecoration = "";
+	about_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
 	req.open("GET", "../actions/action_aboutcu.php", true);
 
