@@ -69,19 +69,25 @@
 <?php function draw_sidebar_cu()
 { ?>
 
-    <section class="row d-md-block offset-xl-4 offset-lg-1">
-        <div class="btn-group-vertical btn-group-toggle col-lg-3" role="group" aria-label="Tabs" id="cu_tabs">
-            <div class="row col-xl-6 col-lg-4">
-            <button id="feed_btn" type="button" class="btn btn-link col-xl-12"><h3>Feed</h3></button>
-            <button id="drive_btn" type="button" class="btn btn-link col-xl-12"><h3>Drive</h3></button>
+    <section class="d-lg-block d-flex justify-content-center flex-wrap">
+        <div class="btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs" id="cu_tabs">
+            <div class="row col-xl-12 col-md-4 col-6">
+            <button id="feed_btn" type="button" class="btn btn-link"><h3>Feed</h3></button>
             </div>
-            <div class="row col-lg-4">
-            <button id="doubts_btn" type="button" class="btn btn-link col-xl-12"><h3>Doubts</h3></button>
-            <button id="tutor_btn" type="button" class="btn btn-link col-xl-12"><h3>Tutoring</h3></button>
+            <div class="row col-xl-12 col-md-4 col-6">
+            <button id="drive_btn" type="button" class="btn btn-link"><h3>Drive</h3></button>
             </div>
-            <div class="row col-lg-4">
-            <button id="classes_btn" type="button" class="btn btn-link col-xl-12"><h3>Classes</h3></button>
-            <button id="about_btn" type="button" class="btn btn-link col-xl-12"><h3>About</h3></button>
+            <div class="row col-xl-12 col-md-4 col-6">
+            <button id="doubts_btn" type="button" class="btn btn-link"><h3>Doubts</h3></button>
+            </div>
+            <div class="row col-xl-12 col-md-4 col-6">
+            <button id="tutor_btn" type="button" class="btn btn-link"><h3>Tutoring</h3></button>
+            </div>
+            <div class="row col-xl-12 col-md-4 col-6">
+            <button id="classes_btn" type="button" class="btn btn-link"><h3>Classes</h3></button>
+            </div>
+            <div class="row col-xl-12 col-md-4 col-6">
+            <button id="about_btn" type="button" class="btn btn-link"><h3>About</h3></button>
             </div>
         </div>
     </section>
