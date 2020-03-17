@@ -1,7 +1,7 @@
 <?php
 	include_once('../templates/header.php');
     include_once('../templates/navbar.php');
-    include_once('../templates/left_bar.php');
+    include_once('../templates/sidebar.php');
     include_once('../templates/tpl_profile.php');
 
 ?>
@@ -12,8 +12,8 @@
         <div class="row">
 
             <?php 
-                draw_leftBar_Top("My Profile", "Alvaro Campos", "up188800613", ""); 
-                draw_leftBar_Profile();
+                draw_sidebar_Top("My Profile", "Alvaro Campos", "up188800613", ""); 
+                draw_sidebar_Profile();
             ?>
             
             <main class="col-lg-9">

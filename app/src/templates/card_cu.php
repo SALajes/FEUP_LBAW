@@ -8,7 +8,7 @@
             <i class="fas fa-graduation-cap"></i>
         </div>
         <div class="col-9 flex-column">
-            <a href="#">BDAD</a>
+            <a href="../pages/cupage.php">BDAD</a>
             <a href="#"><i class="icon-ellipsis"></i></a>
             <p>Databases</p>
         </div>

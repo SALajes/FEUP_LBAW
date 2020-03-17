@@ -17,5 +17,3 @@
 
     <title>LBrAWl</title>
 </head>
-
-<body>
