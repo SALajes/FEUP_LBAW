@@ -69,24 +69,24 @@
 <?php function draw_sidebar_cu()
 { ?>
 
-    <section class="d-lg-block d-flex justify-content-center flex-wrap">
+    <section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
         <div class="btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs" id="cu_tabs">
-            <div class="row col-xl-12 col-md-4 col-6">
+            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
             <button id="feed_btn" type="button" class="btn btn-link"><h3>Feed</h3></button>
             </div>
-            <div class="row col-xl-12 col-md-4 col-6">
+            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
             <button id="drive_btn" type="button" class="btn btn-link"><h3>Drive</h3></button>
             </div>
-            <div class="row col-xl-12 col-md-4 col-6">
+            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
             <button id="doubts_btn" type="button" class="btn btn-link"><h3>Doubts</h3></button>
             </div>
-            <div class="row col-xl-12 col-md-4 col-6">
+            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
             <button id="tutor_btn" type="button" class="btn btn-link"><h3>Tutoring</h3></button>
             </div>
-            <div class="row col-xl-12 col-md-4 col-6">
+            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
             <button id="classes_btn" type="button" class="btn btn-link"><h3>Classes</h3></button>
             </div>
-            <div class="row col-xl-12 col-md-4 col-6">
+            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
             <button id="about_btn" type="button" class="btn btn-link"><h3>About</h3></button>
             </div>
         </div>
