@@ -12,8 +12,8 @@
                 <p class="d-none d-sm-block d-md-block"><?= $tag ?></p>
             </div>
         </section>
+        <hr id="student_identification">
 
-        <hr class="featurette-divider">
     <?php } ?>
 
     <?php function draw_sidebar_Homepage()
@@ -47,7 +47,7 @@
 
 <?php function draw_sidebar_Profile()
 { ?>
-    <section class="row-md-auto">
+    <section class="row-md-auto justify-content-center ">
         <address class="text-center">Portuguese</address>
         <blockquote class="text-center col-md-10 mx-auto">
             I'm an amazing student, eager to learn, 3rd grade of MIEIC
