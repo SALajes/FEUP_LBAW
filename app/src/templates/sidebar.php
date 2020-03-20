@@ -22,19 +22,19 @@
             <h4 class="text-center">My CU's</h4>
             <ul>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="cupage.php"> COMP </a>  
+                    <a href="cupage.php"> COMP </a>
                     <span class="badge badge-primary badge-pill">14</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="cupage.php"> IART </a>
+                    <a href="cupage.php"> IART </a>
                     <span class="badge badge-primary badge-pill">2</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="cupage.php"> LBAW</a>
+                    <a href="cupage.php"> LBAW</a>
                     <span class="badge badge-primary badge-pill">1</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="cupage.php"> BDAD </a>
+                    <a href="cupage.php"> BDAD </a>
                     <span class="badge badge-primary badge-pill">1</span>
                 </li>
             </ul>
@@ -109,58 +109,52 @@
 
 <?php } ?>
 
-<?php function draw_sidebar_Search(){ ?>
+<?php function draw_sidebar_Search()
+{ ?>
 
     <section class="row-md-auto justify-content-center">
-        
-    <div class="row col-12 d-flex justify-content-center">
-    <h2 class="d-block text-truncate text-center">Search</h2>
-    </div>
 
-    <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
-    <div class="form-check mt-5 py-3">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-            My CUs
-        </label>
-    </div>
-    </div>
+        <div class="row d-flex flex-wrap justify-content-center">
 
-    <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
-    <div class="form-check py-3">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-            All CUs
-        </label>
-    </div>
-    </div>
+        <div class="row d-inline-flex flex-wrap">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label class="form-check-label" for="inlineRadio1">My CUs</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <label class="form-check-label" for="inlineRadio2">All CUs       </label>
+            </div>
+        </div>
+        </div>
 
-    <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
-    <div class="form-check py-3">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-            Teachers
-        </label>
-    </div>
-    </div>
+        <div class="row d-flex flex-wrap justify-content-center">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="profs">
+                <label class="form-check-label" for="inlineCheckbox1">Include Professors</label>
+            </div>
+        </div>
 
-    <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
-    <div class="form-check py-3">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-            Students
-        </label>
-    </div>
-    </div>
+        <div class="row d-flex flex-wrap justify-content-center">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="students">
+                <label class="form-check-label" for="inlineCheckbox2">Include Students</label>
+            </div>
+        </div>  
 
-    <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
-    <label for="customRange2" class="py-3 text-center">Curricular year</label>
-    <input type="range" class="custom-range" min="1" max="5" id="customRange2">
-    </div>
+        <div class="row d-flex flex-wrap justify-content-center">
+        <div class="col-12 text-center">
+        <label for="customRange2" class=" text-center">Curricular year</label>
+        </div>
+        <div class="col-lg-10 col-6">
+        <input type="range" class="custom-range" min="1" max="5" id="customRange2">
+        </div>
+        </div>  
+
     </section>
 
-<!-- Divisao Vertical -->
-</aside>
+    <!-- Divisao Vertical -->
+    </aside>
 <?php
 }
 ?>

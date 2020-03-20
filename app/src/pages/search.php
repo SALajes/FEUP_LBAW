@@ -16,16 +16,22 @@ include_once('../templates/sidebar.php');
 
         <div class="row">
             <?php
-            draw_sidebar_Top("BDAD", "Alvaro Campos", "up188800613", "");
+            draw_sidebar_Top("Search", "Alvaro Campos", "up188800613", "");
             draw_sidebar_Search();
             ?>
             <main id="posts" class="col-lg-6 col-md-12">
 
                 <div id="content" class="col-12 offset-lg-0">
 
-      <?php include('../templates/card_teacher.php'); ?>
-      <?php include('../templates/card_cu.php'); ?>
-      <?php include('../templates/card.php'); ?>
+                    <!-- VAI DAR Reflected XSS aqui, preparar isto dps-->
+
+                    <div>
+                    <h4>Showing results for: "Pessoa com mais tabs abertos a qualquer altura"</h4>
+                    </div>
+
+                    <?php include('../templates/card_teacher.php'); ?>
+                    <?php include('../templates/card_cu.php'); ?>
+                    <?php include('../templates/card.php'); ?>
 
                 </div>
             </main>
