@@ -31,8 +31,6 @@ include_once('../templates/sidebar.php');
 
                     <?php include('../templates/card_teacher.php'); ?>
                     <?php include('../templates/card_cu.php'); ?>
-                    <?php include('../templates/card.php'); ?>
-
                 </div>
             </main>
         <div>

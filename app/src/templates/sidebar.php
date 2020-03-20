@@ -2,10 +2,10 @@
 { ?>
     <link rel="stylesheet" href="../styles/sidebar.css">
 
-    <aside class="col-lg-3 sticky-top sticky-offset align-self-start" id="page-title">
+    <aside class="col-lg-3 sticky-top align-self-start" id="page-title">
         <section class="row-md-auto">
             <div class="text-center">
-                <h2 class="d-block"><?= $breadcrumb ?></h2>
+                <h2 class="d-block pt-md-4"><?= $breadcrumb ?></h2>
                 <a class="nav-item nav-link d-none d-sm-block d-md-block" href="profile1.php"><i id="profile_picture" class="icon-user" style="font-size: 7rem;"></i></a>
                 <p class="d-none d-sm-block d-md-block"><?= $username ?></p>
                 <p class="d-none d-sm-block d-md-block"><?= $usrId ?></p>
@@ -116,16 +116,16 @@
 
         <div class="row d-flex flex-wrap justify-content-center">
 
-        <div class="row d-inline-flex flex-wrap">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                <label class="form-check-label" for="inlineRadio1">My CUs</label>
+            <div class="row d-inline-flex flex-wrap">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">My CUs</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">All CUs </label>
+                </div>
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                <label class="form-check-label" for="inlineRadio2">All CUs       </label>
-            </div>
-        </div>
         </div>
 
         <div class="row d-flex flex-wrap justify-content-center">
@@ -140,16 +140,16 @@
                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="students">
                 <label class="form-check-label" for="inlineCheckbox2">Include Students</label>
             </div>
-        </div>  
+        </div>
 
         <div class="row d-flex flex-wrap justify-content-center">
-        <div class="col-12 text-center">
-        <label for="customRange2" class=" text-center">Curricular year</label>
+            <div class="col-12 text-center">
+                <label for="customRange2" class=" text-center">Curricular year</label>
+            </div>
+            <div class="col-lg-10 col-6">
+                <input type="range" class="custom-range" min="1" max="5" id="customRange2">
+            </div>
         </div>
-        <div class="col-lg-10 col-6">
-        <input type="range" class="custom-range" min="1" max="5" id="customRange2">
-        </div>
-        </div>  
 
     </section>
 

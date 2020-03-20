@@ -18,9 +18,7 @@ include_once("../templates/sidebar.php");
         draw_sidebar_Homepage();
         ?>
 
-        <main id="posts" class="col-6">
-            <h1 class="d-block d-md-none text-center" style="padding-bottom: 1rem">Home</h1>
-
+        <main id="posts" class="col-12 col-lg-6">
             <div id="content">
                 <?php include_once('../templates/publish_card.php'); ?>
 
