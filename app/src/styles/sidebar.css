@@ -2,6 +2,15 @@ h2 {
     margin-top: 5rem;
 }
 
+#student_identification{
+    border: 0.05rem solid #13cad2
+}
+
+
 .likes_friend {
     font-size: 1.6rem;
+}
+
+#page-title > section.row-md-auto.d-none.d-md-block.d-md-none > ul {
+    padding-left: 0px;
 }
