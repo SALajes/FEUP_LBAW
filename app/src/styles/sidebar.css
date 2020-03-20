@@ -3,9 +3,19 @@ h2 {
 }
 
 #student_identification{
-    border: 0.05rem solid #13cad2
+    border: 0.05rem solid #13cad2;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
+#MyCUs {
+    margin-left: 2.3rem;
+    margin-right: 2.3rem;
+}
+
+#MyCUs h4 {
+    margin-bottom: 1.3rem;
+}
 
 .likes_friend {
     font-size: 1.6rem;

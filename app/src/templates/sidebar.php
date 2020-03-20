@@ -1,7 +1,6 @@
-<?php function draw_sidebar_Top($breadcrumb, $username, $usrId, $tag)
-{ ?>
-    <link rel="stylesheet" href="../styles/sidebar.css">
+<link rel="stylesheet" href="../styles/sidebar.css">
 
+<?php function draw_sidebar_Top($breadcrumb, $username, $usrId) { ?>
     <aside class="col-lg-3 sticky-top align-self-start" id="page-title">
         <section class="row-md-auto">
             <div class="text-center">
@@ -9,16 +8,13 @@
                 <a class="nav-item nav-link d-none d-sm-block d-md-block" href="profile1.php"><i id="profile_picture" class="icon-user" style="font-size: 7rem;"></i></a>
                 <p class="d-none d-sm-block d-md-block"><?= $username ?></p>
                 <p class="d-none d-sm-block d-md-block"><?= $usrId ?></p>
-                <p class="d-none d-sm-block d-md-block"><?= $tag ?></p>
             </div>
         </section>
         <hr id="student_identification">
+<?php } ?>
 
-    <?php } ?>
-
-    <?php function draw_sidebar_Homepage()
-    { ?>
-        <section class="row-md-auto d-none d-md-block d-md-none">
+<?php function draw_sidebar_Homepage() { ?>
+        <section id="MyCUs" class="row-md-auto d-none d-md-block d-md-none">
             <h4 class="text-center">My CU's</h4>
             <ul>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -45,8 +41,7 @@
 
 <?php } ?>
 
-<?php function draw_sidebar_Profile()
-{ ?>
+<?php function draw_sidebar_Profile() { ?>
     <section class="row-md-auto justify-content-center ">
         <address class="text-center">Portuguese</address>
         <blockquote class="text-center col-md-10 mx-auto">
@@ -66,9 +61,7 @@
     <!-- Divisao Vertical -->
 <?php } ?>
 
-<?php function draw_sidebar_CU()
-{ ?>
-
+<?php function draw_sidebar_CU() { ?>
     <section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
         <div class="btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs" id="cu_tabs">
             <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
@@ -109,9 +102,7 @@
 
 <?php } ?>
 
-<?php function draw_sidebar_Search()
-{ ?>
-
+<?php function draw_sidebar_Search() { ?>
     <section class="row-md-auto justify-content-center">
 
         <div class="row d-flex flex-wrap justify-content-center">
@@ -155,6 +146,4 @@
 
     <!-- Divisao Vertical -->
     </aside>
-<?php
-}
-?>
+<?php } ?>

@@ -14,7 +14,7 @@ include_once("../templates/sidebar.php");
     <div id="homepage" class="row justify-content-md-center">
 
         <?php
-        draw_sidebar_Top("Home", "Alvaro Campos", "up188800613", "");
+        draw_sidebar_Top("Home", "Alvaro Campos", "up188800613");
         draw_sidebar_Homepage();
         ?>
 

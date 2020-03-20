@@ -43,12 +43,10 @@
     <link rel="stylesheet" href="../styles/profile.css">
 
     <section class="row-md-auto">
-        <div class="d-flex justify-content-around likes_friend" style="margin-top: 2rem">
+        <div id="ratingsData" class="d-flex justify-content-around">
             <p><i class="icon-like" style="color: #0aedb3"></i> 6</p>
             <p>3 comments</p>
         </div>
-
-        <hr class="featurette-divider">
 
         <section class="card d-flex flex-row justify-content-between align-items-center">
             <i class="icon-user"></i>
