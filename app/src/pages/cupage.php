@@ -1,20 +1,15 @@
-<link rel="stylesheet" href="../styles/homepage.css">
 <?php
-include_once('../templates/header.php');
-
-include_once('../templates/navbar.php');
-
-
-include_once('../templates/card.php');
-
-include_once('../templates/sidebar.php');
+    include_once('../templates/header.php');
+    include_once('../templates/navbar.php');
+    include_once('../templates/card.php');
+    include_once('../templates/sidebar.php');
 ?>
 
+<link rel="stylesheet" href="../styles/homepage.css">
 <script src="../scripts/cu_sidebar.js" defer></script>
-<body id="cupage" class="container-fuild ">
-    
 
-        <div class="row">
+<body id="cupage" class="container-fuild ">
+            <div class="row">
             <?php
             draw_sidebar_Top("BDAD", "Alvaro Campos", "up188800613", "");
             draw_sidebar_CU();
@@ -30,6 +25,7 @@ include_once('../templates/sidebar.php');
         </div>
 
 </body>
+
 <?php
-include_once('../templates/footer.php');
+    include_once('../templates/footer.php');
 ?>
