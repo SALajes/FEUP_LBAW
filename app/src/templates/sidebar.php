@@ -18,7 +18,7 @@
 
     <?php function draw_sidebar_Homepage()
     { ?>
-        <section class="row-md-auto d-none d-md-block d-md-none">
+        <section id="MyCUs" class="row-md-auto d-none d-md-block d-md-none">
             <h4 class="text-center">My CU's</h4>
             <ul>
                 <li class="list-group-item d-flex justify-content-between align-items-center">

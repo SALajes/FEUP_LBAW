@@ -17,17 +17,16 @@
             ?>
             
             <main class="col-lg-9">
-                <div class="container" style="margin-top: 10rem">
-                    <div id="butons" class="row d-flex justify-content-around">
-                        <!-- butoes -->
-                        <a class="btn btn-outline-primary" href="profile1.php" role="button">My CUs</a>
-                        <a class="btn btn-outline-primary active" href="profile2.php" role="button" aria-pressed="true">My Ratings</a>
-                        <a class="btn btn-outline-primary" href="#" role="button">Manage CUs</a>
+                <nav>
+                    <div id="tabs" class="nav nav-tabs nav-fill">
+                        <a class="nav-item nav-link active" href="profile1.php" role="button" aria-pressed="true">My CUs</a>
+                        <a class="nav-item nav-link" href="profile2.php" role="button">My Ratings</a>
+                        <a class="nav-item nav-link" href="#" role="button">Manage CUs</a>
                     </div>
 
                     <?php draw_myRatings(); ?>
 
-                </div>
+                </nav>
             </main>
         </div>
     </div>
