@@ -15,7 +15,7 @@
     padding: 1rem 1rem 1rem 2rem;
 }
 
-nav {
+#nav {
     margin-top: 10rem
 }
 
@@ -23,6 +23,6 @@ nav {
     margin-bottom: 3rem;
 }
 
-#MyRatings {
+#MyRatings p {
     font-size: larger;
 }

@@ -17,7 +17,7 @@
             ?>
             
             <main class="col-lg-9">
-                <nav>
+                <div id="nav">
                     <div id="tabs" class="nav nav-tabs nav-fill">
                         <a class="nav-item nav-link active" href="profile1.php" role="button" aria-pressed="true">My CUs</a>
                         <a class="nav-item nav-link" href="profile2.php" role="button">My Ratings</a>
@@ -26,7 +26,7 @@
 
                     <?php draw_myRatings(); ?>
 
-                </nav>
+                </div>
             </main>
         </div>
     </div>

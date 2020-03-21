@@ -48,8 +48,6 @@
             <p>3 comments</p>
         </div>
 
-        <hr class="featurette-divider">
-
         <section class="card d-flex flex-row justify-content-between align-items-center">
             <i class="icon-user"></i>
             <div class="card-body">Awesome group partner</div>
