@@ -21,7 +21,7 @@
                     <div id="tabs" class="nav nav-tabs nav-fill">
                         <a class="nav-item nav-link active" href="profile1.php" role="button" aria-pressed="true">My CUs</a>
                         <a class="nav-item nav-link" href="profile2.php" role="button" >My Ratings</a>
-                        <a class="nav-item nav-link disabled" href="#" role="button">Manage CUs</a>
+                        <a class="nav-item nav-link" href="#" role="button">Manage CUs</a>
                     </div>
                 </div>
 
