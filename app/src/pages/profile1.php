@@ -7,7 +7,6 @@
 ?>
 <link rel="stylesheet" href="../styles/profile.css">
 
-
 <body role="main">
     <div class="container-fuild">
         <div class="row">
@@ -24,10 +23,10 @@
                         <a class="nav-item nav-link" href="profile2.php" role="button" >My Ratings</a>
                         <a class="nav-item nav-link disabled" href="#" role="button">Manage CUs</a>
                     </div>
+                </div>
 
                     <?php draw_myCUs(); ?>
                 
-                </div>
             </main>
         </div>
     </div>

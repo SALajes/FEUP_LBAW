@@ -2,6 +2,15 @@
     margin-bottom: 2rem;
 }
 
+html, body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+main {
+    padding-top: 0;
+}
+
 .card {
     margin-top: 2rem;
     padding-left: 1rem;
@@ -16,7 +25,7 @@
 }
 
 #nav {
-    margin-top: 10rem
+    margin-top: 5rem
 }
 
 #tabs {
