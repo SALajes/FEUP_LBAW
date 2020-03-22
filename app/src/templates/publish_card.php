@@ -15,6 +15,6 @@
     
     <div class="card-footer d-flex justify-content-between">
         <a href="#"><i class="icon-attach"></i></a>
-        <button id="search" type="button" class="btn btn-light">Post</button>
+        <button id="post_btn" type="button" class="btn btn-primary">Post</button>
     </div> 
 </div>
