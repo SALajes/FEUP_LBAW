@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="../styles/card.css">
 <link rel="stylesheet" href="../../assets/identity.css">
 
-<?php function draw_card1() { ?>
+<?php function draw_card1()
+{ ?>
     <div class="card card-margins">
         <div class="card-header d-flex justify-content-between">
             <a href="#"><i class="icon-user"></i> Maria Eduarda</a>
@@ -19,7 +20,8 @@
     </div>
 <?php } ?>
 
-<?php function draw_card2() { ?>
+<?php function draw_card2()
+{ ?>
     <div class="card card-margins">
         <div class="card-header d-flex justify-content-between">
             <a href="#"><i class="icon-user"></i> Carlos Eduardo</a>
@@ -37,7 +39,8 @@
     </div>
 <?php } ?>
 
-<?php function draw_card_doubt1() { ?>
+<?php function draw_card_doubt1()
+{ ?>
     <div class="card card-margins">
         <div class="card-header d-flex justify-content-between">
             <a href="#"><i class="icon-user"></i> Pedro Pereira</a>
@@ -55,7 +58,8 @@
     </div>
 <?php } ?>
 
-<?php function draw_card_doubt2() { ?>
+<?php function draw_card_doubt2()
+{ ?>
     <div class="card card-margins">
         <div class="card-header d-flex justify-content-between">
             <a href="#"><i class="icon-user"></i> M. Firmino</a>
@@ -73,7 +77,8 @@
     </div>
 <?php } ?>
 
-<?php function draw_card_tutor1() { ?>
+<?php function draw_card_tutor1()
+{ ?>
     <div class="card card-margins">
         <div class="card-header d-flex justify-content-between">
             <a href="#"><i class="icon-user"></i> João Correia</a>
@@ -91,7 +96,8 @@
     </div>
 <?php } ?>
 
-<?php function draw_card_tutor2() { ?>
+<?php function draw_card_tutor2()
+{ ?>
     <div class="card card-margins">
         <div class="card-header d-flex justify-content-between">
             <a href="#"><i class="icon-user"></i> Carla Explicadora</a>
@@ -99,7 +105,7 @@
         </div>
 
         <div class="card-body">
-           Se me pagarem passo-vos.
+            Se me pagarem passo-vos.
         </div>
 
         <div class="card-footer">

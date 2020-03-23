@@ -12,8 +12,8 @@ let about_btn = document.getElementById("about_btn");
 let btn_grp = document.getElementById("cu_tabs");
 
 function vert_hor() {
-	if (window.innerWidth < 992) btn_grp.className = "btn-group btn-group-toggle col-lg-3";
-	else btn_grp.className = "btn-group-vertical btn-group-toggle col-lg-3";
+	if (window.innerWidth < 992) btn_grp.className = "btn-group btn-group-toggle d-flex flex-wrap justify-content-center";
+	else btn_grp.className = "btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center";
 
 }
 
