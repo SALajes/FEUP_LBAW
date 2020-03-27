@@ -1,6 +1,29 @@
+-- Drop old schema
+
+DROP TABLE IF EXISTS student CASCADE;
+DROP TABLE IF EXISTS professor CASCADE;
+DROP TABLE IF EXISTS curricular_unit CASCADE;
+DROP TABLE IF EXISTS rating CASCADE;
+DROP TABLE IF EXISTS friend CASCADE;
+DROP TABLE IF EXISTS "group" CASCADE;
+DROP TABLE IF EXISTS class CASCADE;
+DROP TABLE IF EXISTS moderator CASCADE;
+DROP TABLE IF EXISTS banned CASCADE;
+DROP TABLE IF EXISTS teaches CASCADE;
+DROP TABLE IF EXISTS post CASCADE;
+DROP TABLE IF EXISTS comment CASCADE;
+DROP TABLE IF EXISTS comment_thread CASCADE;
+DROP TABLE IF EXISTS message CASCADE;
+DROP TABLE IF EXISTS group_message CASCADE;
+DROP TABLE IF EXISTS group_message_receiver CASCADE;
+
+DROP TYPE IF EXISTS feed_type_enum;
+
+-- Type
+
 CREATE TYPE feed_type_enum AS ENUM ('General', 'Doubts', 'Tutoring');
 
-DROP TABLE IF EXISTS student;
+-- Tables
 
 CREATE TABLE student (
     id              SERIAL PRIMARY KEY,
@@ -15,9 +38,6 @@ CREATE TABLE student (
     CONSTRAINT email_ck CHECK (email !~ '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][a-za-z]+\$'::TEXT)
 );
 
-
-DROP TABLE IF EXISTS professor;
-
 CREATE TABLE professor (
     id              SERIAL PRIMARY KEY,
     name            TEXT NOT NULL,
@@ -28,23 +48,12 @@ CREATE TABLE professor (
     CONSTRAINT email_ck CHECK (email !~ '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][a-za-z]+\$'::TEXT)
 );
 
-DROP TABLE IF EXISTS curricular_unit;
-
-DROP TABLE IF EXISTS about_cu;
-
-CREATE TABLE about_cu (
-    id              SERIAL PRIMARY KEY,
-    description     TEXT  NOT NULL
-);
-
 CREATE TABLE curricular_unit (
     id          SERIAL PRIMARY KEY,
     name        TEXT  NOT NULL CONSTRAINT cu_name_uk UNIQUE,
     abbrev      TEXT  NOT NULL CONSTRAINT cu_abbrev_uk UNIQUE,
-    about_id    INTEGER NOT NULL REFERENCES about_cu (id) ON UPDATE CASCADE ON DELETE CASCADE
+    description     TEXT  NOT NULL
 );
-
-DROP TABLE IF EXISTS rating;
 
 CREATE TABLE rating (
     id              SERIAL PRIMARY KEY,
@@ -64,23 +73,17 @@ CREATE TABLE rating (
     )
 );
 
-DROP TABLE IF EXISTS friend;
-
 CREATE TABLE friend (
     student1_id INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
     student2_id INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (student1_id, student2_id)
 );
 
-DROP TABLE IF EXISTS "group";
-
 CREATE TABLE "group" (
     group_id    SERIAL,
     student_id  INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (group_id, student_id)
 );
-
-DROP TABLE IF EXISTS class;
 
 CREATE TABLE class (
     student_id  INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -89,36 +92,26 @@ CREATE TABLE class (
     PRIMARY KEY (student_id, cu_id)
 );
 
-DROP TABLE IF EXISTS moderator;
-
 CREATE TABLE moderator (
-    student_id  INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    student_id  INTEGER UNIQUE NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
     cu_id       INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    PRIMARY KEY (student_id, cu_id),
-
-    CONSTRAINT pair_student_cu_uk UNIQUE (student_id, cu_id)
+    PRIMARY KEY (student_id, cu_id)
 );
 
--- DROP TABLE IF EXISTS banned;
-
--- CREATE TABLE banned (
---     student_id      INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
---     cu_id           INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
---     mod_student_id  INTEGER NOT NULL REFERENCES moderator (student_id) ON UPDATE CASCADE ON DELETE CASCADE,
---     reason          TEXT NOT NULL,
---     "date"          TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
---     PRIMARY KEY (student_id, cu_id)
--- );
-
-DROP TABLE IF EXISTS teaches;
+CREATE TABLE banned (
+    student_id      INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,               --banned student
+    cu_id           INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    mod_student_id  INTEGER NOT NULL REFERENCES moderator (student_id) ON UPDATE CASCADE ON DELETE CASCADE,     --mod who banned
+    reason          TEXT NOT NULL,
+    "date"          TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    PRIMARY KEY (student_id, cu_id)
+);
 
 CREATE TABLE teaches (
     professor_id    INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
     cu_id           INTEGER NOT NULL REFERENCES professor (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (professor_id, cu_id)
 );
-
-DROP TABLE IF EXISTS post;
 
 CREATE TABLE post (
     id              SERIAL PRIMARY KEY,
@@ -137,8 +130,6 @@ CREATE TABLE post (
     )
 );
 
-DROP TABLE IF EXISTS comment;
-
 CREATE TABLE comment (
     id          SERIAL PRIMARY KEY,
     content     TEXT  NOT NULL,
@@ -147,15 +138,11 @@ CREATE TABLE comment (
     post_id     INTEGER NOT NULL REFERENCES post (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS comment_thread;
-
 CREATE TABLE comment_thread (
     comment_id  INTEGER NOT NULL REFERENCES comment (id) ON UPDATE CASCADE ON DELETE CASCADE,
     parent_id   INTEGER NOT NULL REFERENCES comment (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (comment_id, parent_id)
 );
-
-DROP TABLE IF EXISTS message;
 
 CREATE TABLE message (
     id              SERIAL PRIMARY KEY,
@@ -165,8 +152,6 @@ CREATE TABLE message (
     "date"          TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
 
-DROP TABLE IF EXISTS group_message;
-
 CREATE TABLE group_message (
     id          SERIAL PRIMARY KEY,
     name        TEXT  NOT NULL,
@@ -174,8 +159,6 @@ CREATE TABLE group_message (
     "date"      TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     sender_id   INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
-
-DROP TABLE IF EXISTS group_message_receiver;
 
 CREATE TABLE group_message_receiver (
     group_id    INTEGER NOT NULL REFERENCES group_message (id) ON UPDATE CASCADE ON DELETE CASCADE,
