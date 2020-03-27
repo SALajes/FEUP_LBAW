@@ -93,7 +93,7 @@ CREATE TABLE class (
 );
 
 CREATE TABLE moderator (
-    student_id  INTEGER UNIQUE NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    student_id  INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
     cu_id       INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (student_id, cu_id)
 );
@@ -101,10 +101,14 @@ CREATE TABLE moderator (
 CREATE TABLE banned (
     student_id      INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,               --banned student
     cu_id           INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    mod_student_id  INTEGER NOT NULL REFERENCES moderator (student_id) ON UPDATE CASCADE ON DELETE CASCADE,     --mod who banned
+    mod_student_id  INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,     --mod who banned
     reason          TEXT NOT NULL,
     "date"          TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    PRIMARY KEY (student_id, cu_id)
+    PRIMARY KEY (student_id, cu_id),
+
+    CONSTRAINT dif_student CHECK(
+        student_id <> mod_student_id
+    )    
 );
 
 CREATE TABLE teaches (
@@ -118,7 +122,6 @@ CREATE TABLE post (
     author_id       INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
     content         TEXT  NOT NULL,
     "date"          TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    like_counter    INTEGER NOT NULL,
     cu_id           INTEGER REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
     public_feed     BOOLEAN,
     feed_type       feed_type_enum,
