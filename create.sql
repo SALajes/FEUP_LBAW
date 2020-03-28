@@ -43,7 +43,7 @@ CREATE TABLE professor (
     name            TEXT NOT NULL,
     email           TEXT NOT NULL CONSTRAINT professor_email_uk UNIQUE,
     picture_path    TEXT,
-    abbrevr         TEXT NOT NULL CONSTRAINT professor_abbrevr_uk UNIQUE,
+    abbrev         TEXT NOT NULL CONSTRAINT professor_abbrev_uk UNIQUE,
     
     CONSTRAINT email_ck CHECK (email !~ '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][a-za-z]+\$'::TEXT)
 );
@@ -58,7 +58,7 @@ CREATE TABLE curricular_unit (
 CREATE TABLE rating (
     id              SERIAL PRIMARY KEY,
     reviewer_id     INTEGER REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    has_voted       BOOLEAN NOT NULL,
+    has_voted       BOOLEAN NOT NULL DEFAULT FALSE,
     review          TEXT,
     student_id      INTEGER REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
     cu_id           INTEGER REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -88,7 +88,7 @@ CREATE TABLE "group" (
 CREATE TABLE class (
     student_id  INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
     cu_id       INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    identifier  TEXT NOT NULL CONSTRAINT identifier_uk UNIQUE,
+    identifier  TEXT NOT NULL,
     PRIMARY KEY (student_id, cu_id)
 );
 
@@ -112,8 +112,8 @@ CREATE TABLE banned (
 );
 
 CREATE TABLE teaches (
-    professor_id    INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    cu_id           INTEGER NOT NULL REFERENCES professor (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    professor_id    INTEGER NOT NULL REFERENCES professor (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    cu_id           INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (professor_id, cu_id)
 );
 
