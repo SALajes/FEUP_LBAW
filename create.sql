@@ -157,14 +157,15 @@ CREATE TABLE message (
 
 CREATE TABLE group_message (
     id          SERIAL PRIMARY KEY,
-    name        TEXT  NOT NULL,
+    group_id    INTEGER NOT NULL,
     content     TEXT  NOT NULL,
     "date"      TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     sender_id   INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE group_message_receiver (
-    group_id    INTEGER NOT NULL REFERENCES group_message (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    group_id    SERIAL,
     student_id  INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    group_name  TEXT NOT NULL,
     PRIMARY KEY (group_id, student_id)
 );
