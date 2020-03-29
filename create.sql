@@ -19,6 +19,10 @@ DROP TABLE IF EXISTS group_message_receiver CASCADE;
 
 DROP TYPE IF EXISTS feed_type_enum;
 
+DROP FUNCTION IF EXISTS set_friends() CASCADE;
+DROP FUNCTION IF EXISTS ban_student() CASCADE;
+DROP FUNCTION IF EXISTS group_exists() CASCADE;
+
 -- Type
 
 CREATE TYPE feed_type_enum AS ENUM ('General', 'Doubts', 'Tutoring');
@@ -169,3 +173,53 @@ CREATE TABLE group_message_receiver (
     group_name   TEXT NOT NULL,
     PRIMARY KEY (group_id, student_id)
 );
+
+--triggers--
+
+CREATE FUNCTION set_friends() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS (SELECT * FROM friend WHERE (NEW.student1_id = student1_id AND NEW.student2_id = student2_id) OR (NEW.student1_id = student2_id AND NEW.student2_id = student1_id))
+        THEN RAISE EXCEPTION 'The pair of friends exist already.';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER set_friends
+    BEFORE INSERT ON friend
+    FOR EACH ROW
+    EXECUTE PROCEDURE set_friends();
+
+CREATE FUNCTION ban_student() RETURNS TRIGGER AS 
+$BODY$
+BEGIN
+    IF NOT EXISTS (SELECT * FROM moderator WHERE NEW.mod_student_id = student_id AND NEW.cu_id = cu_id)
+        THEN RAISE EXCEPTION 'Not a valid moderator.';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER ban_student
+    BEFORE INSERT ON banned
+    FOR EACH ROW
+    EXECUTE PROCEDURE ban_student();
+
+CREATE FUNCTION group_exists() RETURNS TRIGGER AS 
+$BODY$
+BEGIN
+    IF NOT EXISTS (SELECT * FROM group_message_receiver WHERE NEW.group_id = group_id AND NEW.sender_id = student_id)
+        THEN RAISE EXCEPTION 'Not a valid group/student.';
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER group_exists
+    BEFORE INSERT ON group_message
+    FOR EACH ROW
+    EXECUTE PROCEDURE group_exists();

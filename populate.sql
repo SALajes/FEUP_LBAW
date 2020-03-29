@@ -129,13 +129,6 @@ INSERT INTO message (id, sender_id, receiver_id, content) VALUES (2, 6, 7, 'Como
 INSERT INTO message (id, sender_id, receiver_id, content) VALUES (3, 7, 0, 'So para dizer que hoje esta um belo dia');
 INSERT INTO message (id, sender_id, receiver_id, content) VALUES (4, 3, 4, 'Ja fizeste o que faltava??');
 
---group_message--
-INSERT INTO group_message (id, group_id, content, sender_id) VALUES (0, 0, 'Ja acabei de povoar a base de dados que acham?? Meti alguns easter eggs? Quanto nao sei...', 0);
-INSERT INTO group_message (id, group_id, content, sender_id) VALUES (1, 0, 'Ja acabei os triggers. Que triggered que fiquei', 3);
-INSERT INTO group_message (id, group_id, content, sender_id) VALUES (2, 1, 'A minha amiga asiatica ficou doente. Mas eu Coreia.', 6);
-INSERT INTO group_message (id, group_id, content, sender_id) VALUES (3, 1, 'Por causa do coronavirus ja nao e permitido fazer festas com 20 ou mais pesoas. Por isso agora so COVID 19', 9);
-INSERT INTO group_message (id, group_id, content, sender_id) VALUES (4, 1, 'Ao gajo que inventou o zero: Obrigado por nada!', 5);
-
 --group_message_receiver--
 INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (0, 0, 'LBAW');
 INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (0, 1, 'LBAW');
@@ -149,3 +142,10 @@ INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (1,
 INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (1, 5, 'MeMeS');
 INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (1, 6, 'MeMeS');
 INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (1, 9, 'MeMeS');
+
+--group_message--
+INSERT INTO group_message (id, group_id, content, sender_id) VALUES (0, 0, 'Ja acabei de povoar a base de dados que acham?? Meti alguns easter eggs? Quanto nao sei...', 0);
+INSERT INTO group_message (id, group_id, content, sender_id) VALUES (1, 0, 'Ja acabei os triggers. Que triggered que fiquei', 3);
+INSERT INTO group_message (id, group_id, content, sender_id) VALUES (2, 1, 'A minha amiga asiatica ficou doente. Mas eu Coreia.', 6);
+INSERT INTO group_message (id, group_id, content, sender_id) VALUES (3, 1, 'Por causa do coronavirus ja nao e permitido fazer festas com 20 ou mais pesoas. Por isso agora so COVID 19', 9);
+INSERT INTO group_message (id, group_id, content, sender_id) VALUES (4, 1, 'Ao gajo que inventou o zero: Obrigado por nada!', 5);
