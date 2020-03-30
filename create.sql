@@ -174,7 +174,17 @@ CREATE TABLE group_message_receiver (
     PRIMARY KEY (group_id, student_id)
 );
 
---triggers--
+--Index--
+
+CREATE INDEX sender_id_message ON message USING hash(sender_id)
+CREATE INDEX receiver_id_message ON message USING hash(sender_id);
+CREATE INDEX cu_id_post ON post USING hash(cu_id);
+CREATE INDEX public_feed_post ON post USING hash(public_feed);
+CREATE INDEX student_id_rating ON rating USING hash(student_id);
+CREATE INDEX professor_id_rating ON rating USING hash(professor_id);
+CREATE INDEX cu_id_rating ON rating USING hash(cu_id);
+
+--Triggers--
 
 CREATE FUNCTION set_friends() RETURNS TRIGGER AS
 $BODY$
