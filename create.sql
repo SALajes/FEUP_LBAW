@@ -183,6 +183,7 @@ CREATE INDEX public_feed_post ON post USING hash(public_feed);
 CREATE INDEX student_id_rating ON rating USING hash(student_id);
 CREATE INDEX professor_id_rating ON rating USING hash(professor_id);
 CREATE INDEX cu_id_rating ON rating USING hash(cu_id);
+CREATE INDEX search_post_idx ON post USING GIST (to_tsvector('english', content));
 
 --Triggers--
 
