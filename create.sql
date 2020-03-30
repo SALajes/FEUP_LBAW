@@ -176,7 +176,7 @@ CREATE TABLE group_message_receiver (
 
 --Index--
 
-CREATE INDEX sender_id_message ON message USING hash(sender_id)
+CREATE INDEX sender_id_message ON message USING hash(sender_id);
 CREATE INDEX receiver_id_message ON message USING hash(sender_id);
 CREATE INDEX cu_id_post ON post USING hash(cu_id);
 CREATE INDEX public_feed_post ON post USING hash(public_feed);
