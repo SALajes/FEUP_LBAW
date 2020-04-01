@@ -17,8 +17,8 @@ h2 {
     padding-left: 0px;
 }
 
-#MyCUs > ul{
-
-    padding-left: 0px;
-
+#MyCUs > ul {
+    padding-left: 5rem;  
+    padding-right: 5rem; 
+    margin-top: 2rem
 }

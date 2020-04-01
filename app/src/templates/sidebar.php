@@ -16,24 +16,20 @@
 <?php } ?>
 
 <?php function draw_sidebar_Homepage() { ?>
-        <section id="MyCUs" class="row-md-auto d-md-block">
+        <section id="MyCUs" >
             <h4 class="text-center">My CU's</h4>
             <ul>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <li class="list-group-item d-flex justify-content-around align-items-center">
                     <a href="cupage.php"> COMP </a>
-                    <span class="badge badge-primary badge-pill">14</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <li class="list-group-item d-flex justify-content-around align-items-center">
                     <a href="cupage.php"> IART </a>
-                    <span class="badge badge-primary badge-pill">2</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <li class="list-group-item d-flex justify-content-around align-items-center">
                     <a href="cupage.php"> LBAW</a>
-                    <span class="badge badge-primary badge-pill">1</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <li class="list-group-item d-flex justify-content-around align-items-center">
                     <a href="cupage.php"> BDAD </a>
-                    <span class="badge badge-primary badge-pill">1</span>
                 </li>
             </ul>
         </section>
