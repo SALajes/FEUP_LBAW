@@ -16,7 +16,7 @@ include_once('../templates/sidebar.php');
 
         <div class="row">
             <?php
-            draw_sidebar_Top("Search", "Alvaro Campos", "up188800613", "");
+            draw_sidebar_Top("Search", "Alvaro Campos", "up188800613");
             draw_sidebar_Search();
             ?>
             <main id="posts" class="col-lg-6 col-md-12">

@@ -8,6 +8,14 @@ h2 {
     margin-right: 2rem;
 }
 
+#MyCUs {
+    margin-left: 2.3rem;
+    margin-right: 2.3rem;
+}
+
+#MyCUs h4 {
+    margin-bottom: 1.3rem;
+}
 
 .likes_friend {
     font-size: 1.6rem;
@@ -18,7 +26,7 @@ h2 {
 }
 
 #MyCUs > ul {
-    padding-left: 5rem;  
-    padding-right: 5rem; 
+    padding-left: 3rem;  
+    padding-right: 3rem; 
     margin-top: 2rem
 }

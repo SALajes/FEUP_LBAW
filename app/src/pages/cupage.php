@@ -11,7 +11,7 @@
 <body id="cupage" class="container-fuild ">
             <div class="row">
             <?php
-            draw_sidebar_Top("BDAD", "Alvaro Campos", "up188800613", "");
+            draw_sidebar_Top("BDAD", "Alvaro Campos", "up188800613");
             draw_sidebar_CU();
             ?>
             <main id="posts" class="col-lg-6 col-md-12">

@@ -5,14 +5,14 @@
     include_once('../templates/tpl_profile.php');
 
 ?>
-<link rel="stylesheet" href="../styles/profile.css">
 
 <body role="main">
+    <link rel="stylesheet" href="../styles/profile.css">
+
     <div class="container-fuild">
         <div class="row">
-
             <?php 
-                draw_sidebar_Top("My Profile", "Alvaro Campos", "up188800613", ""); 
+                draw_sidebar_Top("My Profile", "Alvaro Campos", "up188800613"); 
                 draw_sidebar_Profile();
             ?>
             

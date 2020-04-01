@@ -1,6 +1,6 @@
-<?php function draw_sidebar_Top($breadcrumb, $username, $usrId, $tag) { ?>
-    <link rel="stylesheet" href="../styles/sidebar.css">
+<link rel="stylesheet" href="../styles/sidebar.css">
 
+<?php function draw_sidebar_Top($breadcrumb, $username, $usrId) { ?>
     <aside class="col-lg-3 sticky-top align-self-start" id="page-title">
         <section class="row-md-auto">
             <div class="text-center">
@@ -8,11 +8,9 @@
                 <a class="nav-item nav-link d-none d-sm-block d-md-block" href="profile1.php"><i id="profile_picture" class="icon-user" style="font-size: 7rem;"></i></a>
                 <p class="d-none d-sm-block d-md-block"><?= $username ?></p>
                 <p class="d-none d-sm-block d-md-block"><?= $usrId ?></p>
-                <p class="d-none d-sm-block d-md-block"><?= $tag ?></p>
             </div>
         </section>
         <hr id="student_identification">
-
 <?php } ?>
 
 <?php function draw_sidebar_Homepage() { ?>

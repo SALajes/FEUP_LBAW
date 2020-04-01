@@ -12,7 +12,7 @@
         <div class="row">
 
             <?php 
-                draw_sidebar_Top("My Profile", "Alvaro Campos", "up188800613", ""); 
+                draw_sidebar_Top("My Profile", "Alvaro Campos", "up188800613"); 
                 draw_sidebar_Profile();
             ?>
             
