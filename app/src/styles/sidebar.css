@@ -24,3 +24,9 @@ h2 {
 #page-title > section.row-md-auto.d-none.d-md-block.d-md-none > ul {
     padding-left: 0px;
 }
+
+#MyCUs > ul {
+    padding-left: 3rem;  
+    padding-right: 3rem; 
+    margin-top: 2rem
+}

@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="../styles/profile.css">
 
     <section class="row-md-auto">
-        <div id="ratingsData" class="d-flex justify-content-around">
+        <div id="MyRatings" class="d-flex justify-content-around" style="margin-top: 2rem">
             <p><i class="icon-like" style="color: #0aedb3"></i> 6</p>
             <p>3 comments</p>
         </div>

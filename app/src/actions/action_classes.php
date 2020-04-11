@@ -5,7 +5,7 @@
       <th scope="col">#</th>
       <th scope="col">First</th>
       <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Student Number</th>
     </tr>
   </thead>
   <tbody>
@@ -43,7 +43,7 @@
       <th scope="col">#</th>
       <th scope="col">First</th>
       <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Student Number</th>
     </tr>
   </thead>
   <tbody>

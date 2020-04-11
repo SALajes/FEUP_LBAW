@@ -26,7 +26,7 @@ include_once('../templates/sidebar.php');
                     <!-- VAI DAR Reflected XSS aqui, preparar isto dps-->
 
                     <div>
-                    <h4>Showing results for: "Pessoa com mais tabs abertos a qualquer altura"</h4>
+                    <h4>Showing results for: "BDAD"</h4>
                     </div>
 
                     <?php include('../templates/card_teacher.php'); ?>

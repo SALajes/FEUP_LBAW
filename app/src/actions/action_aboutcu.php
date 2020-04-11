@@ -9,7 +9,7 @@
 	<br>
 	<div class="col-12">NoSQL: MongoDB</div>
 	<br>
-	<div class="col-12">Teoria de Bases de Dados: Modelos Relacionais...yada yada yada... </div>
+	<div class="col-12">Teoria de Bases de Dados: Modelos Relacionais</div>
 </div>
 <hr>
 <div class="row">
