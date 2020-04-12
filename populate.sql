@@ -67,18 +67,18 @@ INSERT INTO "group" (group_id, student_id) VALUES (1, 0);
 INSERT INTO "group" (group_id, student_id) VALUES (1, 1);
 INSERT INTO "group" (group_id, student_id) VALUES (1, 4);
 
---class--
-INSERT INTO class (student_id, cu_id, identifier) VALUES (0, 0, 'LBAW01');
-INSERT INTO class (student_id, cu_id, identifier) VALUES (1, 0, 'LBAW01');
-INSERT INTO class (student_id, cu_id, identifier) VALUES (2, 0, 'LBAW01');
-INSERT INTO class (student_id, cu_id, identifier) VALUES (3, 0, 'LBAW01');
-INSERT INTO class (student_id, cu_id, identifier) VALUES (4, 0, 'LBAW01');
-INSERT INTO class (student_id, cu_id, identifier) VALUES (5, 2, 'SOPE03');
-INSERT INTO class (student_id, cu_id, identifier) VALUES (6, 2, 'SOPE03');
-INSERT INTO class (student_id, cu_id, identifier) VALUES (7, 2, 'SOPE03');
-INSERT INTO class (student_id, cu_id, identifier) VALUES (8, 2, 'SOPE03');
-INSERT INTO class (student_id, cu_id, identifier) VALUES (9, 2, 'SOPE03');
-INSERT INTO class (student_id, cu_id, identifier) VALUES (10, 2, 'SOPE02');
+--enrolled--
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (0, 0, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (1, 0, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (2, 0, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (3, 0, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (4, 0, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (5, 2, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (6, 2, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (7, 2, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (8, 2, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (9, 2, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (10, 2, 'SOPE02');
 
 --moderator--
 INSERT INTO moderator (student_id, cu_id) VALUES (4, 2);
