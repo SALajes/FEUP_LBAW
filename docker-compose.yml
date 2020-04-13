@@ -1,5 +1,6 @@
-version: "3"
+version: '3'
 services:
+
   postgres:
     image: postgres:9.4
     restart: always
