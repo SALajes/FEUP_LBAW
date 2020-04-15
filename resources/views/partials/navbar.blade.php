@@ -1,6 +1,6 @@
 @section('title', 'Navbar')
 
-<link rel="stylesheet" href="../styles/navbar.css">
+<link rel="stylesheet" href="/public/css/navbar.css">
 
 <header>
     <nav id="header" class="navbar fixed-top navbar-expand-md navbar-dark">

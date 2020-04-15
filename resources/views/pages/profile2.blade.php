@@ -5,7 +5,7 @@
     include_once('../templates/tpl_profile.php');
 
 ?>
-<link rel="stylesheet" href="../styles/profile.css">
+<link rel="stylesheet" href="/public/css/profile.css">
 
 <body role="main">
     <div class="container-fuild">

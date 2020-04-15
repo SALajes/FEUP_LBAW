@@ -1,39 +1,397 @@
-DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS cards CASCADE;
-DROP TABLE IF EXISTS items CASCADE;
+-- CREATE --
 
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
-  email VARCHAR UNIQUE NOT NULL,
-  password VARCHAR NOT NULL,
-  remember_token VARCHAR
+-- Drop old schema
+
+DROP TABLE IF EXISTS student CASCADE;
+DROP TABLE IF EXISTS professor CASCADE;
+DROP TABLE IF EXISTS curricular_unit CASCADE;
+DROP TABLE IF EXISTS rating CASCADE;
+DROP TABLE IF EXISTS friend CASCADE;
+DROP TABLE IF EXISTS "group" CASCADE;
+DROP TABLE IF EXISTS enrolled CASCADE;
+DROP TABLE IF EXISTS moderator CASCADE;
+DROP TABLE IF EXISTS banned CASCADE;
+DROP TABLE IF EXISTS teaches CASCADE;
+DROP TABLE IF EXISTS post CASCADE;
+DROP TABLE IF EXISTS comment CASCADE;
+DROP TABLE IF EXISTS comment_thread CASCADE;
+DROP TABLE IF EXISTS message CASCADE;
+DROP TABLE IF EXISTS group_message CASCADE;
+DROP TABLE IF EXISTS group_message_receiver CASCADE;
+
+DROP TYPE IF EXISTS feed_type_enum;
+
+DROP FUNCTION IF EXISTS set_friends() CASCADE;
+DROP FUNCTION IF EXISTS ban_student() CASCADE;
+DROP FUNCTION IF EXISTS group_exists() CASCADE;
+
+-- Type
+
+CREATE TYPE feed_type_enum AS ENUM ('General', 'Doubts', 'Tutoring');
+
+-- Tables
+
+CREATE TABLE student (
+   id              SERIAL PRIMARY KEY,
+   password        TEXT NOT NULL,
+   student_number  TEXT NOT NULL CONSTRAINT student_number_uk UNIQUE,
+   name            TEXT NOT NULL,
+   bio             TEXT,
+   email           TEXT NOT NULL CONSTRAINT student_email_uk UNIQUE,
+   picture_path    TEXT,
+   administrator   BOOLEAN NOT NULL,
+
+   CONSTRAINT email_ck CHECK (email !~ '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][a-za-z]+\$'::TEXT)
 );
 
-CREATE TABLE cards (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
-  user_id INTEGER REFERENCES users NOT NULL
+CREATE TABLE professor (
+   id              SERIAL PRIMARY KEY,
+   name            TEXT NOT NULL,
+   email           TEXT NOT NULL CONSTRAINT professor_email_uk UNIQUE,
+   picture_path    TEXT,
+   abbrev          TEXT NOT NULL CONSTRAINT professor_abbrev_uk UNIQUE,
+
+   CONSTRAINT email_ck CHECK (email !~ '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][a-za-z]+\$'::TEXT)
 );
 
-CREATE TABLE items (
-  id SERIAL PRIMARY KEY,
-  card_id INTEGER NOT NULL REFERENCES cards ON DELETE CASCADE,
-  description VARCHAR NOT NULL,
-  done BOOLEAN NOT NULL DEFAULT FALSE
+CREATE TABLE curricular_unit (
+   id              SERIAL PRIMARY KEY,
+   name            TEXT NOT NULL CONSTRAINT cu_name_uk UNIQUE,
+   abbrev          TEXT NOT NULL CONSTRAINT cu_abbrev_uk UNIQUE,
+   description     TEXT NOT NULL
 );
 
-INSERT INTO users VALUES (
-  DEFAULT,
-  'John Doe',
-  'john@example.com',
-  '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W'
-); -- Password is 1234. Generated using Hash::make('1234')
+CREATE TABLE rating (
+   id               SERIAL PRIMARY KEY,
+   reviewer_id      INTEGER REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   has_voted        BOOLEAN NOT NULL DEFAULT FALSE,
+   review           TEXT,
+   student_id       INTEGER REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   cu_id            INTEGER REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   professor_id     INTEGER REFERENCES professor (id) ON UPDATE CASCADE ON DELETE CASCADE,
 
-INSERT INTO cards VALUES (DEFAULT, 'Things to do', 1);
-INSERT INTO items VALUES (DEFAULT, 1, 'Buy milk');
-INSERT INTO items VALUES (DEFAULT, 1, 'Walk the dog', true);
+   CONSTRAINT rated_ck CHECK (
+       student_id IS NOT NULL AND cu_id IS NULL AND professor_id IS NULL
+       OR
+       student_id IS NULL AND cu_id IS NOT NULL AND professor_id IS NULL
+       OR
+       student_id IS NULL AND cu_id IS NULL AND professor_id IS NOT NULL
+   )
+);
 
-INSERT INTO cards VALUES (DEFAULT, 'Things not to do', 1);
-INSERT INTO items VALUES (DEFAULT, 2, 'Break a leg');
-INSERT INTO items VALUES (DEFAULT, 2, 'Crash the car');
+CREATE TABLE friend (
+   student1_id     INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   student2_id     INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   PRIMARY KEY (student1_id, student2_id)
+);
+
+CREATE TABLE "group" (
+   group_id    SERIAL,
+   student_id  INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   PRIMARY KEY (group_id, student_id)
+);
+
+CREATE TABLE enrolled (
+   student_id   INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   cu_id        INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   identifier   TEXT NOT NULL,
+   PRIMARY KEY (student_id, cu_id)
+);
+
+CREATE TABLE moderator (
+   student_id   INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   cu_id        INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   PRIMARY KEY (student_id, cu_id)
+);
+
+CREATE TABLE banned (
+   student_id       INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,               --banned student
+   cu_id            INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   mod_student_id   INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,     --mod who banned
+   reason           TEXT NOT NULL,
+   "date"           TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+   PRIMARY KEY (student_id, cu_id),
+
+   CONSTRAINT dif_student CHECK(
+       student_id <> mod_student_id
+   )
+);
+
+CREATE TABLE teaches (
+   professor_id     INTEGER NOT NULL REFERENCES professor (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   cu_id            INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   PRIMARY KEY (professor_id, cu_id)
+);
+
+CREATE TABLE post (
+   id           SERIAL PRIMARY KEY,
+   author_id    INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   content      TEXT NOT NULL,
+   "date"       TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+   cu_id        INTEGER REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   public_feed  BOOLEAN,
+   feed_type    feed_type_enum,
+
+   CONSTRAINT post_feed_ck CHECK (
+       cu_id IS NOT NULL AND public_feed IS NULL AND feed_type IS NOT NULL
+       OR
+       cu_id IS NULL AND public_feed IS NOT NULL AND feed_type IS NULL
+   )
+);
+
+CREATE TABLE comment (
+   id           SERIAL PRIMARY KEY,
+   content      TEXT NOT NULL,
+   "date"       TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+   author_id    INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   post_id      INTEGER NOT NULL REFERENCES post (id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE comment_thread (
+   comment_id  INTEGER NOT NULL REFERENCES comment (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   parent_id   INTEGER NOT NULL REFERENCES comment (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   PRIMARY KEY (comment_id, parent_id)
+);
+
+CREATE TABLE message (
+   id           SERIAL PRIMARY KEY,
+   sender_id    INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   receiver_id  INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   content      TEXT NOT NULL,
+   "date"       TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
+);
+
+CREATE TABLE group_message (
+   id           SERIAL PRIMARY KEY,
+   group_id     INTEGER NOT NULL,
+   content      TEXT NOT NULL,
+   "date"       TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+   sender_id    INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE group_message_receiver (
+   group_id     SERIAL,
+   student_id   INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   group_name   TEXT NOT NULL,
+   PRIMARY KEY (group_id, student_id)
+);
+
+--Index--
+
+CREATE INDEX sender_id_message ON message USING hash(sender_id);
+CREATE INDEX receiver_id_message ON message USING hash(sender_id);
+CREATE INDEX cu_id_post ON post USING hash(cu_id);
+CREATE INDEX public_feed_post ON post USING hash(public_feed);
+CREATE INDEX student_id_rating ON rating USING hash(student_id);
+CREATE INDEX professor_id_rating ON rating USING hash(professor_id);
+CREATE INDEX cu_id_rating ON rating USING hash(cu_id);
+CREATE INDEX post_date_idx ON post USING btree(date);
+CREATE INDEX comment_date_idx ON comment USING btree(date);
+CREATE INDEX message_date_idx ON message USING btree(date);
+CREATE INDEX group_message_date_idx ON group_message USING btree(date);
+CREATE INDEX search_post_idx ON post USING GIST (to_tsvector('english', content));
+CREATE INDEX search_cu_idx ON curricular_unit USING GIST (to_tsvector('portuguese', name || description));
+
+--Triggers--
+
+CREATE FUNCTION set_friends() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+   IF EXISTS (SELECT * FROM friend WHERE (NEW.student1_id = student1_id AND NEW.student2_id = student2_id) OR (NEW.student1_id = student2_id AND NEW.student2_id = student1_id))
+       THEN RAISE EXCEPTION 'The pair of friends exist already.';
+   END IF;
+   RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER set_friends
+   BEFORE INSERT ON friend
+   FOR EACH ROW
+   EXECUTE PROCEDURE set_friends();
+
+CREATE FUNCTION ban_student() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+   IF NOT EXISTS (SELECT * FROM moderator WHERE NEW.mod_student_id = student_id AND NEW.cu_id = cu_id)
+       THEN RAISE EXCEPTION 'Not a valid moderator.';
+   END IF;
+   RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER ban_student
+   BEFORE INSERT ON banned
+   FOR EACH ROW
+   EXECUTE PROCEDURE ban_student();
+
+CREATE FUNCTION group_exists() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+   IF NOT EXISTS (SELECT * FROM group_message_receiver WHERE NEW.group_id = group_id AND NEW.sender_id = student_id)
+       THEN RAISE EXCEPTION 'Not a valid group/student.';
+   END IF;
+   RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER group_exists
+   BEFORE INSERT ON group_message
+   FOR EACH ROW
+   EXECUTE PROCEDURE group_exists();
+
+-- POPULATE --
+
+-- student --
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (0, '1234', 'up000000000', 'Simao Oliveira', 'simaosimaosimao@simao.pt', true);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (1, '1234', 'up111111111', 'Carlos Nova', 'carloscarloscarlos@carlos.pt', true);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (2, '1234', 'up222222222', 'Sofia Lajes', 'sofiasofiasofia@sofia.pt', true);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (3, '1234', 'up333333333', 'Pedro Pereira', 'pedropedropedro@pedro.pt', true);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (4, '1234', 'up444444444', 'Fernando Pessoa', 'fernandofernandofernando@sfernando.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (5, '1234', 'up555555555', 'Alvaro Campos', 'alvaroalvaroalvaro@alvaro.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (6, '1234', 'up666666666', 'Ricardo Reis', 'ricardoricardoricardo@ricardo.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (7, '1234', 'up777777777', 'Alberto Caerio', 'albertoalbertoalberto@alberto.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (8, '1234', 'up888888888', 'Bernardo Soares', 'bernardobernardobernardo@bernardo.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (9, '1234', 'up999999999', 'Eca Queiroz', 'eca@eca.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (10, '1234', 'up12346578', 'Wilson Edmundo Edgar Diogo', 'wilsonwilsonwilson@wilson.br', false);
+
+--professor--
+INSERT INTO professor (id, name, email, abbrev) VALUES (0, 'Sergio Sobral Nunes', 'segiosergio@sergio.pt','SSN');
+INSERT INTO professor (id, name, email, abbrev) VALUES (1, 'Joao Antonio Correia Lopes', 'joaojoao@joao.pt', 'JCL');
+INSERT INTO professor (id, name, email, abbrev) VALUES (2, 'Fernando Jose Cassola Marques', 'fernandofernadno@fernando.pt', 'FJCM');
+INSERT INTO professor (id, name, email, abbrev) VALUES (3, 'Tiago Boldt Pereira de Sousa', 'tiagotiago@tiago.pt', 'TBS');
+INSERT INTO professor (id, name, email, abbrev) VALUES (4, 'Carla Alexandra Teixeira Lopes', 'carlacarla@carla.pt', 'CTL');
+INSERT INTO professor (id, name, email, abbrev) VALUES (5, 'Andre Monteiro de Oliveira Restivo', 'andreandre@andre.pt', 'AOR');
+INSERT INTO professor (id, name, email, abbrev) VALUES (6, 'Antonio Augusto de Sousa', 'antonioantonio@antonio.pt', 'AAS');
+INSERT INTO professor (id, name, email, abbrev) VALUES (7, 'Luis Paulo Goncalves dos Reis', 'luisluis@luis.pt', 'LPR');
+INSERT INTO professor (id, name, email, abbrev) VALUES (8, 'Jorge Alves da Silva', 'jorgejorge@jorge.pt', 'JAS');
+INSERT INTO professor (id, name, email, abbrev) VALUES (9, 'Pedro Miguel Moreira da Silva', 'pedropedro@pedro.pt', 'PMMS');
+
+--curricular_unit--
+INSERT INTO curricular_unit (id, name, abbrev, description) VALUES (0, 'Laboratorio de Bases de Dados e Aplicacoes Web', 'LBAW', 'A unidade curricular de LBAW tem como objetivo sedimentar as matérias expostas nas unidades curriculares de bases de dados e linguagens e tecnologias web. Esta unidade curricular oferece uma perspetiva prática sobre duas áreas centrais da engenharia informática. Nesta unidade curricular pretende-se dotar os estudantes da capacidade de projetar e desenvolver sistemas de informação acessíveis através da web e suportados por sistemas de gestão de bases de dados.');
+INSERT INTO curricular_unit (id, name, abbrev, description) VALUES (1, 'Bases de Dados', 'BDAD', 'Este é um curso introdutório sobre bases de dados. Aborda o paradigma relacional. Abrange o desenho (modelo UML), construção (linguagem de definição de dados SQL), consulta (linguagem de manipulação de dados SQL) e gestão (optimização, controlo de acesso e políticas de concorrência) de bases de dados relacionais. Introduz, ainda, o conceito de bases de dados multi-dimensionais, bases de dados NoSQL e modelos de dados semi-estruturados.');
+INSERT INTO curricular_unit (id, name, abbrev, description) VALUES (2, 'Sistemas Operativos', 'SOPE', 'A estrutura e o funcionamento de um sistema operativo;');
+
+--rating--
+INSERT INTO rating (id, reviewer_id, has_voted, student_id) VALUES (0, 0, TRUE, 4);
+INSERT INTO rating (id, reviewer_id, has_voted, student_id) VALUES (1, 0, TRUE, 5);
+INSERT INTO rating (id, reviewer_id, has_voted, student_id) VALUES (2, 5, FALSE, 6);
+INSERT INTO rating (id, reviewer_id, has_voted, student_id) VALUES (3, 4, FALSE, 9);
+INSERT INTO rating (id, reviewer_id, has_voted, student_id) VALUES (4, 9, TRUE, 0);
+
+INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (5, 1, TRUE, 1);
+INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (6, 1, TRUE, 0);
+INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (7, 3, TRUE, 1);
+INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (8, 5, FALSE, 2);
+INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (9, 0, FALSE, 1);
+INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (10, 2, TRUE, 1);
+
+INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (11, 4, FALSE, 0);
+INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (12, 5, TRUE, 1);
+INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (13, 6, FALSE, 2);
+INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (14, 7, TRUE, 3);
+INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (15, 8, FALSE, 4);
+
+--friend--
+INSERT INTO friend (student1_id, student2_id) VALUES (0, 1);
+INSERT INTO friend (student1_id, student2_id) VALUES (1, 2);
+INSERT INTO friend (student1_id, student2_id) VALUES (3, 4);
+INSERT INTO friend (student1_id, student2_id) VALUES (0, 4);
+INSERT INTO friend (student1_id, student2_id) VALUES (0, 5);
+INSERT INTO friend (student1_id, student2_id) VALUES (4, 5);
+INSERT INTO friend (student1_id, student2_id) VALUES (5, 6);
+INSERT INTO friend (student1_id, student2_id) VALUES (6, 7);
+
+--"group"--
+INSERT INTO "group" (group_id, student_id) VALUES (0, 0);
+INSERT INTO "group" (group_id, student_id) VALUES (0, 1);
+INSERT INTO "group" (group_id, student_id) VALUES (0, 2);
+INSERT INTO "group" (group_id, student_id) VALUES (0, 3);
+INSERT INTO "group" (group_id, student_id) VALUES (1, 0);
+INSERT INTO "group" (group_id, student_id) VALUES (1, 1);
+INSERT INTO "group" (group_id, student_id) VALUES (1, 4);
+
+--enrolled--
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (0, 0, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (1, 0, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (2, 0, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (3, 0, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (4, 0, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (5, 2, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (6, 2, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (7, 2, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (8, 2, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (9, 2, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (10, 2, 'SOPE02');
+
+--moderator--
+INSERT INTO moderator (student_id, cu_id) VALUES (4, 2);
+INSERT INTO moderator (student_id, cu_id) VALUES (5, 1);
+
+--banned--
+INSERT INTO banned (student_id, cu_id, mod_student_id, reason) VALUES (10, 2, 4, 'Continuo postagem de postes desnecessarios e no meio do caminho de postes uteis');
+
+--teaches--
+INSERT INTO teaches (professor_id, cu_id) VALUES (0, 0);
+INSERT INTO teaches (professor_id, cu_id) VALUES (1, 0);
+INSERT INTO teaches (professor_id, cu_id) VALUES (2, 0);
+INSERT INTO teaches (professor_id, cu_id) VALUES (3, 0);
+INSERT INTO teaches (professor_id, cu_id) VALUES (4, 1);
+INSERT INTO teaches (professor_id, cu_id) VALUES (8, 2);
+INSERT INTO teaches (professor_id, cu_id) VALUES (9, 2);
+
+--post--
+INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (0, 5, 'No artefacto 6 como e suposto povoar a base de dados??', 0, 'Doubts');
+INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (1, 4, 'Vai haver aula hoje?', 0, 'General');
+INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (2, 9, 'Estou com um problema na base de dados. Alguem me pode ajudar?? BDAD e muito complicado para o meu pequeno cerebro, nao tenho um QI superiro a 200. Preciso mesmo de ajuda se nao ja reprovei', 1, 'Tutoring');
+INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (3, 7, 'Nao vai haver aulas hoje nos queijos, estao a limpar o cheirete a bolor, get it porque sao queijos??', 1, 'General');
+INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (4, 6, 'Se pesquisarem no youtube por sopa tem muitos tutoriais de como fazer esta cadeira', 2, 'General');
+INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (5, 8, 'Por causa do covid 33 estamos a usar uma plataforma de aulas virtual, cada pessoa deve usar os seus oculos vr para assistir a aula', 0, 'General');
+
+INSERT INTO post (id, author_id, content, public_feed) VALUES (6, 4, 'Nao se esquecam de preencher os inqueritos pedagogicos, e nao digam so mal de plog', TRUE);
+INSERT INTO post (id, author_id, content, public_feed) VALUES (7, 0, 'Grande evento que vai acontecer em abril, dia 20 nao percas!!!', TRUE);
+
+--comment--
+INSERT INTO comment (id, content, author_id, post_id) VALUES (0, 'Nao tambem queria saber', 6, 0);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (1, 'Sim as aulas estao a corer na normalidad, que raio de pergunta', 8, 3);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (2, 'Vai haver comida e bebida para todos e so aparecer', 0, 7);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (3, 'Ja preenchi', 2, 4);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (4, 'Posso te ajudar com bdad', 4, 2);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (5, 'Obrigado, quando podes ajudar me?', 9, 2);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (6, 'Amanha as 20:40 podes? Eu mando te invite para o discord', 4, 2);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (7, 'Comida?? Conta comigo', 8, 7);
+
+--comment_thread--
+INSERT INTO comment_thread (comment_id, parent_id) VALUES (5, 4);
+INSERT INTO comment_thread (comment_id, parent_id) VALUES (6, 5);
+INSERT INTO comment_thread (comment_id, parent_id) VALUES (7, 2);
+
+--message--
+INSERT INTO message (id, sender_id, receiver_id, content) VALUES (0, 5, 6, 'Tenho uma irritacao nas costas o que pode ser?');
+INSERT INTO message (id, sender_id, receiver_id, content) VALUES (1, 6, 5, 'Deixei de ser medico. Estava demasiado perto das pessoas tenho que me desenlacar de tudo');
+INSERT INTO message (id, sender_id, receiver_id, content) VALUES (2, 6, 7, 'Como estao as ovelha?');
+INSERT INTO message (id, sender_id, receiver_id, content) VALUES (3, 7, 0, 'So para dizer que hoje esta um belo dia');
+INSERT INTO message (id, sender_id, receiver_id, content) VALUES (4, 3, 4, 'Ja fizeste o que faltava??');
+
+--group_message_receiver--
+INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (0, 0, 'LBAW');
+INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (0, 1, 'LBAW');
+INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (0, 2, 'LBAW');
+INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (0, 3, 'LBAW');
+INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (1, 0, 'MeMeS');
+INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (1, 1, 'MeMeS');
+INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (1, 2, 'MeMeS');
+INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (1, 3, 'MeMeS');
+INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (1, 4, 'MeMeS');
+INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (1, 5, 'MeMeS');
+INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (1, 6, 'MeMeS');
+INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (1, 9, 'MeMeS');
+
+--group_message--
+INSERT INTO group_message (id, group_id, content, sender_id) VALUES (0, 0, 'Ja acabei de povoar a base de dados que acham?? Meti alguns easter eggs? Quanto nao sei...', 0);
+INSERT INTO group_message (id, group_id, content, sender_id) VALUES (1, 0, 'Ja acabei os triggers. Que triggered que fiquei', 3);
+INSERT INTO group_message (id, group_id, content, sender_id) VALUES (2, 1, 'A minha amiga asiatica ficou doente. Mas eu Coreia.', 6);
+INSERT INTO group_message (id, group_id, content, sender_id) VALUES (3, 1, 'Por causa do coronavirus ja nao e permitido fazer festas com 20 ou mais pesoas. Por isso agora so COVID 19', 9);
+INSERT INTO group_message (id, group_id, content, sender_id) VALUES (4, 1, 'Ao gajo que inventou o zero: Obrigado por nada!', 5);

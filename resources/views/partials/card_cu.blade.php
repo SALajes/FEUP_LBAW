@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../styles/card.css">
+<link rel="stylesheet" href="/public/css/card.css">
 <link rel="stylesheet" href="../../assets/identity.css">
 <link rel="stylesheet" href="../../assets/icons.css">
 

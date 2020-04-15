@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../styles/homepage.css">
+<link rel="stylesheet" href="/public/css/homepage.css">
 <?php
 include_once('../templates/header.php');
 

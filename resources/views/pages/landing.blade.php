@@ -4,7 +4,7 @@
 
 @section('content')
 
-<link rel="stylesheet" href="../styles/landing.css">
+<link rel="stylesheet" href="/public/css/landing.css">
 
 <header class="background-gradient-blue">
     <section class="masthead mb-auto pt-3 d-flex pr-5 justify-content-end">

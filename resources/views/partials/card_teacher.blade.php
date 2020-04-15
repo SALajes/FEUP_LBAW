@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../styles/card.css">
+<link rel="stylesheet" href="/public/css/card.css">
 <link rel="stylesheet" href="../../assets/identity.css">
 
 <div class="card card-margins">

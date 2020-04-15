@@ -6,7 +6,7 @@
 ?>
 
 <body role="main">
-    <link rel="stylesheet" href="../styles/profile.css">
+    <link rel="stylesheet" href="/public/css/profile.css">
 
     <div class="container-fuild">
         <div class="row">
