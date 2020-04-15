@@ -1,6 +1,8 @@
-<?php
-include_once('../templates/header.php');
-?>
+@extends('layouts.app')
+
+@section('title', 'Landing')
+
+@section('content')
 
 <link rel="stylesheet" href="../styles/landing.css">
 
@@ -94,6 +96,6 @@ include_once('../templates/header.php');
     </main>
 </body>
 
-<?php
-include_once('../templates/footer.php');
-?>
+@include('partials.footer')
+
+@endsection

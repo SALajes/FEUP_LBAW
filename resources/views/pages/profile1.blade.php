@@ -1,9 +1,8 @@
-<?php
-	include_once('../templates/header.php');
-    include_once('../templates/navbar.php');
-    include_once('../templates/sidebar.php');
-    include_once('../templates/tpl_profile.php');
+@include('partials.navbar')
+@include('partials.sidebar')
 
+<?php
+    include_once('../templates/tpl_profile.php');
 ?>
 
 <body role="main">
@@ -33,5 +32,5 @@
 </body>
 
 <?php
-	include_once('../templates/footer.php');
+	@include('partials.footer')
 ?>

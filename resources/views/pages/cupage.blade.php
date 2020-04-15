@@ -1,12 +1,13 @@
-<?php
-    include_once('../templates/header.php');
-    include_once('../templates/navbar.php');
-    include_once('../templates/card.php');
-    include_once('../templates/sidebar.php');
-?>
+@section('title', 'CurricularUnits')
 
-<link rel="stylesheet" href="../styles/homepage.css">
-<script src="../scripts/cu_sidebar.js" defer></script>
+@section('content')
+
+@include('partials.navbar')
+@include('partials.card')
+@include('partials.sidebar')
+
+<link rel="stylesheet" href="public/css/homepage.css">
+<script src="/public/js/cu_sidebar.js" defer></script>
 
 <body id="cupage" class="container-fuild ">
             <div class="row">
@@ -26,6 +27,6 @@
 
 </body>
 
-<?php
-    include_once('../templates/footer.php');
-?>
+@include('partials.footer')
+
+@endsection

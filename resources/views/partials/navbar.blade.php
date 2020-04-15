@@ -1,3 +1,5 @@
+@section('title', 'Navbar')
+
 <link rel="stylesheet" href="../styles/navbar.css">
 
 <header>

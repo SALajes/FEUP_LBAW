@@ -1,14 +1,8 @@
-<link rel="stylesheet" href="../styles/homepage.css">
+<link rel="stylesheet" href="/public/css/homepage.css">
 
-<?php
-include_once('../templates/header.php');
-
-include_once('../templates/navbar.php');
-
-include_once('../templates/card.php');
-
-include_once("../templates/sidebar.php");
-?>
+@include('partials.navbar')
+@include('partials.card')
+@include('partials.sidebar')
 
 <body class="container-fluid">
     <div id="homepage" class="row justify-content-md-center">
@@ -33,7 +27,5 @@ include_once("../templates/sidebar.php");
         </div>
     </div>
 
-    <?php
-    include_once('../templates/footer.php');
-    ?>
+    @include('partials.footer')
 </body>
