@@ -1,8 +1,12 @@
 <link rel="stylesheet" href="/public/css/homepage.css">
 
+@extends('layouts.app')
+
 @include('partials.navbar')
 @include('partials.card')
 @include('partials.sidebar')
+
+@section('content')
 
 <body class="container-fluid">
     <div id="homepage" class="row justify-content-md-center">
@@ -29,3 +33,5 @@
 
     @include('partials.footer')
 </body>
+
+@endsection
