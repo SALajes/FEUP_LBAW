@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Enrolment extends Model
+class Enrolled extends Model
 {
+    protected $table = "enrolled";
+
     protected $primaryKey = ['student', 'curricularUnit'];
 
     protected $fillable = [
@@ -24,7 +26,7 @@ class Enrolment extends Model
 
     public function studentsCUs()
     {
-        $this->hasMany('App\Student', 'curricularUnit', 'student');
+        $this->belongsTo('App\Student', 'curricularUnit', 'student');
     }
 
 }

@@ -8,6 +8,6 @@ class Group extends Model
 {
     public function students()
     {
-        return $this->belongsToMany('App\Student');
+        return $this->hasMany('App\Student');
     }
 }
