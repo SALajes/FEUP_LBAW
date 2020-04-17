@@ -20,6 +20,14 @@
       </span>
     @endif
 
+    <label for="student_number">Student ID</label>
+    <input id="student_number" type="text" name="student_number" value="{{ old('student_number') }}" required>
+    @if ($errors->has('student_number'))
+      <span class="error">
+          {{ $errors->first('student_number') }}
+      </span>
+    @endif
+
     <label for="password">Password</label>
     <input id="password" type="password" name="password" required>
     @if ($errors->has('password'))

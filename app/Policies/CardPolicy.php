@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\User;
+use App\Student;
 use App\Card;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -12,27 +12,27 @@ class CardPolicy
 {
     use HandlesAuthorization;
 
-    public function show(User $user, Card $card)
+    public function show(Student $student, Card $card)
     {
       // Only a card owner can see it
-      return $user->id == $card->user_id;
+      return $student->id == $card->student_id;
     }
 
-    public function list(User $user)
+    public function list(Student $student)
     {
-      // Any user can list its own cards
+      // Any student can list its own cards
       return Auth::check();
     }
 
-    public function create(User $user)
+    public function create(Student $student)
     {
-      // Any user can create a new card
+      // Any student can create a new card
       return Auth::check();
     }
 
-    public function delete(User $user, Card $card)
+    public function delete(Student $student, Card $card)
     {
       // Only a card owner can delete it
-      return $user->id == $card->user_id;
+      return $student->id == $card->student_id;
     }
 }

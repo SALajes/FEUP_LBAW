@@ -3,7 +3,6 @@
 @extends('layouts.app')
 
 @include('partials.navbar')
-@include('partials.card')
 @include('partials.sidebar')
 
 @section('content')
@@ -18,12 +17,7 @@
 
         <main id="posts" class="col-12 col-lg-6">
             <div id="content">
-                <?php include_once('../templates/publish_card.php'); ?>
-
-                <?php
-                draw_card1();
-                draw_card2();
-                ?>
+                @include('partials.publish_card')
             </div>
         </main>
 

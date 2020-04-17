@@ -2,19 +2,19 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Student extends Model
+class Student extends Authenticatable
 {   
+    use Notifiable;
+
+    public $timestamps  = false;
 
     protected $table = "student";
 
     protected $fillable = [
-        'name', 'student_number', 'bio', 'email', 'picture_path', 'administrator'
-    ];
-
-    protected $hidden = [
-        'password'
+        'name', 'student_number', 'bio', 'email', 'picture_path', 'administrator', 'password'
     ];
 
     public function groups()
@@ -25,7 +25,5 @@ class Student extends Model
     public function curricularUnits()
     {
         return $this->belongsToMany('App\Group');
-    }
-
-    
+    }   
 }
