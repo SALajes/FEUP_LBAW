@@ -12,21 +12,21 @@ class Rating extends Model
 
     public function reviewer()
     {
-        return $this->hasOne('App\Student');
+        return $this->belongsTo('App\Student');
     }
 
     public function reviewedStudent()
     {
-        return $this->hasMany('App\Student');
+        return $this->belognsTo('App\Student');
     }
 
     public function reviewedProfessor()
     {
-        return $this->hasMany('App\Professor');
+        return $this->belongsTo('App\Professor');
     }
 
     public function reviewedCurricularUnit()
     {
-        return $this->hasMany('App\CurricularUnit');
+        return $this->belongsTo('App\CurricularUnit');
     }
 }

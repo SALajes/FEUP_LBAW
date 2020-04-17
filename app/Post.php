@@ -12,6 +12,16 @@ class Post extends Model
 
     public function author()
     {
-        $this->hasOne('App\Student');
+        $this->belongsTo('App\Student');
+    }
+
+    public function curricularUnit()
+    {
+        $this->belongsTo('App\CurricularUnit');
+    }
+
+    public function comments()
+    {
+        $this->hasMany('App\Comments');
     }
 }

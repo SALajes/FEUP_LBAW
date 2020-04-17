@@ -12,11 +12,11 @@ class Message extends Model
 
     public function sender()
     {
-        $this->hasOne('App\Student');
+        return $this->belongsTo('App\Student');
     }
 
     public function receiver()
     {
-        $this->hasOne('App\Student');
+        return $this->hasOne('App\Student');
     }
 }

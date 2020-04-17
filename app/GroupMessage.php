@@ -14,6 +14,6 @@ class GroupMessage extends Model
 
     public function sender()
     {
-        $this->hasOne('App\Student');
+        $this->belongsTo('App\Student');
     }
 }

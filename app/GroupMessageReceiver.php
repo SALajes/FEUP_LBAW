@@ -8,11 +8,13 @@ class GroupMessageReceiver extends Model
 {
     protected $table = "group_message_receiver";
 
+    protected $primaryKeys = ['group_id', 'student_id'];
+
     protected $fillable = [
-        'group_id'
+        'group_name'
     ];
 
-    public function sender()
+    public function receivers()
     {
         $this->hasOne('App\Student');
     }

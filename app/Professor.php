@@ -9,4 +9,13 @@ class Professor extends Model
     protected $fillable = [
         'name', 'email', 'picture_path', 'abbrevr'
     ];
+
+    public function ratings()
+    {
+        return $this->belongsToMany('App\Rating');
+    }
+
+    public function teaches() {
+        return $this->belongsToMany('App\Teaches');
+    }
 }

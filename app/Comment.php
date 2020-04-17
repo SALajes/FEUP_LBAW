@@ -14,11 +14,11 @@ class Comment extends Model
 
     public function author()
     {
-        $this->hasOne('App\Student');
+        $this->belongsTo('App\Student');
     }
 
     public function post()
     {
-        $this->hasOne('App\Post');
+        $this->belongsTo('App\Post');
     }
 }

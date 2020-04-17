@@ -16,16 +16,11 @@ class Enrolled extends Model
 
     public function students() 
     {
-        $this->belongsTo('App\Student', 'student');
+        $this->belongsToMany('App\Student', 'student');
     }
 
     public function curricular_units() 
     {
-        $this->belongsTo('App\CurricularUnit', 'curriculatUnit');
-    }
-
-    public function studentsCUs()
-    {
-        $this->belongsTo('App\Student', 'curricularUnit', 'student');
+        $this->belongsToMany('App\CurricularUnit', 'curriculatUnit');
     }
 }
