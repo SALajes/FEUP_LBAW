@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="/public/css/card.css">
-<link rel="stylesheet" href="../../assets/identity.css">
+<link rel="stylesheet" href="{{ asset('css/card.css') }}">
+<link rel="stylesheet" href="{{ asset('identity.css') }}">
 
 <div class="card card-margins">
     <div class="card-header d-flex justify-content-start">

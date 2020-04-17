@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="/public/css/card.css">
-<link rel="stylesheet" href="../../assets/identity.css">
+<link rel="stylesheet" href="{{ asset('css/card.css') }}">
+<link rel="stylesheet" href="{{ asset('css/identity.css') }}">
 
 <?php function draw_card1()
 { ?>

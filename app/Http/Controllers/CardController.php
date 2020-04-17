@@ -38,7 +38,7 @@ class CardController extends Controller
 
       $cards = Auth::user()->cards()->orderBy('id')->get();
 
-      return view('pages.cards', ['cards' => $cards]);
+      return view('pages.landing', []);
     }
 
     /**

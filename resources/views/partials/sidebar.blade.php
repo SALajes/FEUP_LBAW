@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/public/css/sidebar.css">
+<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 
 <?php function draw_sidebar_Top($breadcrumb, $username, $usrId) { ?>
     <aside class="col-lg-3 sticky-top align-self-start" id="page-title">

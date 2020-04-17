@@ -6,8 +6,8 @@
 @include('partials.card')
 @include('partials.sidebar')
 
-<link rel="stylesheet" href="public/css/homepage.css">
-<script src="/public/js/cu_sidebar.js" defer></script>
+<link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+<script src="{{ asset('js/cu_sidebar.js') }}" defer></script>
 
 <body id="cupage" class="container-fuild ">
             <div class="row">

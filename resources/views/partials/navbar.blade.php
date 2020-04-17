@@ -1,6 +1,6 @@
 @section('title', 'Navbar')
 
-<link rel="stylesheet" href="/public/css/navbar.css">
+<link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 
 <header>
     <nav id="header" class="navbar fixed-top navbar-expand-md navbar-dark">

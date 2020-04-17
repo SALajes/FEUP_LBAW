@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
+    protected $primaryKey = ['group_id', 'student_id'];
+
     public function students()
     {
-        return $this->hasMany('App\Student');
+        return $this->belongsToMany('App\Student');
     }
 }

@@ -28,5 +28,4 @@ class Enrolled extends Model
     {
         $this->belongsTo('App\Student', 'curricularUnit', 'student');
     }
-
 }

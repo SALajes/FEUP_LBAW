@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/public/css/homepage.css">
+<link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 
 @extends('layouts.app')
 

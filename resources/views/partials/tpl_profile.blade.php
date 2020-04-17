@@ -40,7 +40,7 @@
 <?php } ?>
 
 <?php function draw_myRatings() { ?>
-    <link rel="stylesheet" href="/public/css/profile.css">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
     <section class="row-md-auto">
         <div id="MyRatings" class="d-flex justify-content-around" style="margin-top: 2rem">

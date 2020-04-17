@@ -1,18 +1,11 @@
-@include('partials.navbar')
-@include('partials.sidebar')
-
-<?php
-    include_once('../templates/tpl_profile.php');
-?>
-
-<body role="main">
-    <link rel="stylesheet" href="/public/css/profile.css">
+<section role="main">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
     <div class="container-fuild">
         <div class="row">
             <?php 
-                draw_sidebar_Top("My Profile", "Alvaro Campos", "up188800613"); 
-                draw_sidebar_Profile();
+                //draw_sidebar_Top("My Profile", "Alvaro Campos", "up188800613"); 
+               // draw_sidebar_Profile();
             ?>
             
             <main id="content" class="col-lg-9">
@@ -24,12 +17,12 @@
                     </div>
                 </div>
 
-                    <?php draw_myCUs(); ?>
+                    <?php //draw_myCUs(); ?>
                 
             </main>
         </div>
     </div>
-</body>
+</section>
 
 <?php
 	@include('partials.footer')
