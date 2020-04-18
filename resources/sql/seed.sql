@@ -245,17 +245,17 @@ CREATE TRIGGER group_exists
 -- POPULATE --
 
 -- student --
-INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '1234', 'up000000000', 'Simao Oliveira', 'simaosimaosimao@simao.pt', true);
-INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '1234', 'up111111111', 'Carlos Nova', 'carloscarloscarlos@carlos.pt', true);
-INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '1234', 'up222222222', 'Sofia Lajes', 'sofiasofiasofia@sofia.pt', true);
-INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '1234', 'up333333333', 'Pedro Pereira', 'pedropedropedro@pedro.pt', true);
-INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '1234', 'up444444444', 'Fernando Pessoa', 'fernandofernandofernando@sfernando.pt', false);
-INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '1234', 'up555555555', 'Alvaro Campos', 'alvaroalvaroalvaro@alvaro.pt', false);
-INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '1234', 'up666666666', 'Ricardo Reis', 'ricardoricardoricardo@ricardo.pt', false);
-INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '1234', 'up777777777', 'Alberto Caerio', 'albertoalbertoalberto@alberto.pt', false);
-INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '1234', 'up888888888', 'Bernardo Soares', 'bernardobernardobernardo@bernardo.pt', false);
-INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '1234', 'up999999999', 'Eca Queiroz', 'eca@eca.pt', false);
-INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '1234', 'up12346578', 'Wilson Edmundo Edgar Diogo', 'wilsonwilsonwilson@wilson.br', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up000000000', 'Simao Oliveira', 'simaosimaosimao@simao.pt', true);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up111111111', 'Carlos Nova', 'carloscarloscarlos@carlos.pt', true);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up222222222', 'Sofia Lajes', 'sofiasofiasofia@sofia.pt', true);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up333333333', 'Pedro Pereira', 'pedropedropedro@pedro.pt', true);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up444444444', 'Fernando Pessoa', 'fernandofernandofernando@sfernando.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up555555555', 'Alvaro Campos', 'alvaroalvaroalvaro@alvaro.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up666666666', 'Ricardo Reis', 'ricardoricardoricardo@ricardo.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up777777777', 'Alberto Caerio', 'albertoalbertoalberto@alberto.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up888888888', 'Bernardo Soares', 'bernardobernardobernardo@bernardo.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up999999999', 'Eca Queiroz', 'eca@eca.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up12346578', 'Wilson Edmundo Edgar Diogo', 'wilsonwilsonwilson@wilson.br', false);
 
 --professor--
 INSERT INTO professor (id, name, email, abbrev) VALUES (DEFAULT, 'Sergio Sobral Nunes', 'segiosergio@sergio.pt','SSN');
@@ -275,27 +275,37 @@ INSERT INTO curricular_unit (id, name, abbrev, description) VALUES (DEFAULT, 'Ba
 INSERT INTO curricular_unit (id, name, abbrev, description) VALUES (DEFAULT, 'Sistemas Operativos', 'SOPE', 'A estrutura e o funcionamento de um sistema operativo;');
 
 --rating--
-INSERT INTO rating (id, reviewer_id, has_voted, student_id) VALUES (DEFAULT, 5, FALSE, 6);
-INSERT INTO rating (id, reviewer_id, has_voted, student_id) VALUES (DEFAULT, 4, FALSE, 9);
+INSERT INTO rating (id, reviewer_id, has_voted, student_id) VALUES (DEFAULT, 1, TRUE, 5);
+INSERT INTO rating (id, reviewer_id, has_voted, student_id) VALUES (DEFAULT, 1, TRUE, 6);
+INSERT INTO rating (id, reviewer_id, has_voted, student_id) VALUES (DEFAULT, 6, FALSE, 7);
+INSERT INTO rating (id, reviewer_id, has_voted, student_id) VALUES (DEFAULT, 5, FALSE, 10);
+INSERT INTO rating (id, reviewer_id, has_voted, student_id) VALUES (DEFAULT, 10, TRUE, 1);
 
-INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (DEFAULT, 1, TRUE, 1);
-INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (DEFAULT, 3, TRUE, 1);
-INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (DEFAULT, 5, FALSE, 2);
+INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (DEFAULT, 2, TRUE, 2);
 INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (DEFAULT, 2, TRUE, 1);
+INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (DEFAULT, 4, TRUE, 2);
+INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (DEFAULT, 6, FALSE, 3);
+INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (DEFAULT, 1, FALSE, 2);
+INSERT INTO rating (id, reviewer_id, has_voted, cu_id) VALUES (DEFAULT, 3, TRUE, 2);
 
-INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (DEFAULT, 5, TRUE, 1);
-INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (DEFAULT, 6, FALSE, 2);
-INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (DEFAULT, 7, TRUE, 3);
-INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (DEFAULT, 8, FALSE, 4);
+INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (DEFAULT, 5, FALSE, 1);
+INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (DEFAULT, 6, TRUE, 2);
+INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (DEFAULT, 7, FALSE, 3);
+INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (DEFAULT, 8, TRUE, 4);
+INSERT INTO rating (id, reviewer_id, has_voted, professor_id) VALUES (DEFAULT, 9, FALSE, 5);
 
 --friend--
 INSERT INTO friend (student1_id, student2_id) VALUES (1, 2);
-INSERT INTO friend (student1_id, student2_id) VALUES (3, 4);
+INSERT INTO friend (student1_id, student2_id) VALUES (2, 3);
 INSERT INTO friend (student1_id, student2_id) VALUES (4, 5);
+INSERT INTO friend (student1_id, student2_id) VALUES (1, 5);
+INSERT INTO friend (student1_id, student2_id) VALUES (1, 6);
 INSERT INTO friend (student1_id, student2_id) VALUES (5, 6);
 INSERT INTO friend (student1_id, student2_id) VALUES (6, 7);
+INSERT INTO friend (student1_id, student2_id) VALUES (7, 8);
 
---"group"--
+--"group"-- Serial aqui não sei se faz sentido, porque o grupo id é o mesmo, para os varios estudantes
+INSERT INTO "group" (group_id, student_id) VALUES (DEFAULT, 1);
 INSERT INTO "group" (group_id, student_id) VALUES (DEFAULT, 1);
 INSERT INTO "group" (group_id, student_id) VALUES (DEFAULT, 2);
 INSERT INTO "group" (group_id, student_id) VALUES (DEFAULT, 3);
@@ -303,47 +313,66 @@ INSERT INTO "group" (group_id, student_id) VALUES (DEFAULT, 1);
 INSERT INTO "group" (group_id, student_id) VALUES (DEFAULT, 4);
 
 --enrolled--
-INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (5, 2, 'SOPE03');
-INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (6, 2, 'SOPE03');
-INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (7, 2, 'SOPE03');
-INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (8, 2, 'SOPE03');
-INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (9, 2, 'SOPE03');
-INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (10, 2, 'SOPE02');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (1, 1, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (2, 1, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (3, 1, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (4, 1, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (5, 1, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (6, 3, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (7, 3, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (8, 3, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (9, 3, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (10, 3, 'SOPE03');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (11, 3, 'SOPE02');
 
 --moderator--
-INSERT INTO moderator (student_id, cu_id) VALUES (4, 2);
-INSERT INTO moderator (student_id, cu_id) VALUES (5, 1);
+INSERT INTO moderator (student_id, cu_id) VALUES (5, 3);
+INSERT INTO moderator (student_id, cu_id) VALUES (6, 2);
 
 --banned--
-INSERT INTO banned (student_id, cu_id, mod_student_id, reason) VALUES (10, 2, 4, 'Continuo postagem de postes desnecessarios e no meio do caminho de postes uteis');
+INSERT INTO banned (student_id, cu_id, mod_student_id, reason) VALUES (11, 3, 5, 'Continuo postagem de postes desnecessarios e no meio do caminho de postes uteis');
 
 --teaches--
+INSERT INTO teaches (professor_id, cu_id) VALUES (1, 1);
+INSERT INTO teaches (professor_id, cu_id) VALUES (2, 1);
+INSERT INTO teaches (professor_id, cu_id) VALUES (3, 1);
 INSERT INTO teaches (professor_id, cu_id) VALUES (4, 1);
-INSERT INTO teaches (professor_id, cu_id) VALUES (8, 2);
-INSERT INTO teaches (professor_id, cu_id) VALUES (9, 2);
+INSERT INTO teaches (professor_id, cu_id) VALUES (5, 2);
+INSERT INTO teaches (professor_id, cu_id) VALUES (9, 3);
+INSERT INTO teaches (professor_id, cu_id) VALUES (10, 3);
 
 --post--
-INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (DEFAULT, 9, 'Estou com um problema na base de dados. Alguem me pode ajudar?? BDAD e muito complicado para o meu pequeno cerebro, nao tenho um QI superiro a 200. Preciso mesmo de ajuda se nao ja reprovei', 1, 'Tutoring');
-INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (DEFAULT, 7, 'Nao vai haver aulas hoje nos queijos, estao a limpar o cheirete a bolor, get it porque sao queijos??', 1, 'General');
-INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (DEFAULT, 6, 'Se pesquisarem no youtube por sopa tem muitos tutoriais de como fazer esta cadeira', 2, 'General');
+INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (DEFAULT, 6, 'No artefacto 6 como e suposto povoar a base de dados??', 1, 'Doubts');
+INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (DEFAULT, 5, 'Vai haver aula hoje?', 1, 'General');
+INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (DEFAULT, 10, 'Estou com um problema na base de dados. Alguem me pode ajudar?? BDAD e muito complicado para o meu pequeno cerebro, nao tenho um QI superiro a 200. Preciso mesmo de ajuda se nao ja reprovei', 2, 'Tutoring');
+INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (DEFAULT, 8, 'Nao vai haver aulas hoje nos queijos, estao a limpar o cheirete a bolor, get it porque sao queijos??', 2, 'General');
+INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (DEFAULT, 7, 'Se pesquisarem no youtube por sopa tem muitos tutoriais de como fazer esta cadeira', 3, 'General');
+INSERT INTO post (id, author_id, content, cu_id, feed_type) VALUES (DEFAULT, 9, 'Por causa do covid 33 estamos a usar uma plataforma de aulas virtual, cada pessoa deve usar os seus oculos vr para assistir a aula', 1, 'General');
 
-INSERT INTO post (id, author_id, content, public_feed) VALUES (DEFAULT, 4, 'Nao se esquecam de preencher os inqueritos pedagogicos, e nao digam so mal de plog', TRUE);
+INSERT INTO post (id, author_id, content, public_feed) VALUES (DEFAULT, 5, 'Nao se esquecam de preencher os inqueritos pedagogicos, e nao digam so mal de plog', TRUE);
+INSERT INTO post (id, author_id, content, public_feed) VALUES (DEFAULT, 1, 'Grande evento que vai acontecer em abril, dia 20 nao percas!!!', TRUE);
 
 --comment--
-INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Sim as aulas estao a corer na normalidad, que raio de pergunta', 8, 3);
-INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Ja preenchi', 2, 4);
-INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Posso te ajudar com bdad', 4, 2);
-INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Obrigado, quando podes ajudar me?', 9, 2);
-INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Amanha as 20:40 podes? Eu mando te invite para o discord', 4, 2);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Nao tambem queria saber', 7, 1);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Sim as aulas estao a corer na normalidad, que raio de pergunta', 9, 4);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Vai haver comida e bebida para todos e so aparecer', 1, 8);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Ja preenchi', 3, 5);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Posso te ajudar com bdad', 5, 3);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Obrigado, quando podes ajudar me?', 10, 3);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Amanha as 20:40 podes? Eu mando te invite para o discord', 5, 3);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Comida?? Conta comigo', 9, 8);
 
 --comment_thread--
-INSERT INTO comment_thread (comment_id, parent_id) VALUES (5, 4);
+INSERT INTO comment_thread (comment_id, parent_id) VALUES (6, 5);
+INSERT INTO comment_thread (comment_id, parent_id) VALUES (7, 6);
+INSERT INTO comment_thread (comment_id, parent_id) VALUES (8, 3);
 
 --message--
-INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 5, 6, 'Tenho uma irritacao nas costas o que pode ser?');
-INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 6, 5, 'Deixei de ser medico. Estava demasiado perto das pessoas tenho que me desenlacar de tudo');
-INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 6, 7, 'Como estao as ovelha?');
-INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 3, 4, 'Ja fizeste o que faltava??');
+INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 6, 7, 'Tenho uma irritacao nas costas o que pode ser?');
+INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 7, 6, 'Deixei de ser medico. Estava demasiado perto das pessoas tenho que me desenlacar de tudo');
+INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 7, 8, 'Como estao as ovelha?');
+INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 8, 1, 'So para dizer que hoje esta um belo dia');
+INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 4, 5, 'Ja fizeste o que faltava??');
 
 --group_message_receiver--
 -- INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (0, 0, 'LBAW');
