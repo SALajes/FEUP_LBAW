@@ -17,8 +17,7 @@
     </section>
   
     <section
-      class="position-relative overflow-hidden p-3 p-md-5 text-center text-white"
-    >
+      class="position-relative overflow-hidden p-3 p-md-5 text-center text-white">
       <div class="col-md-5 p-lg-5 mx-auto my-5">
         <i class="icon-logo" style="font-size: 10rem; color: white;"></i>
         <h1 class="font-weight-normal">LBrAWl</h1>
@@ -27,37 +26,44 @@
           Chat, share course materials and form groups. All in one platform.
         </p>
 
-        
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="POST" action="{{ route('login2') }}">
+                  {{ csrf_field() }}
+                    <label for="email" class="col-form-label">Email</label>
+                    <input id="email" type="email" name="email" class="form-control" required autofocus>
+                    @if ($errors->has('email'))
+                      <span class="error">
+                        {{ $errors->first('email') }}
+                      </span>
+                    @endif
+                    <label for="password" class="col-form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" required>
+                    @if ($errors->has('password'))
+                    <span class="error">
+                        {{ $errors->first('password') }}
+                      </span>
+                    @endif
+                  <button class="btn btn-primary" type="submit">
+                    Submit
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <a class="btn btn-outline-light" href="homepage.php">Sign up</a>
-        <a id="login_btn" class="btn btn-outline-light" href="homepage.php">Login</a>
+        <a id="login_btn" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Login</a>
+
       </div>
       <div class="product-device shadow-sm d-none d-md-block"></div>
       <div

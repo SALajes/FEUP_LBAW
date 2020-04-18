@@ -12,7 +12,8 @@
 */
 
 // Route::get('/', 'Auth\LoginController@home');
-Route::get('/', 'LandingController');
+Route::get('/', 'LandingController@show');
+Route::post('/', 'LandingController@login')->name('login2');
 
 Route::get('/homepage', 'HomepageController@show');
 
