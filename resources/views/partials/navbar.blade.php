@@ -21,7 +21,7 @@
                 </section>
             </section>
 
-            <form id="search" class="form-inline my-2 my-lg-0" action="../pages/search.php">
+            <form id="search" class="form-inline my-2 my-lg-0" action="../actions/search.php">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search">
                 <button type="submit" class="btn btn-light"><i class="icon-search"></i></button>
             </form>
@@ -47,9 +47,9 @@
                     <a class="nav-link" href="#"><i class="icon-question align-middle"></i></a>
                     <span class="d-md-none"> Help</span>
                 </li>
-                <li class="nav-item d-md-none">
-                    <a class="nav-link" href="#"><i class="icon-log-out align-middle"></i></a>
-                    <span> Logout</span>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/logout') }}"><i class="icon-log-out align-middle"></i></a> 
+                    <span class="d-md-none"> Logout</span>
                 </li>
             </ul>
         </div>

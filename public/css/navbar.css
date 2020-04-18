@@ -65,6 +65,10 @@
     border-color: #564946;
 }
 
+.icon-log-out, .icon-manage-uc, .icon-uc{
+    font-weight: bolder;
+}
+
 @media only screen and (max-width: 768px) {
     #navbarCollapse{
         margin: 1rem 2rem;
@@ -75,10 +79,6 @@
     }
     #collapsed_profile span{
         color: #564946;
-    }
-
-    .icon-log-out, .icon-manage-uc, .icon-uc{
-        font-weight: bolder;
     }
 }
 
