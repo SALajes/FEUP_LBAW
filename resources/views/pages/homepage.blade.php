@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 
 @extends('layouts.app')
 
@@ -11,8 +12,8 @@
     <div id="homepage" class="row justify-content-md-center">
 
         <?php
-        draw_sidebar_Top("Home", "Alvaro Campos", "up188800613");
-        draw_sidebar_Homepage();
+            draw_sidebar_Top("Home", "Alvaro Campos", "up188800613");
+            draw_sidebar_Homepage();
         ?>
 
         <main id="posts" class="col-12 col-lg-6">

@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ asset('css/card.css') }}">
+
 <div class="card">
     <div class="card-header">
         To > 
