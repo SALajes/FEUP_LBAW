@@ -3,7 +3,7 @@
 }
 
 #student_identification{
-    border: 0.05rem solid #13cad2;
+    border: 0.1rem solid #3355ae;
     margin-left: 2rem;
     margin-right: 2rem;
 }
@@ -29,4 +29,10 @@
     padding-left: 3rem;  
     padding-right: 3rem; 
     margin-top: 2rem
+}
+
+.profile-button {
+    color: #3355ae;
+    font-size: 7rem;
+    font-weight: 100;
 }

@@ -12,6 +12,15 @@
     border-color: white;
 }
 
-.comments-padding{
+.post-user {
+    padding-right: 0.6rem;
+}
+
+.number-comments{
     padding-right: 2rem;
+}
+
+#post_btn {
+    background-color: #3355ae;
+    border: #3355ae;
 }

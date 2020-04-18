@@ -28,10 +28,6 @@
             
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-notification align-middle"></i></a>
-                    <span class="d-md-none"> Notifications</span>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-message align-middle"></i></a>
                     <span class="d-md-none"> Messages</span>
                 </li>

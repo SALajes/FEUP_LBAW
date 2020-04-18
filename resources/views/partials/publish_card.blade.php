@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/card.css') }}">
 
-<div class="card">
+<div class="card" style="border: 0.1rem solid #13cad2">
     <div class="card-header">
         To > 
         <select class="custom-select w-auto">

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomepageController extends Controller
 {
@@ -11,11 +13,13 @@ class HomepageController extends Controller
     {
         if(!Auth::check()) return redirect('/');
 
-        // Ir buscar nome e student id do user que está logged in e passar no array
+        $posts = DB::table('post')
+                    ->join('student', 'post.author_id', '=', 'student.id')
+                    ->select('post.id', 'post.content', 'post.date', 'student.name')
+                    ->orderBy('post.date', 'desc')
+                    ->limit(10)
+                    ->get();
 
-        $user = Auth::user();
-        print($user->name);
-
-        return view('pages.homepage', []);
+        return view('pages.homepage', ['posts' => $posts]);
     }
 }

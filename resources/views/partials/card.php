@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="{{ asset('css/card.css') }}">
-<link rel="stylesheet" href="{{ asset('css/identity.css') }}">
 
 <?php function draw_card1()
 { ?>
