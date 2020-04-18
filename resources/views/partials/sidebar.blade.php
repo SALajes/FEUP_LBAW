@@ -6,8 +6,8 @@
             <div class="text-center">
                 <h2 class="d-block pt-md-4"><?= $breadcrumb ?></h2>
                 <a class="nav-item nav-link d-none d-sm-block d-md-block" href="profile1.php"><i id="profile_picture" class="icon-user" style="font-size: 7rem;"></i></a>
-                <p class="d-none d-sm-block d-md-block"><?= $username ?></p>
-                <p class="d-none d-sm-block d-md-block"><?= $usrId ?></p>
+                <p class="d-none d-sm-block d-md-block">{{Auth::user() -> name}}</p>
+                <p class="d-none d-sm-block d-md-block">{{Auth::user() -> student_number}}</p>
             </div>
         </section>
         <hr id="student_identification">
