@@ -13,8 +13,9 @@
 
 // Route::get('/', 'Auth\LoginController@home');
 Route::get('/', 'LandingController');
-// Cards
-Route::get('cards', 'CardController@list');
+
+Route::get('/homepage', 'HomepageController@show');
+
 Route::get('cards/{id}', 'CardController@show');
 
 // Students
