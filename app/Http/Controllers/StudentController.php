@@ -48,9 +48,10 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         
-        return view('pages.profile1', ['student' => $student]);
+        return view('pages.profile', ['student' => $student]);
     }
 
+   
     /**
      * Show the form for editing the specified resource.
      *

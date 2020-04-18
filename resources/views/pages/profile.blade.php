@@ -1,11 +1,23 @@
+<link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+
+@extends('layouts.app')
+
+@include('partials.navbar')
+@include('partials.sidebar')
+
+@section('title', 'My Profile')
+
+@section('content')
+
+
 <section role="main">
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
     <div class="container-fuild">
         <div class="row">
             <?php 
-                //draw_sidebar_Top("My Profile", "Alvaro Campos", "up188800613"); 
-               // draw_sidebar_Profile();
+                draw_sidebar_Top("Home");
+                draw_sidebar_Homepage();
             ?>
             
             <main id="content" class="col-lg-9">
@@ -23,7 +35,4 @@
         </div>
     </div>
 </section>
-
-<?php
-	@include('partials.footer')
-?>
+@endsection
