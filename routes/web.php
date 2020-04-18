@@ -11,12 +11,13 @@
 |
 */
 
-Route::get('/', 'Auth\LoginController@home');
+// Route::get('/', 'Auth\LoginController@home');
+Route::get('/', 'LandingController');
 // Cards
 Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');
 
-//Students
+// Students
 Route::get('users', 'StudentController@show');
 Route::get('users/{id}', 'StudentController@show');
 
@@ -26,8 +27,8 @@ Route::delete('api/cards/{card_id}', 'CardController@delete');
 Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');
-// Authentication
 
+// Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
