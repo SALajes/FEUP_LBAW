@@ -9,7 +9,7 @@ class CurricularUnit extends Model
     protected $table = "curricular_unit";
 
     protected $fillable = [
-        'name', 'abbrevr', 'description'
+        'name', 'abbrev', 'description'
     ];
 
     public function student() {

@@ -106,3 +106,14 @@ SELECT *
 FROM curricular_unit, to_tsquery('portuguese', $content) AS query, to_tsvector('portuguese', name | description) AS textsearch
 WHERE query @@ textsearch 
 ORDER BY name;
+
+--SELECT16
+SELECT p.id, p.content, p.date, s.name, s.picture_path 
+FROM post AS p JOIN student AS s ON p.author_id = s.id
+WHERE p.cu_id in (
+    SELECT e.cu_id
+    FROM enrolled AS e
+    WHERE  $id = e.student_id 
+) OR p.public_feed = TRUE
+ORDER BY p.date DESC
+LIMIT 10;

@@ -26,44 +26,11 @@
           Chat, share course materials and form groups. All in one platform.
         </p>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form method="POST" action="{{ route('login2') }}">
-                  {{ csrf_field() }}
-                    <label for="email" class="col-form-label">Email</label>
-                    <input id="email" type="email" name="email" class="form-control" required autofocus>
-                    @if ($errors->has('email'))
-                      <span class="error">
-                        {{ $errors->first('email') }}
-                      </span>
-                    @endif
-                    <label for="password" class="col-form-label">Password</label>
-                    <input type="password" class="form-control" name="password" id="password" required>
-                    @if ($errors->has('password'))
-                    <span class="error">
-                        {{ $errors->first('password') }}
-                      </span>
-                    @endif
-                  <button class="btn btn-primary" type="submit">
-                    Submit
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+        @include('partials.login')
+        @include('partials.register')
 
-        <a class="btn btn-outline-light" href="homepage.php">Sign up</a>
-        <a id="login_btn" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Login</a>
-
+        <a id="signup_btn" class="btn btn-outline-light" href="{{ route('register') }}">Register</a>
+        <a id="login_btn" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal" data-whatever="@mdo">{{ __('Login') }}</a>
       </div>
       <div class="product-device shadow-sm d-none d-md-block"></div>
       <div

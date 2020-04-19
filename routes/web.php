@@ -13,9 +13,10 @@
 
 // Route::get('/', 'Auth\LoginController@home');
 Route::get('/', 'LandingController@show');
-Route::post('/', 'LandingController@login')->name('login2');
+Route::post('/', 'Auth\LoginController@login')->name('login');
+// Route::post('/', 'LandingController@register')->name('register2');
 
-Route::get('/homepage', 'HomepageController@show');
+Route::get('/homepage', 'HomepageController@show')->name('homepage');
 
 Route::get('cards/{id}', 'CardController@show');
 
@@ -32,8 +33,6 @@ Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');
 
 // Authentication
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
