@@ -33,5 +33,5 @@ Route::delete('api/item/{id}', 'ItemController@delete');
 
 // Authentication
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm');
-Route::post('register', 'Auth\RegisterController@register')->name('register');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');

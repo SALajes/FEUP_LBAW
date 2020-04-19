@@ -29,7 +29,7 @@
         @include('partials.login')
         @include('partials.register')
 
-        <a id="signup_btn" class="btn btn-outline-light" data-toggle="modal" data-target="#registerModal" data-whatever="@mdo">{{ __('Register') }}</a>
+        <a id="signup_btn" class="btn btn-outline-light" href="{{ route('register') }}">Register</a>
         <a id="login_btn" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal" data-whatever="@mdo">{{ __('Login') }}</a>
       </div>
       <div class="product-device shadow-sm d-none d-md-block"></div>
