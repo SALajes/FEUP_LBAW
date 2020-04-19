@@ -5,7 +5,7 @@ let myRatings = document.querySelector("#tabs > a:nth-child(2)");
 let manageCUs = document.querySelector("#tabs > a:nth-child(3)");
 
 let data = document.getElementById("data");
-
+let id = document.getElementById("student_id").value;
 
 function getMyCUs(){
 
@@ -13,7 +13,7 @@ function getMyCUs(){
 
 	let req = new XMLHttpRequest();
 
-	req.open("GET", "../api/myCUs", true);
+	req.open("GET", "../api/myCUs/" + id, true);
 	req.onload = function(){
         if(req.status >= 200 && req.status < 400){ // Se o SRV retornar bem
             data.innerHTML = this.responseText;
@@ -37,7 +37,7 @@ function getMyRatings(){
 
 	let req = new XMLHttpRequest();
 
-	req.open("GET", "../api/myRatings", true);
+	req.open("GET", "../api/myRatings/" + id, true);
 	req.onload = function(){
         if(req.status >= 200 && req.status < 400){ // Se o SRV retornar bem
             data.innerHTML = this.responseText;

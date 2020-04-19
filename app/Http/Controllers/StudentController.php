@@ -53,21 +53,19 @@ class StudentController extends Controller
         return view('pages.profile', ['student' => $student, 'owner' => $owner]);
     }
 
-    public function requestCUs(Request $request)
+    public function requestCUs($id)
 
     {
-        $input = $request->all();
 
-        return response()->json(['success'=>'Requested CUs.']);
+        return response()->json(['success'=>'Requested CUs.' . $id]);
 
     }
 
-    public function requestRatings(Request $request)
+    public function requestRatings($id)
 
     {
-        $input = $request->all();
 
-        return response()->json(['success'=>'Requested Ratings.']);
+        return response()->json(['success'=>'Requested Ratings.' . $id]);
 
     }
 

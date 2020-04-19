@@ -34,6 +34,7 @@
                     </div>
                 </div>
 
+                <input id="student_id" type="hidden" value="{{ $student->id }}" readonly>
                 <div id="data"></div>
                     
                 
