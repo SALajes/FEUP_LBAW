@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -14,7 +15,10 @@ class LandingController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, RegistersUsers {
+        AuthenticatesUsers::redirectPath insteadof RegistersUsers;
+        AuthenticatesUsers::guard insteadof RegistersUsers;
+    }
 
     protected $redirectTo = '/homepage';
 
