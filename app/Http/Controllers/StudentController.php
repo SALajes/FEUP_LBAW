@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -55,9 +56,14 @@ class StudentController extends Controller
 
     public function requestCUs($id)
 
-    {
+    {   
+        $cus = DB::table('enrolled')
+                ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
+                ->select('curricular_unit.abbrev', 'curricular_unit.id')
+                ->where('enrolled.student_id', '=', $id)
+                ->get();
 
-        return response()->json(['success'=>'Requested CUs.' . $id]);
+        return response()->json(['cus' => $cus]);
 
     }
 

@@ -317,6 +317,7 @@ INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (1, 1, 'LBAW01');
 INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (2, 1, 'LBAW01');
 INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (3, 1, 'LBAW01');
 INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (4, 1, 'LBAW01');
+INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (4, 2, 'BDAD02');
 INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (5, 1, 'LBAW01');
 INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (6, 3, 'SOPE03');
 INSERT INTO enrolled (student_id, cu_id, identifier) VALUES (7, 3, 'SOPE03');
