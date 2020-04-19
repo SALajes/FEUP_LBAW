@@ -9,7 +9,7 @@ class Enrolled extends Model
     public $timestamps  = false;
 
     protected $table = "enrolled";
-    protected $primaryKey = ['student_d', 'cu_id'];
+    protected $primaryKey = ['student_id', 'cu_id'];
 
     protected $fillable = [
         'identifier'
