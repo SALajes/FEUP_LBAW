@@ -12,7 +12,7 @@ class Post extends Model
 
     public function author()
     {
-        $this->belongsTo('App\Student');
+        return $this->belongsTo('App\Student');
     }
 
     public function curricularUnit()

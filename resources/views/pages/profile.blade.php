@@ -22,7 +22,7 @@
                 draw_sidebar_Profile($student->bio, 999, $owner);
             ?>
             
-            <main id="content" class="col-lg-9">
+            <div id="content" class="col-lg-9">
                 <div id="nav">
                     <div id="tabs" class="nav nav-tabs nav-fill">
                         <a class="nav-item nav-link active" href="profile1.php" role="button" aria-pressed="true">My CUs</a>
@@ -33,7 +33,7 @@
 
                     <?php //draw_myCUs(); ?>
                 
-            </main>
+            </div>
         </div>
     </div>
 </section>

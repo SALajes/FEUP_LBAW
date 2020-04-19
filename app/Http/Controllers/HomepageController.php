@@ -15,7 +15,7 @@ class HomepageController extends Controller
 
         $posts = DB::table('post')
                     ->join('student', 'post.author_id', '=', 'student.id')
-                    ->select('post.id', 'post.content', 'post.date', 'student.name')
+                    ->select('post.id', 'post.content', 'post.date', 'student.name', 'post.author_id')
                     ->orderBy('post.date', 'desc')
                     ->limit(10)
                     ->get();
