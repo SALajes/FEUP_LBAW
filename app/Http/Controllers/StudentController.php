@@ -53,6 +53,24 @@ class StudentController extends Controller
         return view('pages.profile', ['student' => $student, 'owner' => $owner]);
     }
 
+    public function requestCUs(Request $request)
+
+    {
+        $input = $request->all();
+
+        return response()->json(['success'=>'Requested CUs.']);
+
+    }
+
+    public function requestRatings(Request $request)
+
+    {
+        $input = $request->all();
+
+        return response()->json(['success'=>'Requested Ratings.']);
+
+    }
+
    
     /**
      * Show the form for editing the specified resource.

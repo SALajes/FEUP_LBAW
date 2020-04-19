@@ -20,7 +20,8 @@ Route::get('/homepage', 'HomepageController@show');
 Route::get('cards/{id}', 'CardController@show');
 
 // Students
-//Route::ge
+Route::get('api/myCUs', 'StudentController@requestCUs');
+Route::get('api/myRatings', 'StudentController@requestRatings');
 Route::get('users/{id}', 'StudentController@show');
 
 // API

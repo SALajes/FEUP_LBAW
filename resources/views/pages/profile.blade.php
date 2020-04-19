@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+<script src={{ asset('js/profile.js') }} defer></script>
 
 @extends('layouts.app')
 
@@ -29,11 +30,12 @@
                     <div id="tabs" class="nav nav-tabs nav-fill">
                         <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">My CUs</a>
                         <a class="nav-item nav-link" href="#" role="button" >My Ratings</a>
-                        <a class="nav-item nav-link" href="#" role="button">Manage CUs</a>
+                        <a class="nav-item nav-link disabled" href="#" role="button">Manage CUs</a>
                     </div>
                 </div>
 
-                    <?php //draw_myCUs(); ?>
+                <div id="data"></div>
+                    
                 
             </div>
         </div>
