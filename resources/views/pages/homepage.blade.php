@@ -15,9 +15,15 @@
         
         <?php
             draw_sidebar_Top("Home");
-            draw_sidebar_Homepage();
         ?>
 
+        <section id="MyCUs" >
+            <h4 class="text-center">My CU's</h4>
+                <ul>
+                    @each('partials.cu_list', $cus, 'cu')
+                </ul>
+        </section>
+        </aside>
         <main id="newPost" class="col-12 col-lg-6">
             <div id="content">
                 @include('partials.publish_card')

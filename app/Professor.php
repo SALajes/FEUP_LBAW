@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Professor extends Model
 {
     protected $fillable = [
-        'name', 'email', 'picture_path', 'abbrevr'
+        'name', 'email', 'picture_path', 'abbrev'
     ];
 
     public function ratings()
