@@ -22,7 +22,7 @@ function getMyCUs(){
 				cu_data += "<tr>";
 				cu_data += "<tr>";
 				cu_data += "<td>";
-				cu_data += cu_list.cus[i].abbrev;
+				cu_data += "<a href=\"#\">" + cu_list.cus[i].abbrev + "</a>";
 				cu_data += "</td>";
 				cu_data += " <td>Enrolled</td>";
 				cu_data += "<td>Leave</td>";
