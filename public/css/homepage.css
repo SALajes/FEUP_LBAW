@@ -8,7 +8,7 @@ html, body {
     width: 20%;
 }
 
-#newPost {
+#mainArea {
     background-color: rgb(245, 245, 245);
     padding-top: 5rem;
     padding-bottom: 2rem;
@@ -19,13 +19,4 @@ html, body {
        flex: 1 1 100%;
        max-width: 100%;
    }
-}
-
-#sec_title{
-    margin-top: -4rem;
-}
-
-#post-division{
-    border: 0.1rem solid #3355ae;
-    margin-top: 2rem;
 }

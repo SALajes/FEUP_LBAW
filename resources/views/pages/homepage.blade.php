@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+<link rel="stylesheet" href="{{ asset('css/card.css') }}">
+
 
 @extends('layouts.app')
 
@@ -10,7 +12,7 @@
 
 @section('content')
 
-<body class="container-fluid">
+<div class="container-fluid">
     <div id="homepage" class="row justify-content-md-center">
         
         <?php
@@ -24,8 +26,8 @@
                 </ul>
         </section>
         </aside>
-        <main id="newPost" class="col-12 col-lg-6">
-            <div id="content">
+        <main id="mainArea" class="col-12 col-lg-6">
+            <div>
                 @include('partials.publish_card')
             </div>
 
@@ -36,9 +38,9 @@
             </section>
         </main>
     
-        <div class="col-3">
-        </div>
+        <section class="col-3">
+        </section>
     </div>
-</body>
+</div>
 
 @endsection

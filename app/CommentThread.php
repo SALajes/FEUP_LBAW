@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class CommentThread extends Model
 {
+    public $timestamps  = false;
+    
     protected $table = "comment_thread";
+    protected $primaryKey = ['comment_id', 'parent_id'];
 
     public function parent()
     {

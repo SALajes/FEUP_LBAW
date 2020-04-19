@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class GroupMessageReceiver extends Model
 {
+    public $timestamps  = false;
+    
     protected $table = "group_message_receiver";
-
     protected $primaryKeys = ['group_id', 'student_id'];
 
     protected $fillable = [

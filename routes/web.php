@@ -16,7 +16,9 @@ Route::get('/', 'LandingController@show');
 Route::post('/', 'Auth\LoginController@login')->name('login');
 // Route::post('/', 'LandingController@register')->name('register2');
 
-Route::get('/homepage', 'HomepageController@show')->name('homepage');
+// Homepage
+Route::get('homepage', 'HomepageController@show')->name('homepage');
+Route::put('api/posts', 'HomepageController@createPost');
 
 Route::get('cards/{id}', 'CardController@show');
 
