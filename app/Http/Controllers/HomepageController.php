@@ -42,7 +42,7 @@ class HomepageController extends Controller
     public function createPost(Request $request)
     {
         $post = new Post();
-        $this->authorize('createPost', $post);
+        $this->authorize('createPublic', $post);
         
         $id = Auth::user()->id;
 
