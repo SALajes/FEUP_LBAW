@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
 @extends('layouts.app')
 
@@ -22,11 +23,12 @@
                 draw_sidebar_Profile($student->bio, 999, $owner);
             ?>
             
-            <div id="content" class="col-lg-9">
+            <!-- offset-lg-0 offset-md-2 offset-3 -->
+            <div id="content" class="col-12 col-lg-9">
                 <div id="nav">
                     <div id="tabs" class="nav nav-tabs nav-fill">
-                        <a class="nav-item nav-link active" href="profile1.php" role="button" aria-pressed="true">My CUs</a>
-                        <a class="nav-item nav-link" href="profile2.php" role="button" >My Ratings</a>
+                        <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">My CUs</a>
+                        <a class="nav-item nav-link" href="#" role="button" >My Ratings</a>
                         <a class="nav-item nav-link" href="#" role="button">Manage CUs</a>
                     </div>
                 </div>
