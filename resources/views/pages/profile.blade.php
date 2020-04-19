@@ -18,7 +18,7 @@
             <?php
                 $bc = "Profile";
                 if ($owner)$bc = "My " . $bc;
-                draw_sidebar_Top($bc, $student->name, $student->student_number);
+                draw_sidebar_Top($bc, $student->id, $student->name, $student->student_number);
                 draw_sidebar_Profile($student->bio, 999, $owner);
             ?>
             

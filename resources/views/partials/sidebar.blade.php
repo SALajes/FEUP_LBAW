@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 
-<?php function draw_sidebar_Top($breadcrumb, $username, $studentNo) { ?>
+<?php function draw_sidebar_Top($breadcrumb, $userNo,  $username, $studentNo) { ?>
     <aside class="col-lg-3 sticky-top align-self-start" id="page-title">
         <section class="row-md-auto">
             <div class="text-center">
                 <h2 class="d-block pt-md-4"><?= $breadcrumb ?></h2>
-                <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{Auth::user() -> id}}"><i id="profile_picture" class="icon-user profile-button"></i></a>
+                <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $userNo }}"><i id="profile_picture" class="icon-user profile-button"></i></a>
                 <p class="d-none d-sm-block d-md-block"><?=$username?></p>
                 <p class="d-none d-sm-block d-md-block"><?=$studentNo?></p>
             </div>
