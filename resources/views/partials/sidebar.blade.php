@@ -13,30 +13,6 @@
         <hr id="student_identification">
 <?php } ?>
 
-<?php function draw_sidebar_Homepage() { ?>
-        <section id="MyCUs" >
-            <h4 class="text-center">My CU's</h4>
-            <ul>
-                <li class="list-group-item d-flex justify-content-around align-items-center">
-                    <a href="cupage.php"> COMP </a>
-                </li>
-                <li class="list-group-item d-flex justify-content-around align-items-center">
-                    <a href="cupage.php"> IART </a>
-                </li>
-                <li class="list-group-item d-flex justify-content-around align-items-center">
-                    <a href="cupage.php"> LBAW</a>
-                </li>
-                <li class="list-group-item d-flex justify-content-around align-items-center">
-                    <a href="cupage.php"> BDAD </a>
-                </li>
-            </ul>
-        </section>
-    </aside>
-
-    <!-- Divisao Vertical -->
-
-<?php } ?>
-
 <?php function draw_sidebar_Profile() { ?>
     <section class="row-md-auto justify-content-center ">
         <address class="text-center">Portuguese</address>

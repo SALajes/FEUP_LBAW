@@ -4,7 +4,6 @@
 
 <header>
     <nav id="header" class="navbar fixed-top navbar-expand-md navbar-dark">
-        <!-- href acho que tem ser route porque tem que mudar o nome da conta que está logged in, não sei se assim faz o request correcto -->
         <a class="navbar-brand" href="{{ url('/homepage') }}"><i id="logo" class="icon-logo align-middle"></i></a>
        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
@@ -15,9 +14,8 @@
             <section id="collapsed_profile" class="d-md-none d-flex flex-row justify-content-center align-items-center flex-wrap">
                 <a class="nav-link" href="profile1.php"><i class="icon-user align-middle"></i></a>
                 <section class="d-flex flex-column">
-                    <span> Alvaro Campos</span>
-                    <span> up18880613 </span>
-                    <span> #mieic </span>
+                    <span>{{Auth::user() -> name}}</span>
+                    <span>{{Auth::user() -> student_number}}</span>
                 </section>
             </section>
 
