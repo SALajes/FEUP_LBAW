@@ -15,9 +15,11 @@
 
     <div class="container-fuild">
         <div class="row">
-            <?php 
-                draw_sidebar_Top("Home");
-                draw_sidebar_Homepage();
+            <?php
+                $bc = "Profile";
+                if ($owner)$bc = "My " . $bc;
+                draw_sidebar_Top($bc, $student->name, $student->student_number);
+                draw_sidebar_Profile($student->bio, 999, $owner);
             ?>
             
             <main id="content" class="col-lg-9">

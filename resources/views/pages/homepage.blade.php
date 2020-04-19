@@ -14,7 +14,8 @@
     <div id="homepage" class="row justify-content-md-center">
         
         <?php
-            draw_sidebar_Top("Home");
+            use Illuminate\Support\Facades\Auth;
+            draw_sidebar_Top("Home", Auth::user() -> name, Auth::user() -> student_number);
             draw_sidebar_Homepage();
         ?>
 

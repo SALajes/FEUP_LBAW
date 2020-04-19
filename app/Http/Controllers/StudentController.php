@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -47,8 +48,9 @@ class StudentController extends Controller
     public function show($id)
     {
         $student = Student::find($id);
-        
-        return view('pages.profile', ['student' => $student]);
+        $owner = false;
+        if ($id == Auth::user()->id) $owner = true;
+        return view('pages.profile', ['student' => $student, 'owner' => $owner]);
     }
 
    
