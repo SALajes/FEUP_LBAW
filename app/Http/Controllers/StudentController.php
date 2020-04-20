@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -47,10 +49,37 @@ class StudentController extends Controller
     public function show($id)
     {
         $student = Student::find($id);
-        
-        return view('pages.profile1', ['student' => $student]);
+        $owner = false;
+        if ($id == Auth::user()->id) $owner = true;
+        return view('pages.profile', ['student' => $student, 'owner' => $owner]);
     }
 
+    public function requestCUs($id)
+
+    {   
+        $cus = DB::table('enrolled')
+                ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
+                ->select('curricular_unit.abbrev', 'curricular_unit.id')
+                ->where('enrolled.student_id', '=', $id)
+                ->get();
+
+        return response()->json(['cus' => $cus]);
+
+    }
+
+    public function pila(){
+        return "pila";
+    }
+
+    public function requestRatings($id)
+
+    {
+
+        return response()->json(['success'=>'Requested Ratings.' . $id]);
+
+    }
+
+   
     /**
      * Show the form for editing the specified resource.
      *

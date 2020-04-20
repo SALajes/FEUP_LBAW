@@ -22,8 +22,10 @@ Route::put('api/posts', 'HomepageController@createPost');
 Route::delete('api/posts/{id}', 'HomepageController@deletePost');
 
 // Students
-Route::get('users', 'StudentController@show');
-Route::get('users/{id}', 'StudentController@show');
+Route::get('/users/{id}', 'StudentController@show');
+Route::get('/users/myCUs/{id}', 'StudentController@requestCUs');
+Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
+
 
 // Authentication
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

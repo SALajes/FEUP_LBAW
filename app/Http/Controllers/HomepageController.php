@@ -16,7 +16,7 @@ class HomepageController extends Controller
         $id = Auth::user()->id;
 
         $posts = DB::table('post')
-                    ->select('post.id', 'post.content', 'post.date', 'student.name')            
+                    ->select('post.id', 'post.content', 'post.date', 'student.name', 'post.author_id')            
                     ->join('student', 'post.author_id', '=', 'student.id')
                     ->whereIn('post.cu_id', function($query) use($id) {
                         $query->select('enrolled.cu_id')

@@ -1,31 +1,61 @@
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 
-<?php function draw_sidebar_Top($breadcrumb) { ?>
+<?php function draw_sidebar_Top($breadcrumb, $userNo,  $username, $studentNo) { ?>
     <aside class="col-lg-3 sticky-top align-self-start" id="page-title">
         <section class="row-md-auto">
             <div class="text-center">
                 <h2 class="d-block pt-md-4"><?= $breadcrumb ?></h2>
-                <a class="nav-item nav-link d-none d-sm-block d-md-block" href="profile1.php"><i id="profile_picture" class="icon-user profile-button"></i></a>
-                <p class="d-none d-sm-block d-md-block">{{Auth::user() -> name}}</p>
-                <p class="d-none d-sm-block d-md-block">{{Auth::user() -> student_number}}</p>
+                <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $userNo }}"><i id="profile_picture" class="icon-user profile-button"></i></a>
+                <p class="d-none d-sm-block d-md-block"><?=$username?></p>
+                <p class="d-none d-sm-block d-md-block"><?=$studentNo?></p>
             </div>
         </section>
         <hr id="student_identification">
 <?php } ?>
 
-<?php function draw_sidebar_Profile() { ?>
+<?php function draw_sidebar_Homepage() { ?>
+        <section id="MyCUs" >
+            <h4 class="text-center">My CU's</h4>
+            <ul>
+                <li class="list-group-item d-flex justify-content-around align-items-center">
+                    <a href="cupage.php"> COMP </a>
+                </li>
+                <li class="list-group-item d-flex justify-content-around align-items-center">
+                    <a href="cupage.php"> IART </a>
+                </li>
+                <li class="list-group-item d-flex justify-content-around align-items-center">
+                    <a href="cupage.php"> LBAW</a>
+                </li>
+                <li class="list-group-item d-flex justify-content-around align-items-center">
+                    <a href="cupage.php"> BDAD </a>
+                </li>
+            </ul>
+        </section>
+    </aside>
+
+    <!-- Divisao Vertical -->
+
+<?php } ?>
+
+<?php function draw_sidebar_Profile($bio, $likeCounter, $owner) { ?>
     <section class="row-md-auto justify-content-center ">
-        <address class="text-center">Portuguese</address>
         <blockquote class="text-center col-md-10 mx-auto">
-            I'm an amazing student, eager to learn, 3rd grade of MIEIC
+            <?php
+            if($bio != null) echo $bio;
+            else echo "<p style=\"font-style: italic\">This user has not uploaded a bio, yet...</p>";
+            ?>
         </blockquote>
         <div class="d-flex justify-content-around likes_friend">
             <div>
-                <i class="icon-like" style="color: #0aedb3"></i> 6
+                <i class="icon-like" style="color: #0aedb3"></i> <?=$likeCounter?>
             </div>
+            <?php
+            if (!$owner){?>   
             <div>
                 <i class="icon-add_friend" style="color: #0aedb3"></i>
             </div>
+            <?php
+            }?>
         </div>
     </section>
     </aside>
