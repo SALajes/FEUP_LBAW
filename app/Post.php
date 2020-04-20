@@ -16,7 +16,7 @@ class Post extends Model
 
     public function author_id()
     {
-        $this->belongsTo('App\Student');
+        return $this->belongsTo('App\Student');
     }
 
     public function cu_id()
