@@ -129,7 +129,7 @@ CREATE TABLE post (
    content      TEXT NOT NULL,
    "date"       TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
    cu_id        INTEGER REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
-   public_feed  BOOLEAN DEFAULT FALSE,
+   public_feed  BOOLEAN DEFAULT FALSE NOT NULL,
    feed_type    feed_type_enum,
 
    CONSTRAINT post_feed_ck CHECK (
