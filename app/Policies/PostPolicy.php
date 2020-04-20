@@ -10,6 +10,22 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
+    public function show(Student $student, Post $post){
+      if($post->public_feed == TRUE || $student->administrator)
+        return true;
+
+      $result = DB::table('enrolled')
+      ->select('enrolled.student_id')
+      ->where('enrolled.student_id', '=', $student->id)
+      ->where('enrolled.cu_id', '=', $cu->id)
+      ->get();
+  
+      if(sizeof($result) > 0)
+        return true;
+      
+      return false;
+    }
+
     public function createPublic(Student $student)
     {
       return Auth::check();
@@ -24,14 +40,27 @@ class PostPolicy
       ->get();
 
       if(sizeof($result) > 0)
-      return true;
+        return true;
       
       return false;
     }
 
     public function delete(Student $student, Post $post){
-      //se for admin
+      if($student->administrator || $student->id == $post->author_id)
+        return true;
+
       //se for mod da cu onde o post foi publicado 
-      //se for o dono do post
+      if($post->public_feed == FALSE){
+        $result = DB::table('moderator')
+        ->select('moderator.student_id')
+        ->where('moderator.student_id', '=', $student->id)
+        ->where('moderator.cu_id', '=', $post->cu_id)
+        ->get();
+        
+        if(sizeof($result) > 0)
+          return true;
+      }
+
+      return false;
     }
 }
