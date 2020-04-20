@@ -1,5 +1,5 @@
 -- Drop old schema
- 
+
 DROP TABLE IF EXISTS student CASCADE;
 DROP TABLE IF EXISTS professor CASCADE;
 DROP TABLE IF EXISTS curricular_unit CASCADE;
@@ -16,19 +16,19 @@ DROP TABLE IF EXISTS comment_thread CASCADE;
 DROP TABLE IF EXISTS message CASCADE;
 DROP TABLE IF EXISTS group_message CASCADE;
 DROP TABLE IF EXISTS group_message_receiver CASCADE;
- 
+
 DROP TYPE IF EXISTS feed_type_enum;
- 
+
 DROP FUNCTION IF EXISTS set_friends() CASCADE;
 DROP FUNCTION IF EXISTS ban_student() CASCADE;
 DROP FUNCTION IF EXISTS group_exists() CASCADE;
- 
+
 -- Type
- 
+
 CREATE TYPE feed_type_enum AS ENUM ('General', 'Doubts', 'Tutoring');
- 
+
 -- Tables
- 
+
 CREATE TABLE student (
    id              SERIAL PRIMARY KEY,
    password        TEXT NOT NULL,
@@ -38,27 +38,27 @@ CREATE TABLE student (
    email           TEXT NOT NULL CONSTRAINT student_email_uk UNIQUE,
    picture_path    TEXT,
    administrator   BOOLEAN NOT NULL,
-  
+
    CONSTRAINT email_ck CHECK (email !~ '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][a-za-z]+\$'::TEXT)
 );
- 
+
 CREATE TABLE professor (
    id              SERIAL PRIMARY KEY,
    name            TEXT NOT NULL,
    email           TEXT NOT NULL CONSTRAINT professor_email_uk UNIQUE,
    picture_path    TEXT,
    abbrev          TEXT NOT NULL CONSTRAINT professor_abbrev_uk UNIQUE,
-  
+
    CONSTRAINT email_ck CHECK (email !~ '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][a-za-z]+\$'::TEXT)
 );
- 
+
 CREATE TABLE curricular_unit (
    id              SERIAL PRIMARY KEY,
    name            TEXT NOT NULL CONSTRAINT cu_name_uk UNIQUE,
    abbrev          TEXT NOT NULL CONSTRAINT cu_abbrev_uk UNIQUE,
    description     TEXT NOT NULL
 );
- 
+
 CREATE TABLE rating (
    id               SERIAL PRIMARY KEY,
    reviewer_id      INTEGER REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -67,7 +67,7 @@ CREATE TABLE rating (
    student_id       INTEGER REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
    cu_id            INTEGER REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
    professor_id     INTEGER REFERENCES professor (id) ON UPDATE CASCADE ON DELETE CASCADE,
-  
+
    CONSTRAINT rated_ck CHECK (
        student_id IS NOT NULL AND cu_id IS NULL AND professor_id IS NULL
        OR
@@ -76,32 +76,32 @@ CREATE TABLE rating (
        student_id IS NULL AND cu_id IS NULL AND professor_id IS NOT NULL
    )
 );
- 
+
 CREATE TABLE friend (
    student1_id     INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
    student2_id     INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
    PRIMARY KEY (student1_id, student2_id)
 );
- 
+
 CREATE TABLE "group" (
    group_id    SERIAL,
    student_id  INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
    PRIMARY KEY (group_id, student_id)
 );
- 
+
 CREATE TABLE enrolled (
    student_id   INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
    cu_id        INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
    identifier   TEXT NOT NULL,
    PRIMARY KEY (student_id, cu_id)
 );
- 
+
 CREATE TABLE moderator (
    student_id   INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
    cu_id        INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
    PRIMARY KEY (student_id, cu_id)
 );
- 
+
 CREATE TABLE banned (
    student_id       INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,               --banned student
    cu_id            INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -109,18 +109,18 @@ CREATE TABLE banned (
    reason           TEXT NOT NULL,
    "date"           TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
    PRIMARY KEY (student_id, cu_id),
- 
+
    CONSTRAINT dif_student CHECK(
        student_id <> mod_student_id
-   )   
+   )
 );
- 
+
 CREATE TABLE teaches (
    professor_id     INTEGER NOT NULL REFERENCES professor (id) ON UPDATE CASCADE ON DELETE CASCADE,
    cu_id            INTEGER NOT NULL REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
    PRIMARY KEY (professor_id, cu_id)
 );
- 
+
 CREATE TABLE post (
    id           SERIAL PRIMARY KEY,
    author_id    INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -129,14 +129,14 @@ CREATE TABLE post (
    cu_id        INTEGER REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
    public_feed  BOOLEAN,
    feed_type    feed_type_enum,
- 
+
    CONSTRAINT post_feed_ck CHECK (
        cu_id IS NOT NULL AND public_feed IS NULL AND feed_type IS NOT NULL
        OR
        cu_id IS NULL AND public_feed IS NOT NULL AND feed_type IS NULL
    )
 );
- 
+
 CREATE TABLE comment (
    id           SERIAL PRIMARY KEY,
    content      TEXT NOT NULL,
@@ -144,13 +144,13 @@ CREATE TABLE comment (
    author_id    INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
    post_id      INTEGER NOT NULL REFERENCES post (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
- 
+
 CREATE TABLE comment_thread (
    comment_id  INTEGER NOT NULL REFERENCES comment (id) ON UPDATE CASCADE ON DELETE CASCADE,
    parent_id   INTEGER NOT NULL REFERENCES comment (id) ON UPDATE CASCADE ON DELETE CASCADE,
    PRIMARY KEY (comment_id, parent_id)
 );
- 
+
 CREATE TABLE message (
    id           SERIAL PRIMARY KEY,
    sender_id    INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -158,7 +158,7 @@ CREATE TABLE message (
    content      TEXT NOT NULL,
    "date"       TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
- 
+
 CREATE TABLE group_message (
    id           SERIAL PRIMARY KEY,
    group_id     INTEGER NOT NULL,
@@ -166,16 +166,16 @@ CREATE TABLE group_message (
    "date"       TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
    sender_id    INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
- 
+
 CREATE TABLE group_message_receiver (
    group_id     SERIAL,
    student_id   INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
    group_name   TEXT NOT NULL,
    PRIMARY KEY (group_id, student_id)
 );
- 
+
 --Index--
- 
+
 CREATE INDEX sender_id_message ON message USING hash(sender_id);
 CREATE INDEX receiver_id_message ON message USING hash(sender_id);
 CREATE INDEX cu_id_post ON post USING hash(cu_id);
@@ -189,9 +189,9 @@ CREATE INDEX message_date_idx ON message USING USING btree(date);
 CREATE INDEX group_message_date_idx ON group_message USING USING btree(date);
 CREATE INDEX search_post_idx ON post USING GIST (to_tsvector('english', content));
 CREATE INDEX search_cu_idx ON curricular_unit USING GIST (to_tsvector('portuguese', name || description));
- 
+
 --Triggers--
- 
+
 CREATE FUNCTION set_friends() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -202,12 +202,12 @@ BEGIN
 END
 $BODY$
 LANGUAGE plpgsql;
- 
+
 CREATE TRIGGER set_friends
    BEFORE INSERT ON friend
    FOR EACH ROW
    EXECUTE PROCEDURE set_friends();
- 
+
 CREATE FUNCTION ban_student() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -218,12 +218,12 @@ BEGIN
 END
 $BODY$
 LANGUAGE plpgsql;
- 
+
 CREATE TRIGGER ban_student
    BEFORE INSERT ON banned
    FOR EACH ROW
    EXECUTE PROCEDURE ban_student();
- 
+
 CREATE FUNCTION group_exists() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -234,7 +234,7 @@ BEGIN
 END
 $BODY$
 LANGUAGE plpgsql;
- 
+
 CREATE TRIGGER group_exists
    BEFORE INSERT ON group_message
    FOR EACH ROW

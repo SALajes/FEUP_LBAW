@@ -1,0 +1,38 @@
+.post-margins {
+    margin-top: 3rem;
+}
+
+.post-header {
+    padding: 0.75rem 1.25rem 0.75rem 1.25rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0;
+    background-color: white;
+    border-color: white;
+}
+
+.post-footer {
+    padding: 0.75rem 1.25rem 0.75rem 1.25rem;
+    background-color: white;
+    border-color: white;
+}
+
+.post-user {
+    padding-right: 0.6rem;
+}
+
+.post-delete {
+    color: #3355ae;
+}
+
+.number-comments{
+    padding-right: 2rem;
+}
+
+.publish-card {
+    border: 0.1rem solid #13cad2;
+}
+
+#post_btn {
+    background-color: #3355ae;
+    border: #3355ae;
+}
