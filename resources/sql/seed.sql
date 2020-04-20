@@ -129,13 +129,13 @@ CREATE TABLE post (
    content      TEXT NOT NULL,
    "date"       TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
    cu_id        INTEGER REFERENCES curricular_unit (id) ON UPDATE CASCADE ON DELETE CASCADE,
-   public_feed  BOOLEAN,
+   public_feed  BOOLEAN DEFAULT FALSE NOT NULL,
    feed_type    feed_type_enum,
 
    CONSTRAINT post_feed_ck CHECK (
-       cu_id IS NOT NULL AND public_feed IS NULL AND feed_type IS NOT NULL
+       cu_id IS NOT NULL AND public_feed IS FALSE AND feed_type IS NOT NULL
        OR
-       cu_id IS NULL AND public_feed IS NOT NULL AND feed_type IS NULL
+       cu_id IS NULL AND public_feed IS TRUE
    )
 );
 
@@ -249,7 +249,7 @@ INSERT INTO student (id, password, student_number, name, email, administrator) V
 INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up111111111', 'Carlos Nova', 'carloscarloscarlos@carlos.pt', true);
 INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up222222222', 'Sofia Lajes', 'sofiasofiasofia@sofia.pt', true);
 INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up333333333', 'Pedro Pereira', 'pedropedropedro@pedro.pt', true);
-INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up444444444', 'Fernando Pessoa', 'fernandofernandofernando@sfernando.pt', false);
+INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up444444444', 'Fernando Pessoa', 'fernandofernandofernando@fernando.pt', false);
 INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up555555555', 'Alvaro Campos', 'alvaroalvaroalvaro@alvaro.pt', false);
 INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up666666666', 'Ricardo Reis', 'ricardoricardoricardo@ricardo.pt', false);
 INSERT INTO student (id, password, student_number, name, email, administrator) VALUES (DEFAULT, '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'up777777777', 'Alberto Caerio', 'albertoalbertoalberto@alberto.pt', false);

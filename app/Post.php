@@ -6,16 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    public $timestamps  = false;
+
+    protected $table = "post";
+
     protected $fillable = [
         'content', 'public_feed', 'type'
     ];
 
-    public function author()
+    public function author_id()
     {
         return $this->belongsTo('App\Student');
     }
 
-    public function curricularUnit()
+    public function cu_id()
     {
         $this->belongsTo('App\CurricularUnit');
     }

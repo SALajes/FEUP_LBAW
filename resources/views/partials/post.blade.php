@@ -10,7 +10,7 @@
     {{ $post->content }}
   </div>
 
-  <div class="card-footer">
+  <div class="post-footer">
     <a href="#" class="number-comments">X comments</a>
   </div>
 </div>

@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Banned extends Model
 {
+    public $timestamps  = false;
+    
     protected $table = "banned";
-
     protected $primaryKey = ['student_id', 'cu_id'];
 
     protected $fillable = [

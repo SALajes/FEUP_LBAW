@@ -4,12 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class Friend extends Model
 {
-    public $timestamps  = false;
-
-    protected $table = "group";
-    protected $primaryKey = ['group_id', 'student_id'];
+    protected $primaryKey = ['student1_id', 'student2_id'];
 
     public function students()
     {

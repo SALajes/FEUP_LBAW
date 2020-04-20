@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CurricularUnit extends Model
 {
+    public $timestamps  = false;
+
     protected $table = "curricular_unit";
 
     protected $fillable = [

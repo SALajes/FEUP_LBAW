@@ -30,3 +30,4 @@
     <a class="button button-outline" href="{{ route('register') }}">Register</a>
 </form>
 @endsection
+

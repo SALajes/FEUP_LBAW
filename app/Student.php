@@ -39,12 +39,7 @@ class Student extends Authenticatable
 
     public function friendsWith()
     {
-        return $this->belongsToMany('App\Student');
-    }
-
-    public function friendedBy()
-    {
-        return $this->belongsToMany('App\Student');
+        return $this->belongsToMany('App\Friend');
     }
 
     public function enrolments()

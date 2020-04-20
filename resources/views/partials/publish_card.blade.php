@@ -1,22 +1,17 @@
-<link rel="stylesheet" href="{{ asset('css/card.css') }}">
+<div class="card publish-card">
+    <form class="new_post">
+        <div class="post-header form-group">
+            Posting publicly
+        </div>
 
-<div class="card" style="border: 0.1rem solid #13cad2">
-    <div class="card-header">
-        To > 
-        <select class="custom-select w-auto">
-            <option value="1" selected>General</option>
-            <option value="2">LBAW</option>
-            <option value="3">PPIN</option>
-        </select>
-    </div>
-
-    <div class="card-body">
-        <input type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default" placeholder="What's on your mind?">
-    </div>
-    
-    <div class="card-footer d-flex justify-content-between">
-        <a href="#"><i class="icon-attach"></i></a>
-        <button id="post_btn" type="button" class="btn btn-primary">Post</button>
-    </div> 
+        <div class="card-body form-group">
+            <textarea class="form-control post-content" placeholder="What's on your mind?" rows="3"></textarea>
+        </div>
+        
+        <div class="post-footer d-flex flex-row-reverse">
+            <button id="post_btn" type="submit" class="btn btn-primary">
+                Post
+            </button>
+        </div> 
+    </form>
 </div>

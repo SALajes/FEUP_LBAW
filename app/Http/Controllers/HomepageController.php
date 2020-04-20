@@ -38,4 +38,21 @@ class HomepageController extends Controller
 
         return view('pages.homepage', ['posts' => $posts, 'cus' => $cus]);
     }
+
+    public function createPost(Request $request)
+    {
+        $post = new Post();
+        $this->authorize('createPublic', $post);
+        
+        $id = Auth::user()->id;
+
+        $post->content = $request->input('content');
+        $post->public_feed = true;
+        $post->author_id = $id;
+        $post->save();
+
+        $name = Auth::user()->name;
+
+        return ['post'=>$post, 'name'=>$name, 'id'=>$id];
+    }
 }
