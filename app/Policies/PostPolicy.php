@@ -3,8 +3,11 @@
 namespace App\Policies;
 
 use App\Student;
+use App\Post;
+use App\CurricularUnit;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostPolicy
 {
@@ -12,16 +15,16 @@ class PostPolicy
 
     public function show(Student $student, Post $post){
       if($post->public_feed == TRUE || $student->administrator)
-        return true;
+        return true && Auth::check();
 
       $result = DB::table('enrolled')
-      ->select('enrolled.student_id')
-      ->where('enrolled.student_id', '=', $student->id)
-      ->where('enrolled.cu_id', '=', $cu->id)
-      ->get();
+        ->select('enrolled.student_id')
+        ->where('enrolled.student_id', '=', $student->id)
+        ->where('enrolled.cu_id', '=', $post->cu_id)
+        ->get();
   
       if(sizeof($result) > 0)
-        return true;
+        return true && Auth::check();
       
       return false;
     }
@@ -31,7 +34,7 @@ class PostPolicy
       return Auth::check();
     }
 
-    public function createCU(Student $student, CurricularUnit $cu_id)
+    public function createCU(Student $student, CurricularUnit $cu)
     {
       $result = DB::table('enrolled')
       ->select('enrolled.student_id')
@@ -40,14 +43,14 @@ class PostPolicy
       ->get();
 
       if(sizeof($result) > 0)
-        return true;
+        return true && Auth::check();
       
       return false;
     }
 
     public function delete(Student $student, Post $post){
       if($student->administrator || $student->id == $post->author_id)
-        return true;
+        return true && Auth::check();
 
       //se for mod da cu onde o post foi publicado 
       if($post->public_feed == FALSE){
@@ -58,7 +61,7 @@ class PostPolicy
         ->get();
         
         if(sizeof($result) > 0)
-          return true;
+          return true && Auth::check();
       }
 
       return false;

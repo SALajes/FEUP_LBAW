@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('css/card.css') }}">
+<link rel="stylesheet" href="{{ asset('css/post.css') }}">
 <link rel="stylesheet" href="{{ asset('identity.css') }}">
 
 <div class="card card-margins">

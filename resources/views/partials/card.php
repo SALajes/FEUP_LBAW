@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('css/card.css') }}">
+<link rel="stylesheet" href="{{ asset('css/post.css') }}">
 
 <?php function draw_card_doubt1()
 { ?>

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('css/card.css') }}">
+<link rel="stylesheet" href="{{ asset('css/post.css') }}">
 <link rel="stylesheet" href="{{ asset('css/identity.css') }}">
 <link rel="stylesheet" href="{{ asset('css/icons.css') }}">
 

@@ -2,6 +2,11 @@ function addEventListeners() {
   let postCreator = document.querySelector('div.publish-card form.new_post');
   if(postCreator != null)
     postCreator.addEventListener('submit', sendCreatePostRequest);
+
+  let postDeleter = document.querySelectorAll('article.post div.post-header a.delete-post');
+  [].forEach.call(postDeleter, function(deleter){
+    deleter.addEventListener('click', sendDeletePostRequest);
+  });
 }
 
 function encodeForAjax(data) {
@@ -32,7 +37,6 @@ function sendCreatePostRequest(event) {
 
 function postAddedHandler() {
   if (this.status != 200) window.location ='/homepage';
-  
   let post = JSON.parse(this.responseText);
 
   let new_post = createPost(post);
@@ -47,7 +51,7 @@ function postAddedHandler() {
 }
 
 function createPost(post) {
-  let new_post = document.createElement('div');
+  let new_post = document.createElement('article');
   new_post.classList.add('card');
   new_post.classList.add('post');
   new_post.classList.add('post-margins');
@@ -56,7 +60,7 @@ function createPost(post) {
   new_post.innerHTML = `
     <div class="post-header d-flex justify-content-between">
       <a href="${post.id}"><i class="icon-user post-user"></i>${post.name}</a>
-      <a href="#"><i class="icon-ellipsis"></i></a>
+      <a class="delete-post"><i class="icon-trash post-delete"></i></a>
     </div>
 
     <div class="card-body">
@@ -68,7 +72,27 @@ function createPost(post) {
     </div>
   `;
 
+  let trash = new_post.querySelector('div.post-header a.delete-post');
+  trash.addEventListener('click', sendDeletePostRequest);
+
+
   return new_post;
+}
+
+function sendDeletePostRequest(event) {
+  let id=this.closest('article').getAttribute('data-id');
+  console.log("Post id:" + id);
+  sendAjaxRequest('delete', '/api/posts/' + id, null, postDeletedHandler);
+}
+
+function postDeletedHandler() {
+  console.log(this.status);
+  console.log(this.responseText);
+  // if(this.status != 200) window.location = '/homepage';
+  // let post = JSON.parse(this.responseText);
+
+  // let article = document.querySelector('article.post[data-id="' + post.id + '"]');
+  // article.remove();
 }
 
 

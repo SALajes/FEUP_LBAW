@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
-<link rel="stylesheet" href="{{ asset('css/card.css') }}">
+<link rel="stylesheet" href="{{ asset('css/post.css') }}">
 
 
 @extends('layouts.app')
