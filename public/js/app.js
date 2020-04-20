@@ -36,14 +36,14 @@ function postAddedHandler() {
   let post = JSON.parse(this.responseText);
 
   let new_post = createPost(post);
-
+  
   let form = document.querySelector('div.publish-card form.new_post');
   form.querySelector('textarea.post-content').value="";
 
   let section = document.getElementById('posts');
   let first_post = document.querySelector('.post');
-
-  section.insertBefore(new_post, first_post)
+  
+  section.insertBefore(new_post, first_post);
 }
 
 function createPost(post) {
