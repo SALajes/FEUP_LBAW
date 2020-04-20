@@ -67,6 +67,10 @@ class StudentController extends Controller
 
     }
 
+    public function pila(){
+        return "pila";
+    }
+
     public function requestRatings($id)
 
     {

@@ -14,7 +14,7 @@ function getMyCUs(){
 
 	let req = new XMLHttpRequest();
 
-	req.open("GET", "../api/myCUs/" + id, true);
+	req.open("GET", "/users/myCUs/" + id, true);
 	req.onload = function(){
 		if(req.status >= 200 && req.status < 400){ // Se o SRV retornar bem
 			let cu_list = JSON.parse(this.responseText);
@@ -31,7 +31,9 @@ function getMyCUs(){
 
 	
             data.innerHTML = "<section class=\"row\"><table class=\"table text-center table-hover\"><thead><tr><th scope=\"col\">Name</th><th scope=\"col\">Status</th><th scope=\"col\">Action</th></tr></thead><tbody>" + cu_data + "</tbody></table></section>";
-        }
+		}
+		
+		if (req.status == 404) console.log(404);
     };
     
     req.onerror = function (){ //SE não ligar ao srv
@@ -51,7 +53,7 @@ function getMyRatings(){
 
 	let req = new XMLHttpRequest();
 
-	req.open("GET", "../api/myRatings/" + id, true);
+	req.open("GET", "/users/myRatings/" + id, true);
 	req.onload = function(){
         if(req.status >= 200 && req.status < 400){ // Se o SRV retornar bem
             data.innerHTML = this.responseText;

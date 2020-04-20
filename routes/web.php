@@ -21,9 +21,10 @@ Route::get('/homepage', 'HomepageController@show')->name('homepage');
 Route::get('cards/{id}', 'CardController@show');
 
 // Students
-Route::get('api/myCUs/{id}', 'StudentController@requestCUs');
-Route::get('api/myRatings/{id}', 'StudentController@requestRatings');
-Route::get('users/{id}', 'StudentController@show');
+Route::get('/users/{id}', 'StudentController@show');
+Route::get('/users/myCUs/{id}', 'StudentController@requestCUs');
+Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
+
 
 // API
 Route::put('api/cards', 'CardController@create');
