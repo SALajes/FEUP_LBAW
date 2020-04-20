@@ -48,8 +48,8 @@ class PostPolicy
       return false;
     }
 
-    public function delete(Student $student, Post $post){
-      if($student->administrator || $student->id == $post->author_id)
+    public function deletePost(Student $student, Post $post){
+      if(Auth::user()->administrator || $student->id == $post->author_id)
         return true && Auth::check();
 
       //se for mod da cu onde o post foi publicado 

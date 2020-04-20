@@ -88,11 +88,11 @@ function sendDeletePostRequest(event) {
 function postDeletedHandler() {
   console.log(this.status);
   console.log(this.responseText);
-  // if(this.status != 200) window.location = '/homepage';
-  // let post = JSON.parse(this.responseText);
+  if(this.status != 200) window.location = '/homepage';
+  let post = JSON.parse(this.responseText);
 
-  // let article = document.querySelector('article.post[data-id="' + post.id + '"]');
-  // article.remove();
+  let article = document.querySelector('article.post[data-id="' + post.id + '"]');
+  article.remove();
 }
 
 

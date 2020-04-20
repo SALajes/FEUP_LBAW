@@ -56,11 +56,10 @@ class HomepageController extends Controller
         return ['post'=>$post, 'name'=>$name, 'id'=>$id];
     }
 
-    public function deletePost(Request $request, $id)
+    public function deletePost($id)
     {
-        $post = Post::find(1);
-        var_dump("LMAO");
-        // $this->authorize('delete', Auth::user(), $post);
+        $post = Post::find($id);
+        //$this->authorize('deletePost', Auth::user(), $post);
         $post->delete();
 
         return $post;
