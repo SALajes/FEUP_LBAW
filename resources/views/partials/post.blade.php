@@ -4,6 +4,10 @@
     <a class="delete-post"><i class="icon-trash post-delete"></i></a>
   </div>
 
+  <div class="post-date d-flex justify-content-between">
+    <a href="/users/{{ $post->author_id }}">{{ $post->abbrev }}</a>
+  </div>
+
   <div class="card-body">
     {{ $post->content }}
   </div>
