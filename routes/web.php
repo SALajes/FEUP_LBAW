@@ -11,10 +11,7 @@
 |
 */
 
-// Route::get('/', 'Auth\LoginController@home');
 Route::get('/', 'LandingController@show');
-// Route::post('/', 'Auth\LoginController@login')->name('login');
-// Route::post('/', 'LandingController@register')->name('register2');
 
 // Homepage
 Route::get('homepage', 'HomepageController@show')->name('homepage');
@@ -25,7 +22,6 @@ Route::delete('api/posts/{id}', 'HomepageController@deletePost');
 Route::get('/users/{id}', 'StudentController@show');
 Route::get('/users/myCUs/{id}', 'StudentController@requestCUs');
 Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
-
 
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');
