@@ -5,7 +5,7 @@
         <section class="row-md-auto">
             <div class="text-center">
                 <h2 class="d-block pt-md-4"><?= $breadcrumb ?></h2>
-                <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $userNo }}"><i id="profile_picture" class="icon-user profile-button"></i></a>
+                <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $userNo }}"  href="/users/{{ $userNo }}"><i id="profile_picture" class="icon-user profile-button"></i></a>
                 <p class="d-none d-sm-block d-md-block"><?=$username?></p>
                 <p class="d-none d-sm-block d-md-block"><?=$studentNo?></p>
             </div>
@@ -46,8 +46,7 @@
             ?>
         </blockquote>
         <div class="d-flex justify-content-around">
-            <button id="editProfileButton">Edit</button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+            <button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
         </div>
         <div class="d-flex justify-content-around likes_friend">
             <div>
