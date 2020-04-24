@@ -6,9 +6,15 @@ use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -106,5 +112,66 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+    }
+
+    public function editPassword(Request $request)
+    {
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Your current password does not match the password you provided. Please try again.");
+        }
+
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+            //Current password and new password are same
+            return redirect()->back()->with("error","New password cannot be your current password. Please choose a different password.");
+        }
+
+        $validatedData = $request->validate([
+            'current-password' => '',
+            'new-password' => 'string|min:6|confirmed'
+        ]);
+
+        //Change Password
+        $user = Student::findOrFail(auth()->user()->id);
+        $user->password = bcrypt($request->get('new-password'));
+
+        $user->save();
+
+        return redirect()->back()->with("success","Password changed successfully !");
+
+    }
+
+    public function editProfilePicture(Request $request){
+        $request->validate([
+            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        $profile_image_name = $user->id.'_profile_image_'.time().'.'.request()->profile_image->getClientOriginalExtension();
+
+        $request->profile_image->storeAs('profile_image',$profile_image_name);
+
+        $user->profile_image = $profile_image_name;
+        $user->save();
+
+        return back()
+            ->with('success','You have successfully upload image.');
+
+    }
+
+    public function editBio(Request $request){
+        $request->validate([
+            'bio' => 'string|min:6',
+        ]);
+
+        $user = Auth::user();
+
+        $user->bio = $request->bio;
+        $user->save();
+
+        return back()
+            ->with('success','You have successfully updated the bio.');
+
     }
 }

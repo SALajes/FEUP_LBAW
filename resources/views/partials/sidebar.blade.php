@@ -5,7 +5,15 @@
         <section class="row-md-auto">
             <div class="text-center">
                 <h2 class="d-block pt-md-4"><?= $breadcrumb ?></h2>
-                <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $userNo }}"  href="/users/{{ $userNo }}"><i id="profile_picture" class="icon-user profile-button"></i></a>
+                <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $userNo }}">
+                    @if (auth()->user()->profile_image)
+                        {{-- <img src="{{ asset('images/ctl.jpg') }}" /> --}}
+                        <img src="/storage/profile_image/{{ Auth::user()->profile_image }}" width="200" height="200" />
+                    @else
+                        <i id="profile_picture" class="icon-user profile-button"></i>
+                    @endif
+                </a>
+
                 <p class="d-none d-sm-block d-md-block"><?=$username?></p>
                 <p class="d-none d-sm-block d-md-block"><?=$studentNo?></p>
             </div>
@@ -14,7 +22,7 @@
 <?php } ?>
 
 <?php function draw_sidebar_Homepage() { ?>
-        <section id="MyCUs" >
+        <section id="MyCUs">
             <h4 class="text-center">My CU's</h4>
             <ul>
                 <li class="list-group-item d-flex justify-content-around align-items-center">
@@ -31,7 +39,6 @@
                 </li>
             </ul>
         </section>
-    </aside>
 
     <!-- Divisao Vertical -->
 
