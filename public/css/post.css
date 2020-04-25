@@ -10,11 +10,8 @@
     border-color: white;
 }
 
-.post-date {
-    padding: 0rem 1.25rem 0rem 1.25rem;
-    margin-bottom: 0;
-    background-color: white;
-    border-color: white;
+.post-header-left .cu-badge {
+    background-color: #3355ae;
 }
 
 .post-footer {

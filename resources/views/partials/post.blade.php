@@ -1,11 +1,11 @@
 <article class="card post post-margins" data-id="{{ $post->id}}">
   <div class="post-header d-flex justify-content-between">
-    <a href="/users/{{ $post->author_id }}"><i class="icon-user post-user"></i>{{ $post->name }}</a>
-    <a class="delete-post"><i class="icon-trash post-delete"></i></a>
-  </div>
+    <div class="post-header-left">
+      <a href="/users/{{ $post->author_id }}"><i class="icon-user post-user"></i>{{ $post->name }}</a>
+      <a href="#" class="badge badge-pill badge-primary cu-badge">{{ $post->abbrev }}</a>
+    </div>
 
-  <div class="post-date d-flex justify-content-between">
-    <a href="/users/{{ $post->author_id }}">{{ $post->abbrev }}</a>
+    <a class="delete-post"><i class="icon-trash post-delete"></i></a>
   </div>
 
   <div class="card-body">
