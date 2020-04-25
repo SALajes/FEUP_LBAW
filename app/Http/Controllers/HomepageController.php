@@ -21,8 +21,9 @@ class HomepageController extends Controller
         $id = Auth::user()->id;
 
         $posts = DB::table('post')
-                    ->select('post.id', 'post.content', 'post.date', 'student.name', 'post.author_id')            
+                    ->select('post.id', 'post.content', 'post.date', 'student.name', 'post.author_id', 'curricular_unit.abbrev')            
                     ->join('student', 'post.author_id', '=', 'student.id')
+                    ->leftjoin('curricular_unit', 'post.cu_id', '=', 'curricular_unit.id')
                     ->whereIn('post.cu_id', function($query) use($id) {
                         $query->select('enrolled.cu_id')
                                 ->from('enrolled')
@@ -32,14 +33,12 @@ class HomepageController extends Controller
                     ->orderBy('post.date', 'desc')
                     ->limit(10)
                     ->get();
-        
+
         $cus = DB::table('enrolled')
                 ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
                 ->select('curricular_unit.abbrev', 'curricular_unit.id')
                 ->where('enrolled.student_id', '=', $id)
                 ->get();
-
-        print_r($cus);
 
         return view('pages.homepage', ['posts' => $posts, 'cus' => $cus]);
     }

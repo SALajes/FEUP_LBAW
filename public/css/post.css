@@ -10,6 +10,10 @@
     border-color: white;
 }
 
+.post-header-left .cu-badge {
+    background-color: #3355ae;
+}
+
 .post-footer {
     padding: 0.75rem 1.25rem 0.75rem 1.25rem;
     background-color: white;

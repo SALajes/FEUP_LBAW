@@ -22,11 +22,22 @@
   color: #3355AE;
 }
 
-#email::placeholder, #password::placeholder{
+#registerLabel {
+  color: #3355AE;
+}
+
+#name::placeholder, #student_number::placeholder, #email::placeholder, #password::placeholder, #password_confirm::placeholder {
   color: #1ca7f0;
 }
 
 button[type="Submit"] {
+  color: #1ca7f0;
+  transition-duration: 0.4s;
+  border: 2px solid #1ca7f0;
+}
+
+#pass_submit {
+  margin-top: 1rem;
   color: #1ca7f0;
   transition-duration: 0.4s;
   border: 2px solid #1ca7f0;
@@ -40,6 +51,10 @@ button[type="Submit"]:hover {
 
 #login_btn:hover{
   color:black;
+}
+
+#register_btn:hover {
+  color: black;
 }
 
 #email, #password, span.error {

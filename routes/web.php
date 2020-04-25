@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'LandingController@show');
-Route::post('/', 'Auth\LoginController@login')->name('login');
 
 // Homepage
 Route::get('homepage', 'HomepageController@show')->name('homepage');
@@ -27,8 +26,8 @@ Route::post('/users/{id}/editBio', 'StudentController@editBio')->name('editBio')
 Route::get('/users/myCUs/{id}', 'StudentController@requestCUs');
 Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
 
-
 // Authentication
+Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm');
+Route::post('register', 'Auth\RegisterController@register')->name('register');
