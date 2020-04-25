@@ -7,6 +7,7 @@
 
 @include('partials.navbar')
 @include('partials.sidebar')
+@include('partials.edit_profile_modal')
 
 @section('title', 'My Profile')
 
@@ -23,7 +24,7 @@
                 draw_sidebar_Top($bc, $student->id, $student->name, $student->student_number);
                 draw_sidebar_Profile($student->bio, 999, $owner);
             ?>
-            
+
             <!-- offset-lg-0 offset-md-2 offset-3 -->
             <div id="content" class="col-12 col-lg-9">
                 <div id="nav">

@@ -7,6 +7,9 @@ function addEventListeners() {
   [].forEach.call(postDeleter, function(deleter){
     deleter.addEventListener('click', sendDeletePostRequest);
   });
+
+  let editProfileButton = document.querySelector('button#editProfileButton');
+  editProfileButton.addEventListener('click', openEditProfileModal);
 }
 
 function encodeForAjax(data) {
@@ -93,6 +96,10 @@ function postDeletedHandler() {
 
   let article = document.querySelector('article.post[data-id="' + post.id + '"]');
   article.remove();
+}
+
+function openEditProfileModal() {
+  console.log("clicked");
 }
 
 

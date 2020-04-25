@@ -14,8 +14,13 @@ class Student extends Authenticatable
     protected $table = "student";
 
     protected $fillable = [
-        'name', 'student_number', 'bio', 'email', 'picture_path', 'administrator', 'password'
+        'name', 'student_number', 'bio', 'email', 'profile_image', 'administrator', 'password'
     ];
+
+    public function getImageAttribute()
+    {
+        return $this->profile_image;
+    }
 
     public function groups()
     {

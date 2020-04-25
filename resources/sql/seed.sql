@@ -38,7 +38,7 @@ CREATE TABLE student (
    name            TEXT NOT NULL,
    bio             TEXT,
    email           TEXT NOT NULL CONSTRAINT student_email_uk UNIQUE,
-   picture_path    TEXT,
+   profile_image   TEXT,
    administrator   BOOLEAN DEFAULT false NOT NULL,
 
    CONSTRAINT email_ck CHECK (email !~ '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][a-za-z]+\$'::TEXT)

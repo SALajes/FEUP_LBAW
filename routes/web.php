@@ -20,6 +20,9 @@ Route::delete('api/posts/{id}', 'HomepageController@deletePost');
 
 // Students
 Route::get('/users/{id}', 'StudentController@show');
+Route::post('/users/{id}/editPassword', 'StudentController@editPassword')->name('editPassword');
+Route::post('/users/{id}/editProfilePicture', 'StudentController@editProfilePicture')->name('editProfilePicture');
+Route::post('/users/{id}/editBio', 'StudentController@editBio')->name('editBio');
 Route::get('/users/myCUs/{id}', 'StudentController@requestCUs');
 Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
 
