@@ -55,6 +55,7 @@
                         </div>
                     </div>
                 </form>
+
                 <form action="{{ route('editProfilePicture', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
@@ -67,6 +68,7 @@
                         </div>
                     </div>
                 </form>
+                
                 <form id="bio-form" class="form-horizontal" method="POST" action="{{ route('editBio', Auth::user()->id) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">

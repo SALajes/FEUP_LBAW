@@ -7,8 +7,9 @@
                 <h2 class="d-block pt-md-4"><?= $breadcrumb ?></h2>
                 <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $userNo }}">
                     @if (auth()->user()->profile_image)
-                        {{-- <img src="{{ asset('images/ctl.jpg') }}" /> --}}
-                        <img src="/storage/profile_image/{{ Auth::user()->profile_image }}" width="200" height="200" />
+                        <div class="img-circle d-flex justify-content-between align-items-center">
+                            <img src="/storage/profile_image/{{ Auth::user()->profile_image }}" class="img-profile"/>
+                        </div>
                     @else
                         <i id="profile_picture" class="icon-user profile-button"></i>
                     @endif
