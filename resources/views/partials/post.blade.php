@@ -1,6 +1,10 @@
 <article class="card post post-margins" data-id="{{ $post->id}}">
   <div class="post-header d-flex justify-content-between">
-    <a href="/users/{{ $post->author_id }}"><i class="icon-user post-user"></i>{{ $post->name }}</a>
+    <div class="post-header-left">
+      <a href="/users/{{ $post->author_id }}"><i class="icon-user post-user"></i>{{ $post->name }}</a>
+      <a href="#" class="badge badge-pill badge-primary cu-badge">{{ $post->abbrev }}</a>
+    </div>
+
     <a class="delete-post"><i class="icon-trash post-delete"></i></a>
   </div>
 
