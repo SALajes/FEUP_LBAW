@@ -9,7 +9,7 @@ function addEventListeners() {
   });
 
   let editProfileButton = document.querySelector('button#editProfileButton');
-  editProfileButton.addEventListener('click', openEditProfileModal);
+  if (editProfileButton != null) editProfileButton.addEventListener('click', openEditProfileModal);
 }
 
 function encodeForAjax(data) {

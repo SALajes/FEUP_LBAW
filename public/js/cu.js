@@ -3,7 +3,6 @@
 let content_elem = document.getElementById("content");
 
 let feed_btn = document.getElementById("feed_btn");
-let drive_btn = document.getElementById("drive_btn");
 let doubts_btn = document.getElementById("doubts_btn");
 let tutor_btn = document.getElementById("tutor_btn");
 let classes_btn = document.getElementById("classes_btn");
@@ -22,7 +21,6 @@ function getFeed() {
 	classes_btn.style.textDecoration = "";
 	tutor_btn.style.textDecoration = "";
 	doubts_btn.style.textDecoration = "";
-	drive_btn.style.textDecoration = "";
 	feed_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
 	req.open("GET", "../actions/action_feed.php", true);
@@ -34,29 +32,10 @@ function getFeed() {
 	req.send();
 }
 
-function getDrive() {
-	about_btn.style.textDecoration = "";
-	classes_btn.style.textDecoration = "";
-	tutor_btn.style.textDecoration = "";
-	doubts_btn.style.textDecoration = "";
-	feed_btn.style.textDecoration = "";
-	drive_btn.style.textDecoration = "underline";
-	let req = new XMLHttpRequest();
-	req.open("GET", "../actions/action_drive.php", true);
-
-	req.onload = function () {
-		if (req.status >= 200 && req.status < 400) content_elem.innerHTML = this.responseText;
-	};
-
-	req.send();
-
-}
-
 function getDoubts() {
 	about_btn.style.textDecoration = "";
 	classes_btn.style.textDecoration = "";
 	tutor_btn.style.textDecoration = "";
-	drive_btn.style.textDecoration = "";
 	feed_btn.style.textDecoration = "";
 	doubts_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
@@ -73,7 +52,6 @@ function getTutoring(){
 	about_btn.style.textDecoration = "";
 	classes_btn.style.textDecoration = "";
 	doubts_btn.style.textDecoration = "";
-	drive_btn.style.textDecoration = "";
 	feed_btn.style.textDecoration = "";
 	tutor_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
@@ -90,7 +68,6 @@ function getClasses(){
 	about_btn.style.textDecoration = "";
 	tutor_btn.style.textDecoration = "";
 	doubts_btn.style.textDecoration = "";
-	drive_btn.style.textDecoration = "";
 	feed_btn.style.textDecoration = "";
 	classes_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
@@ -108,7 +85,6 @@ function getAbout(){
 	classes_btn.style.textDecoration = "";
 	tutor_btn.style.textDecoration = "";
 	doubts_btn.style.textDecoration = "";
-	drive_btn.style.textDecoration = "";
 	feed_btn.style.textDecoration = "";
 	about_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
@@ -125,7 +101,6 @@ about_btn.onclick = getAbout;
 classes_btn.onclick = getClasses;
 tutor_btn.onclick = getTutoring;
 doubts_btn.onclick = getDoubts;
-drive_btn.onclick = getDrive;
 feed_btn.onclick = getFeed;
 window.onresize = vert_hor;
 
