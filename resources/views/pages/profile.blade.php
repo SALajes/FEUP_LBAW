@@ -9,38 +9,36 @@
 @include('partials.sidebar')
 @include('partials.edit_profile_modal')
 
-@section('title', 'My Profile')
+@section('title', $student->name)
 
 @section('content')
 
 
-<section role="main">
 
-    <div class="container-fuild">
-        <div class="row">
-            <?php
-                $bc = "Profile";
-                if ($owner)$bc = "My " . $bc;
-                draw_sidebar_Top($bc, $student->id, $student->name, $student->student_number);
-                draw_sidebar_Profile($student->bio, 999, $owner);
-            ?>
-
-            <!-- offset-lg-0 offset-md-2 offset-3 -->
-            <div id="content" class="col-12 col-lg-9">
-                <div id="nav">
-                    <div id="tabs" class="nav nav-tabs nav-fill">
-                        <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">My CUs</a>
-                        <a class="nav-item nav-link" href="#" role="button" >My Ratings</a>
-                        <a class="nav-item nav-link disabled" href="#" role="button">Manage CUs</a>
-                    </div>
+<div class="container-fuild">
+    <div class="row">
+       <?php
+            $bc = "Profile";
+            if ($owner)$bc = "My " . $bc;
+            draw_sidebar_Top($bc, $student->id, $student->name, $student->student_number);
+            draw_sidebar_Profile($student->bio, 0, $owner);
+        ?>
+        <!-- offset-lg-0 offset-md-2 offset-3 -->
+        <div id="content" class="col-12 col-lg-9">
+            <div id="nav">
+                <div id="tabs" class="nav nav-tabs nav-fill">
+                    <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">My CUs</a>
+                    <a class="nav-item nav-link" href="#" role="button" >My Ratings</a>
+                    <a class="nav-item nav-link disabled" href="#" role="button">Manage CUs</a>
                 </div>
+            </div>
 
-                <input id="student_id" type="hidden" value="{{ $student->id }}" readonly>
-                <div id="data"></div>
+            <input id="student_id" type="hidden" value="{{ $student->id }}" readonly>
+            <div id="data"></div>
                     
                 
-            </div>
         </div>
     </div>
-</section>
+</div>
+
 @endsection

@@ -26,6 +26,9 @@ Route::post('/users/{id}/editBio', 'StudentController@editBio')->name('editBio')
 Route::get('/users/myCUs/{id}', 'StudentController@requestCUs');
 Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
 
+
+//CUs
+Route::get('/cu/{id}', 'CUController@show');
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
