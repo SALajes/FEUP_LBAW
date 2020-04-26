@@ -29,6 +29,12 @@ Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
 
 //CUs
 Route::get('/cu/{id}', 'CUController@show');
+Route::get('/cu/{id}/feed/', 'CUController@feed');
+Route::get('/cu/{id}/doubts/', 'CUController@doubts');
+Route::get('/cu/{id}/tuttoring/', 'CUController@tuttoring');
+Route::get('/cu/{id}/about/', 'CUController@about');
+Route::get('/cu/{id}/classes/', 'CUController@classes');
+
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');

@@ -1,6 +1,7 @@
 "use strict";
 
-let content_elem = document.getElementById("content");
+let content_elem = document.getElementById("data");
+let id = document.getElementById("cu_id").value;
 
 let feed_btn = document.getElementById("feed_btn");
 let doubts_btn = document.getElementById("doubts_btn");
@@ -23,7 +24,7 @@ function getFeed() {
 	doubts_btn.style.textDecoration = "";
 	feed_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
-	req.open("GET", "../actions/action_feed.php", true);
+	req.open("GET", "/cu/" + id + "/feed/", true);
 
 	req.onload = function () {
 		if (req.status >= 200 && req.status < 400) content_elem.innerHTML = this.responseText;
@@ -39,7 +40,7 @@ function getDoubts() {
 	feed_btn.style.textDecoration = "";
 	doubts_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
-	req.open("GET", "../actions/action_doubts.php", true);
+	req.open("GET", "/cu/" + id + "/doubts/", true);
 
 	req.onload = function () {
 		if (req.status >= 200 && req.status < 400) content_elem.innerHTML = this.responseText;
@@ -55,7 +56,7 @@ function getTutoring(){
 	feed_btn.style.textDecoration = "";
 	tutor_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
-	req.open("GET", "../actions/action_tutoring.php", true);
+	req.open("GET",  "/cu/" + id + "/tuttoring/", true);
 
 	req.onload = function () {
 		if (req.status >= 200 && req.status < 400) content_elem.innerHTML = this.responseText;
@@ -71,7 +72,7 @@ function getClasses(){
 	feed_btn.style.textDecoration = "";
 	classes_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
-	req.open("GET", "../actions/action_classes.php", true);
+	req.open("GET", "/cu/" + id + "/classes/", true);
 
 	req.onload = function () {
 		if (req.status >= 200 && req.status < 400) content_elem.innerHTML = this.responseText;
@@ -88,7 +89,7 @@ function getAbout(){
 	feed_btn.style.textDecoration = "";
 	about_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
-	req.open("GET", "../actions/action_aboutcu.php", true);
+	req.open("GET",  "/cu/" + id + "/about/", true);
 
 	req.onload = function () {
 		if (req.status >= 200 && req.status < 400) content_elem.innerHTML = this.responseText;
