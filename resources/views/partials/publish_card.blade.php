@@ -1,7 +1,12 @@
+<?php function post_form($where) { ?>
 <div class="card publish-card">
     <form class="new_post">
         <div class="post-header form-group">
-            Posting publicly
+            <?php
+                if($where == "public") echo "Posting publicly";
+                else echo "Posting to: " . $where;
+            ?>
+            
         </div>
 
         <div class="card-body form-group">
@@ -15,3 +20,4 @@
         </div> 
     </form>
 </div>
+<?php } ?>
