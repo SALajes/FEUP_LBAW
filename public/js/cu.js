@@ -27,7 +27,13 @@ function getFeed() {
 	req.open("GET", "/cu/" + id + "/feed/", true);
 
 	req.onload = function () {
-		if (req.status >= 200 && req.status < 400) content_elem.innerHTML = this.responseText;
+		if (req.status >= 200 && req.status < 400){
+			let response = JSON.parse(this.responseText);
+			content_elem.innerHTML = response.feed;
+		}
+
+		else content_elem.innerHTML = "There was an error retrieving this CUs posts from our database, try another time";
+		console.log(this.responseText);
 	};
 
 	req.send();

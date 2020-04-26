@@ -19,7 +19,8 @@ class CUController extends Controller
     }
 
     public function feed($id){
-        return "feed";
+        $posts = CurricularUnit::find($id)->posts()->where('feed_type', 'General')->get();
+        return response()->json(['posts' => $posts, 'feed' => "feed"]);
     }
 
     public function doubts($id){
