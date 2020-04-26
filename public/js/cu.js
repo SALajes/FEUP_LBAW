@@ -10,6 +10,18 @@ let classes_btn = document.getElementById("classes_btn");
 let about_btn = document.getElementById("about_btn");
 
 let btn_grp = document.getElementById("cu_tabs");
+let msg_area = document.getElementsByClassName("publish-card")[0];
+
+function disable_posting(){
+	msg_area.readonly = true;
+	msg_area.style.display = "none";
+}
+
+function enable_posting(){
+	msg_area.readonly = false;
+	msg_area.style.display = "";
+
+}
 
 function vert_hor() {
 	if (window.innerWidth < 992) btn_grp.className = "btn-group btn-group-toggle d-flex flex-wrap justify-content-center";
@@ -29,7 +41,7 @@ function getFeed() {
 	req.onload = function () {
 		if (req.status >= 200 && req.status < 400){
 			let response = JSON.parse(this.responseText);
-			content_elem.innerHTML += response.feed;
+			content_elem.innerHTML = response.feed;
 		}
 
 		else content_elem.innerHTML = "There was an error retrieving this CUs posts from our database, try another time";
@@ -37,6 +49,7 @@ function getFeed() {
 	};
 
 	req.send();
+	enable_posting();
 }
 
 function getDoubts() {
@@ -53,6 +66,7 @@ function getDoubts() {
 	};
 
 	req.send();
+	enable_posting();
 }
 
 function getTutoring(){
@@ -69,6 +83,7 @@ function getTutoring(){
 	};
 
 	req.send();
+	enable_posting();
 }
 
 function getClasses(){
@@ -85,6 +100,7 @@ function getClasses(){
 	};
 
 	req.send();
+	disable_posting();
 }
 
 
@@ -102,6 +118,7 @@ function getAbout(){
 	};
 
 	req.send();
+	disable_posting();
 }
 
 about_btn.onclick = getAbout;
