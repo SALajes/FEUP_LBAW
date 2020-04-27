@@ -179,7 +179,7 @@ function getTutoring(){
 	feed_btn.style.textDecoration = "";
 	tutor_btn.style.textDecoration = "underline";
 	let req = new XMLHttpRequest();
-	req.open("GET",  "/cu/" + id + "/tuttoring/", true);
+	req.open("GET",  "/cu/" + id + "/tutoring/", true);
 
 	req.onload = function () {
 		if (req.status >= 200 && req.status < 400) content_elem.innerHTML = this.responseText;

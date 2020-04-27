@@ -31,7 +31,7 @@ Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
 Route::get('/cu/{id}', 'CUController@show');
 Route::get('/cu/{id}/feed/', 'CUController@feed');
 Route::get('/cu/{id}/doubts/', 'CUController@doubts');
-Route::get('/cu/{id}/tuttoring/', 'CUController@tuttoring');
+Route::get('/cu/{id}/tutoring/', 'CUController@tutoring');
 Route::get('/cu/{id}/about/', 'CUController@about');
 Route::get('/cu/{id}/classes/', 'CUController@classes');
 

@@ -41,12 +41,18 @@ class CUController extends Controller
         return $text;//response()->json(['posts' => $posts, 'feed' => "feed"]);
     }
 
-    public function doubts($id){
-        return "doubts";
+    public function doubts($id) {
+        $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'Doubts')->get();
+        $text = "";
+        foreach($posts as $post) $text .= post_to_string($post);
+        return $text;//response()->json(['posts' => $posts, 'feed' => "feed"]);
     }
 
-    public function tuttoring($id){
-        return "tuttoring";
+    public function tutoring($id){
+        $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'Tutoring')->get();
+        $text = "";
+        foreach($posts as $post) $text .= post_to_string($post);
+        return $text;//response()->json(['posts' => $posts, 'feed' => "feed"]);
     }
 
     public function classes($id){
