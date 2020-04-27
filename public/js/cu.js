@@ -40,8 +40,8 @@ function getFeed() {
 
 	req.onload = function () {
 		if (req.status >= 200 && req.status < 400){
-			let response = JSON.parse(this.responseText);
-			content_elem.innerHTML = response.feed;
+			let content_str = "<section id=\"posts\">" +this.responseText + "</section>";
+			content_elem.innerHTML = content_str;
 		}
 
 		else content_elem.innerHTML = "There was an error retrieving this CUs posts from our database, try another time";

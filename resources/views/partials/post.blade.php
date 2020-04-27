@@ -1,3 +1,4 @@
+<?php function print_post($post) {?>
 <article class="card post post-margins" data-id="{{ $post->id}}">
   <div class="post-header d-flex justify-content-between">
     <div class="post-header-left">
@@ -16,3 +17,6 @@
     <a href="#" class="number-comments">X comments</a>
   </div>
 </article>
+<?php
+}
+?>
