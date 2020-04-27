@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/post.css') }}">
-<script src={{ asset('js/cu.js') }} defer></script>
 
 @extends('layouts.app')
 

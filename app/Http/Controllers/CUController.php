@@ -28,14 +28,14 @@ class CUController extends Controller
         $this->middleware('auth');
     }
     
-    public function show($id){
-
+    public function show($id)
+    {
         $cu = CurricularUnit::find($id);
         return view('pages.cupage', ['cu' => $cu]);
     }
-        
+
     public function feed($id){
-        $posts = CurricularUnit::find($id)->posts()->where('feed_type', 'General')->get();
+        $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'General')->get();
         $text = "";
         foreach($posts as $post) $text .= post_to_string($post);
         return $text;//response()->json(['posts' => $posts, 'feed' => "feed"]);
