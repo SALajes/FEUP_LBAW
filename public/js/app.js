@@ -145,6 +145,25 @@ function sendCreateGenPostRequest(event) {
 	event.preventDefault();
 }
 
+function sendCreateDoubtsPostRequest(event) {
+	let content = this.querySelector('textarea.post-content').value;
+  
+	if(content != '')
+	  sendAjaxRequest('put', '/api/posts/' + id + "/" + "Doubts", {content: content}, postAddedHandler);
+  
+	event.preventDefault();
+}
+
+function sendCreateTutorPostRequest(event) {
+	let content = this.querySelector('textarea.post-content').value;
+  
+	if(content != '')
+	  sendAjaxRequest('put', '/api/posts/' + id + "/" + "Tutoring", {content: content}, postAddedHandler);
+  
+	event.preventDefault();
+}
+
+
 function getFeed() {
 	about_btn.style.textDecoration = "";
 	classes_btn.style.textDecoration = "";
@@ -190,6 +209,9 @@ function getDoubts() {
 
 	req.send();
 	enable_posting();
+	let postCreator = document.querySelector('div.publish-card form.new_post');
+	postCreator.onsubmit = sendCreateDoubtsPostRequest;
+	postCreator.removeEventListener('submit', sendCreatePostRequest);
 }
 
 function getTutoring(){
@@ -211,6 +233,9 @@ function getTutoring(){
 
 	req.send();
 	enable_posting();
+	let postCreator = document.querySelector('div.publish-card form.new_post');
+	postCreator.onsubmit = sendCreateTutorPostRequest;
+	postCreator.removeEventListener('submit', sendCreatePostRequest);
 }
 
 function getClasses(){
