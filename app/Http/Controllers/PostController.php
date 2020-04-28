@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\CurricularUnit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\String_;
 
-class HomepageController extends Controller
+class PostController extends Controller
 {
     public function __construct()
     {
@@ -52,6 +54,26 @@ class HomepageController extends Controller
 
         $post->content = $request->input('content');
         $post->public_feed = true;
+        $post->author_id = $id;
+        $post->save();
+
+        $name = Auth::user()->name;
+
+        return ['post'=>$post, 'name'=>$name, 'id'=>$id];
+    }
+
+    public function createPostInCUInFeed(Request $request, $cu_id, $feed){
+        $post = new Post();
+
+        //$this->authorize('createCU', CurricularUnit::find($cu_id));
+        $this->authorize('createPublic', $post);
+        
+        $id = Auth::user()->id;
+
+        $post->content = $request->input('content');
+        $post->public_feed = false;
+        $post->cu_id = $cu_id;
+        $post->feed_type = $feed;
         $post->author_id = $id;
         $post->save();
 

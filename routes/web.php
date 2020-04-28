@@ -14,9 +14,10 @@
 Route::get('/', 'LandingController@show');
 
 // Homepage
-Route::get('homepage', 'HomepageController@show')->name('homepage');
-Route::put('api/posts', 'HomepageController@createPost');
-Route::delete('api/posts/{id}', 'HomepageController@deletePost');
+Route::get('homepage', 'PostController@show')->name('homepage');
+Route::put('api/posts', 'PostController@createPost');
+Route::put('api/posts/{cu_id}/{feed}', 'PostController@createPostInCUInFeed');
+Route::delete('api/posts/{id}', 'PostController@deletePost');
 
 // Students
 Route::get('/users/{id}', 'StudentController@show');

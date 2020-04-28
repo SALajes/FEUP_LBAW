@@ -11,7 +11,7 @@ class Post extends Model
     protected $table = "post";
 
     protected $fillable = [
-        'content', 'public_feed', 'type'
+        'content', 'public_feed', 'type', 'cu_id', 'feed_type'
     ];
 
     public function author_id()

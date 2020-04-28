@@ -1,7 +1,10 @@
 function addEventListeners() {
+  if (window.location == "/homepage"){
   let postCreator = document.querySelector('div.publish-card form.new_post');
   if(postCreator != null)
-    postCreator.addEventListener('submit', sendCreatePostRequest);
+	postCreator.addEventListener('submit', sendCreatePostRequest);
+	console.log("pong");
+  }
 
   let postDeleter = document.querySelectorAll('article.post div.post-header a.delete-post');
   [].forEach.call(postDeleter, function(deleter){
@@ -40,6 +43,7 @@ function sendCreatePostRequest(event) {
 
 function postAddedHandler() {
   if (this.status != 200) window.location ='/homepage';
+  console.log(this.responseText);
   let post = JSON.parse(this.responseText);
 
   let new_post = createPost(post);
@@ -104,7 +108,8 @@ function openEditProfileModal() {
 
 //CUs
 let content_elem = document.getElementById("data");
-let id = document.getElementById("cu_id").value;
+let id;
+if (document.getElementById("cu_id") != null) id = document.getElementById("cu_id").value;
 
 let feed_btn = document.getElementById("feed_btn");
 let doubts_btn = document.getElementById("doubts_btn");
@@ -132,6 +137,15 @@ function vert_hor() {
 
 }
 
+function sendCreateGenPostRequest(event) {
+	let content = this.querySelector('textarea.post-content').value;
+  
+	if(content != '')
+	  sendAjaxRequest('put', '/api/posts/' + id + "/" + "General", {content: content}, postAddedHandler);
+  
+	event.preventDefault();
+}
+
 function getFeed() {
 	about_btn.style.textDecoration = "";
 	classes_btn.style.textDecoration = "";
@@ -148,11 +162,13 @@ function getFeed() {
 		}
 
 		else content_elem.innerHTML = "There was an error retrieving this CUs posts from our database, try another time";
-		console.log(this.responseText);
 	};
 
 	req.send();
 	enable_posting();
+	let postCreator = document.querySelector('div.publish-card form.new_post');
+	postCreator.onsubmit = sendCreateGenPostRequest;
+	postCreator.removeEventListener('submit', sendCreatePostRequest);
 }
 
 function getDoubts() {
@@ -224,15 +240,18 @@ function getAbout(){
 	disable_posting();
 }
 
-about_btn.onclick = getAbout;
-classes_btn.onclick = getClasses;
-tutor_btn.onclick = getTutoring;
-doubts_btn.onclick = getDoubts;
-feed_btn.onclick = getFeed;
-window.onresize = vert_hor;
 
-vert_hor();
-getFeed();
+if (about_btn != null){
+	about_btn.onclick = getAbout;
+	classes_btn.onclick = getClasses;
+	tutor_btn.onclick = getTutoring;
+	doubts_btn.onclick = getDoubts;
+	feed_btn.onclick = getFeed;
+	window.onresize = vert_hor;
+
+	vert_hor();
+	getFeed();
+}
 
 
 
