@@ -1,9 +1,8 @@
 function addEventListeners() {
-  if (window.location == "/homepage"){
+  if (window.location.pathname == "/homepage"){
   let postCreator = document.querySelector('div.publish-card form.new_post');
   if(postCreator != null)
 	postCreator.addEventListener('submit', sendCreatePostRequest);
-	console.log("pong");
   }
 
   let postDeleter = document.querySelectorAll('article.post div.post-header a.delete-post');
@@ -159,6 +158,7 @@ function getFeed() {
 		if (req.status >= 200 && req.status < 400){
 			let content_str = "<section id=\"posts\">" +this.responseText + "</section>";
 			content_elem.innerHTML = content_str;
+			addEventListeners();
 		}
 
 		else content_elem.innerHTML = "There was an error retrieving this CUs posts from our database, try another time";
@@ -181,7 +181,11 @@ function getDoubts() {
 	req.open("GET", "/cu/" + id + "/doubts/", true);
 
 	req.onload = function () {
-		if (req.status >= 200 && req.status < 400) content_elem.innerHTML = this.responseText;
+		if (req.status >= 200 && req.status < 400){
+			let content_str = "<section id=\"posts\">" +this.responseText + "</section>";
+			content_elem.innerHTML = content_str;
+			addEventListeners();
+		}
 	};
 
 	req.send();
@@ -198,7 +202,11 @@ function getTutoring(){
 	req.open("GET",  "/cu/" + id + "/tutoring/", true);
 
 	req.onload = function () {
-		if (req.status >= 200 && req.status < 400) content_elem.innerHTML = this.responseText;
+		if (req.status >= 200 && req.status < 400){
+			let content_str = "<section id=\"posts\">" +this.responseText + "</section>";
+			content_elem.innerHTML = content_str;
+			addEventListeners();
+		}
 	};
 
 	req.send();

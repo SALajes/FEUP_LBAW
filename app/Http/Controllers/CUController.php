@@ -35,21 +35,27 @@ class CUController extends Controller
     }
 
     public function feed($id){
-        $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'General')->get();
+        $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'General')
+        ->orderBy('post.date', 'desc')
+        ->limit(10)->get();
         $text = "";
         foreach($posts as $post) $text .= post_to_string($post);
         return $text;//response()->json(['posts' => $posts, 'feed' => "feed"]);
     }
 
     public function doubts($id) {
-        $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'Doubts')->get();
+        $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'Doubts')
+        ->orderBy('post.date', 'desc')
+        ->limit(10)->get();
         $text = "";
         foreach($posts as $post) $text .= post_to_string($post);
         return $text;//response()->json(['posts' => $posts, 'feed' => "feed"]);
     }
 
     public function tutoring($id){
-        $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'Tutoring')->get();
+        $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'Tutoring')
+        ->orderBy('post.date', 'desc')
+        ->limit(10)->get();
         $text = "";
         foreach($posts as $post) $text .= post_to_string($post);
         return $text;//response()->json(['posts' => $posts, 'feed' => "feed"]);
