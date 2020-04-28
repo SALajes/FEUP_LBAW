@@ -15,7 +15,7 @@ class CurricularUnit extends Model
     ];
 
     public function student() {
-        return $this->belongsToMany('App\Student');
+        return $this->hasMany('App\Student');
     }
 
     public function professors() {
@@ -44,6 +44,6 @@ class CurricularUnit extends Model
 
     public function posts()
     {
-        $this->hasMany('App\Posts');
+        return $this->hasMany('App\Post', 'cu_id', 'id');
     }
 }

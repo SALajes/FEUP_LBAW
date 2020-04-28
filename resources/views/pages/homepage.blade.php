@@ -7,6 +7,8 @@
 
 @include('partials.navbar')
 @include('partials.sidebar')
+@include('partials.publish_card')
+@include('partials.post')
 
 @section('title', 'Homepage')
 
@@ -29,13 +31,17 @@
         </aside>
         <main id="mainArea" class="col-12 col-lg-6">
             <div>
-                @include('partials.publish_card')
+                <?php post_form("public"); ?>
             </div>
 
             <!-- <hr id="post-division"> -->
 
             <section id="posts">
-                @each('partials.post', $posts, 'post')
+            <?php
+                foreach($posts as $post) print_post($post);
+                //@each('partials.post@print_post', $posts, 'post')
+            ?>
+                
             </section>
         </main>
     

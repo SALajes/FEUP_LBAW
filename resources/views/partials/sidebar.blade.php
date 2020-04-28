@@ -83,11 +83,6 @@
                 </button>
             </div>
             <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
-                <button id="drive_btn" type="button" class="btn btn-link">
-                    <h3>Drive</h3>
-                </button>
-            </div>
-            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
                 <button id="doubts_btn" type="button" class="btn btn-link">
                     <h3>Doubts</h3>
                 </button>
