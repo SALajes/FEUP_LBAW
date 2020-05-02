@@ -61,7 +61,6 @@ class StudentController extends Controller
     }
 
     public function requestCUs($id)
-
     {
         $cus = DB::table('enrolled')
             ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
@@ -73,7 +72,6 @@ class StudentController extends Controller
     }
 
     public function requestRatings($id)
-
     {
 
         return response()->json(['success' => 'Requested Ratings.' . $id]);

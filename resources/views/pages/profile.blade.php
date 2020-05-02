@@ -29,14 +29,13 @@
                 <div id="tabs" class="nav nav-tabs nav-fill">
                     <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">My CUs</a>
                     <a class="nav-item nav-link" href="#" role="button" >My Ratings</a>
-                    <a class="nav-item nav-link disabled" href="#" role="button">Manage CUs</a>
+                    <a class="nav-item nav-link" href="#" role="button">Manage CUs</a>
                 </div>
             </div>
 
             <input id="student_id" type="hidden" value="{{ $student->id }}" readonly>
             <div id="data"></div>
-                    
-                
+
         </div>
     </div>
 </div>

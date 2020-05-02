@@ -25,8 +25,8 @@ Route::post('/users/{id}/editPassword', 'StudentController@editPassword')->name(
 Route::post('/users/{id}/editProfilePicture', 'StudentController@editProfilePicture')->name('editProfilePicture');
 Route::post('/users/{id}/editBio', 'StudentController@editBio')->name('editBio');
 Route::get('/users/myCUs/{id}', 'StudentController@requestCUs');
+Route::get('/users/myCUsAdmin/{id}', 'StudentController@requestCUsAdmin');
 Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
-
 
 //CUs
 Route::get('/cu/{id}', 'CUController@show');
