@@ -29,6 +29,7 @@ Route::get('/users/myCUsAdmin/{id}', 'StudentController@requestCUsAdmin');
 Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
 
 //CUs
+Route::get('/cu', 'CUController@showAll');
 Route::get('/cu/{id}', 'CUController@show');
 Route::get('/cu/{id}/feed/', 'CUController@feed');
 Route::get('/cu/{id}/doubts/', 'CUController@doubts');
