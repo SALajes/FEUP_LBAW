@@ -37,7 +37,7 @@ class CUController extends Controller
     public function showAll()
     {
         $cus = CurricularUnit::all();
-        return view('pages.cupage', ['cus' => $cus]);
+        return response()->json(['cus' => $cus]);
     }
 
     public function feed($id){
