@@ -95,4 +95,9 @@ class Student extends Authenticatable
     public function administrator(){
         return $this->administrator;
     }
+
+    public function notifications()
+    {
+        return $this->hasMany('App\Notification', 'student_id', 'id');
+    }
 }

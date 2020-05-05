@@ -77,6 +77,11 @@ class StudentController extends Controller
         return response()->json(['success' => 'Requested Ratings.' . $id]);
     }
 
+    public function notifications($id){
+        $notifications = Student::find($id)->notifications()->get();
+        return response()->json(['notifications' => $notifications]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

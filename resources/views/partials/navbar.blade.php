@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 
 <header>
+    <input type="hidden" id="studentId" value="{{Auth::user() -> id}}" readonly>
     <nav id="header" class="navbar fixed-top navbar-expand-md navbar-dark">
         <a class="navbar-brand" href="{{ url('/homepage') }}"><i id="logo" class="icon-logo align-middle"></i></a>
        
