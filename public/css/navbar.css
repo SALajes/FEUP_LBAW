@@ -93,3 +93,27 @@
         color: #0aedb3;
     }
 }
+
+#notification_area{
+    height: auto;
+    width: 30rem;
+    border: #564946;
+    border-width: 2px;
+    border-style: solid;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+    background-color: #000000;
+}
+
+#notification_area a{
+    overflow-wrap: break-word;
+
+}
+
+#not_wrapper {
+    position: fixed;
+    right: 10rem;
+    top: 4rem;
+    z-index: 999;
+    background-color: #ffffff;
+}

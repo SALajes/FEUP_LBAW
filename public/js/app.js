@@ -13,7 +13,7 @@ function addEventListeners() {
   let editProfileButton = document.querySelector('button#editProfileButton');
   if (editProfileButton != null) editProfileButton.addEventListener('click', openEditProfileModal);
 
-  let notificationsButton = document.querySelector('li.nav-item:nth-child(5) > a:nth-child(1)');
+  let notificationsButton = document.getElementById('notifications_button');
   notificationsButton.onclick = getNotifications;
 }
 
@@ -293,11 +293,33 @@ if (about_btn != null){
 function getNotifications(){
   let req = new XMLHttpRequest();
   let id = document.getElementById("studentId").value;
+  let notification_area = document.getElementById("notification_area");
+  notification_area.innerHTML = "";
   req.open("GET",  "/users/myNotifications/" + id, true);
 
   req.onload = function () {
-      /*if (req.status >= 200 && req.status < 400)*/ console.log(this.responseText);
+      if (req.status >= 200 && req.status < 400){
+        let notifications = JSON.parse(this.responseText).notifications;
+        let req_str = "";
+        for (let i = 0; i < notifications.length; i++) {
+          console.log(i);
+          if (i != 0 && i != notifications.length - 1) req_str += "<br>";
+          req_str += "<a class=\"\" href=\"#\">"
+          if(notifications[i].notification_type == "AccessGrantedCU") req_str += "You have been granted access to vist the cu with code: " + notifications[i].content; 
+          req_str += "</a>";
+          notification_area.innerHTML += req_str;
+          req_str = "";
+          notification_area.className = ""; 
+        }
+      }
+
+      else console.log(this.responseText);
+
+      window.onclick = function(){
+        notification_area.className = "d-none";
+      }
   };
+
 
   req.send();
 }
