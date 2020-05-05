@@ -28,6 +28,7 @@ DROP FUNCTION IF EXISTS group_exists() CASCADE;
 -- Type
 
 CREATE TYPE feed_type_enum AS ENUM ('General', 'Doubts', 'Tutoring');
+CREATE TYPE notification_type_enum AS ENUM ('Friend Request', 'New Post', 'Like on post', 'Comment on post', 'Request Access to CU', 'Request CU');
 
 -- Tables
 
