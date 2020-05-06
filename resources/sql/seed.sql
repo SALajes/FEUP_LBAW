@@ -186,7 +186,8 @@ CREATE TABLE notification (
    content     TEXT NOT NULL,
    "date"      TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
    student_id INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
-   notification_type    notification_type_enum
+   notification_type    notification_type_enum,
+   seen        BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 --Index--

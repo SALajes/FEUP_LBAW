@@ -78,7 +78,8 @@ class StudentController extends Controller
     }
 
     public function notifications($id){
-        $notifications = Student::find($id)->notifications()->orderBy('date', 'desc')->limit(10)->get();
+        $notifications = Student::find($id)->notifications()->orderBy('date', 'desc')->limit(25)->get();
+        for ($i = 0; $i < sizeof($notifications); $i++) DB::table('notification')->where('id', $notifications[$i]->id)->update(['seen' => TRUE]);
         return response()->json(['notifications' => $notifications]);
     }
 

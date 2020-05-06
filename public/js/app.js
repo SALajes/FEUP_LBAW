@@ -302,9 +302,9 @@ function getNotifications(){
         let notifications = JSON.parse(this.responseText).notifications;
         let req_str = "";
         for (let i = 0; i < notifications.length; i++) {
-          console.log(i);
+          console.log('i:' + i + " seen:" + notifications[i].seen);
           if (i != 0 && i != notifications.length - 1) req_str += "<br>";
-          req_str += "<a class=\"\" href=\"#\">"
+          req_str += "<a class=\"\" href=\"/cu/" + notifications[i].content + "\">"
           if(notifications[i].notification_type == "AccessGrantedCU") req_str += "You have been granted access to vist the cu with code: " + notifications[i].content; 
           req_str += "</a>";
           notification_area.innerHTML += req_str;
