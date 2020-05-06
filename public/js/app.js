@@ -290,7 +290,31 @@ if (about_btn != null){
 }
 
 
+function accessGrantedCU(notification){
+    let req_str = "";
+    req_str += "<a class=\"\" href=\"/cu/" + notification.content + "\">"
+    req_str += "You have been granted access to vist the cu with code: " + notification.content; 
+    req_str += "</a>";
+    return req_str;
+}
+
+function pollNotifications(){
+  let new_not = document.getElementById("new_notifications");
+
+  if (new_not.className != ""){
+    let req = new XMLHttpRequest();
+    let id = document.getElementById("studentId").value;
+    req.open("GET",  "/users/myNotifications/poll/" + id, true);
+    req.onload = function(){
+      if (this.responseText == "true") new_not.className = "";
+      console.log(this.responseText);
+    }
+    req.send();
+  }
+}
+
 function getNotifications(){
+  let new_not = document.getElementById("new_notifications");
   let req = new XMLHttpRequest();
   let id = document.getElementById("studentId").value;
   let notification_area = document.getElementById("notification_area");
@@ -300,17 +324,15 @@ function getNotifications(){
   req.onload = function () {
       if (req.status >= 200 && req.status < 400){
         let notifications = JSON.parse(this.responseText).notifications;
-        let req_str = "";
         for (let i = 0; i < notifications.length; i++) {
-          console.log('i:' + i + " seen:" + notifications[i].seen);
-          if (i != 0 && i != notifications.length - 1) req_str += "<br>";
-          req_str += "<a class=\"\" href=\"/cu/" + notifications[i].content + "\">"
-          if(notifications[i].notification_type == "AccessGrantedCU") req_str += "You have been granted access to vist the cu with code: " + notifications[i].content; 
-          req_str += "</a>";
+          let req_str = "";
+          if (i != 0) req_str += "<br>";
+          if(notifications[i].notification_type == "AccessGrantedCU") req_str += accessGrantedCU(notifications[i]);
           notification_area.innerHTML += req_str;
-          req_str = "";
           notification_area.className = ""; 
         }
+
+        new_not.className = "d-none";
       }
 
       else console.log(this.responseText);
@@ -324,4 +346,6 @@ function getNotifications(){
   req.send();
 }
 
+pollNotifications();
 addEventListeners();
+setInterval(pollNotifications, 5000);

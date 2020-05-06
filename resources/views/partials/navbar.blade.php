@@ -27,6 +27,7 @@
             
             <ul class="navbar-nav">
                 <li class="nav-item">
+                    <i class="d-none" id="new_notifications">*</i>
                     <a class="nav-link" id="notifications_button" href="#"><i class="icon-notification align-middle"></i></a>
                     <span class="d-md-none"> Notifications</span>
                 </li>
