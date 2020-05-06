@@ -12,15 +12,17 @@ function getAllCUs(){
             let cu_list = JSON.parse(this.responseText);
             console.log(cu_list);
             for(let i = 0; i < cu_list.cus.length; i++){
+                let button = '<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse_' + i + '" aria-expanded="false" aria-controls="collapseExample">Manage</button>';
+                let collapse = '<div class="collapse" id="collapse_' + i + '><div class="card card-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</div></div>';
                 cu_data += "<tr>";
                 cu_data += "<tr>";
                 cu_data += "<td>";
                 cu_data += "<a href=\"/cu/" + cu_list.cus[i].id + "\">" + cu_list.cus[i].abbrev + "</a>";
                 cu_data += "</td>";
-                cu_data += "<td>Manage</td>";
+                cu_data += "<td>" + button + "</td>";
                 cu_data+= "</tr>";
+                cu_data+="<tr>" + collapse + "</tr>"
             }
-
             data.innerHTML = "<section class=\"row\"><table class=\"table text-center table-hover\"><thead><tr><th scope=\"col\">Name</th></th><th scope=\"col\">Action</th></tr></thead><tbody>" + cu_data + "</tbody></table></section>";
         }
 		
