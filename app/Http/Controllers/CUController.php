@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CurricularUnit;
+use Illuminate\Support\Facades\DB;
 
 function post_to_string($post){
     $str = "";
@@ -36,7 +37,10 @@ class CUController extends Controller
 
     public function showAll()
     {
-        $cus = CurricularUnit::all();
+        $cus = DB::table('curricular_unit')
+        ->select('abbrev', 'student_id')
+        ->join('enrolled', 'id', '=', 'cu_id')
+        ->get();
         return response()->json(['cus' => $cus]);
     }
 
