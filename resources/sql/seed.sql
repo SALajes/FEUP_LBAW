@@ -18,16 +18,21 @@ DROP TABLE IF EXISTS comment_thread CASCADE;
 DROP TABLE IF EXISTS message CASCADE;
 DROP TABLE IF EXISTS group_message CASCADE;
 DROP TABLE IF EXISTS group_message_receiver CASCADE;
+DROP TABLE IF EXISTS notification CASCADE;
 
 DROP TYPE IF EXISTS feed_type_enum;
+DROP TYPE IF EXISTS notification_type_enum;
 
 DROP FUNCTION IF EXISTS set_friends() CASCADE;
 DROP FUNCTION IF EXISTS ban_student() CASCADE;
 DROP FUNCTION IF EXISTS group_exists() CASCADE;
+DROP FUNCTION IF EXISTS notify_cu_entry() CASCADE;
+
 
 -- Type
 
 CREATE TYPE feed_type_enum AS ENUM ('General', 'Doubts', 'Tutoring');
+CREATE TYPE notification_type_enum AS ENUM ('FriendRequest', 'FriendRequestAccepted','NewPost', 'LikeOnPost', 'CommentOnPost', 'RequestAccessCU', 'RequestCU', 'AccessGrantedCU', 'NewMessage', 'NewRating', 'GroupInvite', 'ReplyInvite', 'Tag', 'UserBan', 'UserReport', 'UpdateProf', 'UpdateCU');
 
 -- Tables
 
@@ -176,6 +181,15 @@ CREATE TABLE group_message_receiver (
    PRIMARY KEY (group_id, student_id)
 );
 
+CREATE TABLE notification (
+   id          SERIAL PRIMARY KEY,
+   content     TEXT NOT NULL,
+   "date"      TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+   student_id INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   notification_type    notification_type_enum,
+   seen        BOOLEAN NOT NULL DEFAULT FALSE
+);
+
 --Index--
 
 CREATE INDEX sender_id_message ON message USING hash(sender_id);
@@ -241,6 +255,20 @@ CREATE TRIGGER group_exists
    BEFORE INSERT ON group_message
    FOR EACH ROW
    EXECUTE PROCEDURE group_exists();
+
+CREATE FUNCTION notify_cu_entry() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+   INSERT INTO notification (content, student_id, notification_type) VALUES (NEW.cu_id, NEW.student_id, 'AccessGrantedCU');
+   RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER not_cu_entry
+   AFTER INSERT ON enrolled
+   FOR EACH ROW
+   EXECUTE PROCEDURE notify_cu_entry();
 
 -- POPULATE --
 
@@ -374,6 +402,8 @@ INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 7, 6,
 INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 7, 8, 'Como estao as ovelha?');
 INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 8, 1, 'So para dizer que hoje esta um belo dia');
 INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 4, 5, 'Ja fizeste o que faltava??');
+
+INSERT INTO notification (id, content, student_id, notification_type) VALUES (DEFAULT, 'AAAABBBB', 4, 'Tag');
 
 --group_message_receiver--
 -- INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (0, 0, 'LBAW');

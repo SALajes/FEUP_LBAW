@@ -12,6 +12,9 @@ function addEventListeners() {
 
   let editProfileButton = document.querySelector('button#editProfileButton');
   if (editProfileButton != null) editProfileButton.addEventListener('click', openEditProfileModal);
+
+  let notificationsButton = document.getElementById('notifications_button');
+  notificationsButton.onclick = getNotifications;
 }
 
 function encodeForAjax(data) {
@@ -287,5 +290,62 @@ if (about_btn != null){
 }
 
 
+function accessGrantedCU(notification){
+    let req_str = "";
+    req_str += "<a class=\"\" href=\"/cu/" + notification.content + "\">"
+    req_str += "You have been granted access to vist the cu with code: " + notification.content; 
+    req_str += "</a>";
+    return req_str;
+}
 
+function pollNotifications(){
+  let new_not = document.getElementById("new_notifications");
+
+  if (new_not.className != ""){
+    let req = new XMLHttpRequest();
+    let id = document.getElementById("studentId").value;
+    req.open("GET",  "/users/myNotifications/poll/" + id, true);
+    req.onload = function(){
+      if (this.responseText == "true") new_not.className = "";
+      console.log(this.responseText);
+    }
+    req.send();
+  }
+}
+
+function getNotifications(){
+  let new_not = document.getElementById("new_notifications");
+  let req = new XMLHttpRequest();
+  let id = document.getElementById("studentId").value;
+  let notification_area = document.getElementById("notification_area");
+  notification_area.innerHTML = "";
+  req.open("GET",  "/users/myNotifications/" + id, true);
+
+  req.onload = function () {
+      if (req.status >= 200 && req.status < 400){
+        let notifications = JSON.parse(this.responseText).notifications;
+        for (let i = 0; i < notifications.length; i++) {
+          let req_str = "";
+          if (i != 0) req_str += "<br>";
+          if(notifications[i].notification_type == "AccessGrantedCU") req_str += accessGrantedCU(notifications[i]);
+          notification_area.innerHTML += req_str;
+          notification_area.className = ""; 
+        }
+
+        new_not.className = "d-none";
+      }
+
+      else console.log(this.responseText);
+
+      window.onclick = function(){
+        notification_area.className = "d-none";
+      }
+  };
+
+
+  req.send();
+}
+
+pollNotifications();
 addEventListeners();
+setInterval(pollNotifications, 5000);

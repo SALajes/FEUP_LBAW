@@ -28,7 +28,9 @@ Route::get('/users/myCUs/{id}', 'StudentController@requestCUs');
 Route::get('/users/myCUsAdmin/{id}', 'StudentController@requestCUsAdmin');
 Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
 
+
 //CUs
+Route::get('/cu', 'CUController@showAll');
 Route::get('/cu/{id}', 'CUController@show');
 Route::get('/cu/{id}/feed/', 'CUController@feed');
 Route::get('/cu/{id}/doubts/', 'CUController@doubts');
@@ -41,3 +43,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('register', 'Auth\RegisterController@register')->name('register');
+
+//Notifications
+Route::get('/users/myNotifications/{id}', 'StudentController@notifications');
+Route::get('/users/myNotifications/poll/{id}', 'StudentController@pollNotifications');

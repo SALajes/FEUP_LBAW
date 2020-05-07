@@ -34,6 +34,12 @@ class CUController extends Controller
         return view('pages.cupage', ['cu' => $cu]);
     }
 
+    public function showAll()
+    {
+        $cus = CurricularUnit::all();
+        return response()->json(['cus' => $cus]);
+    }
+
     public function feed($id){
         $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'General')
         ->orderBy('post.date', 'desc')

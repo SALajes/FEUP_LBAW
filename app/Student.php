@@ -91,4 +91,13 @@ class Student extends Authenticatable
     {
         $this->belongsToMany('App\GroupMessageReceiver');
     }
+
+    public function administrator(){
+        return $this->administrator;
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany('App\Notification', 'student_id', 'id');
+    }
 }

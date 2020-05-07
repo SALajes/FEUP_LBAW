@@ -77,6 +77,18 @@ class StudentController extends Controller
         return response()->json(['success' => 'Requested Ratings.' . $id]);
     }
 
+    public function pollNotifications($id){
+        $notification = Student::find($id)->notifications()->orderBy('date', 'desc')->limit(1)->get();
+        if ($notification[0]->seen == false) return "true";
+        return "false";
+    }
+
+    public function notifications($id){
+        $notifications = Student::find($id)->notifications()->orderBy('date', 'desc')->limit(25)->get();
+        for ($i = 0; $i < sizeof($notifications); $i++) DB::table('notification')->where('id', $notifications[$i]->id)->update(['seen' => TRUE]);
+        return response()->json(['notifications' => $notifications]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

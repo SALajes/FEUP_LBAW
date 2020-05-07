@@ -29,7 +29,12 @@
                 <div id="tabs" class="nav nav-tabs nav-fill">
                     <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">My CUs</a>
                     <a class="nav-item nav-link" href="#" role="button" >My Ratings</a>
-                    <a class="nav-item nav-link" href="#" role="button">Manage CUs</a>
+                    <?php
+                        if ($owner && Auth::user()->administrator()){
+                    ?>
+                        <a class="nav-item nav-link" href="#" role="button">Manage CUs</a>
+                        <script src={{ asset('js/admin.js') }} defer></script>
+                    <?php } ?>
                 </div>
             </div>
 
