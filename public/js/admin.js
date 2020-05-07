@@ -13,32 +13,39 @@ function getAllCUs(){
             cu_data += '<div class="accordion" id="accordion">';
             console.log(cu_list)
             let counter = 0;
+            let current_cu = cu_list.cus[0].abbrev;
             for(let i = 0; i < cu_list.cus.length; i++){
-                let cu_name = cu_list.cus[i].abbrev;
-                let next_cu_name = "";
-                let card_body_list = [];
-                while (cu_name == next_cu_name) {
-                    card_body_data = "";
-                    card_body_data += '<div class="card-body">';
-                    card_body_data += 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.';
-                    card_body_data += '</div>';
-                    card_body_list.push("card_body_data");
+                current_cu = cu_list.cus[i].abbrev;
+                let aux = [];
+                let str = "";
+                str += '<div class="card-body">';
+                str += 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.';
+                str += '</div>';
+                aux.push(str);
+                i++;
+                while ((i+1 < cu_list.cus.length) && current_cu == cu_list.cus[i+1].abbrev) {
+                    str = "";
+                    str += '<div class="card-body">';
+                    str += 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.';
+                    str += '</div>';
+                    aux.push(str);
                     i++;
                 }
                 cu_data += '<div class="card">';
                 cu_data += '<div class="card-header" id="heading' + counter + '">';
                 cu_data += '<h2 class="mb-0">';
-                cu_data += '<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse' + counter + '" aria-expanded="false" aria-controls="collapse' + i + '">';
-                cu_data += cu_list.cus[i].abbrev;
+                cu_data += '<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse' + counter + '" aria-expanded="false" aria-controls="collapse' + counter + '">';
+                cu_data += current_cu;
                 cu_data += '</button>';
                 cu_data += '</h2>';
                 cu_data += '</div>';
                 cu_data += '<div id="collapse' + counter + '" class="collapse show" aria-labelledby="heading' + counter + '" data-parent="#accordion">';
-                for (let j = 0; j != card_body_list.length; j++) {
-                    cu_data += card_body_list[j];
+                for (let j = 0; j != aux.length; j++) {
+                    cu_data += aux[j];
                 }
                 cu_data += '</div>';
                 cu_data += '</div>';
+                aux = [];
                 counter++;
             }
             cu_data += '</div>';

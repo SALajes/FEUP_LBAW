@@ -38,8 +38,9 @@ class CUController extends Controller
     public function showAll()
     {
         $cus = DB::table('curricular_unit')
-        ->select('abbrev', 'student_id')
-        ->join('enrolled', 'id', '=', 'cu_id')
+        ->select('curricular_unit.abbrev', 'student.id', 'student.student_number', 'student.name', 'student.email')
+        ->join('enrolled', 'curricular_unit.id', '=', 'enrolled.cu_id')
+        ->join('student', 'enrolled.student_id', '=', 'student.id')
         ->get();
         return response()->json(['cus' => $cus]);
     }
