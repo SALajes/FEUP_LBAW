@@ -77,12 +77,4 @@ class CUController extends Controller
         return "about";
     }
 
-    public function requestCU(){
-        $cus = DB::table('enrolled')
-                ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
-                ->select('curricular_unit.abbrev', 'curricular_unit.id')
-                ->where('enrolled.student_id', '=', Auth::user()->id)
-                ->get();
-        return view('pages.requestCU', ['cus' => $cus]);
-    }
 }

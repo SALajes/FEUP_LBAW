@@ -198,6 +198,7 @@ CREATE TABLE cu_request(
    name              TEXT NOT NULL,
    abbrev            TEXT NOT NULL,
    link_to_cu_page   TEXT NOT NULL,
+   additional_info   TEXT,
    request_status    request_status_enum DEFAULT 'NotSeen',
    student_id        INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE
 );

@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+<script src={{ asset('js/requestCU.js') }} defer></script>
 
 @extends('layouts.app')
 
@@ -26,19 +27,32 @@
                 </ul>
         </section>
         </aside>
-        <!-- offset-lg-0 offset-md-2 offset-3 -->
-        <div id="content" class="col-12 col-lg-9">
-            <div id="nav">
-                <div id="tabs" class="nav nav-tabs nav-fill">
-                    <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">My CUs</a>
-                    <a class="nav-item nav-link" href="#" role="button" >My Ratings</a>
-                </div>
-            </div>
+		<main id="mainArea" class="col-12 col-lg-6">
+			<form action="" method="POST">
+				<input name="student_id" id="student_id" type="hidden" value="{{ Auth::user() -> id }}" readonly>
+				<div class="form-group">
+					<label for="cu_name">CU name:</label>
+    				<input type="text" class="form-control" id="cu_name" name="cu_name" placeholder="Bases de Dados">
+				</div>
 
-            <input id="student_id" type="hidden" value="{{ Auth::user() -> id }}" readonly>
-            <div id="data"></div>
+				<div class="form-group">
+					<label for="cu_abbrev">CU abbreviation:</label>
+    				<input type="text" class="form-control" id="cu_name" name="cu_name" placeholder="BDAD">
+				</div>
 
-        </div>
+				<div class="form-group">
+					<label for="cu_page">Link to page with CU info:</label>
+    				<input type="text" class="form-control" id="cu_page" name="cu_page">
+				</div>
+
+				<div class="form-group">
+    				<label for="additional_info">Additional Info</label>
+    				<textarea class="form-control" id="additional_info" name="additional_info" rows="3"></textarea>
+  				</div>
+
+				  <button type="submit" class="btn btn-primary" disabled>Submit</button>
+			</form>
+        </main>
     </div>
 </div>
 

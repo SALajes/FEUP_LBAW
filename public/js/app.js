@@ -307,7 +307,6 @@ function pollNotifications(){
     req.open("GET",  "/users/myNotifications/poll/" + id, true);
     req.onload = function(){
       if (this.responseText == "true") new_not.className = "";
-      console.log(this.responseText);
     }
     req.send();
   }
