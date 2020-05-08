@@ -1,6 +1,6 @@
 "use strict";
 
-function getAllCUs(){
+async function getAllCUs(){
     cu_data = "";
     data.innerHTML = "";
 
@@ -14,19 +14,19 @@ function getAllCUs(){
             console.log(cu_list)
             let counter = 0;
             let current_cu = cu_list.cus[0].abbrev;
-            for(let i = 0; i < cu_list.cus.length; i++){
+            for(let i = 0; i < cu_list.cus.length; i++) {
                 current_cu = cu_list.cus[i].abbrev;
                 let aux = [];
                 let str = "";
                 str += '<div class="card-body">';
-                str += 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.';
+                str += '<a href="/users/' + cu_list.cus[i].su_id + '">' + cu_list.cus[i].name + '</a>';
                 str += '</div>';
                 aux.push(str);
                 i++;
                 while ((i+1 < cu_list.cus.length) && current_cu == cu_list.cus[i+1].abbrev) {
                     str = "";
                     str += '<div class="card-body">';
-                    str += 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.';
+                    str += '<a href="/users/' + cu_list.cus[i].su_id + '">' + cu_list.cus[i].name + '</a>';
                     str += '</div>';
                     aux.push(str);
                     i++;
@@ -37,6 +37,8 @@ function getAllCUs(){
                 cu_data += '<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse' + counter + '" aria-expanded="false" aria-controls="collapse' + counter + '">';
                 cu_data += current_cu;
                 cu_data += '</button>';
+                cu_data += '<button id="btn_edit_' + cu_list.cus[i].cu_id + '" class="btn btn-primary" type="button">Edit</button>';
+                cu_data += '<button id="btn_delete_' + cu_list.cus[i].cu_id + '" class="btn btn-primary" type="button">Delete</button>';
                 cu_data += '</h2>';
                 cu_data += '</div>';
                 cu_data += '<div id="collapse' + counter + '" class="collapse show" aria-labelledby="heading' + counter + '" data-parent="#accordion">';
@@ -60,10 +62,42 @@ function getAllCUs(){
     req.onerror = function (){ //SE não ligar ao srv
         console.log("Connection Error");
     };
-    
 
     req.send();
 
+    addButtonEventListeners();
+}
+
+function addButtonEventListeners() {
+    sendAjaxRequest('get', '/cu', {}, addButtonEventListenersHandler);
+    // let cu_list = JSON.parse(this.responseText);
+
+}
+
+function addButtonEventListenersHandler() {
+    let cu_list = JSON.parse(this.responseText);
+    for (let i = 0; i != cu_list.cus.length; i++) {
+        let deleteButton = document.querySelector('button#btn_delete_' + cu_list.cus[i].cu_id);
+        console.log(cu_list.cus[i].abbrev + " " + deleteButton)
+        // deleteButton.addEventListener('click', () => {handleDeleteCUButton(cu_list.cus[i].cu_id)});    
+    }
+}
+
+// function handleDeleteCUButton(abbrev)
+
+function sendDeleteCURequest(cu_abbrev) {
+    let req = new XMLHttpRequest();
+    req.open("DELETE", "/cu/" + id, true);
+
+    req.onload = function () {
+        if (req.status >= 200 && req.status < 400){
+            console.log("Nice! :)");
+        }
+
+        else console.log("Whoops... :(");
+    };
+
+    req.send();
 }
 
 

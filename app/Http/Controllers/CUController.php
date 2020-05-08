@@ -38,7 +38,7 @@ class CUController extends Controller
     public function showAll()
     {
         $cus = DB::table('curricular_unit')
-        ->select('curricular_unit.abbrev', 'student.id', 'student.student_number', 'student.name', 'student.email')
+        ->select('curricular_unit.abbrev', 'curricular_unit.id as cu_id', 'student.id as su_id', 'student.student_number', 'student.name', 'student.email')
         ->join('enrolled', 'curricular_unit.id', '=', 'enrolled.cu_id')
         ->join('student', 'enrolled.student_id', '=', 'student.id')
         ->get();
@@ -78,5 +78,14 @@ class CUController extends Controller
 
     public function about($id){
         return "about";
+    }
+
+    public function delete($id)
+    {
+        $cu = CurricularUnit::find($id);
+        $cu->delete();
+
+        return redirect()->back()->with("success","Curricular unit deleted.");
+
     }
 }
