@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS notification CASCADE;
 
 DROP TYPE IF EXISTS feed_type_enum;
 DROP TYPE IF EXISTS notification_type_enum;
+DROP TYPE IF EXISTS request_status_enum;
 
 DROP FUNCTION IF EXISTS set_friends() CASCADE;
 DROP FUNCTION IF EXISTS ban_student() CASCADE;
@@ -33,6 +34,7 @@ DROP FUNCTION IF EXISTS notify_cu_entry() CASCADE;
 
 CREATE TYPE feed_type_enum AS ENUM ('General', 'Doubts', 'Tutoring');
 CREATE TYPE notification_type_enum AS ENUM ('FriendRequest', 'FriendRequestAccepted','NewPost', 'LikeOnPost', 'CommentOnPost', 'RequestAccessCU', 'RequestCU', 'AccessGrantedCU', 'NewMessage', 'NewRating', 'GroupInvite', 'ReplyInvite', 'Tag', 'UserBan', 'UserReport', 'UpdateProf', 'UpdateCU');
+CREATE TYPE request_status_enum AS ENUM ('NotSeen', 'Seen', 'Accepted', 'Rejected');
 
 -- Tables
 
