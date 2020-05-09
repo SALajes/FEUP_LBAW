@@ -1,6 +1,6 @@
 "use strict";
 
-async function getAllCUs(){
+function getAllCUs(){
     cu_data = "";
     data.innerHTML = "";
 
