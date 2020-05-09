@@ -59,6 +59,7 @@ function getAllCUs(){
             }
             cu_data += '</div>';
             data.innerHTML = cu_data;
+            addButtonEventListeners();
         }
         else {
             console.log(req.status);
@@ -71,15 +72,9 @@ function getAllCUs(){
     };
 
     req.send();
-
-    addButtonEventListeners();
 }
 
 function addButtonEventListeners() {
-    sendAjaxRequest('get', '/cu', {}, addButtonEventListenersHandler);
-}
-
-function addButtonEventListenersHandler() {
     for (let i = 0; i < counter; i++) {
         let deleteButton = document.querySelector('button#btn_delete_' + i);
         deleteButton.addEventListener('click', () => {handleDeleteCUButton(i)});    
@@ -88,24 +83,8 @@ function addButtonEventListenersHandler() {
 
 function handleDeleteCUButton(i) {
     let content = cu_names[i];
-    sendAjaxRequest('delete', '/cu/', {content: content}, addButtonEventListenersHandler);
+    sendAjaxRequest('delete', '/cu', {content: content}, () => {console.log("nice")});
 }
-
-function sendDeleteCURequest(cu_abbrev) {
-    let req = new XMLHttpRequest();
-    req.open("DELETE", "/cu/" + id, true);
-
-    req.onload = function () {
-        if (req.status >= 200 && req.status < 400){
-            console.log("Nice! :)");
-        }
-
-        else console.log("Whoops... :(");
-    };
-
-    req.send();
-}
-
 
 // function getAllCUs(){
 //     cu_data = "";

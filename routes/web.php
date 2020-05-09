@@ -36,7 +36,7 @@ Route::get('/cu/{id}/doubts/', 'CUController@doubts');
 Route::get('/cu/{id}/tutoring/', 'CUController@tutoring');
 Route::get('/cu/{id}/about/', 'CUController@about');
 Route::get('/cu/{id}/classes/', 'CUController@classes');
-Route::delete('/cu/', 'CUController@delete');
+Route::delete('/cu', 'CUController@destroy');
 
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');
