@@ -87,6 +87,6 @@ class CUController extends Controller
         ->where('curricular_unit.abbrev', '=', $request->input('content'))
         ->delete();
 
-        return redirect()->back()->with("success","Curricular unit deleted.");
+        return response()->json([]);
     }
 }

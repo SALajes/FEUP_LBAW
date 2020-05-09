@@ -83,7 +83,7 @@ function addButtonEventListeners() {
 
 function handleDeleteCUButton(i) {
     let content = cu_names[i];
-    sendAjaxRequest('delete', '/cu', {content: content}, () => {console.log("nice")});
+    sendAjaxRequest('delete', '/cu', {content: content}, () => {getAllCUs()});
 }
 
 // function getAllCUs(){
