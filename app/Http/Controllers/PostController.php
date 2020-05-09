@@ -11,83 +11,84 @@ use phpDocumentor\Reflection\Types\String_;
 
 class PostController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
 
-    public function show()
-    {
-        if(!Auth::check()) return redirect('/');
+  public function show()
+  {
+    if (!Auth::check()) return redirect('/');
 
-        $id = Auth::user()->id;
+    $id = Auth::user()->id;
 
-        $posts = DB::table('post')
-                    ->select('post.id', 'post.content', 'post.date', 'student.name', 'post.author_id', 'post.cu_id', 'curricular_unit.abbrev')            
-                    ->join('student', 'post.author_id', '=', 'student.id')
-                    ->leftjoin('curricular_unit', 'post.cu_id', '=', 'curricular_unit.id')
-                    ->whereIn('post.cu_id', function($query) use($id) {
-                        $query->select('enrolled.cu_id')
-                                ->from('enrolled')
-                                ->where('enrolled.student_id', '=', $id);
-                    })
-                    ->orWhere('post.public_feed', '=', True)
-                    ->orderBy('post.date', 'desc')
-                    ->limit(10)
-                    ->get();
+    $posts = DB::table('post')
+      ->select('post.id', 'post.content', 'post.date', 'student.name', 'post.author_id', 'post.cu_id', 'curricular_unit.abbrev')
+      ->join('student', 'post.author_id', '=', 'student.id')
+      ->leftjoin('curricular_unit', 'post.cu_id', '=', 'curricular_unit.id')
+      ->whereIn('post.cu_id', function ($query) use ($id) {
+        $query->select('enrolled.cu_id')
+          ->from('enrolled')
+          ->where('enrolled.student_id', '=', $id);
+      })
+      ->orWhere('post.public_feed', '=', True)
+      ->orderBy('post.date', 'desc')
+      ->limit(10)
+      ->get();
 
-        $cus = DB::table('enrolled')
-                ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
-                ->select('curricular_unit.abbrev', 'curricular_unit.id')
-                ->where('enrolled.student_id', '=', $id)
-                ->get();
+    $cus = DB::table('enrolled')
+      ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
+      ->select('curricular_unit.abbrev', 'curricular_unit.id')
+      ->where('enrolled.student_id', '=', $id)
+      ->get();
 
-        return view('pages.homepage', ['posts' => $posts, 'cus' => $cus]);
-    }
+    return view('pages.homepage', ['posts' => $posts, 'cus' => $cus]);
+  }
 
-    public function createPost(Request $request)
-    {
-        $post = new Post();
-        $this->authorize('createPublic', $post);
-        
-        $id = Auth::user()->id;
+  public function createPost(Request $request)
+  {
+    $post = new Post();
+    $this->authorize('createPublic', $post);
 
-        $post->content = $request->input('content');
-        $post->public_feed = true;
-        $post->author_id = $id;
-        $post->save();
+    $id = Auth::user()->id;
 
-        $name = Auth::user()->name;
+    $post->content = $request->input('content');
+    $post->public_feed = true;
+    $post->author_id = $id;
+    $post->save();
 
-        return ['post'=>$post, 'name'=>$name, 'id'=>$id];
-    }
+    $name = Auth::user()->name;
 
-    public function createPostInCUInFeed(Request $request, $cu_id, $feed){
-        $post = new Post();
+    return ['post' => $post, 'name' => $name, 'id' => $id];
+  }
 
-        //$this->authorize('createCU', CurricularUnit::find($cu_id));
-        $this->authorize('createPublic', $post);
-        
-        $id = Auth::user()->id;
+  public function createPostInCUInFeed(Request $request, $cu_id, $feed)
+  {
+    $post = new Post();
 
-        $post->content = $request->input('content');
-        $post->public_feed = false;
-        $post->cu_id = $cu_id;
-        $post->feed_type = $feed;
-        $post->author_id = $id;
-        $post->save();
+    //$this->authorize('createCU', CurricularUnit::find($cu_id));
+    $this->authorize('createPublic', $post);
 
-        $name = Auth::user()->name;
+    $id = Auth::user()->id;
 
-        return ['post'=>$post, 'name'=>$name, 'id'=>$id];
-    }
+    $post->content = $request->input('content');
+    $post->public_feed = false;
+    $post->cu_id = $cu_id;
+    $post->feed_type = $feed;
+    $post->author_id = $id;
+    $post->save();
 
-    public function deletePost($id)
-    {
-        $post = Post::find($id);
-        //$this->authorize('deletePost', Auth::user(), $post);
-        $post->delete();
+    $name = Auth::user()->name;
 
-        return $post;
-    }
+    return ['post' => $post, 'name' => $name, 'id' => $id];
+  }
+
+  public function deletePost($id)
+  {
+    $post = Post::find($id);
+    //$this->authorize('deletePost', Auth::user(), $post);
+    $post->delete();
+
+    return $post;
+  }
 }

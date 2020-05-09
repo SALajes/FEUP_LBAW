@@ -80,12 +80,13 @@ class CUController extends Controller
         return "about";
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
-        $cu = CurricularUnit::find($id);
-        $cu->delete();
+        DB::table('curricular_unit')
+        ->select('curricular_unit.abbrev')
+        ->where('curricular_unit.abbrev', '=', $request->input('content'))
+        ->delete();
 
-        return redirect()->back()->with("success","Curricular unit deleted.");
-
+        return redirect()->back();
     }
 }

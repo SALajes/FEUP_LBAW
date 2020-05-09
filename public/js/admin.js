@@ -1,4 +1,6 @@
 "use strict";
+let counter = 0;
+let cu_names = [];
 
 function getAllCUs(){
     cu_data = "";
@@ -11,10 +13,12 @@ function getAllCUs(){
         if(req.status >= 200 && req.status < 400){ // Se o SRV retornar bem
             let cu_list = JSON.parse(this.responseText);
             cu_data += '<div class="accordion" id="accordion">';
-            console.log(cu_list)
-            let counter = 0;
+            counter = 0;
             let current_cu = cu_list.cus[0].abbrev;
             for(let i = 0; i < cu_list.cus.length; i++) {
+                if (!cu_names.includes(current_cu)) {
+                    cu_names.push(current_cu);
+                }
                 current_cu = cu_list.cus[i].abbrev;
                 let aux = [];
                 let str = "";
@@ -37,8 +41,8 @@ function getAllCUs(){
                 cu_data += '<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse' + counter + '" aria-expanded="false" aria-controls="collapse' + counter + '">';
                 cu_data += current_cu;
                 cu_data += '</button>';
-                cu_data += '<button id="btn_edit_' + cu_list.cus[i-1].cu_id + '" class="btn btn-primary" type="button">Edit</button>';
-                cu_data += '<button id="btn_delete_' + cu_list.cus[i-1].cu_id + '" class="btn btn-primary" type="button">Delete</button>';
+                cu_data += '<button id="btn_edit_' + counter + '" class="btn btn-primary" type="button">Edit</button>';
+                cu_data += '<button id="btn_delete_' + counter + '" class="btn btn-primary" type="button">Delete</button>';
                 cu_data += '</h2>';
                 cu_data += '</div>';
                 cu_data += '<div id="collapse' + counter + '" class="collapse show" aria-labelledby="heading' + counter + '" data-parent="#accordion">';
@@ -49,6 +53,9 @@ function getAllCUs(){
                 cu_data += '</div>';
                 aux = [];
                 counter++;
+                if (!cu_names.includes(current_cu)) {
+                    cu_names.push(current_cu);
+                }
             }
             cu_data += '</div>';
             data.innerHTML = cu_data;
@@ -73,15 +80,16 @@ function addButtonEventListeners() {
 }
 
 function addButtonEventListenersHandler() {
-    let cu_list = JSON.parse(this.responseText);
-    for (let i = 0; i != cu_list.cus.length; i++) {
-        let deleteButton = document.querySelector('button#btn_delete_' + cu_list.cus[i].cu_id);
-        console.log(cu_list.cus[i].abbrev + " " + deleteButton)
-        // deleteButton.addEventListener('click', () => {handleDeleteCUButton(cu_list.cus[i].cu_id)});    
+    for (let i = 0; i < counter; i++) {
+        let deleteButton = document.querySelector('button#btn_delete_' + i);
+        deleteButton.addEventListener('click', () => {handleDeleteCUButton(i)});    
     }
 }
 
-// function handleDeleteCUButton(abbrev)
+function handleDeleteCUButton(i) {
+    let content = cu_names[i];
+    sendAjaxRequest('delete', '/cu/', {content: content}, addButtonEventListenersHandler);
+}
 
 function sendDeleteCURequest(cu_abbrev) {
     let req = new XMLHttpRequest();
