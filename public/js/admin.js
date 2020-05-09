@@ -37,8 +37,8 @@ async function getAllCUs(){
                 cu_data += '<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse' + counter + '" aria-expanded="false" aria-controls="collapse' + counter + '">';
                 cu_data += current_cu;
                 cu_data += '</button>';
-                cu_data += '<button id="btn_edit_' + cu_list.cus[i].cu_id + '" class="btn btn-primary" type="button">Edit</button>';
-                cu_data += '<button id="btn_delete_' + cu_list.cus[i].cu_id + '" class="btn btn-primary" type="button">Delete</button>';
+                cu_data += '<button id="btn_edit_' + cu_list.cus[i-1].cu_id + '" class="btn btn-primary" type="button">Edit</button>';
+                cu_data += '<button id="btn_delete_' + cu_list.cus[i-1].cu_id + '" class="btn btn-primary" type="button">Delete</button>';
                 cu_data += '</h2>';
                 cu_data += '</div>';
                 cu_data += '<div id="collapse' + counter + '" class="collapse show" aria-labelledby="heading' + counter + '" data-parent="#accordion">';
@@ -70,8 +70,6 @@ async function getAllCUs(){
 
 function addButtonEventListeners() {
     sendAjaxRequest('get', '/cu', {}, addButtonEventListenersHandler);
-    // let cu_list = JSON.parse(this.responseText);
-
 }
 
 function addButtonEventListenersHandler() {
