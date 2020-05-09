@@ -32,17 +32,17 @@
 				<input name="student_id" id="student_id" type="hidden" value="{{ Auth::user() -> id }}" readonly>
 				<div class="form-group">
 					<label for="cu_name">CU name:</label>
-    				<input type="text" class="form-control" id="cu_name" name="cu_name" placeholder="Bases de Dados">
+    				<input type="text" class="form-control" id="cu_name" name="cu_name" placeholder="Bases de Dados" required>
 				</div>
 
 				<div class="form-group">
 					<label for="cu_abbrev">CU abbreviation:</label>
-    				<input type="text" class="form-control" id="cu_name" name="cu_name" placeholder="BDAD">
+    				<input type="text" class="form-control" id="cu_abbrev" name="cu_abbrev" placeholder="BDAD" required>
 				</div>
 
 				<div class="form-group">
 					<label for="cu_page">Link to page with CU info:</label>
-    				<input type="text" class="form-control" id="cu_page" name="cu_page">
+    				<input type="text" class="form-control" id="cu_page" name="cu_page" required>
 				</div>
 
 				<div class="form-group">
