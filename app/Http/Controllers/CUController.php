@@ -38,7 +38,7 @@ class CUController extends Controller
     public function showAll()
     {
         $cus = DB::table('curricular_unit')
-        ->select('curricular_unit.abbrev', 'curricular_unit.id as cu_id', 'student.id as su_id', 'student.student_number', 'student.name', 'student.email')
+        ->select('curricular_unit.abbrev', 'curricular_unit.name as cu_name', 'curricular_unit.description as description', 'curricular_unit.id as cu_id', 'student.id as su_id', 'student.student_number', 'student.name', 'student.email')
         ->join('enrolled', 'curricular_unit.id', '=', 'enrolled.cu_id')
         ->join('student', 'enrolled.student_id', '=', 'student.id')
         ->get();
@@ -88,5 +88,15 @@ class CUController extends Controller
         ->delete();
 
         return response()->json([]);
+    }
+
+    public function editName(Request $request, $id) {
+        $aux = strval($id);
+        $aux2 = "cu_name_1";
+        DB::table('curricular_unit')
+        ->where('id', '=', $id)
+        ->update(['name' => $request->cu_name_1]);
+
+        // return response()->json([]);
     }
 }
