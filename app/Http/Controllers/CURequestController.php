@@ -19,6 +19,10 @@ class CURequestController extends Controller
         return view('pages.requestCU', ['cus' => $cus]);
     }
 
+    public function submitRequest(){
+        return redirect("/homepage");
+    }
+
     /**
      * Show the form for creating a new resource.
      *

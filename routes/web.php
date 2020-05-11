@@ -40,6 +40,7 @@ Route::get('/cu/{id}/classes/', 'CUController@classes');
 
 //Requests
 Route::get('/request/cu', 'CURequestController@requestCU');
+Route::post('request/cu', 'CURequestController@submitRequest');
 
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');
