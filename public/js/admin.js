@@ -61,7 +61,7 @@ function getAllCUs(){
                 cu_data += '</button>';
                 // cu_data += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_cu_modal_"' + counter + ' data-whatever="@mdo">Edit</button>'
                 cu_data += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal' + counter + '">Edit</button>'
-                cu_data += '<div class="modal fade" id="editModal' + counter + '" tabindex="-1" role="dialog" aria-labelledby="editModalLabel' + counter + '" aria-hidden="true"> <div class="modal-dialog" role="document"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="editModalLabel' + counter + '"> New message </h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div> <div class="modal-body"> <form method="POST" id="edit_form_' + counter + '"><div class="form-group"> <label for="cu_name_' + counter + '" class="col-form-label"> Name: </label> <input type="text" placeholder="' + cu_names[counter] + '" class="form-control" id="cu_name_' + counter + '" /> <button type="submit" form="edit_form_' + counter + '" class="btn btn-primary"> Update </button> </div> </form> </div> </div> </div> </div>';
+                cu_data += '<div class="modal fade" id="editModal' + counter + '" tabindex="-1" role="dialog" aria-labelledby="editModalLabel' + counter + '" aria-hidden="true"> <div class="modal-dialog" role="document"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="editModalLabel' + counter + '"> New message </h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div> <div class="modal-body"> <form method="POST" action="<?php {{route(\'editCUName\', [\'id\' => ' + cu_ids[counter] + ']);}} ?>" id="edit_form_' + counter + '"><div class="form-group"> <?php {{ method_field(\'POST\') }} @csrf_field ?> <label for="cu_name_' + counter + '" class="col-form-label"> Name: </label> <input type="text" placeholder="' + cu_names[counter] + '" class="form-control" id="cu_name_' + counter + '" /> <button type="submit" form="edit_form_' + counter + '" class="btn btn-primary"> Update </button> </div> </form> </div> </div> </div> </div>';
                 cu_data += '<button id="btn_delete_' + counter + '" class="btn btn-primary" type="button">Delete</button>';
                 cu_data += '</h2>';
                 cu_data += '</div>';
@@ -118,46 +118,6 @@ function handleDeleteCUButton(i) {
     let content = cu_abbrevs[i];
     sendAjaxRequest('delete', '/cu', {content: content}, () => {getAllCUs()});
 }
-
-// function getAllCUs(){
-//     cu_data = "";
-//     data.innerHTML = "";
-
-//     let req = new XMLHttpRequest();
-
-//     req.open("GET", "/cu/", true);
-//     req.onload = function(){
-//         if(req.status >= 200 && req.status < 400){ // Se o SRV retornar bem
-//             let cu_list = JSON.parse(this.responseText);
-//             for(let i = 0; i < cu_list.cus.length; i++){
-//                 let button = '<a class="btn btn-primary" data-toggle="collapse" href="#collapse_' + i + '" role="button" aria-expanded="false" aria-controls="collapse_' + i + '">Manage</a>'
-//                 cu_data += "<tr>";
-//                 cu_data += "<tr>";
-//                 cu_data += "<td>";
-//                 cu_data += "<a href=\"/cu/" + cu_list.cus[i].id + "\">" + cu_list.cus[i].abbrev + "</a>";
-//                 cu_data += "</td>";
-//                 cu_data += "<td>" + button + "</td>";
-//                 cu_data+= "</tr>";
-//             }
-//             data.innerHTML = "<section class=\"row\"><table class=\"table text-center table-hover\"><thead><tr><th scope=\"col\">Name</th></th><th scope=\"col\">Action</th></tr></thead><tbody>" + cu_data;
-//             for(let i = 0; i < cu_list.cus.length; i++) {
-//                 let collapse = '<div class="collapse" id="collapse_' + i + '"><div class="card card-body">' + cu_list.cus[i].abbrev + '</div></div>'
-//                 data.innerHTML += "<tr>" + collapse + "</tr>"
-//             }
-//             data.innerHTML +=  + "</tbody></table></section>";
-//         }
-		
-// 		else console.log(req.status);
-//     };
-    
-//     req.onerror = function (){ //SE não ligar ao srv
-//         console.log("Connection Error");
-//     };
-    
-
-//     req.send();
-
-// }
 
 function getManageCUs(){
     data.innerHTML = '';
