@@ -97,6 +97,6 @@ class CUController extends Controller
         ->where('id', '=', $id)
         ->update(['name' => $request->cu_name_1]);
 
-        // return response()->json([]);
+        //return response()->json([]);
     }
 }
