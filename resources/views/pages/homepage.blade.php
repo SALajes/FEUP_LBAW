@@ -38,7 +38,7 @@
 
             <section id="posts">
             <?php
-                foreach($posts as $post) print_post($post);
+                foreach($posts as $post) print_post($post, $numComments);
                 //@each('partials.post@print_post', $posts, 'post')
             ?>
                 

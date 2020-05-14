@@ -77,7 +77,7 @@ function createPost(post) {
     </div>
 
     <div class="post-footer">
-      <a href="#" class="number-comments">X comments</a>
+      <a href="#" class="number-comments">0 comments</a>
     </div>
   `;
 

@@ -36,13 +36,21 @@ class PostController extends Controller
                     ->limit(10)
                     ->get();
 
+        $numComments = DB::table('comment')
+                    ->select('comment.post_id', DB::raw('count(*)'))
+                    ->join('post', 'comment.post_id', '=', 'post.id')
+                    ->groupBy('comment.post_id')
+                    ->get();
+
         $cus = DB::table('enrolled')
                 ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
                 ->select('curricular_unit.abbrev', 'curricular_unit.id')
                 ->where('enrolled.student_id', '=', $id)
                 ->get();
+        
+        print_r($numComments);
 
-        return view('pages.homepage', ['posts' => $posts, 'cus' => $cus]);
+        return view('pages.homepage', ['posts' => $posts, 'cus' => $cus, 'numComments'=>$numComments]);
     }
 
     public function createPost(Request $request)

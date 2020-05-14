@@ -1,4 +1,4 @@
-<?php function print_post($post) {?>
+<?php function print_post($post, $numComments) {?>
 <article class="card post post-margins" data-id="{{ $post->id}}">
   <div class="post-header d-flex justify-content-between">
     <div class="post-header-left">
@@ -14,7 +14,21 @@
   </div>
 
   <div class="post-footer">
-    <a href="#" class="number-comments">X comments</a>
+    <a href="#" class="number-comments">
+      <?php
+        $hasPrint = false;
+
+        foreach ($numComments as $num) {
+          if($num->post_id == $post->id) {
+			printf("%d comments", $num->count);
+			$hasPrint = true;
+		  }
+		}
+		
+		if(!$hasPrint)
+			echo("0 comments");
+      ?>
+    </a>
   </div>
 </article>
 <?php
