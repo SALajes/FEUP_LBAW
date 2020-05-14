@@ -1,5 +1,6 @@
 .post-margins {
     margin-top: 3rem;
+    border: 3rem solid #3355ae;
 }
 
 .post-header {
@@ -7,36 +8,32 @@
     margin-top: 0.3rem;
     margin-bottom: 0;
     background-color: white;
-    border-color: white;
 }
 
 .post-header-left .cu-badge {
+    margin-left: 1.3rem;
     background-color: #3355ae;
+    font-size: normal;
 }
 
-.post-footer {
-    padding: 0.75rem 1.25rem 0.75rem 1.25rem;
-    background-color: white;
-    border-color: white;
+.post-user {
+    font-size: larger;
 }
 
 .post-user-icon {
     padding-right: 0.6rem;
 }
 
-.post-delete {
-    color: #3355ae;
+.post-body {
+    font-size: large;
+    line-height: 200%;
 }
 
 .number-comments{
     padding-right: 2rem;
 }
 
-.publish-card {
-    border: 0.1rem solid #13cad2;
-}
-
-#post_btn {
-    background-color: #3355ae;
-    border: #3355ae;
+.post-footer {
+    padding: 0.75rem 1.25rem 0.75rem 1.25rem;
+    background-color: white;
 }

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
-<link rel="stylesheet" href="{{ asset('css/post.css') }}">
+<link rel="stylesheet" href="{{ asset('css/mainPost.css') }}">
 
 @extends('layouts.app')
 
@@ -21,10 +21,13 @@
         </aside>
 
         <main id="mainArea" class="col-12 col-lg-6">
-            <div>
-                @include('partials.publish_card', ['where'=>"public"])
-
-            </div>
+            @include('partials.mainPost')
+            
+            <section id="comments">
+                @foreach($comments as $comment)
+                    @include('partials.comment')
+                @endforeach
+            </section>
         </main>
         
         <section class="col-3">

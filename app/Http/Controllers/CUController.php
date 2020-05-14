@@ -10,7 +10,7 @@ function post_to_string($post){
     $str .= "<article class=\"card post post-margins\" data-id=\"".  $post->id ."\">";
     $str .=  "<div class=\"post-header d-flex justify-content-between\">";
     $str .= "<div class=\"post-header-left\">";
-    $str .= "<a href=\"/users/" . $post->author_id . "\"><i class=\"icon-user post-user\"></i>" . $post->name . "</a>";
+    $str .= "<a href=\"/users/" . $post->author_id . "\"><i class=\"icon-user post-user-icon\"></i>" . $post->name . "</a>";
     $str .= "<a href=\"/cu/" .$post->cu_id . "\" class=\"badge badge-pill badge-primary cu-badge\">" . $post->abbrev ."</a>";
     $str .= "</div>";
     $str .= " <a class=\"delete-post\"><i class=\"icon-trash post-delete\"></i></a>";

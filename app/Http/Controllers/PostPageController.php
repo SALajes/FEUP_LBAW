@@ -8,26 +8,35 @@ use Illuminate\Support\Facades\DB;
 
 class PostPageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function show($postId)
     {
         if(!Auth::check()) return redirect('/');
-
-        $id = Auth::user()->id;
 
         $post = DB::table('post')
                     ->select('post.id', 'post.content', 'post.date', 'student.name', 'post.author_id', 'post.cu_id', 'curricular_unit.abbrev')            
                     ->join('student', 'post.author_id', '=', 'student.id')
                     ->leftjoin('curricular_unit', 'post.cu_id', '=', 'curricular_unit.id')
-                    ->whereIn('post.cu_id', function($query) use($id) {
-                                $query->select('enrolled.cu_id')
-                                ->from('enrolled')
-                                ->where('enrolled.student_id', '=', $id);
-                    })
-                    ->orWhere('post.public_feed', '=', True)
                     ->where('post.id', '=', $postId)
                     ->orderBy('post.date', 'desc')
                     ->get();
 
-        return view('pages.postpage');
+        $numComments = DB::table('comment')
+                    ->select(DB::raw('count(*)'))
+                    ->where('comment.post_id', '=', $postId)
+                    ->get();
+             
+        $comments = DB::table('comment')
+                    ->select('comment.id', 'comment.content', 'comment.date', 'comment.author_id', 'student.name')
+                    ->join('student', 'comment.author_id', '=', 'student.id')
+                    ->where('comment.post_id', '=', $postId)
+                    ->orderBy('comment.date', 'asc')
+                    ->get();
+
+        return view('pages.postpage', ['post'=>$post, 'numComments'=>$numComments, 'comments'=>$comments]);
     }
 }

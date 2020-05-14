@@ -31,7 +31,6 @@
             <div>
                 @include('partials.publish_card', ['where'=>"public"])
             </div>
-
             <!-- <hr id="post-division"> -->
 
             <section id="posts">

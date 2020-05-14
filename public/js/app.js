@@ -68,7 +68,7 @@ function createPost(post) {
   
   new_post.innerHTML = `
     <div class="post-header d-flex justify-content-between">
-      <a href="${post.id}"><i class="icon-user post-user"></i>${post.name}</a>
+      <a href="${post.id}"><i class="icon-user post-user-icon"></i>${post.name}</a>
       <a class="delete-post"><i class="icon-trash post-delete"></i></a>
     </div>
 
