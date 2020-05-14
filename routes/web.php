@@ -20,6 +20,7 @@ Route::delete('api/posts/{id}', 'PostController@deletePost');
 
 // Post page
 Route::get('post/{id}', 'PostPageController@show');
+Route::put('api/comments', 'PostPageController@createComment');
 
 // Students
 Route::get('/users/{id}', 'StudentController@show');

@@ -393,7 +393,7 @@ INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Comida??
 
 --comment_thread--
 INSERT INTO comment_thread (comment_id, parent_id) VALUES (6, 5);
-INSERT INTO comment_thread (comment_id, parent_id) VALUES (7, 6);
+INSERT INTO comment_thread (comment_id, parent_id) VALUES (7, 5);
 INSERT INTO comment_thread (comment_id, parent_id) VALUES (8, 3);
 
 --message--

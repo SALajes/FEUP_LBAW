@@ -16,3 +16,16 @@
         </a>
     </div>
 </article>
+
+<section class="addComment">
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
+        +
+    </button>
+    
+    <div id="collapseForm" class="collapse">
+        <form class="newComment">
+            <textarea class="commentContent" rows="1" placeholder="Write a comment"></textarea>
+            <button id="postComment" type="submit" class="btn btn-primary">Post</button>
+        </form>
+    </div>
+</section>

@@ -1,8 +1,9 @@
 function addEventListeners() {
   if (window.location.pathname == "/homepage"){
-  let postCreator = document.querySelector('div.publish-card form.new_post');
-  if(postCreator != null)
-    postCreator.addEventListener('submit', sendCreatePostRequest);
+    let postCreator = document.querySelector('div.publish-card form.new_post');
+    
+    if(postCreator != null)
+      postCreator.addEventListener('submit', sendCreatePostRequest);
   }
 
   let postDeleter = document.querySelectorAll('article.post div.post-header a.delete-post');
@@ -15,6 +16,11 @@ function addEventListeners() {
 
   let notificationsButton = document.getElementById('notifications_button');
   notificationsButton.onclick = getNotifications;
+
+  let commentCreator = document.querySelector('section.addComment div#collapseForm form.newComment') 
+
+  if(commentCreator != null)
+    commentCreator.addEventListener('submit', sendCreateCommentRequest)
 }
 
 function encodeForAjax(data) {
@@ -45,7 +51,7 @@ function sendCreatePostRequest(event) {
 
 function postAddedHandler() {
   if (this.status != 200) window.location ='/homepage';
-  console.log(this.responseText);
+
   let post = JSON.parse(this.responseText);
 
   let new_post = createPost(post);
@@ -68,7 +74,11 @@ function createPost(post) {
   
   new_post.innerHTML = `
     <div class="post-header d-flex justify-content-between">
-      <a href="${post.id}"><i class="icon-user post-user-icon"></i>${post.name}</a>
+      <div class="post-header-left">
+        <a href="/users/${post.post.author_id}"><i class="icon-user post-user-icon"></i>${post.name}</a>
+        <a href="/cu/${post.post.cu_id}" class="badge badge-pill badge-primary cu-badge">${post.abbrev == undefined ? "" : post.abbrev}</a>
+      </div>
+
       <a class="delete-post"><i class="icon-trash post-delete"></i></a>
     </div>
 
@@ -77,7 +87,7 @@ function createPost(post) {
     </div>
 
     <div class="post-footer">
-      <a href="#" class="number-comments">0 comments</a>
+      <a href="/post/${post.post.id}" class="number-comments">0 comments</a>
     </div>
   `;
 
@@ -106,6 +116,58 @@ function postDeletedHandler() {
 
 function openEditProfileModal() {
   console.log("clicked");
+}
+
+function sendCreateCommentRequest(event) {
+  let content = this.querySelector('textarea.commentContent').value;
+  let postId = document.querySelector('article.post').getAttribute('data-id');
+  
+  if(content != '')
+    sendAjaxRequest('put', '/api/comments/', {content: content, postId: postId}, commentAddedHandler);
+
+  event.preventDefault();
+}
+
+function commentAddedHandler() {
+  if (this.status != 200) window.location ='/homepage';
+
+  let comment = JSON.parse(this.responseText);
+  console.log(comment);
+  let new_comment = createComment(comment);
+  
+  let form = document.querySelector('section.addComment div#collapseForm form.newComment') 
+  form.querySelector('textarea.commentContent').value="";
+
+  let section = document.getElementById('comments');
+  let first_comment = document.querySelector('.comment');
+  
+  section.insertBefore(new_comment, first_comment);
+}
+
+function createComment(comment) {
+  let new_comment = document.createElement('article');
+  new_comment.classList.add('card');
+  new_comment.classList.add('post');
+  new_comment.classList.add('post-margins');
+  new_comment.classList.add('comment');
+  new_comment.setAttribute('data-id', comment.comment.id);
+  
+  new_comment.innerHTML = `
+    <div class="post-header d-flex justify-content-between">
+      <div class="post-header-left">
+        <a href="/users/${comment.comment.author_id}"><i class="icon-user post-user-icon"></i>${comment.name}</a>
+      </div>
+    </div>
+
+    <div class="card-body">
+      ${comment.comment.content }
+    </div>
+
+    <div class="post-footer">
+    </div>
+  `;
+
+  return new_comment;
 }
 
 //CUs
@@ -165,7 +227,6 @@ function sendCreateTutorPostRequest(event) {
   
     event.preventDefault();
 }
-
 
 function getFeed() {
     about_btn.style.textDecoration = "";
@@ -258,7 +319,6 @@ function getClasses(){
     disable_posting();
 }
 
-
 function getAbout(){
     classes_btn.style.textDecoration = "";
     tutor_btn.style.textDecoration = "";
@@ -276,7 +336,6 @@ function getAbout(){
     disable_posting();
 }
 
-
 if (about_btn != null){
     about_btn.onclick = getAbout;
     classes_btn.onclick = getClasses;
@@ -288,7 +347,6 @@ if (about_btn != null){
     vert_hor();
     getFeed();
 }
-
 
 function accessGrantedCU(notification){
     let req_str = "";

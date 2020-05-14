@@ -28,6 +28,7 @@
                     @include('partials.comment')
                 @endforeach
             </section>
+            {{$subcomments}}
         </main>
         
         <section class="col-3">

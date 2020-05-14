@@ -40,10 +40,14 @@ class PostController extends Controller
         $postsId = array_column($posts->toArray(), 'id');
 
         $numComments = DB::table('comment')
-                    ->select('comment.post_id', DB::raw('count(*)'))
-                    ->whereIn('comment.post_id', $postsId)
-                    ->groupBy('comment.post_id')
-                    ->get();
+                        ->select('comment.post_id', DB::raw('count(*)'))
+                        ->whereIn('comment.post_id', $postsId)
+                        ->whereNotIn('comment.id', function($query) {
+                            $query->select('comment_id')
+                                    ->from('comment_thread');
+                        })                    
+                        ->groupBy('comment.post_id')
+                        ->get();
 
         $cus = DB::table('enrolled')
                 ->select('curricular_unit.abbrev', 'curricular_unit.id')
