@@ -1,5 +1,4 @@
-<?php function print_post($post, $numComments) {?>
-<article class="card post post-margins" data-id="{{ $post->id}}">
+<article class="card post post-margins" data-id="{{$post->id}}">
   <div class="post-header d-flex justify-content-between">
     <div class="post-header-left">
       <a href="/users/{{ $post->author_id }}"><i class="icon-user post-user"></i>{{ $post->name }}</a>
@@ -14,7 +13,7 @@
   </div>
 
   <div class="post-footer">
-    <a href="#" class="number-comments">
+    <a href="/post/{{$post->id}}" class="number-comments">
       <?php
         $hasPrint = false;
 
@@ -31,6 +30,3 @@
     </a>
   </div>
 </article>
-<?php
-}
-?>

@@ -6,7 +6,6 @@
 
 @include('partials.navbar')
 @include('partials.sidebar')
-@include('partials.publish_card')
 @section('title', 'CU Page')
 
 @section('content')
@@ -20,7 +19,7 @@
         <div id="content" class="col-12 col-lg-9">
             <section id="mainArea" class="col-12 col-lg-9">
                 <div>
-                    <?php post_form($cu->abbrev); ?>
+                    @include('partials.publish_card', ['where'=>$cu->abbrev])
                 </div>
                 <input id="cu_id" type="hidden" value="{{ $cu->id }}" readonly>
                 <div id="data"></div>

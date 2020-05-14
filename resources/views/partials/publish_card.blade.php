@@ -1,4 +1,3 @@
-<?php function post_form($where) { ?>
 <div class="card publish-card">
     <form class="new_post">
         <div class="post-header form-group">
@@ -20,4 +19,3 @@
         </div> 
     </form>
 </div>
-<?php } ?>

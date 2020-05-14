@@ -35,7 +35,8 @@ class PostController extends Controller
                     ->orderBy('post.date', 'desc')
                     ->limit(10)
                     ->get();
-    
+        
+
         $postsId = array_column($posts->toArray(), 'id');
 
         $numComments = DB::table('comment')
