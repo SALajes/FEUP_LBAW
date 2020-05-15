@@ -15,6 +15,68 @@ function getAllCUs(){
     req.onload = function(){
         if(req.status >= 200 && req.status < 400){ // Se o SRV retornar bem
             let cu_list = JSON.parse(this.responseText);
+            console.log(cu_list)
+            counter = 0;
+            let student_counter = 2;
+            let current_cu_abbrev = cu_list.cus[0].abbrev;
+            let current_cu_name = cu_list.cus[0].cu_name;
+            let current_cu_description = cu_list.cus[0].description;
+            let current_cu_id = cu_list.cus[0].cu_id;
+            for(let i = 0; i < cu_list.cus.length; i++) {
+                current_cu_abbrev = cu_list.cus[i].abbrev;
+                current_cu_name = cu_list.cus[i].cu_name;
+                current_cu_description = cu_list.cus[i].description;
+                current_cu_id = cu_list.cus[i].cu_id;
+
+                if (i+1 < cu_list.cus.length && current_cu_abbrev == cu_list.cus[i+1].abbrev) {
+                    student_counter++;
+                }
+                else {
+                    if (!cu_abbrevs.includes(current_cu_abbrev)) {
+                        cu_abbrevs.push(current_cu_abbrev);
+                        cu_data += "<tr>";
+                        cu_data += "<tr>";
+                        cu_data += "<td>";
+                        cu_data += "<a href=\"/cu/" + current_cu_id + "\">" + current_cu_abbrev + "</a>";
+                        cu_data += "</td>";
+                        cu_data += "<td>" + current_cu_name + "</td>";
+                        cu_data += "<td>";
+                        cu_data += student_counter;
+                        cu_data += "</td>";
+                        cu_data+= "</tr>";
+                    }
+                    if (i+1 < cu_list.cus.length && current_cu_abbrev != cu_list.cus[i+1].abbrev) 
+                        student_counter = 1;
+                }                 
+            }
+
+            data.innerHTML = "<section class=\"row\"><table class=\"table text-center table-hover\"><thead><tr><th scope=\"col\">Abbreviature</th></th><th scope=\"col\">Name</th><th scope=\"col\">Number of enrolled students</th></tr></thead><tbody>" + cu_data + "</tbody></table></section>";
+        }
+		
+		else console.log(req.status);
+    };
+    
+    req.onerror = function (){ //SE não ligar ao srv
+        console.log("Connection Error");
+    };
+    
+
+    req.send();
+
+}
+
+
+
+function getAllCUsOLD(){
+    cu_data = "";
+    data.innerHTML = "";
+
+    let req = new XMLHttpRequest();
+
+    req.open("GET", "/cu/", true);
+    req.onload = function(){
+        if(req.status >= 200 && req.status < 400){ // Se o SRV retornar bem
+            let cu_list = JSON.parse(this.responseText);
             cu_data += '<div class="accordion" id="accordion">';
             counter = 0;
             let current_cu_abbrev = cu_list.cus[0].abbrev;
