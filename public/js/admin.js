@@ -27,7 +27,6 @@ function getAllCUs(){
                 current_cu_name = cu_list.cus[i].cu_name;
                 current_cu_description = cu_list.cus[i].description;
                 current_cu_id = cu_list.cus[i].cu_id;
-
                 if (i+1 < cu_list.cus.length && current_cu_abbrev == cu_list.cus[i+1].abbrev) {
                     student_counter++;
                 }

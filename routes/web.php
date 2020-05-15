@@ -38,7 +38,9 @@ Route::get('/cu/{id}/tutoring/', 'CUController@tutoring');
 Route::get('/cu/{id}/about/', 'CUController@about');
 Route::get('/cu/{id}/classes/', 'CUController@classes');
 Route::delete('/cu', 'CUController@destroy');
-Route::post('/cu/{id}/editName', 'CUController@editName')->name('editCUName');
+Route::post('/cu/{id}/editName', 'CUController@editName');
+Route::post('/cu/{id}/editAbbrev', 'CUController@editAbbrev');
+Route::post('/cu/{id}/editDescription', 'CUController@editDescription');
 
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');

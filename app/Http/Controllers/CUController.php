@@ -91,12 +91,26 @@ class CUController extends Controller
     }
 
     public function editName(Request $request, $id) {
-        $aux = strval($id);
-        $aux2 = "cu_name_1";
         DB::table('curricular_unit')
         ->where('id', '=', $id)
-        ->update(['name' => $request->cu_name_1]);
+        ->update(['name' => $request->input('cu_name')]);
 
-        //return response()->json([]);
+        return redirect()->back();
+    }
+
+    public function editAbbrev(Request $request, $id) {
+        DB::table('curricular_unit')
+        ->where('id', '=', $id)
+        ->update(['abbrev' => $request->input('cu_abbrev')]);
+
+        return redirect()->back();
+    }
+
+    public function editDescription(Request $request, $id) {
+        DB::table('curricular_unit')
+        ->where('id', '=', $id)
+        ->update(['description' => $request->input('cu_description')]);
+
+        return redirect()->back();
     }
 }
