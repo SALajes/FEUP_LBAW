@@ -119,7 +119,7 @@ function openEditProfileModal() {
 }
 
 function sendCreateCommentRequest(event) {
-  let content = this.querySelector('textarea.commentContent').value;
+  let content = this.querySelector('textarea.comment-content').value;
   let postId = document.querySelector('article.post').getAttribute('data-id');
   
   if(content != '')
@@ -136,7 +136,7 @@ function commentAddedHandler() {
   let new_comment = createComment(comment);
   
   let form = document.querySelector('section.add-comment div#collapseForm form.newComment') 
-  form.querySelector('textarea.commentContent').value="";
+  form.querySelector('textarea.comment-content').value="";
 
   let section = document.getElementById('comments');
   let first_comment = document.querySelector('.comment');
