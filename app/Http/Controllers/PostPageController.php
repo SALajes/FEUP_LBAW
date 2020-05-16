@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\CommentThread;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +53,7 @@ class PostPageController extends Controller
         $commentsId = array_column($comments->toArray(), 'id');
 
         $subcomments = DB::table('comment_thread')
-                        ->select('comment_thread.comment_id', 'comment.content', 'comment.date', 'comment.author_id', 'student.name')
+                        ->select('comment_thread.parent_id', 'comment_thread.comment_id', 'comment.content', 'comment.date', 'comment.author_id', 'student.name')
                         ->join('comment', 'comment_thread.comment_id', '=', 'comment.id')
                         ->join('student', 'comment.author_id', '=', 'student.id')
                         ->whereIn('comment_thread.parent_id', $commentsId)
@@ -77,5 +78,36 @@ class PostPageController extends Controller
         $name = Auth::user()->name;
 
         return ['comment'=>$comment, 'name'=>$name, 'id'=>$id];
+    }
+
+    public function createSubComment(Request $request)
+    {
+        $subcomment = new Comment();
+        // $this->authroize('createSubComment, $subcomment);
+
+        $id = Auth::user()->id;
+
+        $subcomment->content = $request->input('content');
+        $subcomment->author_id = $id;
+        $subcomment->post_id = $request->input('postId');
+        $subcomment->save();
+
+        $commentThread = new CommentThread();
+
+        $commentThread->comment_id = $subcomment->id;
+        $commentThread->parent_id = $request->input('commentId');
+
+        $name = Auth::user()->name;
+
+        return ['comment'=>$subcomment, 'name'=>$name, 'id'=>$id];
+    }
+
+    public function deleteComment($id)
+    {
+        $comment = Comment::find($id);
+        // $this->authorize('deleteComment', Auth::user(), $comment);
+        $comment->delete();
+
+        return $comment;
     }
 }

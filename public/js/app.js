@@ -147,23 +147,16 @@ function commentAddedHandler() {
 function createComment(comment) {
   let new_comment = document.createElement('article');
   new_comment.classList.add('card');
-  new_comment.classList.add('post');
-  new_comment.classList.add('post-margins');
   new_comment.classList.add('comment');
   new_comment.setAttribute('data-id', comment.comment.id);
   
   new_comment.innerHTML = `
-    <div class="post-header d-flex justify-content-between">
-      <div class="post-header-left">
-        <a href="/users/${comment.comment.author_id}"><i class="icon-user post-user-icon"></i>${comment.name}</a>
-      </div>
+    <div class="comment-header">
+      <a href="/users/${comment.comment.author_id}"><i class="icon-user post-user-icon"></i>${comment.name}</a>
     </div>
 
     <div class="card-body">
       ${comment.comment.content }
-    </div>
-
-    <div class="post-footer">
     </div>
   `;
 

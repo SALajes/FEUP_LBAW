@@ -390,11 +390,14 @@ INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Posso te
 INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Obrigado, quando podes ajudar me?', 10, 3);
 INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Amanha as 20:40 podes? Eu mando te invite para o discord', 5, 3);
 INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Comida?? Conta comigo', 9, 8);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Só porque disseste eu vou :)', 3, 8);
+INSERT INTO comment (id, content, author_id, post_id) VALUES (DEFAULT, 'Por isso e que falei', 1, 8);
 
 --comment_thread--
 INSERT INTO comment_thread (comment_id, parent_id) VALUES (6, 5);
 INSERT INTO comment_thread (comment_id, parent_id) VALUES (7, 5);
 INSERT INTO comment_thread (comment_id, parent_id) VALUES (8, 3);
+INSERT INTO comment_thread (comment_id, parent_id) VALUES (10, 9);
 
 --message--
 INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 6, 7, 'Tenho uma irritacao nas costas o que pode ser?');

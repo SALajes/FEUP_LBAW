@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/mainPost.css') }}">
+<link rel="stylesheet" href="{{ asset('css/comment.css') }}">
 
 @extends('layouts.app')
 
@@ -28,7 +29,6 @@
                     @include('partials.comment')
                 @endforeach
             </section>
-            {{$subcomments}}
         </main>
         
         <section class="col-3">

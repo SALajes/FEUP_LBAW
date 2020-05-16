@@ -1,0 +1,27 @@
+.comment {
+    margin-top: 3rem;
+}
+
+.comment-header {
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin-top: 0.3rem;
+}
+
+.comment-user-icon {
+    padding-right: 0.6rem;
+}
+
+.comment-body {
+    font-size: large;
+    line-height: 200%;
+}
+
+.subcomment {
+    margin-top: 1rem;
+    margin-left: 2.5rem;
+}
+
+.subcomment-header {
+    padding: 0.5rem 0 0 1rem;
+    margin-top: 0.3rem;
+}

@@ -21,6 +21,9 @@ Route::delete('api/posts/{id}', 'PostController@deletePost');
 // Post page
 Route::get('post/{id}', 'PostPageController@show');
 Route::put('api/comments', 'PostPageController@createComment');
+// Route::delete('api/comments/{id}', 'PostPageController@deleteComment');
+// Route::put('api/comments/{id}/subcomments', 'PostPageController@createSubComment');
+// Route::delete('api/comments/{id}/subcomments/{id}', 'PostPageController@deleteSubComment');
 
 // Students
 Route::get('/users/{id}', 'StudentController@show');

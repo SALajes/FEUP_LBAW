@@ -1,14 +1,31 @@
-<article class="card post post-margins comment" data-id="{{$comment->id}}">
-  <div class="post-header d-flex justify-content-between">
-    <div class="post-header-left">
-      <a href="/users/{{ $comment->author_id }}"><i class="icon-user post-user-icon"></i>{{ $comment->name }}</a>
-    </div>
+<article class="card comment" data-id="{{$comment->id}}">
+  <div class="comment-header">
+    <a href="/users/{{ $comment->author_id }}"><i class="icon-user comment-user-icon"></i>{{ $comment->name }}</a>
   </div>
 
   <div class="card-body">
     {{ $comment->content }}
   </div>
-
-  <div class="post-footer">
-  </div>
 </article>
+
+<?php  
+  $subcomment = null;
+  
+  $aux = $subcomments->toArray();
+  foreach ($aux as $i) {
+    if($comment->id == $i->parent_id)
+      $subcomment = $i;
+  }
+?>
+
+<?php if($subcomment != null) { ?>
+  <article class="card subcomment" data-id="{{$subcomment->comment_id}}">
+    <div class="subcomment-header">
+      <a href="/users/{{ $subcomment->author_id }}"><i class="icon-user post-user-icon"></i>{{ $subcomment->name }}</a>
+    </div>
+
+    <div class="card-body">
+      {{ $subcomment->content }}
+    </div>
+  </article>
+<?php } ?>
