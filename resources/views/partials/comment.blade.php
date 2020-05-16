@@ -9,23 +9,18 @@
 </article>
 
 <?php  
-  $subcomment = null;
-  
-  $aux = $subcomments->toArray();
-  foreach ($aux as $i) {
-    if($comment->id == $i->parent_id)
-      $subcomment = $i;
+  $subs = $subcomments->toArray();
+  foreach ($subs as $sub) {
+    if($comment->id == $sub->parent_id) { ?>
+      <article class="card subcomment" data-id="{{$sub->comment_id}}">
+        <div class="subcomment-header">
+          <a href="/users/{{ $sub->author_id }}"><i class="icon-user post-user-icon"></i>{{ $sub->name }}</a>
+        </div>
+
+        <div class="card-body">
+          {{ $sub->content }}
+        </div>
+      </article>
+    <?php }
   }
 ?>
-
-<?php if($subcomment != null) { ?>
-  <article class="card subcomment" data-id="{{$subcomment->comment_id}}">
-    <div class="subcomment-header">
-      <a href="/users/{{ $subcomment->author_id }}"><i class="icon-user post-user-icon"></i>{{ $subcomment->name }}</a>
-    </div>
-
-    <div class="card-body">
-      {{ $subcomment->content }}
-    </div>
-  </article>
-<?php } ?>

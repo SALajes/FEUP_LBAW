@@ -17,7 +17,7 @@ function addEventListeners() {
   let notificationsButton = document.getElementById('notifications_button');
   notificationsButton.onclick = getNotifications;
 
-  let commentCreator = document.querySelector('section.addComment div#collapseForm form.newComment') 
+  let commentCreator = document.querySelector('section.add-comment div#collapseForm form.newComment') 
 
   if(commentCreator != null)
     commentCreator.addEventListener('submit', sendCreateCommentRequest)
@@ -135,7 +135,7 @@ function commentAddedHandler() {
   console.log(comment);
   let new_comment = createComment(comment);
   
-  let form = document.querySelector('section.addComment div#collapseForm form.newComment') 
+  let form = document.querySelector('section.add-comment div#collapseForm form.newComment') 
   form.querySelector('textarea.commentContent').value="";
 
   let section = document.getElementById('comments');

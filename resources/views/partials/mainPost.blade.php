@@ -1,4 +1,4 @@
-<article class="card post post-margins" data-id="{{ $post[0]->id }}">
+<article class="card post" data-id="{{ $post[0]->id }}">
     <div class="post-header d-flex justify-content-between">
         <div class="post-header-left">
             <a href="/users/{{ $post[0]->author_id }}" class="post-user"><i class="icon-user post-user-icon"></i>{{ $post[0]->name }}</a>
@@ -17,8 +17,8 @@
     </div>
 </article>
 
-<section class="addComment">
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
+<section class="add-comment">
+    <button class="btn add-comment-button" type="button" data-toggle="collapse" data-target="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
         +
     </button>
     
