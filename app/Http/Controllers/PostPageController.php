@@ -77,7 +77,7 @@ class PostPageController extends Controller
 
         $name = Auth::user()->name;
 
-        return ['comment'=>$comment, 'name'=>$name, 'id'=>$id];
+        return ['comment'=>$comment, 'name'=>$name];
     }
 
     public function createSubcomment(Request $request, $commentId)
@@ -92,17 +92,14 @@ class PostPageController extends Controller
         $subcomment->post_id = $request->input('postId');
         $subcomment->save();
         
-        $parentId = $subcomment->id;
-
         $commentThread = new CommentThread();
-        // $this->authroize('createCommentThread, $commentThread);
 
-        $commentThread->comment_id = $parentId;
+        $commentThread->comment_id = $subcomment->id;
         $commentThread->parent_id = $commentId;
         $commentThread->save();
 
         $name = Auth::user()->name;
 
-        return ['subcomment'=>$subcomment, 'name'=>$name, 'id'=>$id];
+        return ['subcomment'=>$subcomment, 'name'=>$name, 'parentId'=>$commentId];
     }
 }

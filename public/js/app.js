@@ -181,7 +181,42 @@ function sendCreateSubcomment(event) {
 }
 
 function subcommentAddedHandler() {
-	console.log(this.responseText);
+	if(this.status != 200) window.location = '/homepage';
+
+	let subcomment = JSON.parse(this.responseText);
+	
+	let new_subcomment = createSubcomment(subcomment);
+	let parentId = subcomment.parentId;
+	
+	let form = document.querySelector(`section.add-subcomment div.comment${parentId} form.new-subcomment`);
+	form.querySelector('textarea.subcomment-content').value = "";
+
+	let section = document.getElementById(`subcomments${parentId}`);
+  let lastSubComment = section.querySelector('article.subcomment:last-of-type');
+ 
+  if(lastSubComment == null)
+    section.insertAdjacentElement('afterbegin', new_subcomment)
+  else
+    section.insertBefore(new_subcomment, lastSubComment.nextSibling);
+}
+
+function createSubcomment(subcomment) {
+	let new_subcomment = document.createElement('article');
+	new_subcomment.classList.add('card');
+	new_subcomment.classList.add('subcomment');
+	new_subcomment.setAttribute('data-id', subcomment.subcomment.id);
+
+	new_subcomment.innerHTML = `
+	<div class="subcomment-header">
+		<a href="/users/${subcomment.subcomment.author_id}"><i class="icon-user post-user-icon"></i>${subcomment.name}</a>
+	</div>
+
+	<div class="card-body">
+		${subcomment.subcomment.content }
+	</div>
+	`;
+
+	return new_subcomment;
 }
 
 //CUs
