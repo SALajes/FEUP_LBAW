@@ -80,10 +80,10 @@ class PostPageController extends Controller
         return ['comment'=>$comment, 'name'=>$name, 'id'=>$id];
     }
 
-    public function createSubComment(Request $request)
+    public function createSubcomment(Request $request, $commentId)
     {
         $subcomment = new Comment();
-        // $this->authroize('createSubComment, $subcomment);
+        // $this->authroize('createSubcomment, $subcomment);
 
         $id = Auth::user()->id;
 
@@ -91,23 +91,18 @@ class PostPageController extends Controller
         $subcomment->author_id = $id;
         $subcomment->post_id = $request->input('postId');
         $subcomment->save();
+        
+        $parentId = $subcomment->id;
 
         $commentThread = new CommentThread();
+        // $this->authroize('createCommentThread, $commentThread);
 
-        $commentThread->comment_id = $subcomment->id;
-        $commentThread->parent_id = $request->input('commentId');
+        $commentThread->comment_id = $parentId;
+        $commentThread->parent_id = $commentId;
+        $commentThread->save();
 
         $name = Auth::user()->name;
 
-        return ['comment'=>$subcomment, 'name'=>$name, 'id'=>$id];
-    }
-
-    public function deleteComment($id)
-    {
-        $comment = Comment::find($id);
-        // $this->authorize('deleteComment', Auth::user(), $comment);
-        $comment->delete();
-
-        return $comment;
+        return ['subcomment'=>$subcomment, 'name'=>$name, 'id'=>$id];
     }
 }

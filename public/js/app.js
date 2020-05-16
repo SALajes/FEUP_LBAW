@@ -1,4 +1,5 @@
 function addEventListeners() {
+  // New post listener
   if (window.location.pathname == "/homepage"){
     let postCreator = document.querySelector('div.publish-card form.new_post');
     
@@ -6,6 +7,7 @@ function addEventListeners() {
       postCreator.addEventListener('submit', sendCreatePostRequest);
   }
 
+  // Post delete listener
   let postDeleter = document.querySelectorAll('article.post div.post-header a.delete-post');
   [].forEach.call(postDeleter, function(deleter){
     deleter.addEventListener('click', sendDeletePostRequest);
@@ -17,10 +19,16 @@ function addEventListeners() {
   let notificationsButton = document.getElementById('notifications_button');
   notificationsButton.onclick = getNotifications;
 
-  let commentCreator = document.querySelector('section.add-comment div#collapseForm form.newComment') 
-
+  // New comment listener
+  let commentCreator = document.querySelector('section.add-comment div#collapseForm form.newComment');
   if(commentCreator != null)
     commentCreator.addEventListener('submit', sendCreateCommentRequest)
+
+  // New subcomment listener
+  let subcommentCreator = document.querySelectorAll('section.add-subcomment div.subcomment-form form.new-subcomment');
+  [].forEach.call(subcommentCreator, function(creator) {
+    creator.addEventListener('submit', sendCreateSubcomment);
+  });
 }
 
 function encodeForAjax(data) {
@@ -100,13 +108,11 @@ function createPost(post) {
 
 function sendDeletePostRequest(event) {
   let id=this.closest('article').getAttribute('data-id');
-  console.log("Post id:" + id);
+  
   sendAjaxRequest('delete', '/api/posts/' + id, null, postDeletedHandler);
 }
 
 function postDeletedHandler() {
-  console.log(this.status);
-  console.log(this.responseText);
   if(this.status != 200) window.location = '/homepage';
   let post = JSON.parse(this.responseText);
 
@@ -132,7 +138,7 @@ function commentAddedHandler() {
   if (this.status != 200) window.location ='/homepage';
 
   let comment = JSON.parse(this.responseText);
-  console.log(comment);
+  
   let new_comment = createComment(comment);
   
   let form = document.querySelector('section.add-comment div#collapseForm form.newComment') 
@@ -161,6 +167,21 @@ function createComment(comment) {
   `;
 
   return new_comment;
+}
+
+function sendCreateSubcomment(event) {
+  let content = this.querySelector('textarea.subcomment-content').value;
+  let postId = document.querySelector('article.post').getAttribute('data-id');
+  let commentId = this.getAttribute('data-id');
+	
+  if(content != '')
+    sendAjaxRequest('put', `/api/comment/${commentId}/subcomments`, {content: content, postId: postId}, subcommentAddedHandler);
+
+  event.preventDefault();
+}
+
+function subcommentAddedHandler() {
+	console.log(this.responseText);
 }
 
 //CUs
