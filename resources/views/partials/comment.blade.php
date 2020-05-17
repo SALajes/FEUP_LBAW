@@ -10,7 +10,7 @@
 	</article>
 
 	<section class="add-subcomment">
-		<button class="btn btn-primary add-subcomment-button" type="button" data-toggle="collapse" data-target=".comment{{$comment->id}}" role="button">
+		<button class="add-subcomment-button" type="button" data-toggle="collapse" data-target=".comment{{$comment->id}}" role="button">
 			+
 		</button>
 		
@@ -20,7 +20,7 @@
 					<textarea class="subcomment-content form-control" rows="1" placeholder="Write a sub comment"></textarea>
 				</div>
 				
-				<button id="post-subcomment" type="submit" class="btn btn-primary">Make comment</button>
+				<button id="post-subcomment" type="submit" class="btn btn-primary">Make subcomment</button>
 			</form>
 		</div>
 	</section>

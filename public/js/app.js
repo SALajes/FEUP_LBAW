@@ -145,9 +145,8 @@ function commentAddedHandler() {
   form.querySelector('textarea.comment-content').value="";
 
   let section = document.getElementById('comments');
-  let first_comment = document.querySelector('.comment');
   
-  section.insertBefore(new_comment, first_comment);
+  section.insertAdjacentElement('afterbegin', new_comment);
 }
 
 function createComment(comment) {
