@@ -14,7 +14,7 @@
         <?php
             use Illuminate\Support\Facades\Auth;
             draw_sidebar_Top($cu->abbrev, Auth::user() -> id, Auth::user() -> name, Auth::user() -> student_number);
-            draw_sidebar_CU();
+            draw_sidebar_CU($cu->id);
         ?>
         <div id="content" class="col-12 col-lg-9">
             <section id="mainArea" class="col-12 col-lg-9">

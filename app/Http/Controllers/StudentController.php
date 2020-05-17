@@ -8,10 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class StudentController extends Controller
-{
-    public function __construct()
-    {
+class StudentController extends Controller {
+    public function __construct() {
         $this->middleware('auth');
     }
 
@@ -20,8 +18,7 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //
     }
 
@@ -30,8 +27,7 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -41,8 +37,7 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -52,16 +47,14 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $student = Student::find($id);
         $owner = false;
         if ($id == Auth::user()->id) $owner = true;
         return view('pages.profile', ['student' => $student, 'owner' => $owner]);
     }
 
-    public function requestCUs($id)
-    {
+    public function requestCUs($id) {
         $cus = DB::table('enrolled')
             ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
             ->select('curricular_unit.abbrev', 'curricular_unit.id')
@@ -71,8 +64,7 @@ class StudentController extends Controller
         return response()->json(['cus' => $cus]);
     }
 
-    public function requestRatings($id)
-    {
+    public function requestRatings($id) {
 
         return response()->json(['success' => 'Requested Ratings.' . $id]);
     }
@@ -96,8 +88,7 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
-    {
+    public function edit(Student $student) {
         //
     }
 
@@ -108,8 +99,7 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
-    {
+    public function update(Request $request, Student $student) {
         //
     }
 
@@ -119,13 +109,11 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
-    {
+    public function destroy(Student $student) {
         //
     }
 
-    public function editPassword(Request $request)
-    {
+    public function editPassword(Request $request) {
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
             return redirect()->back()->with("error","Your current password does not match the password you provided. Please try again.");
@@ -151,7 +139,7 @@ class StudentController extends Controller
 
     }
 
-    public function editProfilePicture(Request $request){
+    public function editProfilePicture(Request $request) {
         $request->validate([
             'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -167,10 +155,9 @@ class StudentController extends Controller
 
         return back()
             ->with('success','You have successfully upload image.');
-
     }
 
-    public function editBio(Request $request){
+    public function editBio(Request $request) {
         $request->validate([
             'bio' => 'string|min:6',
         ]);
@@ -182,6 +169,5 @@ class StudentController extends Controller
 
         return back()
             ->with('success','You have successfully updated the bio.');
-
     }
 }
