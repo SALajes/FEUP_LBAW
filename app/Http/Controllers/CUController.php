@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CurricularUnit;
+use Illuminate\Support\Facades\DB;
 
 function post_to_string($post){
     $str = "";
@@ -36,7 +37,11 @@ class CUController extends Controller
 
     public function showAll()
     {
-        $cus = CurricularUnit::all();
+        $cus = DB::table('curricular_unit')
+        ->select('curricular_unit.abbrev', 'curricular_unit.name as cu_name', 'curricular_unit.description as description', 'curricular_unit.id as cu_id', 'student.id as su_id', 'student.student_number', 'student.name', 'student.email')
+        ->join('enrolled', 'curricular_unit.id', '=', 'enrolled.cu_id')
+        ->join('student', 'enrolled.student_id', '=', 'student.id')
+        ->get();
         return response()->json(['cus' => $cus]);
     }
 
@@ -73,5 +78,39 @@ class CUController extends Controller
 
     public function about($id){
         return "about";
+    }
+
+    public function destroy(Request $request)
+    {
+        DB::table('curricular_unit')
+        ->select('curricular_unit.abbrev')
+        ->where('curricular_unit.abbrev', '=', $request->input('content'))
+        ->delete();
+
+        return response()->json([]);
+    }
+
+    public function editName(Request $request, $id) {
+        DB::table('curricular_unit')
+        ->where('id', '=', $id)
+        ->update(['name' => $request->input('cu_name')]);
+
+        return redirect()->back();
+    }
+
+    public function editAbbrev(Request $request, $id) {
+        DB::table('curricular_unit')
+        ->where('id', '=', $id)
+        ->update(['abbrev' => $request->input('cu_abbrev')]);
+
+        return redirect()->back();
+    }
+
+    public function editDescription(Request $request, $id) {
+        DB::table('curricular_unit')
+        ->where('id', '=', $id)
+        ->update(['description' => $request->input('cu_description')]);
+
+        return redirect()->back();
     }
 }

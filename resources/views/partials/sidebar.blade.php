@@ -4,7 +4,7 @@
     <aside class="col-lg-3 sticky-top align-self-start" id="page-title">
         <section class="row-md-auto">
             <div class="text-center">
-                <h2 class="d-block pt-md-4"><?= $breadcrumb ?></h2>
+                <h2 class="d-block pt-md-4"><?= $breadcrumb ?> </h2>                
                     <div class="d-flex justify-content-center align-items-center">
                         <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $userNo }}">
                             @if (auth()->user()->profile_image)
@@ -76,9 +76,10 @@
     <!-- Divisao Vertical -->
 <?php } ?>
 
-<?php function draw_sidebar_CU() { ?>
+<?php function draw_sidebar_CU($id) { ?>
     <section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
         <div class="btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs" id="cu_tabs">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
             <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
                 <button id="feed_btn" type="button" class="btn btn-link">
                     <h3>Feed</h3>
@@ -106,9 +107,59 @@
             </div>
         </div>
     </section>
-
     <!-- Divisao Vertical -->
     </aside>
+
+    <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginLabel">Edit curricular unit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">                   
+                    <form id="edit-cu-name-form" class="form-horizontal" method="POST" action="/cu/<?=$id?>/editName" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">New name:</label>
+                            <div class="col-md-6">
+                                <input name="cu_name" type="text" id="cu_name" form="edit-cu-name-form"/>
+                            </div>
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="edit-cu-abbrev-form" class="form-horizontal" method="POST" action="/cu/<?=$id?>/editAbbrev" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">New abbreviature:</label>
+                            <div class="col-md-6">
+                                <input name="cu_abbrev" type="text" id="cu_abbrev" form="edit-cu-abbrev-form"/>
+                            </div>
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="edit-cu-description-form" class="form-horizontal" method="POST" action="/cu/<?=$id?>/editDescription" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">New description:</label>
+                            <div class="col-md-6">
+                                <input name="cu_description" type="text" id="cu_description" form="edit-cu-description-form"/>
+                            </div>
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <?php } ?>
 
