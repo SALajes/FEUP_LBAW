@@ -1,0 +1,66 @@
+.post {
+    margin-top: 1rem;
+}
+
+.post-header {
+    padding: 0.75rem 1.25rem 0.5rem 1.25rem;
+    margin-top: 0.3rem;
+}
+
+.post-user {
+    font-size: large;
+}
+
+.post-user-icon {
+    padding-right: 0.6rem;
+}
+
+.post-header-left .cu-badge {
+    margin-left: 1.3rem;
+    background-color: #3355ae;
+    font-size: normal;
+}
+
+.post-body {
+    font-size: large;
+    line-height: 200%;
+}
+
+.post-footer {
+    padding: 0.75rem 1.25rem 0.75rem 1.25rem;
+}
+
+.number-comments{
+    padding-right: 2rem;
+}
+
+.addComment {
+    margin-top: 1rem;
+    margin-left: 5rem;
+}
+
+.add-subcomment-button {
+    margin-top: 1rem;
+    margin-left: 1.3rem;
+    margin-bottom: 1rem;
+    background-color: gray;
+    border: none;
+    border-radius: 50%;
+    font-weight: bold;
+    color: white;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+}
+
+.add-subcomment-button:hover{
+    background-color: lightgray;
+    color: black;
+}
+
+.subcomment-form {
+    background-color: white;
+    margin-left: 1.3rem;
+    margin-right: 1.3rem;
+    padding: 1rem;
+    padding-bottom: 0.5rem;
+    border-radius: 20px;
+}

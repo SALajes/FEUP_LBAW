@@ -2,13 +2,10 @@
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/post.css') }}">
 
-
 @extends('layouts.app')
 
 @include('partials.navbar')
 @include('partials.sidebar')
-@include('partials.publish_card')
-@include('partials.post')
 
 @section('title', 'Homepage')
 
@@ -29,19 +26,17 @@
                 </ul>
         </section>
         </aside>
+        
         <main id="mainArea" class="col-12 col-lg-6">
             <div>
-                <?php post_form("public"); ?>
+                @include('partials.publish_card', ['where'=>"public"])
             </div>
-
             <!-- <hr id="post-division"> -->
 
             <section id="posts">
-            <?php
-                foreach($posts as $post) print_post($post);
-                //@each('partials.post@print_post', $posts, 'post')
-            ?>
-                
+                @foreach($posts as $post)
+                    @include('partials.post')
+                @endforeach
             </section>
         </main>
     

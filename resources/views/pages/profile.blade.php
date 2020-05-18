@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+
 <script src={{ asset('js/profile.js') }} defer></script>
 
 @extends('layouts.app')
@@ -12,8 +13,6 @@
 @section('title', $student->name)
 
 @section('content')
-
-
 
 <div class="container-fuild">
     <div class="row">

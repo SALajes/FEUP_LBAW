@@ -1,10 +1,13 @@
 function addEventListeners() {
+  // New post listener
   if (window.location.pathname == "/homepage"){
-  let postCreator = document.querySelector('div.publish-card form.new_post');
-  if(postCreator != null)
-    postCreator.addEventListener('submit', sendCreatePostRequest);
+    let postCreator = document.querySelector('div.publish-card form.new_post');
+    
+    if(postCreator != null)
+      postCreator.addEventListener('submit', sendCreatePostRequest);
   }
 
+  // Post delete listener
   let postDeleter = document.querySelectorAll('article.post div.post-header a.delete-post');
   [].forEach.call(postDeleter, function(deleter){
     deleter.addEventListener('click', sendDeletePostRequest);
@@ -15,6 +18,17 @@ function addEventListeners() {
 
   let notificationsButton = document.getElementById('notifications_button');
   notificationsButton.onclick = getNotifications;
+
+  // New comment listener
+  let commentCreator = document.querySelector('section.add-comment div#collapseForm form.newComment');
+  if(commentCreator != null)
+    commentCreator.addEventListener('submit', sendCreateCommentRequest)
+
+  // New subcomment listener
+  let subcommentCreator = document.querySelectorAll('section.add-subcomment div.subcomment-form form.new-subcomment');
+  [].forEach.call(subcommentCreator, function(creator) {
+    creator.addEventListener('submit', sendCreateSubcomment);
+  });
 }
 
 function encodeForAjax(data) {
@@ -45,7 +59,7 @@ function sendCreatePostRequest(event) {
 
 function postAddedHandler() {
   if (this.status != 200) window.location ='/homepage';
-  console.log(this.responseText);
+
   let post = JSON.parse(this.responseText);
 
   let new_post = createPost(post);
@@ -68,7 +82,11 @@ function createPost(post) {
   
   new_post.innerHTML = `
     <div class="post-header d-flex justify-content-between">
-      <a href="${post.id}"><i class="icon-user post-user"></i>${post.name}</a>
+      <div class="post-header-left">
+        <a href="/users/${post.post.author_id}"><i class="icon-user post-user-icon"></i>${post.name}</a>
+        <a href="/cu/${post.post.cu_id}" class="badge badge-pill badge-primary cu-badge">${post.abbrev == undefined ? "" : post.abbrev}</a>
+      </div>
+
       <a class="delete-post"><i class="icon-trash post-delete"></i></a>
     </div>
 
@@ -77,7 +95,7 @@ function createPost(post) {
     </div>
 
     <div class="post-footer">
-      <a href="#" class="number-comments">X comments</a>
+      <a href="/post/${post.post.id}" class="number-comments">0 comments</a>
     </div>
   `;
 
@@ -90,13 +108,11 @@ function createPost(post) {
 
 function sendDeletePostRequest(event) {
   let id=this.closest('article').getAttribute('data-id');
-  console.log("Post id:" + id);
+  
   sendAjaxRequest('delete', '/api/posts/' + id, null, postDeletedHandler);
 }
 
 function postDeletedHandler() {
-  console.log(this.status);
-  console.log(this.responseText);
   if(this.status != 200) window.location = '/homepage';
   let post = JSON.parse(this.responseText);
 
@@ -106,6 +122,100 @@ function postDeletedHandler() {
 
 function openEditProfileModal() {
   console.log("clicked");
+}
+
+function sendCreateCommentRequest(event) {
+  let content = this.querySelector('textarea.comment-content').value;
+  let postId = document.querySelector('article.post').getAttribute('data-id');
+  
+  if(content != '')
+    sendAjaxRequest('put', '/api/comments/', {content: content, postId: postId}, commentAddedHandler);
+
+  event.preventDefault();
+}
+
+function commentAddedHandler() {
+  if (this.status != 200) window.location ='/homepage';
+
+  let comment = JSON.parse(this.responseText);
+  
+  let new_comment = createComment(comment);
+  
+  let form = document.querySelector('section.add-comment div#collapseForm form.newComment') 
+  form.querySelector('textarea.comment-content').value="";
+
+  let section = document.getElementById('comments');
+  
+  section.insertAdjacentElement('afterbegin', new_comment);
+}
+
+function createComment(comment) {
+  let new_comment = document.createElement('article');
+  new_comment.classList.add('card');
+  new_comment.classList.add('comment');
+  new_comment.setAttribute('data-id', comment.comment.id);
+  
+  new_comment.innerHTML = `
+    <div class="comment-header">
+      <a href="/users/${comment.comment.author_id}"><i class="icon-user post-user-icon"></i>${comment.name}</a>
+    </div>
+
+    <div class="card-body">
+      ${comment.comment.content }
+    </div>
+  `;
+
+  return new_comment;
+}
+
+function sendCreateSubcomment(event) {
+  let content = this.querySelector('textarea.subcomment-content').value;
+  let postId = document.querySelector('article.post').getAttribute('data-id');
+  let commentId = this.getAttribute('data-id');
+	
+  if(content != '')
+    sendAjaxRequest('put', `/api/comment/${commentId}/subcomments`, {content: content, postId: postId}, subcommentAddedHandler);
+
+  event.preventDefault();
+}
+
+function subcommentAddedHandler() {
+	if(this.status != 200) window.location = '/homepage';
+
+	let subcomment = JSON.parse(this.responseText);
+	
+	let new_subcomment = createSubcomment(subcomment);
+	let parentId = subcomment.parentId;
+	
+	let form = document.querySelector(`section.add-subcomment div.comment${parentId} form.new-subcomment`);
+	form.querySelector('textarea.subcomment-content').value = "";
+
+	let section = document.getElementById(`subcomments${parentId}`);
+  let lastSubComment = section.querySelector('article.subcomment:last-of-type');
+ 
+  if(lastSubComment == null)
+    section.insertAdjacentElement('afterbegin', new_subcomment)
+  else
+    section.insertBefore(new_subcomment, lastSubComment.nextSibling);
+}
+
+function createSubcomment(subcomment) {
+	let new_subcomment = document.createElement('article');
+	new_subcomment.classList.add('card');
+	new_subcomment.classList.add('subcomment');
+	new_subcomment.setAttribute('data-id', subcomment.subcomment.id);
+
+	new_subcomment.innerHTML = `
+	<div class="subcomment-header">
+		<a href="/users/${subcomment.subcomment.author_id}"><i class="icon-user post-user-icon"></i>${subcomment.name}</a>
+	</div>
+
+	<div class="card-body">
+		${subcomment.subcomment.content }
+	</div>
+	`;
+
+	return new_subcomment;
 }
 
 //CUs
@@ -165,7 +275,6 @@ function sendCreateTutorPostRequest(event) {
   
     event.preventDefault();
 }
-
 
 function getFeed() {
     about_btn.style.textDecoration = "";
@@ -258,7 +367,6 @@ function getClasses(){
     disable_posting();
 }
 
-
 function getAbout(){
     classes_btn.style.textDecoration = "";
     tutor_btn.style.textDecoration = "";
@@ -276,7 +384,6 @@ function getAbout(){
     disable_posting();
 }
 
-
 if (about_btn != null){
     about_btn.onclick = getAbout;
     classes_btn.onclick = getClasses;
@@ -288,7 +395,6 @@ if (about_btn != null){
     vert_hor();
     getFeed();
 }
-
 
 function accessGrantedCU(notification){
     let req_str = "";
