@@ -29,6 +29,7 @@
         </aside>
 		<main id="mainArea" class="col-12 col-lg-6">
 			<form action="/request/cu" method="POST">
+				@csrf
 				<input name="student_id" id="student_id" type="hidden" value="{{ Auth::user() -> id }}" readonly>
 				<div class="form-group">
 					<label for="cu_name">CU name:</label>
@@ -50,7 +51,7 @@
     				<textarea class="form-control" id="additional_info" name="additional_info" rows="3"></textarea>
   				</div>
 
-				  <button type="submit" class="btn btn-primary">Submit</button>
+				  <button type="submit" class="btn btn-primary" formaction="/request/newcu">Submit</button>
 			</form>
         </main>
     </div>

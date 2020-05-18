@@ -19,8 +19,25 @@ class CURequestController extends Controller
         return view('pages.requestCU', ['cus' => $cus]);
     }
 
-    public function submitRequest(){
-        return redirect("/homepage");
+    public function submitRequest(Request $request){
+
+        $cu_request = new CURequest();
+        
+        $cu_request->student_id = Auth::user()->id;
+        $cu_request->name = $request->input('cu_name');
+        $cu_request->abbrev = $request->input('cu_abbrev');
+        $cu_request->link_to_cu_page = $request->input('cu_page');
+        $cu_request->additional_info = $request->input('additional_info');
+        $cu_request->request_status = 'NotSeen';
+
+        $cu_request->save();
+
+        return redirect()->route('homepage');
+    }
+
+    public function testPoll(){
+        $test = DB::table('cu_request')->select()->get();
+        return response()->json(['reqs' => $test]);
     }
 
     /**
