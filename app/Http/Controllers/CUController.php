@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CurricularUnit;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 function post_to_string($post){
     $str = "";
@@ -112,5 +113,11 @@ class CUController extends Controller
         ->update(['description' => $request->input('cu_description')]);
 
         return redirect()->back();
+    }
+
+    public function manageRequests($id) {
+        $student = Auth::user();
+        $cu = CurricularUnit::find($id);
+        return view('pages.manage_requests', ['student' => $student, 'cu' => $cu]);
     }
 }
