@@ -52,6 +52,10 @@
                     <span class="d-md-none"> Help</span>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/request/cu"><i class="">+</i></a>
+                    <span class="d-md-none"> Requests</span>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url('/logout') }}"><i class="icon-log-out align-middle"></i></a> 
                     <span class="d-md-none"> Logout</span>
                 </li>

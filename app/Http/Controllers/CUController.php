@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CurricularUnit;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 function post_to_string($post){
     $str = "";
@@ -20,7 +20,6 @@ function post_to_string($post){
     $str .= "<div class=\"card-body\">" . $post->content . "</div>";
     $str .= "<div class=\"post-footer\"><a href=\"#\" class=\"number-comments\">X comments</a></div></article>";
     return $str;
-  
   }
 
 class CUController extends Controller
@@ -118,6 +117,16 @@ class CUController extends Controller
     public function manageRequests($id) {
         $student = Auth::user();
         $cu = CurricularUnit::find($id);
+
+        // $requests = DB::table('cu_request')
+        // ->select('student_id')
+        // ->where()
+
+        // DB::table('curricular_unit')
+        // ->select('curricular_unit.abbrev')
+        // ->where('curricular_unit.abbrev', '=', $request->input('content'))
+        // ->delete();
+
         return view('pages.manage_requests', ['student' => $student, 'cu' => $cu]);
     }
 }
