@@ -327,6 +327,10 @@ function getNotifications(){
           let req_str = "";
           if (i != 0) req_str += "<br>";
           if(notifications[i].notification_type == "AccessGrantedCU") req_str += accessGrantedCU(notifications[i]);
+          else {
+            req_str += "<div class=\"text-primary\">" + notifications[i].content + "</div>";
+            console.log(req_str);
+          }
           notification_area.innerHTML += req_str;
           notification_area.className = ""; 
         }

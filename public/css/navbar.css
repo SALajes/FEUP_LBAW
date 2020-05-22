@@ -105,9 +105,8 @@
     background-color: #000000;
 }
 
-#notification_area a{
+#notification_area > *{
     overflow-wrap: break-word;
-
 }
 
 #not_wrapper {
