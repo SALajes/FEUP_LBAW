@@ -139,47 +139,42 @@
 <?php } ?>
 
 <?php function draw_sidebar_Search() { ?>
-    <section class="row-md-auto justify-content-center">
-
-        <div class="row d-flex flex-wrap justify-content-center">
-
-            <div class="row d-inline-flex flex-wrap">
+    <section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
+        <div class="btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs" id="fields">
+            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
                     <label class="form-check-label" for="inlineRadio1">My CUs</label>
                 </div>
+            </div>     
+            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">All CUs </label>
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2">All CUs </label>
+                </div>
+            </div>
+            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="professors">
+                    <label class="form-check-label" for="inlineCheckbox1">Include Professors</label>
+                </div>
+            </div>
+            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="students">
+                    <label class="form-check-label" for="inlineCheckbox2">Include Students</label>
+                </div>
+            </div>
+            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+                <div class="col-12 text-center">
+                    <label for="customRange2" class=" text-center">Curricular year</label>
+                </div>
+                <div class="col-lg-10 col-6">
+                    <input type="range" class="custom-range" min="1" max="5" id="customRange2">
                 </div>
             </div>
         </div>
-
-        <div class="row d-flex flex-wrap justify-content-center">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="profs">
-                <label class="form-check-label" for="inlineCheckbox1">Include Professors</label>
-            </div>
-        </div>
-
-        <div class="row d-flex flex-wrap justify-content-center">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="students">
-                <label class="form-check-label" for="inlineCheckbox2">Include Students</label>
-            </div>
-        </div>
-
-        <div class="row d-flex flex-wrap justify-content-center">
-            <div class="col-12 text-center">
-                <label for="customRange2" class=" text-center">Curricular year</label>
-            </div>
-            <div class="col-lg-10 col-6">
-                <input type="range" class="custom-range" min="1" max="5" id="customRange2">
-            </div>
-        </div>
-
     </section>
-
     <!-- Divisao Vertical -->
     </aside>
 <?php } ?>

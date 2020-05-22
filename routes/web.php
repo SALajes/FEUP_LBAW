@@ -26,6 +26,10 @@ Route::put('api/comments', 'PostPageController@createComment');
 Route::put('api/comment/{commentId}/subcomments', 'PostPageController@createSubcomment');
 // Route::delete('api/comments/{id}/subcomments/{id}', 'PostPageController@deleteSubComment');
 
+//Search page
+Route::post('/search', 'SearchController@search')->name('submitSearch');
+Route::get('/search', 'SearchController@show')->name('showResults');
+
 // Students
 Route::get('/users/{id}', 'StudentController@show');
 Route::post('/users/{id}/editPassword', 'StudentController@editPassword')->name('editPassword');
@@ -58,3 +62,4 @@ Route::post('register', 'Auth\RegisterController@register')->name('register');
 //Notifications
 Route::get('/users/myNotifications/{id}', 'StudentController@notifications');
 Route::get('/users/myNotifications/poll/{id}', 'StudentController@pollNotifications');
+

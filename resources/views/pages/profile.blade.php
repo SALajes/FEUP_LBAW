@@ -14,7 +14,7 @@
 
 @section('content')
 
-<div class="container-fuild">
+<div class="container-fluid">
     <div class="row">
        <?php
             $bc = "Profile";
