@@ -13,11 +13,18 @@
 
 Route::get('/', 'LandingController@show');
 
+
 // Homepage
 Route::get('homepage', 'PostController@show')->name('homepage');
 Route::put('api/posts', 'PostController@createPost');
-Route::put('api/posts/{cu_id}/{feed}', 'PostController@createPostInCUInFeed');
 Route::delete('api/posts/{id}', 'PostController@deletePost');
+
+// Post page
+Route::get('post/{id}', 'PostPageController@show');
+Route::put('api/comments', 'PostPageController@createComment');
+// Route::delete('api/comments/{id}', 'PostPageController@deleteComment');
+Route::put('api/comment/{commentId}/subcomments', 'PostPageController@createSubcomment');
+// Route::delete('api/comments/{id}/subcomments/{id}', 'PostPageController@deleteSubComment');
 
 // Students
 Route::get('/users/{id}', 'StudentController@show');
@@ -28,15 +35,19 @@ Route::get('/users/myCUs/{id}', 'StudentController@requestCUs');
 Route::get('/users/myCUsAdmin/{id}', 'StudentController@requestCUsAdmin');
 Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
 
-
 //CUs
 Route::get('/cu', 'CUController@showAll');
 Route::get('/cu/{id}', 'CUController@show');
+Route::put('api/posts/{cu_id}/{feed}', 'PostController@createPostInCUInFeed');
 Route::get('/cu/{id}/feed/', 'CUController@feed');
 Route::get('/cu/{id}/doubts/', 'CUController@doubts');
 Route::get('/cu/{id}/tutoring/', 'CUController@tutoring');
 Route::get('/cu/{id}/about/', 'CUController@about');
 Route::get('/cu/{id}/classes/', 'CUController@classes');
+Route::delete('/cu', 'CUController@destroy');
+Route::post('/cu/{id}/editName', 'CUController@editName');
+Route::post('/cu/{id}/editAbbrev', 'CUController@editAbbrev');
+Route::post('/cu/{id}/editDescription', 'CUController@editDescription');
 
 //Requests
 Route::get('/request/cu', 'CURequestController@requestCU');

@@ -74,7 +74,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">New bio</label>
                         <div class="col-md-6">
-                            <input name="bio" type="text" id="bio" form="bio-form" placeholder="{{Auth::user()->bio}}"></input>
+                            <input name="bio" type="text" id="bio" form="bio-form" placeholder="{{Auth::user()->bio}}"/>
                         </div>
                         <div class="col-md-6 col-md-offset-4">
                             <button type="submit" class="btn btn-primary">Update bio</button>
