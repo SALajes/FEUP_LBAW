@@ -11,7 +11,7 @@ class CURequest extends Model
     protected $table = "cu_request";
 
     protected $fillable = [
-        'name', 'abbrev', 'link_to_cu_page', 'additional_info', 'request_status', 'student_id'
+        'cu_name', 'abbrev', 'link_to_cu_page', 'additional_info', 'request_status', 'student_id'
     ];
 
     public function author(){

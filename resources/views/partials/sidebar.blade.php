@@ -35,6 +35,13 @@
         <div class="d-flex justify-content-around">
             <button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
         </div>
+        <div class="d-flex justify-content-around">
+            <a href="{{ url('/manageRequests/') }}" class="btn btn-default">
+                <button id="manage_requests_button" class="btn btn-primary" type="button">
+                    Manage requests 
+                </button>
+            </a>
+        </div>
         <div class="d-flex justify-content-around likes_friend">
             <div>
                 <i class="icon-like" style="color: #0aedb3"></i> <?=$likeCounter?>
@@ -55,11 +62,6 @@
     <section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
         <div class="btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs" id="cu_tabs">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
-            <a href="{{ url('/cu/' . $id . '/manageRequests') }}" class="btn btn-default">
-                <button class="btn btn-primary" type="button">
-                    Manage requests 
-                </button>
-            </a>
             <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
                 <button id="feed_btn" type="button" class="btn btn-link">
                     <h3>Feed</h3>

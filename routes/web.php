@@ -48,7 +48,7 @@ Route::delete('/cu', 'CUController@destroy');
 Route::post('/cu/{id}/editName', 'CUController@editName');
 Route::post('/cu/{id}/editAbbrev', 'CUController@editAbbrev');
 Route::post('/cu/{id}/editDescription', 'CUController@editDescription');
-Route::get('/cu/{id}/manageRequests', 'CUController@manageRequests')->name('manageRequests');
+Route::get('/manageRequests', 'CURequestController@manageRequests')->name('manageRequests');
 
 
 //Requests

@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS message CASCADE;
 DROP TABLE IF EXISTS group_message CASCADE;
 DROP TABLE IF EXISTS group_message_receiver CASCADE;
 DROP TABLE IF EXISTS notification CASCADE;
-DROP TABLE IF EXISTS cu_request  CASCADE;
+DROP TABLE IF EXISTS cu_request CASCADE;
 
 DROP TYPE IF EXISTS feed_type_enum;
 DROP TYPE IF EXISTS notification_type_enum;
@@ -195,7 +195,7 @@ CREATE TABLE notification (
 
 CREATE TABLE cu_request(
    id                SERIAL PRIMARY KEY,
-   name              TEXT NOT NULL,
+   cu_name              TEXT NOT NULL,
    abbrev            TEXT NOT NULL,
    link_to_cu_page   TEXT NOT NULL,
    additional_info   TEXT,
@@ -420,6 +420,8 @@ INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 8, 1,
 INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 4, 5, 'Ja fizeste o que faltava??');
 
 INSERT INTO notification (id, content, student_id, notification_type) VALUES (DEFAULT, 'AAAABBBB', 4, 'Tag');
+
+INSERT INTO cu_request (id, cu_name, abbrev, link_to_cu_page, additional_info, request_status, student_id) VALUES (DEFAULT, 'limao', 'WHAT', 'kfbgr', 'additional', 'NotSeen', 1);
 
 --group_message_receiver--
 -- INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (0, 0, 'LBAW');

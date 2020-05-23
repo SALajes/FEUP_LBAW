@@ -81,4 +81,22 @@ class CURequestController extends Controller
         //
     }
 
+    public function manageRequests()
+    {
+        $student = Auth::user();
+
+        $requests = DB::table('cu_request')
+            ->join('student', 'student.id', '=', 'cu_request.student_id')
+            ->select('cu_request.id', 'student_id', 'cu_name', 'abbrev', 'link_to_cu_page', 
+            'additional_info', 'request_status')
+            ->where('request_status', '=', 'NotSeen')
+            ->orwhere('request_status', '=', 'Seen')
+            ->get();
+
+        return view(
+            'pages.manage_requests',
+            ['student' => $student, 'reqs' => $requests]
+        );
+    }
+
 }
