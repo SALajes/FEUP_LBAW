@@ -421,7 +421,7 @@ INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 4, 5,
 
 INSERT INTO notification (id, content, student_id, notification_type) VALUES (DEFAULT, 'AAAABBBB', 4, 'Tag');
 
-INSERT INTO cu_request (id, cu_name, abbrev, link_to_cu_page, additional_info, request_status, student_id) VALUES (DEFAULT, 'limao', 'WHAT', 'kfbgr', 'additional', 'NotSeen', 1);
+INSERT INTO cu_request (id, cu_name, abbrev, link_to_cu_page, additional_info, request_status, student_id) VALUES (DEFAULT, 'Engenharia de Software', 'ESOF', 'https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=436443', 'Familiarizar-se com os métodos de engenharia e gestão necessários ao desenvolvimento de sistemas de software complexos e/ou em larga escala, de forma economicamente eficaz e com elevada qualidade.', 'NotSeen', 1);
 
 --group_message_receiver--
 -- INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (0, 0, 'LBAW');

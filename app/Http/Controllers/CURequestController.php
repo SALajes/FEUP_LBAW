@@ -87,7 +87,7 @@ class CURequestController extends Controller
 
         $requests = DB::table('cu_request')
             ->join('student', 'student.id', '=', 'cu_request.student_id')
-            ->select('cu_request.id', 'student_id', 'cu_name', 'abbrev', 'link_to_cu_page', 
+            ->select('cu_request.id', 'student.name as student_name', 'student_id', 'cu_name', 'abbrev', 'link_to_cu_page', 
             'additional_info', 'request_status')
             ->where('request_status', '=', 'NotSeen')
             ->orwhere('request_status', '=', 'Seen')

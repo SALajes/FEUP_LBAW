@@ -23,10 +23,8 @@
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Abbrev</th>
-                            <th scope="col">Web page</th>
-                            <th scope="col">Info</th>
-                            <th scope="col">Student</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,25 +32,56 @@
                             <tr>
                                 <td scope="col"><?=$req->cu_name?></td>
                                 <td scope="col"><?=$req->abbrev?></td>
-                                <td scope="col"><?=$req->link_to_cu_page?></td>
-                                <td scope="col"><?=$req->additional_info?></td>
-                                <td scope="col"><?=$req->student_id?></td>
                                 <td scope="col"><?=$req->request_status?></td>
                                 <td scope="col">
+                                <div class="d-flex btn-toolbar">
                                     <form action="{{ url('/acceptRequest/' . $req->id) }}" method="post">
                                         {{ csrf_field() }}
-                                        <button id="manage_requests_button" class="btn btn-success" type="submit">
+                                        <button id="manage_requests_button" class="btn btn-success mx-2" type="submit">
                                             Accept
                                         </button>
-                                    </a>                        
-                                </td>
-                                <td scope="col">
+                                    </form>                        
                                     <form action="{{ url('/denieRequest/' . $req->id) }}" method="post">
                                         {{ csrf_field() }}
-                                        <button id="manage_requests_button" class="btn btn-danger" type="submit">
+                                        <button id="manage_requests_button" class="btn btn-danger mx-2" type="submit">
                                             Denie
                                         </button>
-                                    </a>                        
+                                    </form>                        
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary mx-2" data-toggle="modal" data-target="#details_modal_<?=$req->id?>">
+                                        Details
+                                    </button> 
+                                </div>  
+                                    <div class="modal fade" id="details_modal_<?=$req->id?>" tabindex="-1" role="dialog" aria-labelledby="details_modal_<?=$req->id?>" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body" style="word-wrap: break-word;">
+                                              <p class="font-weight-bold">Name</p>
+                                              <p><?=$req->id?></p>
+                                              <p class="font-weight-bold">Abbreviature</p>
+                                              <p><?=$req->abbrev?></p>
+                                              <p class="font-weight-bold">Institutional page</p>
+                                              <p><?=$req->link_to_cu_page?></p>
+                                              <p class="font-weight-bold">Motive</p>
+                                              <p><?=$req->additional_info?></p>
+                                              <p class="font-weight-bold">Status</p>
+                                              <p><?=$req->request_status?></p>
+                                              <p class="font-weight-bold">Requested by</p>
+                                              <p><?=$req->student_name?></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                              <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>                    
                                 </td>
                             </tr>
                         <?php }?>
