@@ -99,4 +99,19 @@ class CURequestController extends Controller
         );
     }
 
+    public function acceptRequest($id) {
+        DB::table('cu_request')
+        ->where('id', '=', $id)
+        ->update(['request_status' => 'Accepted']);
+
+        return redirect()->back();
+    }
+
+    public function denieRequest($id) {
+        DB::table('cu_request')
+        ->where('id', '=', $id)
+        ->update(['request_status' => 'Rejected']);
+
+        return redirect()->back();        
+    }
 }

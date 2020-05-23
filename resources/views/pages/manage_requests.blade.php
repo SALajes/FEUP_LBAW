@@ -39,16 +39,18 @@
                                 <td scope="col"><?=$req->student_id?></td>
                                 <td scope="col"><?=$req->request_status?></td>
                                 <td scope="col">
-                                    <a href="{{ url('/manageRequests/') }}">
-                                        <button id="manage_requests_button" class="btn btn-success" type="button">
-                                            Accept 
+                                    <form action="{{ url('/acceptRequest/' . $req->id) }}" method="post">
+                                        {{ csrf_field() }}
+                                        <button id="manage_requests_button" class="btn btn-success" type="submit">
+                                            Accept
                                         </button>
                                     </a>                        
                                 </td>
                                 <td scope="col">
-                                    <a href="{{ url('/manageRequests/') }}">
-                                        <button id="manage_requests_button" class="btn btn-danger" type="button">
-                                            Denie 
+                                    <form action="{{ url('/denieRequest/' . $req->id) }}" method="post">
+                                        {{ csrf_field() }}
+                                        <button id="manage_requests_button" class="btn btn-danger" type="submit">
+                                            Denie
                                         </button>
                                     </a>                        
                                 </td>
