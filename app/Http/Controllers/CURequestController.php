@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CURequest;
+use App\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,14 @@ class CURequestController extends Controller
         $cu_request->request_status = 'NotSeen';
 
         $cu_request->save();
+
+        $notification = new Notification();
+        $notification->student_id = Auth::user()->id;
+        $notification->content = "You have submited a request for a new CU!";
+        $notification->seen = false;
+        $notification->notification_type = 'RequestCU';
+
+        $notification->save();
 
         return redirect()->route('homepage');
     }
