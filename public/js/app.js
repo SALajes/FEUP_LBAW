@@ -413,7 +413,6 @@ function pollNotifications(){
     req.open("GET",  "/users/myNotifications/poll/" + id, true);
     req.onload = function(){
       if (this.responseText == "true") new_not.className = "";
-      console.log(this.responseText);
     }
     req.send();
   }
@@ -434,6 +433,10 @@ function getNotifications(){
           let req_str = "";
           if (i != 0) req_str += "<br>";
           if(notifications[i].notification_type == "AccessGrantedCU") req_str += accessGrantedCU(notifications[i]);
+          else {
+            req_str += "<div class=\"text-primary\">" + notifications[i].content + "</div>";
+            console.log(req_str);
+          }
           notification_area.innerHTML += req_str;
           notification_area.className = ""; 
         }

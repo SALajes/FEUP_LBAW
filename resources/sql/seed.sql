@@ -19,9 +19,11 @@ DROP TABLE IF EXISTS message CASCADE;
 DROP TABLE IF EXISTS group_message CASCADE;
 DROP TABLE IF EXISTS group_message_receiver CASCADE;
 DROP TABLE IF EXISTS notification CASCADE;
+DROP TABLE IF EXISTS cu_request  CASCADE;
 
 DROP TYPE IF EXISTS feed_type_enum;
 DROP TYPE IF EXISTS notification_type_enum;
+DROP TYPE IF EXISTS request_status_enum;
 
 DROP FUNCTION IF EXISTS set_friends() CASCADE;
 DROP FUNCTION IF EXISTS ban_student() CASCADE;
@@ -33,6 +35,7 @@ DROP FUNCTION IF EXISTS notify_cu_entry() CASCADE;
 
 CREATE TYPE feed_type_enum AS ENUM ('General', 'Doubts', 'Tutoring');
 CREATE TYPE notification_type_enum AS ENUM ('FriendRequest', 'FriendRequestAccepted','NewPost', 'LikeOnPost', 'CommentOnPost', 'RequestAccessCU', 'RequestCU', 'AccessGrantedCU', 'NewMessage', 'NewRating', 'GroupInvite', 'ReplyInvite', 'Tag', 'UserBan', 'UserReport', 'UpdateProf', 'UpdateCU');
+CREATE TYPE request_status_enum AS ENUM ('NotSeen', 'Seen', 'Accepted', 'Rejected');
 
 -- Tables
 
@@ -182,12 +185,22 @@ CREATE TABLE group_message_receiver (
 );
 
 CREATE TABLE notification (
-   id          SERIAL PRIMARY KEY,
-   content     TEXT NOT NULL,
-   "date"      TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-   student_id INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   id                   SERIAL PRIMARY KEY,
+   content              TEXT NOT NULL,
+   "date"               TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+   student_id           INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
    notification_type    notification_type_enum,
-   seen        BOOLEAN NOT NULL DEFAULT FALSE
+   seen                 BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE cu_request(
+   id                SERIAL PRIMARY KEY,
+   name              TEXT NOT NULL,
+   abbrev            TEXT NOT NULL,
+   link_to_cu_page   TEXT NOT NULL,
+   additional_info   TEXT,
+   request_status    request_status_enum DEFAULT 'NotSeen',
+   student_id        INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 --Index--

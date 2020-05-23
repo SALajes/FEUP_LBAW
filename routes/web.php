@@ -49,6 +49,11 @@ Route::post('/cu/{id}/editName', 'CUController@editName');
 Route::post('/cu/{id}/editAbbrev', 'CUController@editAbbrev');
 Route::post('/cu/{id}/editDescription', 'CUController@editDescription');
 
+//Requests
+Route::get('/request/cu', 'CURequestController@requestCU');
+Route::post('/request/newcu', 'CURequestController@submitRequest');
+Route::get('/testRequest', 'CURequestController@testPoll');
+
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
