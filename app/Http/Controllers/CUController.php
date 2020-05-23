@@ -41,8 +41,8 @@ class CUController extends Controller
     {
         $cus = DB::table('curricular_unit')
             ->select('curricular_unit.abbrev', 'curricular_unit.name as cu_name', 'curricular_unit.description as description', 'curricular_unit.id as cu_id', 'student.id as su_id', 'student.student_number', 'student.name', 'student.email')
-            ->join('enrolled', 'curricular_unit.id', '=', 'enrolled.cu_id')
-            ->join('student', 'enrolled.student_id', '=', 'student.id')
+            ->leftJoin('enrolled', 'curricular_unit.id', '=', 'enrolled.cu_id')
+            ->leftJoin('student', 'enrolled.student_id', '=', 'student.id')
             ->get();
         return response()->json(['cus' => $cus]);
     }

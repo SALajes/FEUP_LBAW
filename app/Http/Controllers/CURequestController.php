@@ -104,6 +104,23 @@ class CURequestController extends Controller
         ->where('id', '=', $id)
         ->update(['request_status' => 'Accepted']);
 
+        $cu = DB::table('cu_request')
+        ->select('cu_name', 'abbrev', 'additional_info', 'id')
+        ->where('id', '=', $id)
+        ->get();
+
+        DB::table('curricular_unit')
+        ->insert(['name' => $cu[0]->cu_name, 
+                  'abbrev' => $cu[0]->abbrev,
+                  'description' => $cu[0]->additional_info]);
+
+        DB::table('moderator')
+        ->insert(['student_id' => Auth::user()->id,
+                  'cu_id' => $cu[0]->id]);
+
+        DB::table('student')
+        ->update(['administrator' => true]);
+
         return redirect()->back();
     }
 

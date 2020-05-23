@@ -17,7 +17,7 @@ function getAllCUs(){
             let cu_list = JSON.parse(this.responseText);
             console.log(cu_list)
             counter = 0;
-            let student_counter = 2;
+            let student_counter = 1;
             let current_cu_abbrev = cu_list.cus[0].abbrev;
             let current_cu_name = cu_list.cus[0].cu_name;
             let current_cu_description = cu_list.cus[0].description;
@@ -32,6 +32,12 @@ function getAllCUs(){
                 }
                 else {
                     if (!cu_abbrevs.includes(current_cu_abbrev)) {
+                        if (student_counter == 0 && cu_list.cus[i].student_number != null) {
+                            student_counter = 1;
+                        }
+                        else if (cu_list.cus[i].student_number != null) {
+                            student_counter++;
+                        }
                         cu_abbrevs.push(current_cu_abbrev);
                         cu_data += "<tr>";
                         cu_data += "<tr>";
@@ -45,7 +51,7 @@ function getAllCUs(){
                         cu_data+= "</tr>";
                     }
                     if (i+1 < cu_list.cus.length && current_cu_abbrev != cu_list.cus[i+1].abbrev) 
-                        student_counter = 1;
+                        student_counter = 0;
                 }                 
             }
 

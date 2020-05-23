@@ -68,7 +68,7 @@
                                               <p><?=$req->abbrev?></p>
                                               <p class="font-weight-bold">Institutional page</p>
                                               <p><?=$req->link_to_cu_page?></p>
-                                              <p class="font-weight-bold">Motive</p>
+                                              <p class="font-weight-bold">Description</p>
                                               <p><?=$req->additional_info?></p>
                                               <p class="font-weight-bold">Status</p>
                                               <p><?=$req->request_status?></p>
