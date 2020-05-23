@@ -25,7 +25,7 @@ class CURequestController extends Controller
         $cu_request = new CURequest();
         
         $cu_request->student_id = Auth::user()->id;
-        $cu_request->name = $request->input('cu_name');
+        $cu_request->cu_name = $request->input('cu_name');
         $cu_request->abbrev = $request->input('cu_abbrev');
         $cu_request->link_to_cu_page = $request->input('cu_page');
         $cu_request->additional_info = $request->input('additional_info');
