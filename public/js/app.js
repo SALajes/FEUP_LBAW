@@ -113,9 +113,13 @@ function sendDeletePostRequest(event) {
 }
 
 function postDeletedHandler() {
-  if(this.status != 200) window.location = '/homepage';
+  if(this.status != 200) {
+    window.location = '/homepage';
+    return;
+  } 
+  
   let post = JSON.parse(this.responseText);
-
+  
   let article = document.querySelector('article.post[data-id="' + post.id + '"]');
   article.remove();
 }
