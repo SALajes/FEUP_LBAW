@@ -16,7 +16,7 @@ function addEventListeners() {
   let editProfileButton = document.querySelector('button#editProfileButton');
   if (editProfileButton != null) editProfileButton.addEventListener('click', openEditProfileModal);
 
-  let notificationsButton = document.getElementById('notifications_button');
+  let notificationsButton = document.getElementById('notifications');
   notificationsButton.onclick = getNotifications;
 
   // New comment listener
@@ -409,21 +409,26 @@ function accessGrantedCU(notification){
 }
 
 function pollNotifications(){
-  let new_not = document.getElementById("new_notifications");
-
-  if (new_not.className != ""){
+  let new_not = document.getElementById("notifications");
+  let bell = new_not.children[0];
+  
+  if (bell.classList.contains("icon-bell")){
     let req = new XMLHttpRequest();
     let id = document.getElementById("studentId").value;
     req.open("GET",  "/users/myNotifications/poll/" + id, true);
     req.onload = function(){
-      if (this.responseText == "true") new_not.className = "";
+      if (this.responseText == "true"){
+        bell.classList.remove("icon-bell");
+        bell.classList.add("icon-notification");
+      } 
     }
     req.send();
   }
 }
 
 function getNotifications(){
-  let new_not = document.getElementById("new_notifications");
+  let new_not = document.getElementById("notifications");
+  let bell = new_not.children[0];
   let req = new XMLHttpRequest();
   let id = document.getElementById("studentId").value;
   let notification_area = document.getElementById("notification_area");
@@ -444,8 +449,9 @@ function getNotifications(){
           notification_area.innerHTML += req_str;
           notification_area.className = ""; 
         }
-
-        new_not.className = "d-none";
+        
+        bell.classList.remove("icon-bell");
+        bell.classList.add("icon-notification");
       }
 
       else console.log(this.responseText);

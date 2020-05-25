@@ -27,8 +27,7 @@
             
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <i class="d-none" id="new_notifications">*</i>
-                    <a class="nav-link" id="notifications_button" href="#"><i class="icon-notification align-middle"></i></a>
+                    <a class="nav-link" id="notifications" href="#"><i class="icon-bell align-middle"></i></a>
                     <span class="d-md-none"> Notifications</span>
                 </li>
                 <li class="nav-item">
@@ -40,7 +39,7 @@
                     <span class="d-md-none"> Profile</span>
                 </li>
                 <li class="nav-item d-md-none">
-                    <a class="nav-link" href="#"><i class="icon-cu align-middle"></i></i></a>
+                    <a class="nav-link" href="#"><i class="icon-cu align-middle"></i></a>
                     <span> My CU's</span>
                 </li>
                 <li class="nav-item d-md-none">
@@ -52,7 +51,7 @@
                     <span class="d-md-none"> Help</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/request/cu"><i class="">+</i></a>
+                    <a class="nav-link" href="/request/cu"><i class="icon-more align-middle"></i></a>
                     <span class="d-md-none"> Requests</span>
                 </li>
                 <li class="nav-item">
