@@ -185,7 +185,7 @@ function sendCreateSubcomment(event) {
 
 function subcommentAddedHandler() {
 	if(this.status != 200) window.location = '/homepage';
-
+  console.log(this.responseText);
 	let subcomment = JSON.parse(this.responseText);
 	
 	let new_subcomment = createSubcomment(subcomment);
