@@ -113,9 +113,13 @@ function sendDeletePostRequest(event) {
 }
 
 function postDeletedHandler() {
-  if(this.status != 200) window.location = '/homepage';
+  if(this.status != 200) {
+    window.location = '/homepage';
+    return;
+  } 
+  
   let post = JSON.parse(this.responseText);
-
+  
   let article = document.querySelector('article.post[data-id="' + post.id + '"]');
   article.remove();
 }
@@ -181,7 +185,7 @@ function sendCreateSubcomment(event) {
 
 function subcommentAddedHandler() {
 	if(this.status != 200) window.location = '/homepage';
-
+  console.log(this.responseText);
 	let subcomment = JSON.parse(this.responseText);
 	
 	let new_subcomment = createSubcomment(subcomment);

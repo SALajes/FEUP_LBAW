@@ -66,7 +66,7 @@ class PostPageController extends Controller
     public function createComment(Request $request)
     {
         $comment = new Comment();
-        // $this->authorize('createComment', $comment);
+        $this->authorize('createComment', $comment);
         
         $id = Auth::user()->id;
 
@@ -83,7 +83,7 @@ class PostPageController extends Controller
     public function createSubcomment(Request $request, $commentId)
     {
         $subcomment = new Comment();
-        // $this->authroize('createSubcomment, $subcomment);
+        $this->authorize('createSubcomment', $subcomment);
 
         $id = Auth::user()->id;
 
