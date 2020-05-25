@@ -34,6 +34,7 @@ Route::post('/users/{id}/editBio', 'StudentController@editBio')->name('editBio')
 Route::get('/users/myCUs/{id}', 'StudentController@requestCUs');
 Route::get('/users/myCUsAdmin/{id}', 'StudentController@requestCUsAdmin');
 Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
+Route::post('/users/deleteAccount', 'StudentController@deleteAccount')->name('deleteAccount');
 
 //CUs
 Route::get('/cu', 'CUController@showAll');

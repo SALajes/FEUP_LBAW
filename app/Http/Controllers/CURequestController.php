@@ -11,19 +11,20 @@ use Illuminate\Support\Facades\DB;
 class CURequestController extends Controller
 {
 
-    public function requestCU(){
+    public function requestCU()
+    {
         $cus = DB::table('enrolled')
-                ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
-                ->select('curricular_unit.abbrev', 'curricular_unit.id')
-                ->where('enrolled.student_id', '=', Auth::user()->id)
-                ->get();
+            ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
+            ->select('curricular_unit.abbrev', 'curricular_unit.id')
+            ->where('enrolled.student_id', '=', Auth::user()->id)
+            ->get();
         return view('pages.requestCU', ['cus' => $cus]);
     }
 
-    public function submitRequest(Request $request){
-
+    public function submitRequest(Request $request)
+    {
         $cu_request = new CURequest();
-        
+
         $cu_request->student_id = Auth::user()->id;
         $cu_request->cu_name = $request->input('cu_name');
         $cu_request->abbrev = $request->input('cu_abbrev');
@@ -44,7 +45,8 @@ class CURequestController extends Controller
         return redirect()->route('homepage');
     }
 
-    public function testPoll(){
+    public function testPoll()
+    {
         $test = DB::table('cu_request')->select()->get();
         return response()->json(['reqs' => $test]);
     }
@@ -87,8 +89,16 @@ class CURequestController extends Controller
 
         $requests = DB::table('cu_request')
             ->join('student', 'student.id', '=', 'cu_request.student_id')
-            ->select('cu_request.id', 'student.name as student_name', 'student_id', 'cu_name', 'abbrev', 'link_to_cu_page', 
-            'additional_info', 'request_status')
+            ->select(
+                'cu_request.id',
+                'student.name as student_name',
+                'student_id',
+                'cu_name',
+                'abbrev',
+                'link_to_cu_page',
+                'additional_info',
+                'request_status'
+            )
             ->where('request_status', '=', 'NotSeen')
             ->orwhere('request_status', '=', 'Seen')
             ->get();
@@ -99,36 +109,42 @@ class CURequestController extends Controller
         );
     }
 
-    public function acceptRequest($id) {
+    public function acceptRequest($id)
+    {
         DB::table('cu_request')
-        ->where('id', '=', $id)
-        ->update(['request_status' => 'Accepted']);
+            ->where('id', '=', $id)
+            ->update(['request_status' => 'Accepted']);
 
         $cu = DB::table('cu_request')
-        ->select('cu_name', 'abbrev', 'additional_info', 'id')
-        ->where('id', '=', $id)
-        ->get();
+            ->select('cu_name', 'abbrev', 'additional_info', 'id')
+            ->where('id', '=', $id)
+            ->get();
 
         DB::table('curricular_unit')
-        ->insert(['name' => $cu[0]->cu_name, 
-                  'abbrev' => $cu[0]->abbrev,
-                  'description' => $cu[0]->additional_info]);
+            ->insert([
+                'name' => $cu[0]->cu_name,
+                'abbrev' => $cu[0]->abbrev,
+                'description' => $cu[0]->additional_info
+            ]);
 
         DB::table('moderator')
-        ->insert(['student_id' => Auth::user()->id,
-                  'cu_id' => $cu[0]->id]);
+            ->insert([
+                'student_id' => Auth::user()->id,
+                'cu_id' => $cu[0]->id
+            ]);
 
         DB::table('student')
-        ->update(['administrator' => true]);
+            ->update(['administrator' => true]);
 
         return redirect()->back();
     }
 
-    public function denyRequest($id) {
+    public function denyRequest($id)
+    {
         DB::table('cu_request')
-        ->where('id', '=', $id)
-        ->update(['request_status' => 'Rejected']);
+            ->where('id', '=', $id)
+            ->update(['request_status' => 'Rejected']);
 
-        return redirect()->back();        
+        return redirect()->back();
     }
 }

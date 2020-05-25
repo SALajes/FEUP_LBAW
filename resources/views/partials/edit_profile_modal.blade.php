@@ -81,6 +81,16 @@
                         </div>
                     </div>
                 </form>
+
+                <form id="delete-account-form" class="form-horizontal" method="POST" action="{{ route('deleteAccount') }}" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Delete account</label>
+                        <div class="col-md-6 col-md-offset-4">
+                            <button type="submit" class="btn btn-danger">Delete account</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
