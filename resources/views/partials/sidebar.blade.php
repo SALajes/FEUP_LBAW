@@ -35,6 +35,13 @@
         <div class="d-flex justify-content-around">
             <button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
         </div>
+        <div class="d-flex justify-content-around">
+            <a href="{{ url('/manageRequests/') }}" class="btn btn-default">
+                <button id="manage_requests_button" class="btn btn-primary" type="button">
+                    Manage requests 
+                </button>
+            </a>
+        </div>
         <div class="d-flex justify-content-around likes_friend">
             <div>
                 <i class="icon-like" style="color: #0aedb3"></i> <?=$likeCounter?>

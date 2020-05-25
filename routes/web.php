@@ -48,11 +48,15 @@ Route::delete('/cu', 'CUController@destroy');
 Route::post('/cu/{id}/editName', 'CUController@editName');
 Route::post('/cu/{id}/editAbbrev', 'CUController@editAbbrev');
 Route::post('/cu/{id}/editDescription', 'CUController@editDescription');
+Route::get('/manageRequests', 'CURequestController@manageRequests')->name('manageRequests');
+
 
 //Requests
 Route::get('/request/cu', 'CURequestController@requestCU');
 Route::post('/request/newcu', 'CURequestController@submitRequest');
 Route::get('/testRequest', 'CURequestController@testPoll');
+Route::post('/acceptRequest/{id}', 'CURequestController@acceptRequest')->name('acceptRequest');
+Route::post('/denyRequest/{id}', 'CURequestController@denyRequest')->name('denyRequest');
 
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');
