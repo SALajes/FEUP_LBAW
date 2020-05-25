@@ -56,7 +56,7 @@ Route::get('/request/cu', 'CURequestController@requestCU');
 Route::post('/request/newcu', 'CURequestController@submitRequest');
 Route::get('/testRequest', 'CURequestController@testPoll');
 Route::post('/acceptRequest/{id}', 'CURequestController@acceptRequest')->name('acceptRequest');
-Route::post('/denieRequest/{id}', 'CURequestController@denieRequest')->name('denieRequest');
+Route::post('/denyRequest/{id}', 'CURequestController@denyRequest')->name('denyRequest');
 
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');

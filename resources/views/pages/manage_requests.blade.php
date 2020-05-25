@@ -65,10 +65,10 @@
                                                         Accept
                                                     </button>
                                                 </form>                        
-                                                <form action="{{ url('/denieRequest/' . $req->id) }}" method="post">
+                                                <form action="{{ url('/denyRequest/' . $req->id) }}" method="post">
                                                     {{ csrf_field() }}
                                                     <button id="manage_requests_button" class="btn btn-danger mx-2" type="submit">
-                                                        Denie
+                                                        Deny
                                                     </button>
                                                 </form>  
                                             </div>          

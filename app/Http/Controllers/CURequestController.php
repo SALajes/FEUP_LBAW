@@ -124,7 +124,7 @@ class CURequestController extends Controller
         return redirect()->back();
     }
 
-    public function denieRequest($id) {
+    public function denyRequest($id) {
         DB::table('cu_request')
         ->where('id', '=', $id)
         ->update(['request_status' => 'Rejected']);
