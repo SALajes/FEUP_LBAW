@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class StudentController extends Controller {
-    public function __construct() {
+class StudentController extends Controller
+{
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -18,7 +20,8 @@ class StudentController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         //
     }
 
@@ -27,7 +30,8 @@ class StudentController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         //
     }
 
@@ -37,7 +41,8 @@ class StudentController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         //
     }
 
@@ -47,14 +52,16 @@ class StudentController extends Controller {
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         $student = Student::find($id);
         $owner = false;
         if ($id == Auth::user()->id) $owner = true;
         return view('pages.profile', ['student' => $student, 'owner' => $owner]);
     }
 
-    public function requestCUs($id) {
+    public function requestCUs($id)
+    {
         $cus = DB::table('enrolled')
             ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
             ->select('curricular_unit.abbrev', 'curricular_unit.id')
@@ -64,18 +71,21 @@ class StudentController extends Controller {
         return response()->json(['cus' => $cus]);
     }
 
-    public function requestRatings($id) {
+    public function requestRatings($id)
+    {
 
         return response()->json(['success' => 'Requested Ratings.' . $id]);
     }
 
-    public function pollNotifications($id){
+    public function pollNotifications($id)
+    {
         $notification = Student::find($id)->notifications()->orderBy('date', 'desc')->limit(1)->get();
         if ($notification[0]->seen == false) return "true";
         return "false";
     }
 
-    public function notifications($id){
+    public function notifications($id)
+    {
         $notifications = Student::find($id)->notifications()->orderBy('date', 'desc')->limit(25)->get();
         for ($i = 0; $i < sizeof($notifications); $i++) DB::table('notification')->where('id', $notifications[$i]->id)->update(['seen' => TRUE]);
         return response()->json(['notifications' => $notifications]);
@@ -88,7 +98,8 @@ class StudentController extends Controller {
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student) {
+    public function edit(Student $student)
+    {
         //
     }
 
@@ -99,7 +110,8 @@ class StudentController extends Controller {
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student) {
+    public function update(Request $request, Student $student)
+    {
         //
     }
 
@@ -109,19 +121,21 @@ class StudentController extends Controller {
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student) {
+    public function destroy(Student $student)
+    {
         //
     }
 
-    public function editPassword(Request $request) {
+    public function editPassword(Request $request)
+    {
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error","Your current password does not match the password you provided. Please try again.");
+            return redirect()->back()->with("error", "Your current password does not match the password you provided. Please try again.");
         }
 
-        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+        if (strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
             //Current password and new password are same
-            return redirect()->back()->with("error","New password cannot be your current password. Please choose a different password.");
+            return redirect()->back()->with("error", "New password cannot be your current password. Please choose a different password.");
         }
 
         $validatedData = $request->validate([
@@ -135,29 +149,30 @@ class StudentController extends Controller {
 
         $user->save();
 
-        return redirect()->back()->with("success","Password changed successfully !");
-
+        return redirect()->back()->with("success", "Password changed successfully !");
     }
 
-    public function editProfilePicture(Request $request) {
+    public function editProfilePicture(Request $request)
+    {
         $request->validate([
             'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $user = Auth::user();
 
-        $profile_image_name = $user->id.'_profile_image_'.time().'.'.request()->profile_image->getClientOriginalExtension();
+        $profile_image_name = $user->id . '_profile_image_' . time() . '.' . request()->profile_image->getClientOriginalExtension();
 
-        $request->profile_image->storeAs('profile_image',$profile_image_name);
+        $request->profile_image->storeAs('profile_image', $profile_image_name);
 
         $user->profile_image = $profile_image_name;
         $user->save();
 
         return back()
-            ->with('success','You have successfully upload image.');
+            ->with('success', 'You have successfully upload image.');
     }
 
-    public function editBio(Request $request) {
+    public function editBio(Request $request)
+    {
         $request->validate([
             'bio' => 'string|min:6',
         ]);
@@ -168,6 +183,13 @@ class StudentController extends Controller {
         $user->save();
 
         return back()
-            ->with('success','You have successfully updated the bio.');
+            ->with('success', 'You have successfully updated the bio.');
+    }
+
+    public function deleteAccount() {
+        $user = Auth::user();
+        $user->delete();
+        auth()->logout();
+        return redirect('/');
     }
 }
