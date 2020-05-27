@@ -188,12 +188,22 @@ class CURequestController extends Controller
     }
 
     public function askJoinCU($id) {
-        DB::table('cu_join_request')
-        ->insert([
-            'cu_id' => $id,
-            'student_id' => Auth::user()->id
-            ]);
+        $aux = DB::table('cu_join_request')
+            ->where('cu_join_request.cu_id', '=', $id)
+            ->where('cu_join_request.student_id', '=', Auth::user()->id)
+            ->where('cu_join_request.request_status', '!=', 'Accepted')
+            ->where('cu_join_request.request_status', '!=', 'Rejected')
+            ->first();
 
-        return redirect()->back();
+        if ($aux != null) {
+            DB::table('cu_join_request')
+               ->insert([
+                'cu_id' => $id,
+                'student_id' => Auth::user()->id
+            ]);
+            return redirect()->back();
+        }
+
+        return redirect('/cu/' . $id);
     }
 }
