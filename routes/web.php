@@ -62,6 +62,7 @@ Route::post('/acceptCreateRequest/{id}', 'CURequestController@acceptCreateReques
 Route::post('/denyCreateRequest/{id}', 'CURequestController@denyCreateRequest')->name('denyCreateRequest');
 Route::post('/acceptJoinRequest/{id}', 'CURequestController@acceptJoinRequest')->name('acceptJoinRequest');
 Route::post('/denyJoinRequest/{id}', 'CURequestController@denyJoinRequest')->name('denyJoinRequest');
+Route::post('/askJoinCU/{id}', 'CURequestController@askJoinCU')->name('askJoinCU');
 
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');

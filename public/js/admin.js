@@ -39,7 +39,7 @@ function getAllCUs(){
                     if (!cu_abbrevs.includes(current_cu_abbrev)) {
                         if (student_counter == 0 && cu_list.cus[i].student_number != null) {
                             student_counter = 1;
-                            aux_map[current_cu_abbrev]++;
+                            aux_map[current_cu_abbrev] = 1;
                         }
                         else if (cu_list.cus[i].student_number != null) {
                             student_counter++;

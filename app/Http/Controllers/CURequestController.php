@@ -186,4 +186,14 @@ class CURequestController extends Controller
 
         return redirect()->back();
     }
+
+    public function askJoinCU($id) {
+        DB::table('cu_join_request')
+        ->insert([
+            'cu_id' => $id,
+            'student_id' => Auth::user()->id
+            ]);
+
+        return redirect()->back();
+    }
 }
