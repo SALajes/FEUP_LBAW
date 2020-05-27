@@ -187,6 +187,15 @@ class CURequestController extends Controller
         return redirect()->back();
     }
 
+    public function denyJoinRequest($id)
+    {
+        DB::table('cu_join_request')
+            ->where('id', '=', $id)
+            ->update(['request_status' => 'Rejected']);
+
+        return redirect()->back();
+    }
+
     public function askJoinCU($id) {
         $aux = DB::table('cu_join_request')
             ->where('cu_join_request.cu_id', '=', $id)
