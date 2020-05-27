@@ -33,14 +33,22 @@
             ?>
         </blockquote>
         <div class="d-flex justify-content-around">
-            <button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
-        </div>
-        <div class="d-flex justify-content-around">
-            <a href="{{ url('/manageRequests/') }}" class="btn btn-default">
-                <button id="manage_requests_button" class="btn btn-primary" type="button">
-                    Manage requests 
+            <a href="{{ url('/manageCreateRequests/') }}" class="btn btn-default">
+                <button id="manage_create_requests_button" class="btn btn-primary" type="button">
+                    Manage create CU requests 
                 </button>
             </a>
+        </div>
+        <div class="d-flex justify-content-around">
+
+            <a href="{{ url('/manageJoinRequests/') }}" class="btn btn-default">
+                <button id="manage_join_requests_button" class="btn btn-primary" type="button">
+                    Manage join CU requests 
+                </button>
+            </a>
+        </div>
+        <div class="d-flex justify-content-around">
+            <button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
         </div>
         <div class="d-flex justify-content-around likes_friend">
             <div>

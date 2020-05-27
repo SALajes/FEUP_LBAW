@@ -83,7 +83,7 @@ class CURequestController extends Controller
         //
     }
 
-    public function manageRequests()
+    public function manageCreateRequests()
     {
         $student = Auth::user();
 
@@ -104,12 +104,30 @@ class CURequestController extends Controller
             ->get();
 
         return view(
-            'pages.manage_requests',
+            'pages.manage_create_requests',
             ['student' => $student, 'reqs' => $requests]
         );
     }
+    
+    public function manageJoinRequests()
+    {
+        $student = Auth::user();
+        $requests = DB::table('cu_join_request')
+            ->join('student', 'student.id', '=', 'cu_join_request.student_id')
+            ->join('curricular_unit', 'curricular_unit.id', '=', 'cu_join_request.cu_id')
+            ->select('curricular_unit.abbrev as cu_abbrev', 
+                'student.name as student_name',
+                'cu_join_request.id as id')
+            ->where('request_status', '=', 'NotSeen')
+            ->orwhere('request_status', '=', 'Seen')
+            ->get();
 
-    public function acceptRequest($id)
+        return view(
+            'pages.manage_join_requests',
+            ['student' => $student, 'reqs' => $requests]);
+    }
+
+    public function acceptCreateRequest($id)
     {
         DB::table('cu_request')
             ->where('id', '=', $id)
@@ -139,11 +157,32 @@ class CURequestController extends Controller
         return redirect()->back();
     }
 
-    public function denyRequest($id)
+    public function denyCreateRequest($id)
     {
         DB::table('cu_request')
             ->where('id', '=', $id)
             ->update(['request_status' => 'Rejected']);
+
+        return redirect()->back();
+    }
+
+    public function acceptJoinRequest($id)
+    {
+        DB::table('cu_join_request')
+            ->where('id', '=', $id)
+            ->update(['request_status' => 'Accepted']);
+
+        $req = DB::table('cu_join_request')
+            ->select('cu_id', 'student_id', 'id')
+            ->where('id', '=', $id)
+            ->get();
+
+        DB::table('enrolled')
+            ->insert([
+                'cu_id' => $req[0]->cu_id,
+                'student_id' => $req[0]->student_id,
+                'identifier' => 'TBD'
+            ]);
 
         return redirect()->back();
     }
