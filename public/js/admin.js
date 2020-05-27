@@ -30,7 +30,7 @@ function getAllCUs(){
             }
             for (let i = 0; i < cu_list.cus.length; i++) {
                 let current_cu_abbrev = cu_list.cus[i].abbrev;
-                let current_cu_id = cu_list.cus[i].id;
+                let current_cu_id = cu_list.cus[i].cu_id;
                 let current_cu_name = cu_list.cus[i].name;
                 if (!cu_abbrevs.includes(current_cu_abbrev)) {
                     cu_abbrevs.push(current_cu_abbrev);
