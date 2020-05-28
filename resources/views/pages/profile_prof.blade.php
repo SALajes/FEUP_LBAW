@@ -2,18 +2,18 @@
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
-<script src={{ asset('js/profile.js') }} defer></script>
+<script src={{ asset('js/profile_prof.js') }} defer></script>
 
 @extends('layouts.app')
 
 @include('partials.navbar')
 @include('partials.sidebar')
-@include('partials.edit_profile_modal')
+@include('partials.edit_professor_modal')
 
 @section('title', $professor->name)
 
 @section('content')
-<div class="container-fuild">
+<div class="container-fluid">
     <div class="row">
        <?php
             $bc = $professor->abbrev . "'s profile";
@@ -26,9 +26,10 @@
                 <div id="tabs" class="nav nav-tabs nav-fill">
                     <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">My CUs</a>
                     <a class="nav-item nav-link" href="#" role="button" >My Ratings</a>
-                        <script src={{ asset('js/admin.js') }} defer></script>
                 </div>
             </div>
+            <input id="professor_id" type="hidden" value="{{ $professor->id }}" readonly>
+            <div id="data"></div>
         </div>
     </div>
 </div>

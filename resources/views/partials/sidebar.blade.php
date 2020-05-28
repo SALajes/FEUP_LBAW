@@ -1,10 +1,20 @@
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 
-<?php function draw_sidebar_Top($breadcrumb, $userNo,  $username, $studentNo) { ?>
+<?php function draw_sidebar_Top_CU($breadcrumb) {?>
     <aside class="col-lg-3 sticky-top align-self-start" id="page-title">
         <section class="row-md-auto">
             <div class="text-center">
                 <h2 class="d-block pt-md-4"><?= $breadcrumb ?> </h2>                
+            </div>
+        </section>
+        <hr id="student_identification">
+<?php } ?>
+
+<?php function draw_sidebar_Top($breadcrumb, $userNo,  $username, $studentNo) { ?>
+    <aside class="col-lg-3 sticky-top align-self-start" id="page-title">
+        <section class="row-md-auto">
+            <div class="text-center">
+                <h2 class="d-block pt-md-4"><?= $breadcrumb ?> </h2>
                     <div class="d-flex justify-content-center align-items-center">
                         <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $userNo }}">
                             @if (auth()->user()->profile_image)
@@ -27,7 +37,7 @@
 <?php function draw_sidebar_Profile_Prof($likeCounter) { ?>
     <section class="row-md-auto justify-content-center ">
         <div class="d-flex justify-content-around">
-            <button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
+            <button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfModal">Edit</button>
         </div>
         <div class="d-flex justify-content-around likes_friend">
             <div>

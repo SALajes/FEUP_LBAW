@@ -11,7 +11,7 @@ include_once('../templates/sidebar.php');
 ?>
 
 <script src="../scripts/cu_sidebar.js" defer></script>
-<body id="cupage" class="container-fuild ">
+<body id="cupage" class="container-fluid ">
     
 
         <div class="row">

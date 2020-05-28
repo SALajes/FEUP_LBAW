@@ -42,6 +42,11 @@ Route::post('/users/deleteAccount', 'StudentController@deleteAccount')->name('de
 
 // Professors
 Route::get('/professors/{id}', 'ProfessorController@show');
+Route::post('/professors/{id}/editName', 'ProfessorController@editName')->name('editProfName');
+Route::post('/professors/{id}/editAbbrev', 'ProfessorController@editAbbrev')->name('editProfAbbrev');
+Route::post('/professors/{id}/editEmail', 'ProfessorController@editEmail')->name('editProfEmail');
+Route::post('/professors/{id}/editPicture', 'ProfessorController@editProfilePicture')->name('editProfPicture');
+Route::get('professors/{id}/cus', 'ProfessorController@listCUs')->name('listProfCUs');
 
 //CUs
 Route::get('/cu', 'CUController@showAll');

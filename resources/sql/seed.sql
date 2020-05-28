@@ -57,7 +57,7 @@ CREATE TABLE professor (
    id              SERIAL PRIMARY KEY,
    name            TEXT NOT NULL,
    email           TEXT NOT NULL CONSTRAINT professor_email_uk UNIQUE,
-   picture_path    TEXT,
+   profile_image    TEXT,
    abbrev          TEXT NOT NULL CONSTRAINT professor_abbrev_uk UNIQUE,
 
    CONSTRAINT email_ck CHECK (email !~ '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][a-za-z]+\$'::TEXT)
