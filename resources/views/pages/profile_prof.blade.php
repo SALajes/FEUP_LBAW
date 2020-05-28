@@ -17,7 +17,7 @@
     <div class="row">
        <?php
             $bc = $professor->abbrev . "'s profile";
-            draw_sidebar_Top($bc, $professor->id, $professor->name, $professor->email);
+            draw_sidebar_Top_prof($bc, $professor);
             draw_sidebar_Profile_prof($likeCounter);
         ?>
         <!-- offset-lg-0 offset-md-2 offset-3 -->

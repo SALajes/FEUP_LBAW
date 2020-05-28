@@ -11,10 +11,10 @@ class Professor extends Model
     protected $table = "professor";
 
     protected $fillable = [
-        'name', 'email', 'picture_path', 'abbrev'
+        'name', 'email', 'profile_image', 'abbrev'
     ];
 
-    public function ratings()
+    public function sqratings()
     {
         return $this->belongsToMany('App\Rating');
     }

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+<link rel="stylesheet" href="<?php echo e(asset('css/sidebar.css')); ?>">
 
 <?php function draw_sidebar_Top_CU($cu, $teachers) {?>
     <aside class="col-lg-3 sticky-top align-self-start" id="page-title">
@@ -21,14 +21,14 @@
             <div class="text-center">
                 <h2 class="d-block pt-md-4"><?= $breadcrumb ?> </h2>
                     <div class="d-flex justify-content-center align-items-center">
-                        <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $professor->id }}">
-                            @if ($professor->profile_image)
+                        <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/<?php echo e($professor->id); ?>">
+                            <?php if($professor->profile_image): ?>
                                 <div class="img-circle d-flex justify-content-between align-items-center">
-                                    <img src="/storage/profile_image/{{ $professor->profile_image }}" class="img-profile"/>
+                                    <img src="/storage/profile_image/<?php echo e($professor->profile_image); ?>" class="img-profile"/>
                                 </div>
-                            @else
+                            <?php else: ?>
                                 <i id="profile_picture" class="icon-user profile-button"></i>
-                            @endif
+                            <?php endif; ?>
                         </a>
                     </div>
 
@@ -45,14 +45,14 @@
             <div class="text-center">
                 <h2 class="d-block pt-md-4"><?= $breadcrumb ?> </h2>
                     <div class="d-flex justify-content-center align-items-center">
-                        <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $userNo }}">
-                            @if (auth()->user()->profile_image)
+                        <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/<?php echo e($userNo); ?>">
+                            <?php if(auth()->user()->profile_image): ?>
                                 <div class="img-circle d-flex justify-content-between align-items-center">
-                                    <img src="/storage/profile_image/{{ Auth::user()->profile_image }}" class="img-profile"/>
+                                    <img src="/storage/profile_image/<?php echo e(Auth::user()->profile_image); ?>" class="img-profile"/>
                                 </div>
-                            @else
+                            <?php else: ?>
                                 <i id="profile_picture" class="icon-user profile-button"></i>
-                            @endif
+                            <?php endif; ?>
                         </a>
                     </div>
 
@@ -89,7 +89,7 @@
             <button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
         </div>
         <div class="d-flex justify-content-around">
-            <a href="{{ url('/manageRequests/') }}" class="btn btn-default">
+            <a href="<?php echo e(url('/manageRequests/')); ?>" class="btn btn-default">
                 <button id="manage_requests_button" class="btn btn-primary" type="button">
                     Manage requests 
                 </button>
@@ -163,7 +163,8 @@
                 </div>
                 <div class="modal-body">                   
                     <form id="edit-cu-name-form" class="form-horizontal" method="POST" action="/cu/<?=$id?>/editName" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                        <?php echo e(csrf_field()); ?>
+
                         <div class="form-group">
                             <label class="col-md-4 control-label">New name:</label>
                             <div class="col-md-6">
@@ -175,7 +176,8 @@
                         </div>
                     </form>
                     <form id="edit-cu-abbrev-form" class="form-horizontal" method="POST" action="/cu/<?=$id?>/editAbbrev" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                        <?php echo e(csrf_field()); ?>
+
                         <div class="form-group">
                             <label class="col-md-4 control-label">New abbreviature:</label>
                             <div class="col-md-6">
@@ -187,7 +189,8 @@
                         </div>
                     </form>
                     <form id="edit-cu-description-form" class="form-horizontal" method="POST" action="/cu/<?=$id?>/editDescription" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                        <?php echo e(csrf_field()); ?>
+
                         <div class="form-group">
                             <label class="col-md-4 control-label">New description:</label>
                             <div class="col-md-6">
@@ -249,4 +252,4 @@
 
     <!-- Divisao Vertical -->
     </aside>
-<?php } ?>
+<?php } ?><?php /**PATH /home/cadu/Git/lbaw2013/resources/views/partials/sidebar.blade.php ENDPATH**/ ?>

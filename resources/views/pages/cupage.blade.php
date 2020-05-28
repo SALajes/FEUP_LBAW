@@ -15,7 +15,7 @@
     <div class="row">
         <?php
             use Illuminate\Support\Facades\Auth;
-            draw_sidebar_Top_CU($cu->abbrev);
+            draw_sidebar_Top_CU($cu, $teachers);
             draw_sidebar_CU($cu->id, $likeCounter);
         ?>
         <div id="content" class="col-12 col-lg-9">

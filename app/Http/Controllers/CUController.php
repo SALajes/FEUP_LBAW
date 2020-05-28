@@ -35,10 +35,16 @@ class CUController extends Controller
     public function show($id)
     {
         $cu = CurricularUnit::find($id);
+        $teachers = DB::table('teaches')
+            ->select('professor.name', 'professor.id')
+            ->join('professor', 'professor.id', '=', 'teaches.professor_id')
+            ->where('teaches.cu_id', '=', $id)
+            ->get();
+
         $likeCounter = DB::table('rating')
                        ->where('cu_id', '=', $id)
                        ->count();
-        return view('pages.cupage', ['cu' => $cu, 'likeCounter' => $likeCounter]);
+        return view('pages.cupage', ['cu' => $cu, 'likeCounter' => $likeCounter, 'teachers' => $teachers]);
     }
 
     public function showAll()
