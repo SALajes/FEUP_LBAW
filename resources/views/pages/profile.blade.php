@@ -9,6 +9,7 @@
 @include('partials.navbar')
 @include('partials.sidebar')
 @include('partials.edit_profile_modal')
+@include('partials.rate_student_modal')
 
 @section('title', $student->name)
 
@@ -20,7 +21,7 @@
             $bc = "Profile";
             if ($owner)$bc = "My " . $bc;
             draw_sidebar_Top($bc, $student->id, $student->name, $student->student_number);
-            draw_sidebar_Profile($student->bio, 0, $owner);
+            draw_sidebar_Profile($student->bio, $likeCounter, $owner);
         ?>
         <!-- offset-lg-0 offset-md-2 offset-3 -->
         <div id="content" class="col-12 col-lg-9">
@@ -39,7 +40,6 @@
 
             <input id="student_id" type="hidden" value="{{ $student->id }}" readonly>
             <div id="data"></div>
-
         </div>
     </div>
 </div>

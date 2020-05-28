@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CURequest;
 use Illuminate\Http\Request;
 use App\CurricularUnit;
+use App\Enrolled;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -34,7 +35,10 @@ class CUController extends Controller
     public function show($id)
     {
         $cu = CurricularUnit::find($id);
-        return view('pages.cupage', ['cu' => $cu]);
+        $likeCounter = DB::table('rating')
+                       ->where('cu_id', '=', $id)
+                       ->count();
+        return view('pages.cupage', ['cu' => $cu, 'likeCounter' => $likeCounter]);
     }
 
     public function showAll()
@@ -122,5 +126,27 @@ class CUController extends Controller
             ->update(['description' => $request->input('cu_description')]);
 
         return redirect()->back();
+    }
+
+    public function rateCU($reviewed_cu, Request $request) {
+        $enrolled = DB::table('enrolled')
+            ->where('student_id', '=', Auth::user()->id)
+            ->where('cu_id', '=', $reviewed_cu)
+            ->count();
+
+        $review = DB::table('rating')
+        ->where('reviewer_id', '=', Auth::user()->id)
+        ->where('cu_id', '=', $reviewed_cu)
+        ->where('has_voted', '=', true)
+        ->count();
+
+        if ($review == 0 && $enrolled != 0) {
+            DB::table('rating')
+            ->insert(['reviewer_id' => Auth::user()->id, 
+                  'has_voted' => true,
+                  'review' => $request->review,
+                  'cu_id' => $reviewed_cu]);
+        }
+        return redirect('/cu/' . $reviewed_cu);    
     }
 }

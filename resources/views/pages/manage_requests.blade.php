@@ -13,7 +13,7 @@
         <?php
             use Illuminate\Support\Facades\Auth;
             draw_sidebar_Top("Manage requests", Auth::user() -> id, Auth::user() -> name, Auth::user() -> student_number);
-            draw_sidebar_Profile($student->bio, 0, true);
+            draw_sidebar_Profile($student->bio, $likeCounter, true);
         ?>
     <div id="content" class="col-12 col-lg-9">
         <section id="mainArea" class="col-12 col-lg-9">

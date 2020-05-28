@@ -58,7 +58,9 @@
         </div>
         <div class="d-flex justify-content-around likes_friend">
             <div>
-                <i class="icon-like" style="color: #0aedb3"></i> <?=$likeCounter?>
+                <a data-toggle="modal" data-target="#rateStudentModal" class="btn btn-default">
+                    <i class="icon-like" style="color: #0aedb3"></i> <?=$likeCounter?>
+                </a>
             </div>
             <?php
             if (!$owner){?>   
@@ -72,8 +74,13 @@
     </aside>
 <?php } ?>
 
-<?php function draw_sidebar_CU($id) { ?>
+<?php function draw_sidebar_CU($id, $likeCounter) { ?>
     <section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
+        <div class="d-flex justify-content-around likes_friend">
+            <a data-toggle="modal" data-target="#rateCUModal" class="btn btn-default">
+                <i class="icon-like" style="color: #0aedb3"></i> <?=$likeCounter?>
+            </a>
+        </div>
         <div class="btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs" id="cu_tabs">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
             <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
