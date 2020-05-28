@@ -20,6 +20,7 @@ DROP TABLE IF EXISTS group_message CASCADE;
 DROP TABLE IF EXISTS group_message_receiver CASCADE;
 DROP TABLE IF EXISTS notification CASCADE;
 DROP TABLE IF EXISTS cu_request CASCADE;
+DROP TABLE IF EXISTS cu_join_request CASCADE;
 
 DROP TYPE IF EXISTS feed_type_enum;
 DROP TYPE IF EXISTS notification_type_enum;

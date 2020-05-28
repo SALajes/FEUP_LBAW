@@ -19,6 +19,8 @@ Route::get('homepage', 'PostController@show')->name('homepage');
 Route::put('api/posts', 'PostController@createPost');
 Route::delete('api/posts/{id}', 'PostController@deletePost');
 
+Route::get('about', 'LandingController@showAbout');
+
 // Post page
 Route::get('post/{id}', 'PostPageController@show');
 Route::put('api/comments', 'PostPageController@createComment');

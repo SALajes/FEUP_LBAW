@@ -9,9 +9,8 @@
     <section class="masthead mb-auto pt-3 d-flex pr-5 justify-content-end">
       <div class="inner">
         <nav class="nav nav-masthead justify-content-center">
-          <a class="nav-link active text-white" href="#">Home</a>
-          <a class="nav-link text-white" href="#">Features</a>
-          <a class="nav-link text-white" href="#">Contact</a>
+          <a class="nav-link active text-white" href="{{ url('/') }}">Home</a>
+        <a class="nav-link text-white" href="{{ url('/about') }}">About</a>
         </nav>
       </div>
     </section>
