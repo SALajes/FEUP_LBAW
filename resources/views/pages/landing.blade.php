@@ -41,29 +41,6 @@
   
   <main class="container marketing mt-5">
     <!-- START THE FEATURETTES -->
-
-    <section class="row featurette">
-      <blockquote class="col-md-7">
-        <h2 class="featurette-heading">
-          Sharing and obtaining course materials.
-          <span class="text-info">Simplified.</span>
-        </h2>
-        <p class="lead">
-          Each curricular unit has its own drive with course materials uploaded
-          by students. Creating, cooperating and sharing with your peers has
-          never been this easy.
-        </p>
-      </blockquote>
-      <picture class="col-md-5 text-center">
-        <i
-          class="icon-download text-gradient-blue"
-          style="font-size: 10rem;"
-        ></i>
-      </picture>
-    </section>
-
-    <hr class="featurette-divider" />
-
     <section class="row featurette">
       <blockquote class="col-md-7 order-md-2">
         <h2 class="featurette-heading">
