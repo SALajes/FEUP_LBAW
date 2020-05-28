@@ -24,6 +24,20 @@
         <hr id="student_identification">
 <?php } ?>
 
+<?php function draw_sidebar_Profile_Prof($likeCounter) { ?>
+    <section class="row-md-auto justify-content-center ">
+        <div class="d-flex justify-content-around">
+            <button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
+        </div>
+        <div class="d-flex justify-content-around likes_friend">
+            <div>
+                <i class="icon-like" style="color: #0aedb3"></i> <?=$likeCounter?>
+            </div>
+        </div>
+    </section>
+    </aside>
+<?php } ?>
+
 <?php function draw_sidebar_Profile($bio, $likeCounter, $owner) { ?>
     <section class="row-md-auto justify-content-center ">
         <blockquote class="text-center col-md-10 mx-auto">

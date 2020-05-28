@@ -38,6 +38,9 @@ Route::get('/users/myCUsAdmin/{id}', 'StudentController@requestCUsAdmin');
 Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
 Route::post('/users/deleteAccount', 'StudentController@deleteAccount')->name('deleteAccount');
 
+// Professors
+Route::get('/professors/{id}', 'ProfessorController@show');
+
 //CUs
 Route::get('/cu', 'CUController@showAll');
 Route::get('/cu/{id}', 'CUController@show');
