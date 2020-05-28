@@ -76,9 +76,13 @@ class StudentController extends Controller
 
     public function requestRatings($id)
     {
-
-        return response()->json(['success' => 'Requested Ratings.' . $id]);
-    }
+        $reviews = DB::table('rating')
+            ->select('review')
+            ->join('student', 'student.id', '=', 'rating.student_id')
+            ->where('student_id', '=', $id)
+            ->get();
+            return response()->json(['reviews' => $reviews]);
+        }
 
     public function pollNotifications($id)
     {

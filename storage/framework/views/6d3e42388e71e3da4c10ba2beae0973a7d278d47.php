@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="<?php echo e(asset('css/homepage.css')); ?>">
 <link rel="stylesheet" href="<?php echo e(asset('css/sidebar.css')); ?>">
 <link rel="stylesheet" href="<?php echo e(asset('css/profile.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('css/post.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('css/identity.css')); ?>">
 
 <script src=<?php echo e(asset('js/profile.js')); ?> defer></script>
 

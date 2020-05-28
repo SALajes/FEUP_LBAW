@@ -1,15 +1,16 @@
-<div class="modal fade" id="rateStudentModal" tabindex="-1" role="dialog" aria-labelledby="rateStudentModalLabel" aria-hidden="true">
+<div class="modal fade" id="rateProfModal" tabindex="-1" role="dialog" aria-labelledby="rateProfModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="loginLabel">Rate student</h5>
+                <h5 class="modal-title" id="loginLabel">Rate professor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="rate_student_form" class="form-horizontal" method="POST" action="{{ route('rateStudent', $student) }}" enctype="multipart/form-data">
-                    {{ csrf_field() }}
+                <form id="rate_prof_form" class="form-horizontal" method="POST" action="<?php echo e(route('rateProf', $professor)); ?>" enctype="multipart/form-data">
+                    <?php echo e(csrf_field()); ?>
+
                     <div class="form-group">
                         <label class="col-md-4 control-label">Review</label>
                         <div class="col-md-6">
@@ -24,3 +25,4 @@
         </div>
     </div>
 </div>
+<?php /**PATH /home/cadu/Git/lbaw2013/resources/views/partials/rate_prof_modal.blade.php ENDPATH**/ ?>

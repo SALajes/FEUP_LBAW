@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Professor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ProfessorController extends Controller
 {
@@ -12,7 +13,7 @@ class ProfessorController extends Controller
     {
         $professor = Professor::find($id);
         $likeCounter = DB::table('rating')
-                       ->where('student_id', '=', $id)
+                       ->where('professor_id', '=', $id)
                        ->count();
         return view('pages.profile_prof', ['professor' => $professor, 
                                            'likeCounter' => $likeCounter]);
@@ -69,6 +70,23 @@ class ProfessorController extends Controller
             ->with('success', 'You have successfully uploaded the image.');
     }
 
+    public function rateProf($reviewed_prof, Request $request) {
+        $review = DB::table('rating')
+        ->where('reviewer_id', '=', Auth::user()->id)
+        ->where('professor_id', '=', $reviewed_prof)
+        ->where('has_voted', '=', true)
+        ->count();
+
+        if ($review == 0) {
+            DB::table('rating')
+            ->insert(['reviewer_id' => Auth::user()->id, 
+                  'has_voted' => true,
+                  'review' => $request->review,
+                  'professor_id' => $reviewed_prof]);
+        }
+        return redirect('/professors/' . $reviewed_prof);
+    }
+
     public function listCUs($id) {
         $cus = DB::table('teaches')
             ->select('curricular_unit.abbrev', 'curricular_unit.id', 'curricular_unit.name')
@@ -77,5 +95,14 @@ class ProfessorController extends Controller
             ->get();
 
         return response()->json(['cus' => $cus]);
+    }
+
+    public function requestRatings($id) {
+        $reviews = DB::table('rating')
+        ->select('review')
+        ->join('professor', 'professor.id', '=', 'rating.professor_id')
+        ->where('professor_id', '=', $id)
+        ->get();
+        return response()->json(['reviews' => $reviews]);
     }
 }

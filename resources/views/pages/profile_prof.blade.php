@@ -9,6 +9,7 @@
 @include('partials.navbar')
 @include('partials.sidebar')
 @include('partials.edit_professor_modal')
+@include('partials.rate_prof_modal')
 
 @section('title', $professor->name)
 

@@ -22,6 +22,7 @@ Route::delete('api/posts/{id}', 'PostController@deletePost');
 Route::get('about', 'LandingController@showAbout');
 
 Route::post('/users/{id}/rate', 'StudentController@rateStudent')->name('rateStudent');
+Route::post('/professors/{id}/rate', 'ProfessorController@rateProf')->name('rateProf');
 
 // Post page
 Route::get('post/{id}', 'PostPageController@show');
@@ -47,6 +48,8 @@ Route::post('/professors/{id}/editAbbrev', 'ProfessorController@editAbbrev')->na
 Route::post('/professors/{id}/editEmail', 'ProfessorController@editEmail')->name('editProfEmail');
 Route::post('/professors/{id}/editPicture', 'ProfessorController@editProfilePicture')->name('editProfPicture');
 Route::get('professors/{id}/cus', 'ProfessorController@listCUs')->name('listProfCUs');
+Route::get('professors/{id}/ratings', 'ProfessorController@requestRatings');
+
 
 //CUs
 Route::get('/cu', 'CUController@showAll');

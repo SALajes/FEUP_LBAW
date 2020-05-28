@@ -70,7 +70,9 @@
         </div>
         <div class="d-flex justify-content-around likes_friend">
             <div>
-                <i class="icon-like" style="color: #0aedb3"></i> <?=$likeCounter?>
+                <a data-toggle="modal" data-target="#rateProfModal" class="btn btn-default">
+                    <i class="icon-like" style="color: #0aedb3"></i> <?=$likeCounter?>
+                </a>
             </div>
         </div>
     </section>

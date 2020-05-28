@@ -8,13 +8,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="bio-form" class="form-horizontal" method="POST" action="<?php echo e(route('rateStudent', $student)); ?>" enctype="multipart/form-data">
+                <form id="rate_student_form" class="form-horizontal" method="POST" action="<?php echo e(route('rateStudent', $student)); ?>" enctype="multipart/form-data">
                     <?php echo e(csrf_field()); ?>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label">Review</label>
                         <div class="col-md-6">
-                            <textarea class="form-control" id="student_review" name="student_review" rows="3"></textarea>
+                            <textarea class="form-control" id="review" name="review" rows="3"></textarea>
                         </div>
                         <div class="col-md-6 col-md-offset-4">
                             <button type="submit" class="btn btn-primary">Submit</button>

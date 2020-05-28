@@ -49,14 +49,18 @@ function getMyCUs(){
 }
 
 function getMyRatings(){
+    let aux = "";
     data.innerHTML = "";
 
     let req = new XMLHttpRequest();
-
     req.open("GET", "/users/myRatings/" + student_id, true);
     req.onload = function(){
         if(req.status >= 200 && req.status < 400){ // Se o SRV retornar bem
-            data.innerHTML = this.responseText;
+            aux = JSON.parse(this.responseText);
+            console.log(aux)
+            for (let i = 0; i != aux.reviews.length; i++) {
+                data.innerHTML += '<div class="card-header d-flex"><div class="flex-column"><p>' + aux.reviews[i].review + '</p></div></div>';
+            }
         }
     };
     

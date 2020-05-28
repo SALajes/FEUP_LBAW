@@ -4,6 +4,8 @@ let myCUs = document.querySelector("#tabs > a:nth-child(1)");
 let data = document.getElementById("data");
 let professor_id = document.getElementById("professor_id").value;
 let cu_data = "";
+let myRatings = document.querySelector("#tabs > a:nth-child(2)");
+let manageCUs = document.querySelector("#tabs > a:nth-child(3)");
 
 function getMyCUs(){
     cu_data = "";
@@ -44,14 +46,19 @@ function getMyCUs(){
 }
 
 function getMyRatings(){
+    let aux = "";
     data.innerHTML = "";
 
     let req = new XMLHttpRequest();
 
-    req.open("GET", "/users/myRatings/" + professor_id, true);
+    req.open("GET", "/professors/" + professor_id + "/ratings", true);
     req.onload = function(){
         if(req.status >= 200 && req.status < 400){ // Se o SRV retornar bem
-            data.innerHTML = this.responseText;
+            aux = JSON.parse(this.responseText);
+            console.log(aux)
+            for (let i = 0; i != aux.reviews.length; i++) {
+                data.innerHTML += '<div class="card-header d-flex"><div class="flex-column"><p>' + aux.reviews[i].review + '</p></div></div>';
+            }
         }
     };
     
@@ -64,12 +71,13 @@ function getMyRatings(){
 
     myRatings.className += " active ";
     myCUs.classList.remove("active");
+    if (manageCUs != null) manageCUs.classList.remove("active");
 }
 
 
 
 
 myCUs.onclick = getMyCUs;
-// myRatings.onclick = getMyRatings;
+myRatings.onclick = getMyRatings;
 
 getMyCUs();
