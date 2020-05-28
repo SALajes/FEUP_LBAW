@@ -56,8 +56,11 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         $owner = false;
+        $likeCounter = DB::table('rating')
+                       ->where('student_id', '=', $id)
+                       ->count();
         if ($id == Auth::user()->id) $owner = true;
-        return view('pages.profile', ['student' => $student, 'owner' => $owner]);
+        return view('pages.profile', ['student' => $student, 'owner' => $owner, 'likeCounter' => $likeCounter]);
     }
 
     public function requestCUs($id)
@@ -191,5 +194,22 @@ class StudentController extends Controller
         $user->delete();
         auth()->logout();
         return redirect('/');
+    }
+
+    public function rateStudent($reviewed_student, Request $request) {
+        $review = DB::table('rating')
+        ->where('reviewer_id', '=', Auth::user()->id)
+        ->where('student_id', '=', $reviewed_student)
+        ->where('has_voted', '=', true)
+        ->count();
+
+        if ($review == 0) {
+            DB::table('rating')
+            ->insert(['reviewer_id' => Auth::user()->id, 
+                  'has_voted' => true,
+                  'review' => $request->review,
+                  'student_id' => $reviewed_student]);
+        }
+        return redirect('/users/' . $reviewed_student);
     }
 }
