@@ -23,13 +23,12 @@ function getMyCUs(){
                 cu_data += "<td>";
                 cu_data += "<a href=\"/cu/" + cu_list.cus[i].id + "\">" + cu_list.cus[i].abbrev + "</a>";
                 cu_data += "</td>";
-                cu_data += " <td>Teaches</td>";
-                cu_data += "<td>Leave</td>";
+                cu_data += " <td>" + cu_list.cus[i].name + "</td>";
                 cu_data+= "</tr>";
             }
 
     
-            data.innerHTML = "<section class=\"row\"><table class=\"table text-center table-hover\"><thead><tr><th scope=\"col\">Name</th><th scope=\"col\">Status</th><th scope=\"col\">Action</th></tr></thead><tbody>" + cu_data + "</tbody></table></section>";
+            data.innerHTML = "<section class=\"row\"><table class=\"table text-center table-hover\"><thead><tr><th scope=\"col\">Abbreviature</th><th scope=\"col\">Name</th></tr></thead><tbody>" + cu_data + "</tbody></table></section>";
         }
         
         if (req.status == 404) console.log(404);
