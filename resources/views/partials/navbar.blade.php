@@ -53,4 +53,4 @@
         <div id="notification_area" class="d-none"></div>
     </div>
 </header>
-<div id="feedback_msg_area"></div>
+<div id="feedback_msg_area" class="fixed-top"></div>

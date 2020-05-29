@@ -1,3 +1,15 @@
+let feedback_msg_area = document.getElementById("feedback_msg_area");
+
+function success_fb_msg(content){
+  let str = "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">" + content + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>";
+  feedback_msg_area.innerHTML = str;
+}
+
+function failure_fb_msg(content){
+  let str = "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">" + content + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>";
+  feedback_msg_area.innerHTML = str;
+}
+
 function addEventListeners() {
   // New post listener
   if (window.location.pathname == "/homepage"){
@@ -58,7 +70,12 @@ function sendCreatePostRequest(event) {
 }
 
 function postAddedHandler() {
-  if (this.status != 200) window.location ='/homepage';
+  if (this.status < 200 || this.status >= 400) {
+    failure_fb_msg("Failed to create post.");
+  }
+  else {
+    success_fb_msg("Post posted successfully!");
+  }
 
   let post = JSON.parse(this.responseText);
 
