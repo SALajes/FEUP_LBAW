@@ -57,7 +57,8 @@ function getMyRatings(){
             aux = JSON.parse(this.responseText);
             console.log(aux)
             for (let i = 0; i != aux.reviews.length; i++) {
-                data.innerHTML += '<div class="card-header d-flex"><div class="flex-column"><p>' + aux.reviews[i].review + '</p></div></div>';
+                if (aux.reviews[i].review != null)
+                    data.innerHTML += '<div class="card-header d-flex"><div class="flex-column"><p>' + aux.reviews[i].review + '</p></div></div>';
             }
         }
     };
