@@ -25,8 +25,8 @@
         <div id="content" class="col-12 col-lg-9">
             <div id="nav">
                 <div id="tabs" class="nav nav-tabs nav-fill">
-                    <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">My CUs</a>
-                    <a class="nav-item nav-link" href="#" role="button" >My Ratings</a>
+                    <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">Teaches</a>
+                    <a class="nav-item nav-link" href="#" role="button">Ratings</a>
                 </div>
             </div>
             <input id="professor_id" type="hidden" value="{{ $professor->id }}" readonly>

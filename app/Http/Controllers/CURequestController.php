@@ -87,6 +87,10 @@ class CURequestController extends Controller
     {
         $student = Auth::user();
 
+        $likeCounter = DB::table('rating')
+        ->where('student_id', '=', Auth::user()->id)
+        ->count();
+
         $requests = DB::table('cu_request')
             ->join('student', 'student.id', '=', 'cu_request.student_id')
             ->select(
@@ -105,7 +109,7 @@ class CURequestController extends Controller
 
         return view(
             'pages.manage_requests',
-            ['student' => $student, 'reqs' => $requests]
+            ['student' => $student, 'reqs' => $requests, 'likeCounter' => $likeCounter]
         );
     }
 
