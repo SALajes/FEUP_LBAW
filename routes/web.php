@@ -71,7 +71,6 @@ Route::post('/cu/{id}/rate', 'CUController@rateCU')->name('rateCU');
 //Requests
 Route::get('/request/cu', 'CURequestController@requestCU');
 Route::post('/request/newcu', 'CURequestController@submitRequest');
-Route::get('/testRequest', 'CURequestController@testPoll');
 Route::get('/manageCreateRequests', 'CURequestController@manageCreateRequests')->name('manageCreateRequests');
 Route::get('/manageJoinRequests', 'CURequestController@manageJoinRequests')->name('manageJoinRequests');
 Route::post('/acceptCreateRequest/{id}', 'CURequestController@acceptCreateRequest')->name('acceptCreateRequest');

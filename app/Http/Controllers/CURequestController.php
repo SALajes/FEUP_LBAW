@@ -45,12 +45,6 @@ class CURequestController extends Controller
         return redirect()->route('homepage');
     }
 
-    public function testPoll()
-    {
-        $test = DB::table('cu_request')->select()->get();
-        return response()->json(['reqs' => $test]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
