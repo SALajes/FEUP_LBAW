@@ -43,6 +43,7 @@ function getMyCUs(){
     req.send();
     
     myCUs.className += " active ";
+    myRatings.classList.remove("active");
 }
 
 function getMyRatings(){
