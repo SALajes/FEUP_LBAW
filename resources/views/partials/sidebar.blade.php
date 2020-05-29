@@ -21,7 +21,7 @@
             <div class="text-center">
                 <h2 class="d-block pt-md-4"><?= $breadcrumb ?> </h2>
                     <div class="d-flex justify-content-center align-items-center">
-                        <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $professor->id }}">
+                        <a class="nav-item nav-link d-none d-sm-block d-md-block" href="/professors/{{ $professor->id }}">
                             @if ($professor->profile_image)
                                 <div class="img-circle d-flex justify-content-between align-items-center">
                                     <img src="/storage/profile_image/{{ $professor->profile_image }}" class="img-profile"/>

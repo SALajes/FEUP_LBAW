@@ -67,7 +67,7 @@ class StudentController extends Controller
     {
         $cus = DB::table('enrolled')
             ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
-            ->select('curricular_unit.abbrev', 'curricular_unit.id')
+            ->select('curricular_unit.abbrev', 'curricular_unit.id', 'curricular_unit.name')
             ->where('enrolled.student_id', '=', $id)
             ->get();
 

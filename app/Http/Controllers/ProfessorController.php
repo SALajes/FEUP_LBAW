@@ -20,6 +20,10 @@ class ProfessorController extends Controller
     }
     public function editName($id, Request $request)
     {
+        $request->validate([
+            'prof_name' => 'string|min:1',
+        ]);
+
         $prof = Professor::find($id);
 
         $prof->name = $request->input('prof_name');
@@ -31,6 +35,10 @@ class ProfessorController extends Controller
 
     public function editEmail($id, Request $request)
     {
+        $request->validate([
+            'prof_email' => 'string|min:1',
+        ]);
+
         $prof = Professor::find($id);
 
         $prof->email = $request->input('prof_email');
@@ -42,6 +50,10 @@ class ProfessorController extends Controller
 
     public function editAbbrev($id, Request $request)
     {
+        $request->validate([
+            'prof_abbrev' => 'string|min:1',
+        ]);
+
         $prof = Professor::find($id);
 
         $prof->abbrev = $request->input('prof_abbrev');
