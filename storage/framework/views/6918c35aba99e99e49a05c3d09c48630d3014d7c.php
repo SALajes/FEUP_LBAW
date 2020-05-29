@@ -1,8 +1,8 @@
-<article class="card post post-margins" data-id="{{$post->id}}">
+<article class="card post post-margins" data-id="<?php echo e($post->id); ?>">
   <div class="post-header d-flex justify-content-between">
     <div class="post-header-left">
-      <a href="/users/{{ $post->author_id }}"><i class="icon-user post-user-icon"></i>{{ $post->name }}</a>
-      <a href="/cu/{{$post->cu_id}}" class="badge badge-pill badge-primary cu-badge">{{ $post->abbrev }}</a>
+      <a href="/users/<?php echo e($post->author_id); ?>"><i class="icon-user post-user-icon"></i><?php echo e($post->name); ?></a>
+      <a href="/cu/<?php echo e($post->cu_id); ?>" class="badge badge-pill badge-primary cu-badge"><?php echo e($post->abbrev); ?></a>
     </div>
 
     <?php
@@ -16,11 +16,12 @@
   </div>
 
   <div class="card-body">
-    {{$post->content}}
+    <?php echo e($post->content); ?>
+
   </div>
 
   <div class="post-footer">
-    <a href="/post/{{$post->id}}" class="number-comments">
+    <a href="/post/<?php echo e($post->id); ?>" class="number-comments">
       <?php
         $hasPrint = false;
 
@@ -37,3 +38,4 @@
     </a>
   </div>
 </article>
+<?php /**PATH /home/simawatt/Documents/FEUP/lbaw2013/resources/views/partials/post.blade.php ENDPATH**/ ?>
