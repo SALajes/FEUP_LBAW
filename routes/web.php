@@ -72,8 +72,13 @@ Route::post('/cu/{id}/rate', 'CUController@rateCU')->name('rateCU');
 Route::get('/request/cu', 'CURequestController@requestCU');
 Route::post('/request/newcu', 'CURequestController@submitRequest');
 Route::get('/testRequest', 'CURequestController@testPoll');
-Route::post('/acceptRequest/{id}', 'CURequestController@acceptRequest')->name('acceptRequest');
-Route::post('/denyRequest/{id}', 'CURequestController@denyRequest')->name('denyRequest');
+Route::get('/manageCreateRequests', 'CURequestController@manageCreateRequests')->name('manageCreateRequests');
+Route::get('/manageJoinRequests', 'CURequestController@manageJoinRequests')->name('manageJoinRequests');
+Route::post('/acceptCreateRequest/{id}', 'CURequestController@acceptCreateRequest')->name('acceptCreateRequest');
+Route::post('/denyCreateRequest/{id}', 'CURequestController@denyCreateRequest')->name('denyCreateRequest');
+Route::post('/acceptJoinRequest/{id}', 'CURequestController@acceptJoinRequest')->name('acceptJoinRequest');
+Route::post('/denyJoinRequest/{id}', 'CURequestController@denyJoinRequest')->name('denyJoinRequest');
+Route::post('/askJoinCU/{id}', 'CURequestController@askJoinCU')->name('askJoinCU');
 
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');

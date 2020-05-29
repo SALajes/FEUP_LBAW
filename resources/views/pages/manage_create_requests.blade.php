@@ -59,13 +59,13 @@
                                               <p><?=$req->student_name?></p>
                                             </div>
                                             <div class="btn-group mx-2">
-                                                <form action="{{ url('/acceptRequest/' . $req->id) }}" method="post">
+                                                <form action="{{ url('/acceptCreateRequest/' . $req->id) }}" method="post">
                                                     {{ csrf_field() }}
                                                     <button id="manage_requests_button" class="btn btn-success mx-2" type="submit">
                                                         Accept
                                                     </button>
                                                 </form>                        
-                                                <form action="{{ url('/denyRequest/' . $req->id) }}" method="post">
+                                                <form action="{{ url('/denyCreateRequest/' . $req->id) }}" method="post">
                                                     {{ csrf_field() }}
                                                     <button id="manage_requests_button" class="btn btn-danger mx-2" type="submit">
                                                         Deny

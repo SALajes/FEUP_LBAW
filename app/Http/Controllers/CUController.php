@@ -94,7 +94,16 @@ class CUController extends Controller
 
     public function about($id)
     {
-        return "about";
+        $review = DB::table('rating')
+        ->where('cu_id', '=', $id)
+        ->get();
+
+        $description = DB::table('curricular_unit')
+        ->select('curricular_unit.description')
+        ->where('id', '=', $id)
+        ->get();
+
+        return ["review" => $review, "description" => $description];
     }
 
     public function destroy(Request $request)
@@ -150,7 +159,7 @@ class CUController extends Controller
             DB::table('rating')
             ->insert(['reviewer_id' => Auth::user()->id, 
                   'has_voted' => true,
-                  'review' => $request->review,
+                  'review' => $request->input('cu_review'),
                   'cu_id' => $reviewed_cu]);
         }
         return redirect('/cu/' . $reviewed_cu);    

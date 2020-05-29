@@ -166,6 +166,9 @@ class StudentController extends Controller
     }
 
     public function rateStudent($reviewed_student, Request $request) {
+        if ($reviewed_student == Auth::user()->id)
+            return redirect('/users/' . Auth::user()->id);
+
         $review = DB::table('rating')
         ->where('reviewer_id', '=', Auth::user()->id)
         ->where('student_id', '=', $reviewed_student)
