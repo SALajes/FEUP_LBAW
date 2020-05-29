@@ -13,7 +13,7 @@
         
         <div id="navbarCollapse" class="collapse navbar-collapse" >
             <section id="collapsed_profile" class="d-md-none d-flex flex-row justify-content-center align-items-center flex-wrap">
-                <a class="nav-link" href="profile1.php"><i class="icon-user align-middle"></i></a>
+                <a class="nav-link" href="/users/<?=Auth::user()->id?>"><i class="icon-user align-middle"></i></a>
                 <section class="d-flex flex-column">
                     <span>{{Auth::user() -> name}}</span>
                     <span>{{Auth::user() -> student_number}}</span>
@@ -30,24 +30,12 @@
                     <a class="nav-link" id="notifications" href="#"><i class="icon-bell align-middle"></i></a>
                     <span class="d-md-none"> Notifications</span>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-message align-middle"></i></a>
-                    <span class="d-md-none"> Messages</span>
-                </li>
                 <li class="nav-item d-none d-md-block">
-                    <a class="nav-link" href="#"><i class="icon-user align-middle"></i></a>
+                    <a class="nav-link" href="/users/<?=Auth::user()->id?>"><i class="icon-user align-middle"></i></a>
                     <span class="d-md-none"> Profile</span>
                 </li>
-                <li class="nav-item d-md-none">
-                    <a class="nav-link" href="#"><i class="icon-cu align-middle"></i></a>
-                    <span> My CU's</span>
-                </li>
-                <li class="nav-item d-md-none">
-                    <a class="nav-link" href="#"><i class="icon-manage_cu align-middle"></i></a>
-                    <span> Manage CU's</span>
-                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-question align-middle"></i></a>
+                    <a class="nav-link" href="/about"><i class="icon-question align-middle"></i></a>
                     <span class="d-md-none"> Help</span>
                 </li>
                 <li class="nav-item">
