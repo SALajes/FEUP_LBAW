@@ -53,3 +53,4 @@
         <div id="notification_area" class="d-none"></div>
     </div>
 </header>
+<div id="feedback_msg_area"></div>
