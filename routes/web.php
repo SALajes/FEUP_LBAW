@@ -21,6 +21,8 @@ Route::delete('api/posts/{id}', 'PostController@deletePost');
 
 Route::get('about', 'LandingController@showAbout');
 
+Route::post('/users/{id}/rate', 'StudentController@rateStudent')->name('rateStudent');
+
 // Post page
 Route::get('post/{id}', 'PostPageController@show');
 Route::put('api/comments', 'PostPageController@createComment');
@@ -51,7 +53,8 @@ Route::delete('/cu', 'CUController@destroy');
 Route::post('/cu/{id}/editName', 'CUController@editName');
 Route::post('/cu/{id}/editAbbrev', 'CUController@editAbbrev');
 Route::post('/cu/{id}/editDescription', 'CUController@editDescription');
-
+Route::get('/manageRequests', 'CURequestController@manageRequests')->name('manageRequests');
+Route::post('/cu/{id}/rate', 'CUController@rateCU')->name('rateCU');
 
 
 //Requests

@@ -6,6 +6,8 @@
 
 @include('partials.navbar')
 @include('partials.sidebar')
+@include('partials.rate_cu_modal')
+
 @section('title', 'CU Page')
 
 @section('content')
@@ -14,7 +16,7 @@
         <?php
             use Illuminate\Support\Facades\Auth;
             draw_sidebar_Top($cu->abbrev, Auth::user() -> id, Auth::user() -> name, Auth::user() -> student_number);
-            draw_sidebar_CU($cu->id);
+            draw_sidebar_CU($cu->id, $likeCounter);
         ?>
         <div id="content" class="col-12 col-lg-9">
             <section id="mainArea" class="col-12 col-lg-9">
