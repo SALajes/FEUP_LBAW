@@ -108,7 +108,7 @@ class CURequestController extends Controller
             ->get();
 
         return view(
-            'pages.manage_requests',
+            'pages.manage_create_requests',
             ['student' => $student, 'reqs' => $requests, 'likeCounter' => $likeCounter]
         );
     }
