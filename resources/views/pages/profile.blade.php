@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('css/post.css') }}">
+<link rel="stylesheet" href="{{ asset('css/identity.css') }}">
 
 <script src={{ asset('js/profile.js') }} defer></script>
 
@@ -15,7 +17,7 @@
 
 @section('content')
 
-<div class="container-fuild">
+<div class="container-fluid">
     <div class="row">
        <?php
             $bc = "Profile";

@@ -67,7 +67,7 @@ class StudentController extends Controller
     {
         $cus = DB::table('enrolled')
             ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
-            ->select('curricular_unit.abbrev', 'curricular_unit.id')
+            ->select('curricular_unit.abbrev', 'curricular_unit.id', 'curricular_unit.name')
             ->where('enrolled.student_id', '=', $id)
             ->get();
 
@@ -76,9 +76,13 @@ class StudentController extends Controller
 
     public function requestRatings($id)
     {
-
-        return response()->json(['success' => 'Requested Ratings.' . $id]);
-    }
+        $reviews = DB::table('rating')
+            ->select('review')
+            ->join('student', 'student.id', '=', 'rating.student_id')
+            ->where('student_id', '=', $id)
+            ->get();
+            return response()->json(['reviews' => $reviews]);
+        }
 
     public function pollNotifications($id)
     {
@@ -92,41 +96,6 @@ class StudentController extends Controller
         $notifications = Student::find($id)->notifications()->orderBy('date', 'desc')->limit(25)->get();
         for ($i = 0; $i < sizeof($notifications); $i++) DB::table('notification')->where('id', $notifications[$i]->id)->update(['seen' => TRUE]);
         return response()->json(['notifications' => $notifications]);
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Student $student)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Student $student)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Student $student)
-    {
-        //
     }
 
     public function editPassword(Request $request)
@@ -197,6 +166,9 @@ class StudentController extends Controller
     }
 
     public function rateStudent($reviewed_student, Request $request) {
+        if ($reviewed_student == Auth::user()->id)
+            return redirect('/users/' . Auth::user()->id);
+
         $review = DB::table('rating')
         ->where('reviewer_id', '=', Auth::user()->id)
         ->where('student_id', '=', $reviewed_student)

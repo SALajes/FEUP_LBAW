@@ -378,10 +378,20 @@ function getAbout(){
     feed_btn.style.textDecoration = "";
     about_btn.style.textDecoration = "underline";
     let req = new XMLHttpRequest();
+    let aux = "";
     req.open("GET",  "/cu/" + id + "/about/", true);
+    content_elem.innerHTML = "";
 
     req.onload = function () {
-        if (req.status >= 200 && req.status < 400) content_elem.innerHTML = this.responseText;
+        if (req.status >= 200 && req.status < 400) {
+          aux = JSON.parse(this.responseText);
+          content_elem.innerHTML += "<h1>Description</h1><p>" + aux.description[0].description + "</p>";
+          content_elem.innerHTML += "<h1>Reviews</h1>";
+          for (let i = 0; i != aux.review.length; i++) {
+            if (aux.review[i].review != null)
+                content_elem.innerHTML += '<div class="card-header d-flex"><div class="flex-column"><p>' + aux.review[i].review + '</p></div></div>';
+          }
+        }
     };
 
     req.send();

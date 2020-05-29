@@ -11,11 +11,11 @@
 @section('title', 'CU Page')
 
 @section('content')
-<div class="container-fuild">
+<div class="container-fluid">
     <div class="row">
         <?php
             use Illuminate\Support\Facades\Auth;
-            draw_sidebar_Top($cu->abbrev, Auth::user() -> id, Auth::user() -> name, Auth::user() -> student_number);
+            draw_sidebar_Top_CU($cu, $teachers);
             draw_sidebar_CU($cu->id, $likeCounter);
         ?>
         <div id="content" class="col-12 col-lg-9">

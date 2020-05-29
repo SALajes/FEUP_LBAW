@@ -1,12 +1,11 @@
 "use strict";
 
 let myCUs = document.querySelector("#tabs > a:nth-child(1)");
+let data = document.getElementById("data");
+let professor_id = document.getElementById("professor_id").value;
+let cu_data = "";
 let myRatings = document.querySelector("#tabs > a:nth-child(2)");
 let manageCUs = document.querySelector("#tabs > a:nth-child(3)");
-
-let data = document.getElementById("data");
-let student_id = document.getElementById("student_id").value;
-let cu_data = "";
 
 function getMyCUs(){
     cu_data = "";
@@ -14,7 +13,7 @@ function getMyCUs(){
 
     let req = new XMLHttpRequest();
 
-    req.open("GET", "/users/myCUs/" + student_id, true);
+    req.open("GET", "/professors/" + professor_id + "/cus/", true);
     req.onload = function(){
         if(req.status >= 200 && req.status < 400){ // Se o SRV retornar bem
             let cu_list = JSON.parse(this.responseText);
@@ -44,7 +43,6 @@ function getMyCUs(){
     
     myCUs.className += " active ";
     myRatings.classList.remove("active");
-    if (manageCUs != null) manageCUs.classList.remove("active");
 }
 
 function getMyRatings(){
@@ -52,7 +50,8 @@ function getMyRatings(){
     data.innerHTML = "";
 
     let req = new XMLHttpRequest();
-    req.open("GET", "/users/myRatings/" + student_id, true);
+
+    req.open("GET", "/professors/" + professor_id + "/ratings", true);
     req.onload = function(){
         if(req.status >= 200 && req.status < 400){ // Se o SRV retornar bem
             aux = JSON.parse(this.responseText);

@@ -8,8 +8,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="rate_student_form" class="form-horizontal" method="POST" action="{{ route('rateStudent', $student) }}" enctype="multipart/form-data">
-                    {{ csrf_field() }}
+                <form id="rate_student_form" class="form-horizontal" method="POST" action="<?php echo e(route('rateStudent', $student)); ?>" enctype="multipart/form-data">
+                    <?php echo e(csrf_field()); ?>
+
                     <div class="form-group">
                         <label class="col-md-4 control-label">Review</label>
                         <div class="col-md-6">
@@ -24,3 +25,4 @@
         </div>
     </div>
 </div>
+<?php /**PATH /home/cadu/Git/lbaw2013/resources/views/partials/rate_student_modal.blade.php ENDPATH**/ ?>
