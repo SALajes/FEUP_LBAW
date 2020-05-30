@@ -66,14 +66,12 @@ Route::delete('/cu', 'CUController@destroy');
 Route::post('/cu/{id}/editName', 'CUController@editName');
 Route::post('/cu/{id}/editAbbrev', 'CUController@editAbbrev');
 Route::post('/cu/{id}/editDescription', 'CUController@editDescription');
-Route::get('/manageRequests', 'CURequestController@manageRequests')->name('manageRequests');
 Route::post('/cu/{id}/rate', 'CUController@rateCU')->name('rateCU');
 
 
 //Requests
 Route::get('/request/cu', 'CURequestController@requestCU');
 Route::post('/request/newcu', 'CURequestController@submitRequest');
-Route::get('/testRequest', 'CURequestController@testPoll');
 Route::get('/manageCreateRequests', 'CURequestController@manageCreateRequests')->middleware('AdminAuth')->name('manageCreateRequests');
 Route::get('/manageJoinRequests', 'CURequestController@manageJoinRequests')->middleware('AdminAuth')->name('manageJoinRequests');
 Route::post('/acceptCreateRequest/{id}', 'CURequestController@acceptCreateRequest')->name('acceptCreateRequest');

@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class UserAuth
+class AjaxOnly
 {
     /**
      * Handle an incoming request.
@@ -16,9 +15,9 @@ class UserAuth
      */
     public function handle($request, Closure $next)
     {
-        if($request->route('id') == Auth::user()->id)
-            return $next($request);
+        if ( ! $request->ajax())
+            return redirect()->back();
 
-        return redirect()->back();   
+        return $next($request);
     }
 }

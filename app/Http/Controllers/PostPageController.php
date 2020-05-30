@@ -65,6 +65,8 @@ class PostPageController extends Controller
 
     public function createComment(Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         $comment = new Comment();
         $this->authorize('createComment', $comment);
         
@@ -82,6 +84,8 @@ class PostPageController extends Controller
 
     public function createSubcomment(Request $request, $commentId)
     {
+        if(!Auth::check()) return redirect('/');
+
         $subcomment = new Comment();
         $this->authorize('createSubcomment', $subcomment);
 

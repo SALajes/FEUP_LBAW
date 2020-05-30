@@ -15,6 +15,6 @@ class NotificationAuth
      */
     public function handle($request, Closure $next)
     {
-        return redirect('/');
+        return redirect()->back();
     }
 }

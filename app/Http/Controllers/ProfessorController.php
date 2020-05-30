@@ -11,6 +11,8 @@ class ProfessorController extends Controller
 {
     public function show($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         $professor = Professor::find($id);
         $likeCounter = DB::table('rating')
                        ->where('professor_id', '=', $id)
@@ -18,6 +20,7 @@ class ProfessorController extends Controller
         return view('pages.profile_prof', ['professor' => $professor, 
                                            'likeCounter' => $likeCounter]);
     }
+    
     public function editName($id, Request $request)
     {
         $request->validate([
