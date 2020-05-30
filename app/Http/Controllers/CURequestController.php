@@ -25,6 +25,8 @@ class CURequestController extends Controller
 
     public function submitRequest(Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         $cu_request = new CURequest();
 
         $cu_request->student_id = Auth::user()->id;
@@ -47,46 +49,10 @@ class CURequestController extends Controller
         return redirect()->route('homepage');
     }
 
-    public function testPoll()
-    {
-        $test = DB::table('cu_request')->select()->get();
-        return response()->json(['reqs' => $test]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\CURequest  $cURequest
-     * @return \Illuminate\Http\Response
-     */
-    public function show(CURequest $cURequest)
-    {
-        //
-    }
-
     public function manageCreateRequests()
     {
+        if(!Auth::check()) return redirect('/');
+
         $student = Auth::user();
 
         $likeCounter = DB::table('rating')
@@ -117,6 +83,8 @@ class CURequestController extends Controller
     
     public function manageJoinRequests()
     {
+        if(!Auth::check()) return redirect('/');
+
         $student = Auth::user();
         $requests = DB::table('cu_join_request')
             ->join('student', 'student.id', '=', 'cu_join_request.student_id')
@@ -135,6 +103,8 @@ class CURequestController extends Controller
 
     public function acceptCreateRequest($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         DB::table('cu_request')
             ->where('id', '=', $id)
             ->update(['request_status' => 'Accepted']);
@@ -165,6 +135,8 @@ class CURequestController extends Controller
 
     public function denyCreateRequest($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         DB::table('cu_request')
             ->where('id', '=', $id)
             ->update(['request_status' => 'Rejected']);
@@ -174,6 +146,8 @@ class CURequestController extends Controller
 
     public function acceptJoinRequest($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         DB::table('cu_join_request')
             ->where('id', '=', $id)
             ->update(['request_status' => 'Accepted']);
@@ -195,6 +169,8 @@ class CURequestController extends Controller
 
     public function denyJoinRequest($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         DB::table('cu_join_request')
             ->where('id', '=', $id)
             ->update(['request_status' => 'Rejected']);
@@ -202,7 +178,10 @@ class CURequestController extends Controller
         return redirect()->back();
     }
 
-    public function askJoinCU($id) {
+    public function askJoinCU($id)
+    {
+        if(!Auth::check()) return redirect('/');
+
         $isEnrolled = DB::table('enrolled')
             ->where('enrolled.cu_id', '=', $id)
             ->where('enrolled.student_id', '=', Auth::user()->id)

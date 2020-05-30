@@ -23,6 +23,8 @@ class ProfessorController extends Controller
     
     public function editName($id, Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         $request->validate([
             'prof_name' => 'string|min:1',
         ]);
@@ -38,6 +40,8 @@ class ProfessorController extends Controller
 
     public function editEmail($id, Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         $request->validate([
             'prof_email' => 'string|min:1',
         ]);
@@ -53,6 +57,8 @@ class ProfessorController extends Controller
 
     public function editAbbrev($id, Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         $request->validate([
             'prof_abbrev' => 'string|min:1',
         ]);
@@ -68,6 +74,8 @@ class ProfessorController extends Controller
 
     public function editProfilePicture($id, Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         $request->validate([
             'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -85,7 +93,10 @@ class ProfessorController extends Controller
             ->with('success', 'You have successfully uploaded the image.');
     }
 
-    public function rateProf($reviewed_prof, Request $request) {
+    public function rateProf($reviewed_prof, Request $request)
+    {
+        if(!Auth::check()) return redirect('/');
+
         $review = DB::table('rating')
         ->where('reviewer_id', '=', Auth::user()->id)
         ->where('professor_id', '=', $reviewed_prof)
@@ -102,7 +113,10 @@ class ProfessorController extends Controller
         return redirect('/professors/' . $reviewed_prof);
     }
 
-    public function listCUs($id) {
+    public function listCUs($id)
+    {
+        if(!Auth::check()) return redirect('/');
+
         $cus = DB::table('teaches')
             ->select('curricular_unit.abbrev', 'curricular_unit.id', 'curricular_unit.name')
             ->join('curricular_unit', 'curricular_unit.id', '=', 'teaches.cu_id')
@@ -112,7 +126,10 @@ class ProfessorController extends Controller
         return response()->json(['cus' => $cus]);
     }
 
-    public function requestRatings($id) {
+    public function requestRatings($id)
+    {
+        if(!Auth::check()) return redirect('/');
+        
         $reviews = DB::table('rating')
         ->select('review')
         ->join('professor', 'professor.id', '=', 'rating.professor_id')

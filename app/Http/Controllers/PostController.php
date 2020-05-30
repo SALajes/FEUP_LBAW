@@ -102,6 +102,8 @@ class PostController extends Controller
 
     public function deletePost($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         $post = Post::find($id);
         $this->authorize('deletePost', $post);
         $post->delete();
