@@ -341,8 +341,6 @@ function getFeed() {
             for (let i = 0; i < posts.length; i++)
               posts_html += post_to_string(posts[i]);
             
-            console.log(posts_html);
-            
             let content_str = "<section id=\"posts\">" + posts_html  + "</section>";
             content_elem.innerHTML = content_str;
             addEventListeners();
@@ -371,11 +369,8 @@ function getDoubts() {
       if (req.status >= 200 && req.status < 400){
         posts = JSON.parse(this.responseText);
         posts_html = "";
-        console.log(posts);
         for (let i = 0; i < posts.length; i++)
           posts_html += post_to_string(posts[i]);
-        
-        console.log(posts_html);
         
         let content_str = "<section id=\"posts\">" + posts_html  + "</section>";
         content_elem.innerHTML = content_str;
@@ -405,11 +400,8 @@ function getTutoring(){
       if (req.status >= 200 && req.status < 400){
         posts = JSON.parse(this.responseText);
         posts_html = "";
-        console.log(posts);
         for (let i = 0; i < posts.length; i++)
           posts_html += post_to_string(posts[i]);
-        
-        console.log(posts_html);
         
         let content_str = "<section id=\"posts\">" + posts_html  + "</section>";
         content_elem.innerHTML = content_str;
