@@ -17,28 +17,31 @@
 
 <div class="container-fluid">
     <div class="row">
-       <?php
+        <?php
             $bc = "Profile";
-            if ($owner)$bc = "My " . $bc;
+            if ($owner) $bc = "My " . $bc;
             draw_sidebar_Top($bc, $student->id, $student->name, $student->student_number);
             draw_sidebar_Profile($student->bio, $likeCounter, $owner);
         ?>
+        
         <!-- offset-lg-0 offset-md-2 offset-3 -->
-        <div id="content" class="col-12 col-lg-9">
+        
+        <div id="profileArea" class="col-12 col-lg-9">
             <div id="nav">
                 <div id="tabs" class="nav nav-tabs nav-fill">
                     <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">My CUs</a>
-                    <a class="nav-item nav-link" href="#" role="button" >My Ratings</a>
+                    <a class="nav-item nav-link" href="#" role="button">My Ratings</a>
                     <?php
-                        if ($owner && Auth::user()->administrator()){
-                    ?>
+                        use Illuminate\Support\Facades\Auth;
+
+                        if ($owner && Auth::user()->administrator) { ?>
                         <a class="nav-item nav-link" href="#" role="button">Manage CUs</a>
                         <script src={{ asset('js/admin.js') }} defer></script>
                     <?php } ?>
                 </div>
             </div>
 
-            <input id="student_id" type="hidden" value="{{ $student->id }}" readonly>
+            <input id="student_id" type="hidden" value="{{ $student->id }}">
             <div id="data"></div>
         </div>
     </div>
