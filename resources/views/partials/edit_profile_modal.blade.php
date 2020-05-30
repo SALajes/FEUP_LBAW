@@ -68,13 +68,13 @@
                         </div>
                     </div>
                 </form>
-                
+
                 <form id="bio-form" class="form-horizontal" method="POST" action="{{ route('editBio', Auth::user()->id) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label class="col-md-4 control-label">New bio</label>
                         <div class="col-md-6">
-                            <input name="bio" type="text" id="bio" form="bio-form" placeholder="{{Auth::user()->bio}}"/>
+                            <input name="bio" type="text" id="bio" form="bio-form" placeholder="{{Auth::user()->bio}}" />
                         </div>
                         <div class="col-md-6 col-md-offset-4">
                             <button type="submit" class="btn btn-primary">Update bio</button>

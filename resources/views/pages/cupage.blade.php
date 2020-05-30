@@ -13,16 +13,18 @@
 <div class="container-fluid">
     <div class="row">
         <?php
-            use Illuminate\Support\Facades\Auth;
-            draw_sidebar_Top_CU($cu, $teachers);
-            draw_sidebar_CU($cu->id, $likeCounter);
+
+        use Illuminate\Support\Facades\Auth;
+
+        draw_sidebar_Top_CU($cu, $teachers);
+        draw_sidebar_CU($cu->id, $likeCounter);
         ?>
-        <div id="content" class="col-12 col-lg-9">
+        <div id="cuArea" class="col-12 col-lg-9">
             <section id="mainArea" class="col-12 col-lg-9">
                 <div>
                     @include('partials.publish_card', ['where'=>$cu->abbrev])
                 </div>
-                <input id="cu_id" type="hidden" value="{{ $cu->id }}" readonly>
+                <input id="cu_id" type="hidden" value="{{ $cu->id }}">
                 <div id="data"></div>
             </section>
         </div>
