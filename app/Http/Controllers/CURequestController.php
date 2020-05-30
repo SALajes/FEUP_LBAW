@@ -32,17 +32,11 @@ class CURequestController extends Controller
         $cu_request->additional_info = $request->input('additional_info');
         $cu_request->request_status = 'NotSeen';
 
-        $cu_request->save();
+        $saved = $cu_request->save();
 
-        $notification = new Notification();
-        $notification->student_id = Auth::user()->id;
-        $notification->content = "You have submited a request for a new CU!";
-        $notification->seen = false;
-        $notification->notification_type = 'RequestCU';
+        if ($saved) return redirect()->route('homepage')->with('success', 'You have successfully submited a request for a new CU.');
 
-        $notification->save();
-
-        return redirect()->route('homepage');
+        else return back()->with('error', 'Failed to submit a request for a new CU.');
     }
 
     /**

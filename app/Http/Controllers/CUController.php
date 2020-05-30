@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 function post_to_string($post)
 {
+    //TODO: REFACTOR THIS. MOVE TO JS
     $str = "";
     $str .= "<article class=\"card post post-margins\" data-id=\"" .  $post->id . "\">";
     $str .=  "<div class=\"post-header d-flex justify-content-between\">";

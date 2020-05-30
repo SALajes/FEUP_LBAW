@@ -31,10 +31,10 @@ class ProfessorController extends Controller
             $saved = $prof->save();
 
             if ($saved) return back()->with('success', 'You have successfully updated the name.');
-            else return back()->with('failure', 'Update on name failed.');
+            else return back()->with('error', 'Update on name failed.');
         }
 
-        else return back()->with('failure', 'Update on name failed.');
+        else return back()->with('error', 'Update on name failed.');
     }
 
     public function editEmail($id, Request $request)
@@ -50,10 +50,10 @@ class ProfessorController extends Controller
 
             if ($saved) return back()->with('success', 'You have successfully updated the email.');
 
-            else return back()->with('failure', 'Update on email failed.');
+            else return back()->with('error', 'Update on email failed.');
         }
         
-        else return back()->with('failure', 'Update on email failed.');
+        else return back()->with('error', 'Update on email failed.');
     }
 
     public function editAbbrev($id, Request $request)
@@ -70,10 +70,10 @@ class ProfessorController extends Controller
 
             if ($saved) return back()->with('success', 'You have successfully updated the abbrev.');
 
-            else return back()->with('failure', 'Update on abbrev failed.');
+            else return back()->with('error', 'Update on abbrev failed.');
         }
         
-        else return back()->with('failure', 'Update on abbrev failed.');
+        else return back()->with('error', 'Update on abbrev failed.');
 
     }
 
@@ -96,10 +96,10 @@ class ProfessorController extends Controller
 
             if ($saved && $path != null) return back()->with('success', 'You have successfully updated the profile picture.');
 
-            else return back()->with('failure', 'Update on profile picture failed.');
+            else return back()->with('error', 'Update on profile picture failed.');
         }
         
-        else return back()->with('failure', 'Update on profile picture failed.');
+        else return back()->with('error', 'Update on profile picture failed.');
 
     }
 
@@ -119,10 +119,10 @@ class ProfessorController extends Controller
 
             if ($inserted) return back()->with('success', 'You have successfully rated this profile.');
 
-            else return back()->with('failure', 'Failed to rated this profile.');
+            else return back()->with('error', 'Failed to rated this profile.');
         }
 
-        else return back()->with('failure', 'You have already rated this profile.');
+        else return back()->with('error', 'You have already rated this profile.');
     }
 
     public function listCUs($id) {
