@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class AuthResource
+class NotificationAuth
 {
     /**
      * Handle an incoming request.
@@ -16,9 +15,6 @@ class AuthResource
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->administrator)
-            return $next($request);
-
-        return redirect('homepage');
+        return redirect('/');
     }
 }

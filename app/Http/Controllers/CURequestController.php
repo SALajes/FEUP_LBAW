@@ -13,6 +13,8 @@ class CURequestController extends Controller
 
     public function requestCU()
     {
+        if(!Auth::check()) return redirect('/');
+
         $cus = DB::table('enrolled')
             ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
             ->select('curricular_unit.abbrev', 'curricular_unit.id')

@@ -19,8 +19,10 @@ Route::get('homepage', 'PostController@show')->name('homepage');
 Route::put('api/posts', 'PostController@createPost');
 Route::delete('api/posts/{id}', 'PostController@deletePost');
 
+// About
 Route::get('about', 'LandingController@showAbout');
 
+// Rating
 Route::post('/users/{id}/rate', 'StudentController@rateStudent')->name('rateStudent');
 Route::post('/professors/{id}/rate', 'ProfessorController@rateProf')->name('rateProf');
 
@@ -72,8 +74,8 @@ Route::post('/cu/{id}/rate', 'CUController@rateCU')->name('rateCU');
 Route::get('/request/cu', 'CURequestController@requestCU');
 Route::post('/request/newcu', 'CURequestController@submitRequest');
 Route::get('/testRequest', 'CURequestController@testPoll');
-Route::get('/manageCreateRequests', 'CURequestController@manageCreateRequests')->name('manageCreateRequests');
-Route::get('/manageJoinRequests', 'CURequestController@manageJoinRequests')->name('manageJoinRequests')->middleware('AuthResource');
+Route::get('/manageCreateRequests', 'CURequestController@manageCreateRequests')->middleware('AdminAuth')->name('manageCreateRequests');
+Route::get('/manageJoinRequests', 'CURequestController@manageJoinRequests')->middleware('AdminAuth')->name('manageJoinRequests');
 Route::post('/acceptCreateRequest/{id}', 'CURequestController@acceptCreateRequest')->name('acceptCreateRequest');
 Route::post('/denyCreateRequest/{id}', 'CURequestController@denyCreateRequest')->name('denyCreateRequest');
 Route::post('/acceptJoinRequest/{id}', 'CURequestController@acceptJoinRequest')->name('acceptJoinRequest');
@@ -87,5 +89,5 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('register', 'Auth\RegisterController@register')->name('register');
 
 //Notifications
-Route::get('/users/myNotifications/{id}', 'StudentController@notifications');
-Route::get('/users/myNotifications/poll/{id}', 'StudentController@pollNotifications');
+Route::get('/users/myNotifications/{id}', 'StudentController@notifications')->middleware('NotificationAuth');
+Route::get('/users/myNotifications/poll/{id}', 'StudentController@pollNotifications')->middleware('NotificationAuth');

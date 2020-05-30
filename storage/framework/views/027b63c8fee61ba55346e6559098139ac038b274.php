@@ -1,6 +1,10 @@
 <link rel="stylesheet" href="<?php echo e(asset('css/sidebar.css')); ?>">
 
-<?php function draw_sidebar_Top_CU($cu, $teachers) {?>
+<?php
+
+use Illuminate\Support\Facades\Auth;
+
+function draw_sidebar_Top_CU($cu, $teachers) {?>
     <aside class="col-lg-3 sticky-top align-self-start" id="page-title">
         <section class="row-md-auto">
             <div class="text-center">
@@ -87,20 +91,24 @@
             else echo "<p style=\"font-style: italic\">This user has not uploaded a bio, yet...</p>";
             ?>
         </blockquote>
-        <div class="d-flex justify-content-around">
-            <a href="<?php echo e(url('/manageCreateRequests/')); ?>" class="btn btn-default">
-                <button id="manage_create_requests_button" class="btn btn-primary" type="button">
-                    Manage create CU requests 
-                </button>
-            </a>
-        </div>
-        <div class="d-flex justify-content-around">
-            <a href="<?php echo e(url('/manageJoinRequests/')); ?>" class="btn btn-default">
-                <button id="manage_join_requests_button" class="btn btn-primary" type="button">
-                    Manage join CU requests 
-                </button>
-            </a>
-        </div>
+        <?php
+        if(Auth::user()->administrator) { ?>
+            <div class="d-flex justify-content-around">
+                <a href="<?php echo e(url('/manageCreateRequests/')); ?>" class="btn btn-default">
+                    <button id="manage_create_requests_button" class="btn btn-primary" type="button">
+                        Manage create CU requests 
+                    </button>
+                </a>
+            </div>
+            <div class="d-flex justify-content-around">
+                <a href="<?php echo e(url('/manageJoinRequests/')); ?>" class="btn btn-default">
+                    <button id="manage_join_requests_button" class="btn btn-primary" type="button">
+                        Manage join CU requests 
+                    </button>
+                </a>
+            </div>
+        <?php } ?>
+        
         <div class="d-flex justify-content-around">
             <button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
         </div>
