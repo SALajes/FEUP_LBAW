@@ -1,15 +1,12 @@
+<?php $__env->startSection('title', 'Homepage'); ?>
+<?php $__env->startSection('content'); ?>
+
 <link rel="stylesheet" href="<?php echo e(asset('css/homepage.css')); ?>">
 <link rel="stylesheet" href="<?php echo e(asset('css/sidebar.css')); ?>">
 <link rel="stylesheet" href="<?php echo e(asset('css/post.css')); ?>">
 
-
-
 <?php echo $__env->make('partials.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('partials.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-<?php $__env->startSection('title', 'Homepage'); ?>
-
-<?php $__env->startSection('content'); ?>
 
 <div class="container-fluid">
     <div id="homepage" class="row justify-content-md-center">

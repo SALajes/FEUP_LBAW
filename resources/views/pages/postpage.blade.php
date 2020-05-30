@@ -1,16 +1,15 @@
+@extends('layouts.app')
+@section('title', 'PostPage')
+@section('content')
+
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/mainPost.css') }}">
 <link rel="stylesheet" href="{{ asset('css/comment.css') }}">
 
-@extends('layouts.app')
-
 @include('partials.navbar')
 @include('partials.sidebar')
 
-@section('title', 'PostPage')
-
-@section('content')
 
 <div class="container-fluid">
     <div id="homepage" class="row justify-content-md-center">

@@ -1,16 +1,15 @@
+@extends('layouts.app')
+@section('title', 'CU Page')
+@section('content')
+
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/post.css') }}">
-
-@extends('layouts.app')
 
 @include('partials.navbar')
 @include('partials.sidebar')
 @include('partials.rate_cu_modal')
 
-@section('title', 'CU Page')
-
-@section('content')
 <div class="container-fluid">
     <div class="row">
         <?php

@@ -1,16 +1,14 @@
+@extends('layouts.app')
+@section('title', 'Request CU')
+@section('content')
+
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 <script src={{ asset('js/requestCU.js') }} defer></script>
 
-@extends('layouts.app')
-
 @include('partials.navbar')
 @include('partials.sidebar')
-
-@section('title', 'Request CU')
-
-@section('content')
 
 <div class="container-fluid">
     <div class="row">
