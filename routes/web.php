@@ -13,7 +13,6 @@
 
 Route::get('/', 'LandingController@show');
 
-
 // Homepage
 Route::get('homepage', 'PostController@show')->name('homepage');
 Route::put('api/posts', 'PostController@createPost');
@@ -29,15 +28,13 @@ Route::post('/professors/{id}/rate', 'ProfessorController@rateProf')->name('rate
 // Post page
 Route::get('post/{id}', 'PostPageController@show');
 Route::put('api/comments', 'PostPageController@createComment');
-// Route::delete('api/comments/{id}', 'PostPageController@deleteComment');
 Route::put('api/comment/{commentId}/subcomments', 'PostPageController@createSubcomment');
-// Route::delete('api/comments/{id}/subcomments/{id}', 'PostPageController@deleteSubComment');
 
 // Students
 Route::get('/users/{id}', 'StudentController@show');
-Route::post('/users/{id}/editPassword', 'StudentController@editPassword')->name('editPassword');
-Route::post('/users/{id}/editProfilePicture', 'StudentController@editProfilePicture')->name('editProfilePicture');
-Route::post('/users/{id}/editBio', 'StudentController@editBio')->name('editBio');
+Route::post('/users/{id}/editPassword', 'StudentController@editPassword')->middleware('UserAuth')->name('editPassword');
+Route::post('/users/{id}/editProfilePicture', 'StudentController@editProfilePicture')->middleware('UserAuth')->name('editProfilePicture');
+Route::post('/users/{id}/editBio', 'StudentController@editBio')->middleware('UserAuth')->name('editBio');
 Route::get('/users/myCUs/{id}', 'StudentController@requestCUs');
 Route::get('/users/myCUsAdmin/{id}', 'StudentController@requestCUsAdmin');
 Route::get('/users/myRatings/{id}', 'StudentController@requestRatings');
@@ -45,13 +42,12 @@ Route::post('/users/deleteAccount', 'StudentController@deleteAccount')->name('de
 
 // Professors
 Route::get('/professors/{id}', 'ProfessorController@show');
-Route::post('/professors/{id}/editName', 'ProfessorController@editName')->name('editProfName');
-Route::post('/professors/{id}/editAbbrev', 'ProfessorController@editAbbrev')->name('editProfAbbrev');
-Route::post('/professors/{id}/editEmail', 'ProfessorController@editEmail')->name('editProfEmail');
-Route::post('/professors/{id}/editPicture', 'ProfessorController@editProfilePicture')->name('editProfPicture');
+Route::post('/professors/{id}/editName', 'ProfessorController@editName')->middleware('AdminAuth')->name('editProfName');
+Route::post('/professors/{id}/editAbbrev', 'ProfessorController@editAbbrev')->middleware('AdminAuth')->name('editProfAbbrev');
+Route::post('/professors/{id}/editEmail', 'ProfessorController@editEmail')->middleware('AdminAuth')->name('editProfEmail');
+Route::post('/professors/{id}/editPicture', 'ProfessorController@editProfilePicture')->middleware('AdminAuth')->name('editProfPicture');
 Route::get('professors/{id}/cus', 'ProfessorController@listCUs')->name('listProfCUs');
 Route::get('professors/{id}/ratings', 'ProfessorController@requestRatings');
-
 
 //CUs
 Route::get('/cu', 'CUController@showAll');
@@ -62,12 +58,11 @@ Route::get('/cu/{id}/doubts/', 'CUController@doubts');
 Route::get('/cu/{id}/tutoring/', 'CUController@tutoring');
 Route::get('/cu/{id}/about/', 'CUController@about');
 Route::get('/cu/{id}/classes/', 'CUController@classes');
-Route::delete('/cu', 'CUController@destroy');
-Route::post('/cu/{id}/editName', 'CUController@editName');
-Route::post('/cu/{id}/editAbbrev', 'CUController@editAbbrev');
-Route::post('/cu/{id}/editDescription', 'CUController@editDescription');
+Route::delete('/cu', 'CUController@destroy')->middleware('AdminAuth');
+Route::post('/cu/{id}/editName', 'CUController@editName')->middleware('AdminAuth');
+Route::post('/cu/{id}/editAbbrev', 'CUController@editAbbrev')->middleware('AdminAuth');
+Route::post('/cu/{id}/editDescription', 'CUController@editDescription')->middleware('AdminAuth');
 Route::post('/cu/{id}/rate', 'CUController@rateCU')->name('rateCU');
-
 
 //Requests
 Route::get('/request/cu', 'CURequestController@requestCU');
@@ -83,9 +78,8 @@ Route::post('/askJoinCU/{id}', 'CURequestController@askJoinCU')->name('askJoinCU
 // Authentication
 Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('register', 'Auth\RegisterController@register')->name('register');
 
 //Notifications
-Route::get('/users/myNotifications/{id}', 'StudentController@notifications')->middleware('NotificationAuth');
-Route::get('/users/myNotifications/poll/{id}', 'StudentController@pollNotifications')->middleware('NotificationAuth');
+Route::get('/users/myNotifications/{id}', 'StudentController@notifications');
+Route::get('/users/myNotifications/poll/{id}', 'StudentController@pollNotifications');

@@ -69,9 +69,12 @@ function draw_sidebar_Top_CU($cu, $teachers) {?>
 
 <?php function draw_sidebar_Profile_prof($likeCounter) { ?>
     <section class="row-md-auto justify-content-center ">
-        <div class="d-flex justify-content-around">
-            <button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfModal">Edit</button>
-        </div>
+        <?php
+        if(Auth::user()->administrator) { ?>
+            <div class="d-flex justify-content-around">
+                <button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfModal">Edit</button>
+            </div>
+        <?php } ?>
         <div class="d-flex justify-content-around likes_friend">
             <div>
                 <a data-toggle="modal" data-target="#rateProfModal" class="btn btn-default">
