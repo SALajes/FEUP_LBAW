@@ -9,23 +9,6 @@ use App\Enrolled;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-function post_to_string($post)
-{
-    //TODO: REFACTOR THIS. MOVE TO JS
-    $str = "";
-    $str .= "<article class=\"card post post-margins\" data-id=\"" .  $post->id . "\">";
-    $str .=  "<div class=\"post-header d-flex justify-content-between\">";
-    $str .= "<div class=\"post-header-left\">";
-    $str .= "<a href=\"/users/" . $post->author_id . "\"><i class=\"icon-user post-user-icon\"></i>" . $post->name . "</a>";
-    $str .= "<a href=\"/cu/" . $post->cu_id . "\" class=\"badge badge-pill badge-primary cu-badge\">" . $post->abbrev . "</a>";
-    $str .= "</div>";
-    $str .= " <a class=\"delete-post\"><i class=\"icon-trash post-delete\"></i></a>";
-    $str .= "</div>";
-    $str .= "<div class=\"card-body\">" . $post->content . "</div>";
-    $str .= "<div class=\"post-footer\"><a href=\"#\" class=\"number-comments\">X comments</a></div></article>";
-    return $str;
-}
-
 class CUController extends Controller
 {
     public function __construct()
@@ -63,9 +46,7 @@ class CUController extends Controller
         $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'General')
             ->orderBy('post.date', 'desc')
             ->limit(10)->get();
-        $text = "";
-        foreach ($posts as $post) $text .= post_to_string($post);
-        return $text; //response()->json(['posts' => $posts, 'feed' => "feed"]);
+        return response()->json($posts);
     }
 
     public function doubts($id)
@@ -73,9 +54,7 @@ class CUController extends Controller
         $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'Doubts')
             ->orderBy('post.date', 'desc')
             ->limit(10)->get();
-        $text = "";
-        foreach ($posts as $post) $text .= post_to_string($post);
-        return $text; //response()->json(['posts' => $posts, 'feed' => "feed"]);
+        return response()->json($posts);
     }
 
     public function tutoring($id)
@@ -83,9 +62,7 @@ class CUController extends Controller
         $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')->where('feed_type', 'Tutoring')
             ->orderBy('post.date', 'desc')
             ->limit(10)->get();
-        $text = "";
-        foreach ($posts as $post) $text .= post_to_string($post);
-        return $text; //response()->json(['posts' => $posts, 'feed' => "feed"]);
+        return response()->json($posts);
     }
 
     public function classes($id)

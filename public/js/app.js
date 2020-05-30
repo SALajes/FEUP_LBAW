@@ -309,6 +309,21 @@ function sendCreateTutorPostRequest(event) {
     event.preventDefault();
 }
 
+function post_to_string(post)
+{
+    str = "";
+    str += "<article class=\"card post post-margins\" data-id=\"" +  post.id + "\">";
+    str +=  "<div class=\"post-header d-flex justify-content-between\">";
+    str += "<div class=\"post-header-left\">";
+    str += "<a href=\"/users/" + post.author_id + "\"><i class=\"icon-user post-user-icon\"></i>" + post.name + "</a>";
+    str += "</div>";
+    str += " <a class=\"delete-post\"><i class=\"icon-trash post-delete\"></i></a>";
+    str += "</div>";
+    str += "<div class=\"card-body\">" + post.content + "</div>";
+    str += "<div class=\"post-footer\"><a href=\"#\" class=\"number-comments\">X comments</a></div></article>";
+    return str;
+}
+
 function getFeed() {
     about_btn.style.textDecoration = "";
     classes_btn.style.textDecoration = "";
@@ -320,7 +335,15 @@ function getFeed() {
 
     req.onload = function () {
         if (req.status >= 200 && req.status < 400){
-            let content_str = "<section id=\"posts\">" +this.responseText + "</section>";
+            posts = JSON.parse(this.responseText);
+            posts_html = "";
+            console.log(posts);
+            for (let i = 0; i < posts.length; i++)
+              posts_html += post_to_string(posts[i]);
+            
+            console.log(posts_html);
+            
+            let content_str = "<section id=\"posts\">" + posts_html  + "</section>";
             content_elem.innerHTML = content_str;
             addEventListeners();
         }
@@ -345,13 +368,21 @@ function getDoubts() {
     req.open("GET", "/cu/" + id + "/doubts/", true);
 
     req.onload = function () {
-        if (req.status >= 200 && req.status < 400){
-            let content_str = "<section id=\"posts\">" +this.responseText + "</section>";
-            content_elem.innerHTML = content_str;
-            addEventListeners();
-        }
+      if (req.status >= 200 && req.status < 400){
+        posts = JSON.parse(this.responseText);
+        posts_html = "";
+        console.log(posts);
+        for (let i = 0; i < posts.length; i++)
+          posts_html += post_to_string(posts[i]);
+        
+        console.log(posts_html);
+        
+        let content_str = "<section id=\"posts\">" + posts_html  + "</section>";
+        content_elem.innerHTML = content_str;
+        addEventListeners(); 
+      }
 
-        else failure_fb_msg("There was an error retrieving this CUs posts from our database, status: " + this.status);
+      else failure_fb_msg("There was an error retrieving this CUs posts from our database, status: " + this.status);
     };
 
     req.send();
@@ -371,13 +402,21 @@ function getTutoring(){
     req.open("GET",  "/cu/" + id + "/tutoring/", true);
 
     req.onload = function () {
-        if (req.status >= 200 && req.status < 400){
-            let content_str = "<section id=\"posts\">" +this.responseText + "</section>";
-            content_elem.innerHTML = content_str;
-            addEventListeners();
-        }
+      if (req.status >= 200 && req.status < 400){
+        posts = JSON.parse(this.responseText);
+        posts_html = "";
+        console.log(posts);
+        for (let i = 0; i < posts.length; i++)
+          posts_html += post_to_string(posts[i]);
+        
+        console.log(posts_html);
+        
+        let content_str = "<section id=\"posts\">" + posts_html  + "</section>";
+        content_elem.innerHTML = content_str;
+        addEventListeners();
+      }
 
-        else failure_fb_msg("There was an error retrieving this CUs posts from our database, status: " + this.status);
+      else failure_fb_msg("There was an error retrieving this CUs posts from our database, status: " + this.status);
     };
 
     req.send();
