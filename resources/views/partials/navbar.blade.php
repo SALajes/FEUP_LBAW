@@ -6,14 +6,14 @@
     <input type="hidden" id="studentId" value="{{Auth::user() -> id}}" readonly>
     <nav id="header" class="navbar fixed-top navbar-expand-md navbar-dark">
         <a class="navbar-brand" href="{{ url('/homepage') }}"><i id="logo" class="icon-logo align-middle"></i></a>
-       
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
             <i class="icon-menu"></i>
         </button>
-        
-        <div id="navbarCollapse" class="collapse navbar-collapse" >
+
+        <div id="navbarCollapse" class="collapse navbar-collapse">
             <section id="collapsed_profile" class="d-md-none d-flex flex-row justify-content-center align-items-center flex-wrap">
-                <a class="nav-link" href="/users/<?=Auth::user()->id?>"><i class="icon-user align-middle"></i></a>
+                <a class="nav-link" href="/users/<?= Auth::user()->id ?>"><i class="icon-user align-middle"></i></a>
                 <section class="d-flex flex-column">
                     <span>{{Auth::user() -> name}}</span>
                     <span>{{Auth::user() -> student_number}}</span>
@@ -24,14 +24,14 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search">
                 <button type="submit" class="btn btn-light"><i class="icon-search"></i></button>
             </form>
-            
+
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" id="notifications" href="#"><i class="icon-bell align-middle"></i></a>
                     <span class="d-md-none"> Notifications</span>
                 </li>
                 <li class="nav-item d-none d-md-block">
-                    <a class="nav-link" href="/users/<?=Auth::user()->id?>"><i class="icon-user align-middle"></i></a>
+                    <a class="nav-link" href="/users/<?= Auth::user()->id ?>"><i class="icon-user align-middle"></i></a>
                     <span class="d-md-none"> Profile</span>
                 </li>
                 <li class="nav-item">
@@ -43,14 +43,24 @@
                     <span class="d-md-none"> Requests</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/logout') }}"><i class="icon-log-out align-middle"></i></a> 
+                    <a class="nav-link" href="{{ url('/logout') }}"><i class="icon-log-out align-middle"></i></a>
                     <span class="d-md-none"> Logout</span>
                 </li>
             </ul>
         </div>
     </nav>
-    <div  id="not_wrapper" >
+    <div id="not_wrapper">
         <div id="notification_area" class="d-none"></div>
     </div>
 </header>
-<div id="feedback_msg_area" class="fixed-top"></div>
+<div id="feedback_msg_area" class="fixed-top">
+    @if (\Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show">
+        {!! \Session::get('success') !!}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+
+</div>

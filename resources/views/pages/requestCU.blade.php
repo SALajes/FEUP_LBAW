@@ -28,7 +28,7 @@
         </section>
         </aside>
 		<main id="mainArea" class="col-12 col-lg-6">
-			<form action="/request/cu" method="POST">
+			<form method="POST">
 				@csrf
 				<input name="student_id" id="student_id" type="hidden" value="{{ Auth::user() -> id }}" readonly>
 				<div class="form-group">
