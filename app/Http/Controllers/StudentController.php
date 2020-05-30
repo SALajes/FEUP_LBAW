@@ -166,7 +166,7 @@ class StudentController extends Controller
             auth()->logout();
             return redirect('/');
         }
-        else return back()->with('error', 'Failed to delete account.')
+        else return back()->with('error', 'Failed to delete account.');
     }
 
     public function rateStudent($reviewed_student, Request $request) {
