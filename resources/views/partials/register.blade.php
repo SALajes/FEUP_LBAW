@@ -11,13 +11,13 @@
       <div class="modal-body">
         <form method="POST" action="{{ route('register') }}">
           {{ csrf_field() }}
-          <input id="name" type="text" name="name" class="form-control" placeholder="Name" required autofocus>
+          <input id="name" type="text" name="name" class="form-control" placeholder="Name" required>
             @if ($errors->has('name'))
                 <span class="error">
                     {{ $errors->first('name') }}
                 </span>
             @endif
-          <input id="email" type="email" name="email" class="form-control" placeholder="Email" required>
+          <input id="email-register" type="email" name="email" class="form-control" placeholder="Email" required>
             @if ($errors->has('email'))
                 <span class="error">
                     {{ $errors->first('email') }}
@@ -29,7 +29,7 @@
                     {{ $errors->first('student_number') }}
                 </span>
             @endif
-          <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+          <input type="password" class="form-control" name="password" id="password-register" placeholder="Password" required>
             @if ($errors->has('password'))
                 <span class="error">
                     {{ $errors->first('password') }}

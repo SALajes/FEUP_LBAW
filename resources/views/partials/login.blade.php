@@ -10,13 +10,13 @@
       <div class="modal-body">
         <form method="POST" action="{{ route('login') }}">
           {{ csrf_field() }}
-          <input id="email" type="email" name="email" class="form-control" placeholder="Email" required autofocus>
+          <input id="email-login" type="email" name="email" class="form-control" placeholder="Email" required autofocus>
             @if ($errors->has('email'))
                 <span class="error">
                     {{ $errors->first('email') }}
                 </span>
             @endif
-          <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+          <input type="password" class="form-control" name="password" id="password-login" placeholder="Password" required>
             @if ($errors->has('password'))
                 <span class="error">
                     {{ $errors->first('password') }}

@@ -26,7 +26,7 @@
   color: #3355AE;
 }
 
-#name::placeholder, #student_number::placeholder, #email::placeholder, #password::placeholder, #password_confirm::placeholder {
+#name::placeholder, #student_number::placeholder, #email-register::placeholder, #email-login::placeholder, #password-register::placeholder, #password-login::placeholder, #password_confirm::placeholder {
   color: #1ca7f0;
 }
 
@@ -57,7 +57,7 @@ button[type="Submit"]:hover {
   color: black;
 }
 
-#email, #password, span.error {
+#email-login, #email-register, #password-login, #password-register, span.error {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
