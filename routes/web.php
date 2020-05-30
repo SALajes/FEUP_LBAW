@@ -73,7 +73,7 @@ Route::get('/request/cu', 'CURequestController@requestCU');
 Route::post('/request/newcu', 'CURequestController@submitRequest');
 Route::get('/testRequest', 'CURequestController@testPoll');
 Route::get('/manageCreateRequests', 'CURequestController@manageCreateRequests')->name('manageCreateRequests');
-Route::get('/manageJoinRequests', 'CURequestController@manageJoinRequests')->name('manageJoinRequests');
+Route::get('/manageJoinRequests', 'CURequestController@manageJoinRequests')->name('manageJoinRequests')->middleware('AuthResource');
 Route::post('/acceptCreateRequest/{id}', 'CURequestController@acceptCreateRequest')->name('acceptCreateRequest');
 Route::post('/denyCreateRequest/{id}', 'CURequestController@denyCreateRequest')->name('denyCreateRequest');
 Route::post('/acceptJoinRequest/{id}', 'CURequestController@acceptJoinRequest')->name('acceptJoinRequest');
