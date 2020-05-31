@@ -100,9 +100,10 @@ class StudentController extends Controller
         $user = Student::findOrFail(auth()->user()->id);
         $user->password = bcrypt($request->get('new-password'));
 
-        $user->save();
+        $saved = $user->save();
 
-        return redirect()->back()->with("success", "Password changed successfully !");
+        if ($saved) return redirect()->back()->with("success", "Password changed successfully !");
+        else return redirect()->back()->with("error", "Failed to change password.");
     }
 
     public function editProfilePicture(Request $request)
@@ -117,13 +118,13 @@ class StudentController extends Controller
 
         $profile_image_name = $user->id . '_profile_image_' . time() . '.' . request()->profile_image->getClientOriginalExtension();
 
-        $request->profile_image->storeAs('profile_image', $profile_image_name);
+        $path = $request->profile_image->storeAs('profile_image', $profile_image_name);
 
         $user->profile_image = $profile_image_name;
-        $user->save();
-
-        return back()
-            ->with('success', 'You have successfully upload image.');
+        $saved = $user->save();
+        
+        if ($saved && $path != null) return back()->with('success', 'You have successfully upload image.');
+        else return back()->with('error', 'Failed to upload picture.');
     }
 
     public function editBio(Request $request)
@@ -137,10 +138,10 @@ class StudentController extends Controller
         $user = Auth::user();
 
         $user->bio = $request->bio;
-        $user->save();
+        $saved = $user->save();
 
-        return back()
-            ->with('success', 'You have successfully updated the bio.');
+        if ($saved) return back()->with('success', 'You have successfully updated the bio.');
+        else return back()->with('error', 'Failed to update the bio.');
     }
 
     public function deleteAccount()
@@ -148,10 +149,12 @@ class StudentController extends Controller
         if(!Auth::check()) return redirect('/');
 
         $user = Auth::user();
-        $user->delete();
-        auth()->logout();
-
-        return redirect('/');
+        $deleted = $user->delete();
+        if ($deleted){
+            auth()->logout();
+            return redirect('/');
+        }
+        else return back()->with('error', 'Failed to delete account.');
     }
 
     public function rateStudent($reviewed_student, Request $request)
@@ -159,7 +162,7 @@ class StudentController extends Controller
         if(!Auth::check()) return redirect('/');
 
         if ($reviewed_student == Auth::user()->id)
-            return redirect('/users/' . Auth::user()->id);
+            return redirect('/users/' . Auth::user()->id)->with('error', 'You can\'t rate  yourself.' );
 
         $review = DB::table('rating')
         ->where('reviewer_id', '=', Auth::user()->id)
@@ -168,12 +171,14 @@ class StudentController extends Controller
         ->count();
 
         if ($review == 0) {
-            DB::table('rating')
-            ->insert(['reviewer_id' => Auth::user()->id, 
-                  'has_voted' => true,
-                  'review' => $request->review,
-                  'student_id' => $reviewed_student]);
+            $inserted = DB::table('rating')
+                        ->insert(['reviewer_id' => Auth::user()->id, 
+                        'has_voted' => true,
+                        'review' => $request->review,
+                        'student_id' => $reviewed_student]);
+            
+            if ($inserted)  return redirect('/users/' . $reviewed_student)->with('success', 'You have successfully rated this student.');
         }
-        return redirect('/users/' . $reviewed_student);
+        return redirect('/users/' . $reviewed_student)->with('error', 'Failed to rate student.');
     }
 }

@@ -15,18 +15,6 @@ function escapeHtml(string) {
 	});
 }
 
-function aaa(){
-
-	let req = new XMLHttpRequest();
-	req.open("GET",  "/testRequest", true);
-	req.onload = function () {
-		console.log(this.responseText);
-	};
-
-	req.send();
-
-}
-
 let cu_name_input = document.getElementById("cu_name");
 let cu_abbrev_input = document.getElementById("cu_abbrev");
 let cu_page_input = document.getElementById("cu_page");
@@ -37,5 +25,3 @@ cu_name_input.onchange = () => {cu_name_input.value = escapeHtml(cu_name_input.v
 cu_page_input.onchange = () => {cu_page_input.value = escapeHtml(cu_page_input.value);}
 cu_abbrev_input.onchange = () => {cu_abbrev_input.value = escapeHtml(cu_abbrev_input.value);}
 add_info_input.onchange = () => {add_info_input.value = escapeHtml(add_info_input.value);}
-
-aaa();

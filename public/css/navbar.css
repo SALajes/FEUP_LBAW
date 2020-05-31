@@ -116,3 +116,9 @@
     z-index: 999;
     background-color: #ffffff;
 }
+
+#feedback_msg_area {
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    z-index: 1029;
+}

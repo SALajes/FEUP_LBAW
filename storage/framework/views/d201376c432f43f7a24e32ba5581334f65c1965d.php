@@ -1,16 +1,16 @@
-@extends('layouts.app') 
-@section('title', 'Landing') 
-@section('content')
+ 
+<?php $__env->startSection('title', 'Landing'); ?> 
+<?php $__env->startSection('content'); ?>
 
-<link rel="stylesheet" href="{{ asset('css/landing.css') }}"/>
+<link rel="stylesheet" href="<?php echo e(asset('css/landing.css')); ?>"/>
 
 <body>
     <header class="background-gradient-blue">
         <section class="masthead mb-auto pt-3 d-flex pr-5 justify-content-end">
             <div class="inner">
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link active text-white" href="{{ url('/') }}">Home</a>
-                    <a class="nav-link text-white" href="{{ url('/about') }}">About</a>
+                    <a class="nav-link active text-white" href="<?php echo e(url('/')); ?>">Home</a>
+                    <a class="nav-link text-white" href="<?php echo e(url('/about')); ?>">About</a>
                 </nav>
             </div>
         </section>
@@ -51,28 +51,29 @@
         <!-- Three columns of text below the carousel -->
         <div class="row">
           <div class="col-lg-3">
-            <img class="rounded-circle" src="{{ asset('images/cadu.jpg') }}" alt="Generic placeholder image" width="140" height="140">
+            <img class="rounded-circle" src="<?php echo e(asset('images/cadu.jpg')); ?>" alt="Generic placeholder image" width="140" height="140">
             <h2>Carlos "Cadu" Duarte</h2>
             <p>Ouço Nickleback e digo que é irónico para não gozarem comigo...</p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-3">
-            <img class="rounded-circle" src="{{ asset('images/pedro.jpg') }}" alt="Generic placeholder image" width="140" height="140">
+            <img class="rounded-circle" src="<?php echo e(asset('images/pedro.jpg')); ?>" alt="Generic placeholder image" width="140" height="140">
             <h2>Pedro "Maria do Carmo" Pereira</h2>
             <p>Presidente do BDC.</p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-3">
-            <img class="rounded-circle" src="{{ asset('images/simão.jpg') }}" alt="Generic placeholder image" width="140" height="140">
+            <img class="rounded-circle" src="<?php echo e(asset('images/simão.jpg')); ?>" alt="Generic placeholder image" width="140" height="140">
             <h2>Simão "Simon" Oliveira</h2>
             <p>Gosta de lamber maçanetas, a situação do Corona obrigou-o a tomar decisões muito difíceis.</p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-3">
-            <img class="rounded-circle" src="{{ asset('images/sofia.jpeg') }}" alt="Generic placeholder image" width="140" height="140">
+            <img class="rounded-circle" src="<?php echo e(asset('images/sofia.jpeg')); ?>" alt="Generic placeholder image" width="140" height="140">
             <h2>Sofia "SoFacho" Lajes</h2>
             <p>Chamei ao meu gato Mickey e ele teve uma crise de identidade quando descobriu a inspiração do seu nome, agora é vegan.</p>
           </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
     </div>
 </body>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@include('partials.footer')
+<?php echo $__env->make('partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/pcp/Desktop/FEUP/LBAW/resources/views/pages/about.blade.php ENDPATH**/ ?>

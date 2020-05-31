@@ -30,12 +30,16 @@ class ProfessorController extends Controller
         ]);
 
         $prof = Professor::find($id);
+        
+        if ($prof != null){
+            $prof->name = $request->input('prof_name');
+            $saved = $prof->save();
 
-        $prof->name = $request->input('prof_name');
-        $prof->save();
+            if ($saved) return back()->with('success', 'You have successfully updated the name.');
+            else return back()->with('error', 'Update on name failed.');
+        }
 
-        return back()
-            ->with('success', 'You have successfully updated the name.');
+        else return back()->with('error', 'Update on name failed.');
     }
 
     public function editEmail($id, Request $request)
@@ -47,12 +51,16 @@ class ProfessorController extends Controller
         ]);
 
         $prof = Professor::find($id);
+        if ($prof != null){
+            $prof->email = $request->input('prof_email');
+            $saved = $prof->save();
 
-        $prof->email = $request->input('prof_email');
-        $prof->save();
+            if ($saved) return back()->with('success', 'You have successfully updated the email.');
 
-        return back()
-            ->with('success', 'You have successfully updated the email.');
+            else return back()->with('error', 'Update on email failed.');
+        }
+        
+        else return back()->with('error', 'Update on email failed.');
     }
 
     public function editAbbrev($id, Request $request)
@@ -64,12 +72,18 @@ class ProfessorController extends Controller
         ]);
 
         $prof = Professor::find($id);
+        
+        if ($prof != null){
+            $prof->abbrev = $request->input('prof_abbrev');
+            $saved = $prof->save();
 
-        $prof->abbrev = $request->input('prof_abbrev');
-        $prof->save();
+            if ($saved) return back()->with('success', 'You have successfully updated the abbrev.');
 
-        return back()
-            ->with('success', 'You have successfully updated the abbrev.');
+            else return back()->with('error', 'Update on abbrev failed.');
+        }
+        
+        else return back()->with('error', 'Update on abbrev failed.');
+
     }
 
     public function editProfilePicture($id, Request $request)
@@ -81,16 +95,23 @@ class ProfessorController extends Controller
         ]);
 
         $prof = Professor::find($id);
+        
+        if ($prof != null){
 
-        $profile_image_name = $prof->id . '_profile_image_' . time() . '.' . request()->profile_image->getClientOriginalExtension();
+            $profile_image_name = $prof->id . '_profile_image_' . time() . '.' . request()->profile_image->getClientOriginalExtension();
 
-        $request->profile_image->storeAs('profile_image', $profile_image_name);
+            $path = $request->profile_image->storeAs('profile_image', $profile_image_name);
 
-        $prof->profile_image = $profile_image_name;
-        $prof->save();
+            $prof->profile_image = $profile_image_name;
+            $saved = $prof->save();
 
-        return back()
-            ->with('success', 'You have successfully uploaded the image.');
+            if ($saved && $path != null) return back()->with('success', 'You have successfully updated the profile picture.');
+
+            else return back()->with('error', 'Update on profile picture failed.');
+        }
+        
+        else return back()->with('error', 'Update on profile picture failed.');
+
     }
 
     public function rateProf($reviewed_prof, Request $request)
@@ -104,13 +125,18 @@ class ProfessorController extends Controller
         ->count();
 
         if ($review == 0) {
-            DB::table('rating')
-            ->insert(['reviewer_id' => Auth::user()->id, 
-                  'has_voted' => true,
-                  'review' => $request->review,
-                  'professor_id' => $reviewed_prof]);
+            $inserted = DB::table('rating')
+                        ->insert(['reviewer_id' => Auth::user()->id, 
+                        'has_voted' => true,
+                        'review' => $request->review,
+                        'professor_id' => $reviewed_prof]);
+
+            if ($inserted) return back()->with('success', 'You have successfully rated this profile.');
+
+            else return back()->with('error', 'Failed to rated this profile.');
         }
-        return redirect('/professors/' . $reviewed_prof);
+
+        else return back()->with('error', 'You have already rated this profile.');
     }
 
     public function listCUs($id)

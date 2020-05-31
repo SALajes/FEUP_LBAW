@@ -1,14 +1,13 @@
-@extends('layouts.app')
-@section('title', 'Request CU')
-@section('content')
+<?php $__env->startSection('title', 'Request CU'); ?>
+<?php $__env->startSection('content'); ?>
 
-<link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
-<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
-<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-<script src={{ asset('js/requestCU.js') }} defer></script>
+<link rel="stylesheet" href="<?php echo e(asset('css/homepage.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('css/sidebar.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('css/profile.css')); ?>">
+<script src=<?php echo e(asset('js/requestCU.js')); ?> defer></script>
 
-@include('partials.navbar')
-@include('partials.sidebar')
+<?php echo $__env->make('partials.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('partials.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <div class="container-fluid">
     <div class="row">
@@ -19,14 +18,14 @@
 		<section id="MyCUs" >
             <h4 class="text-center">My CU's</h4>
                 <ul>
-                    @each('partials.cu_list', $cus, 'cu')
+                    <?php echo $__env->renderEach('partials.cu_list', $cus, 'cu'); ?>
                 </ul>
         </section>
         </aside>
 		<main id="mainArea" class="col-12 col-lg-6">
 			<form method="POST">
-				@csrf
-				<input name="student_id" id="student_id" type="hidden" value="{{ Auth::user() -> id }}" readonly>
+				<?php echo csrf_field(); ?>
+				<input name="student_id" id="student_id" type="hidden" value="<?php echo e(Auth::user() -> id); ?>" readonly>
 				<div class="form-group">
 					<label for="cu_name">CU name:</label>
     				<input type="text" class="form-control" id="cu_name" name="cu_name" placeholder="Bases de Dados" required>
@@ -53,4 +52,5 @@
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/pcp/Desktop/FEUP/LBAW/resources/views/pages/requestCU.blade.php ENDPATH**/ ?>

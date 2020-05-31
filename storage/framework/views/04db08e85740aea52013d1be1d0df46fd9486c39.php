@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+<link rel="stylesheet" href="<?php echo e(asset('css/navbar.css')); ?>">
 
 <header>
-    <input type="hidden" id="studentId" value="{{Auth::user() -> id}}" readonly>
+    <input type="hidden" id="studentId" value="<?php echo e(Auth::user() -> id); ?>" readonly>
     <nav id="header" class="navbar fixed-top navbar-expand-md navbar-dark">
-        <a class="navbar-brand" href="{{ url('/homepage') }}"><i id="logo" class="icon-logo align-middle"></i></a>
+        <a class="navbar-brand" href="<?php echo e(url('/homepage')); ?>"><i id="logo" class="icon-logo align-middle"></i></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
             <i class="icon-menu"></i>
@@ -13,8 +13,8 @@
             <section id="collapsed_profile" class="d-md-none d-flex flex-row justify-content-center align-items-center flex-wrap">
                 <a class="nav-link" href="/users/<?= Auth::user()->id ?>"><i class="icon-user align-middle"></i></a>
                 <section class="d-flex flex-column">
-                    <span>{{Auth::user() -> name}}</span>
-                    <span>{{Auth::user() -> student_number}}</span>
+                    <span><?php echo e(Auth::user() -> name); ?></span>
+                    <span><?php echo e(Auth::user() -> student_number); ?></span>
                 </section>
             </section>
 
@@ -41,7 +41,7 @@
                     <span class="d-md-none"> Requests</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/logout') }}"><i class="icon-log-out align-middle"></i></a>
+                    <a class="nav-link" href="<?php echo e(url('/logout')); ?>"><i class="icon-log-out align-middle"></i></a>
                     <span class="d-md-none"> Logout</span>
                 </li>
             </ul>
@@ -52,23 +52,25 @@
     </div>
 </header>
 <div id="feedback_msg_area" class="fixed-top">
-    @if (\Session::has('success'))
+    <?php if(\Session::has('success')): ?>
     <div class="alert alert-success alert-dismissible fade show">
-        {!! \Session::get('success') !!}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    @endif
+        <?php echo \Session::get('success'); ?>
 
-    @if ($errors->any())
-    <div class="alert alert-danger alert-dismissible fade show">
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    @endif
+    <?php endif; ?>
+
+    <?php if($errors->any()): ?>
+    <div class="alert alert-danger alert-dismissible fade show">
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <p><?php echo e($error); ?></p>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <?php endif; ?>
 </div>
+<?php /**PATH /home/pcp/Desktop/FEUP/LBAW/resources/views/partials/navbar.blade.php ENDPATH**/ ?>

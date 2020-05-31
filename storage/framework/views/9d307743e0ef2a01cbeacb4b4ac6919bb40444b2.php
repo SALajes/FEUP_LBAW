@@ -1,27 +1,26 @@
-@extends('layouts.app')
-@section('title', 'Landing')
-@section('content')
+<?php $__env->startSection('title', 'Landing'); ?>
+<?php $__env->startSection('content'); ?>
 
-<link rel="stylesheet" href="{{ asset('css/landing.css') }}" />
+<link rel="stylesheet" href="<?php echo e(asset('css/landing.css')); ?>" />
 
 <body>
 	<header class="background-gradient-blue">
-	@if ($errors->any())
+	<?php if($errors->any()): ?>
     <div class="alert alert-danger alert-dismissible fade show">
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <p><?php echo e($error); ?></p>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-	@endif
+	<?php endif; ?>
 	
 		<section class="masthead mb-auto pt-3 d-flex pr-5 justify-content-end">
 			<div class="inner">
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link active text-white" href="{{ url('/') }}">Home</a>
-					<a class="nav-link text-white" href="{{ url('/about') }}">About</a>
+					<a class="nav-link active text-white" href="<?php echo e(url('/')); ?>">Home</a>
+					<a class="nav-link text-white" href="<?php echo e(url('/about')); ?>">About</a>
 				</nav>
 			</div>
 		</section>
@@ -35,11 +34,11 @@
 					Chat, share course materials and form groups. All in one platform.
 				</p>
 
-				@include('partials.login')
-				@include('partials.register')
+				<?php echo $__env->make('partials.login', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+				<?php echo $__env->make('partials.register', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-				<a id="register_btn" class="btn btn-outline-light" data-toggle="modal" data-target="#registerModal" data-whatever="@mdo">{{ __('Register') }}</a>
-				<a id="login_btn" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal" data-whatever="@mdo">{{ __('Login') }}</a>
+				<a id="register_btn" class="btn btn-outline-light" data-toggle="modal" data-target="#registerModal" data-whatever="@mdo"><?php echo e(__('Register')); ?></a>
+				<a id="login_btn" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal" data-whatever="@mdo"><?php echo e(__('Login')); ?></a>
 			</div>
 			<div class="product-device shadow-sm d-none d-md-block"></div>
 			<div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
@@ -108,6 +107,7 @@
 	</main>
 </body>
 
-@include('partials.footer')
+<?php echo $__env->make('partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/pcp/Desktop/FEUP/LBAW/resources/views/pages/landing.blade.php ENDPATH**/ ?>

@@ -1,3 +1,15 @@
+let feedback_msg_area = document.getElementById("feedback_msg_area");
+
+function success_fb_msg(content){
+  let str = "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">" + content + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>";
+  feedback_msg_area.innerHTML = str;
+}
+
+function failure_fb_msg(content){
+  let str = "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">" + content + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>";
+  feedback_msg_area.innerHTML = str;
+}
+
 function addEventListeners() {
   // New post listener
   if (window.location.pathname == "/homepage"){
@@ -58,7 +70,12 @@ function sendCreatePostRequest(event) {
 }
 
 function postAddedHandler() {
-  if (this.status != 200) window.location ='/homepage';
+  if (this.status < 200 || this.status >= 400) {
+    failure_fb_msg("Failed to create post, status: " + this.status);
+  }
+  else {
+    success_fb_msg("Post posted successfully!");
+  }
 
   let post = JSON.parse(this.responseText);
 
@@ -113,15 +130,17 @@ function sendDeletePostRequest(event) {
 }
 
 function postDeletedHandler() {
-  if(this.status != 200) {
-    window.location = '/homepage';
-    return;
-  } 
+
+  if (this.status < 200 || this.status >= 400) {
+    failure_fb_msg("Failed to delete post, status: " + this.status);
+  }
+  else {
+    success_fb_msg("Post deleted successfully!");
+    let post = JSON.parse(this.responseText);
   
-  let post = JSON.parse(this.responseText);
-  
-  let article = document.querySelector('article.post[data-id="' + post.id + '"]');
-  article.remove();
+    let article = document.querySelector('article.post[data-id="' + post.id + '"]');
+    article.remove();
+  }
 }
 
 function openEditProfileModal() {
@@ -139,18 +158,23 @@ function sendCreateCommentRequest(event) {
 }
 
 function commentAddedHandler() {
-  if (this.status != 200) window.location ='/homepage';
+  if (this.status < 200 || this.status >= 400) {
+    failure_fb_msg("Failed to comment on post, status: " + this.status);
+  }
+  else {
+    
+    success_fb_msg("Post commented successfully!");
+    let comment = JSON.parse(this.responseText);
+    
+    let new_comment = createComment(comment);
+    
+    let form = document.querySelector('section.add-comment div#collapseForm form.newComment') 
+    form.querySelector('textarea.comment-content').value="";
 
-  let comment = JSON.parse(this.responseText);
-  
-  let new_comment = createComment(comment);
-  
-  let form = document.querySelector('section.add-comment div#collapseForm form.newComment') 
-  form.querySelector('textarea.comment-content').value="";
-
-  let section = document.getElementById('comments');
-  
-  section.insertAdjacentElement('afterbegin', new_comment);
+    let section = document.getElementById('comments');
+    
+    section.insertAdjacentElement('afterbegin', new_comment);
+  }
 }
 
 function createComment(comment) {
@@ -184,23 +208,28 @@ function sendCreateSubcomment(event) {
 }
 
 function subcommentAddedHandler() {
-	if(this.status != 200) window.location = '/homepage';
-  console.log(this.responseText);
-	let subcomment = JSON.parse(this.responseText);
-	
-	let new_subcomment = createSubcomment(subcomment);
-	let parentId = subcomment.parentId;
-	
-	let form = document.querySelector(`section.add-subcomment div.comment${parentId} form.new-subcomment`);
-	form.querySelector('textarea.subcomment-content').value = "";
+  if (this.status < 200 || this.status >= 400) {
+    failure_fb_msg("Failed to comment on comment, status: " + this.status);
+  }
+  else {
+    
+    success_fb_msg("Comment commented successfully!");
+    let subcomment = JSON.parse(this.responseText);
+    
+    let new_subcomment = createSubcomment(subcomment);
+    let parentId = subcomment.parentId;
+    
+    let form = document.querySelector(`section.add-subcomment div.comment${parentId} form.new-subcomment`);
+    form.querySelector('textarea.subcomment-content').value = "";
 
-	let section = document.getElementById(`subcomments${parentId}`);
-  let lastSubComment = section.querySelector('article.subcomment:last-of-type');
- 
-  if(lastSubComment == null)
-    section.insertAdjacentElement('afterbegin', new_subcomment)
-  else
-    section.insertBefore(new_subcomment, lastSubComment.nextSibling);
+    let section = document.getElementById(`subcomments${parentId}`);
+    let lastSubComment = section.querySelector('article.subcomment:last-of-type');
+  
+    if(lastSubComment == null)
+      section.insertAdjacentElement('afterbegin', new_subcomment)
+    else
+      section.insertBefore(new_subcomment, lastSubComment.nextSibling);
+  }
 }
 
 function createSubcomment(subcomment) {
@@ -280,6 +309,21 @@ function sendCreateTutorPostRequest(event) {
     event.preventDefault();
 }
 
+function post_to_string(post)
+{
+    str = "";
+    str += "<article class=\"card post post-margins\" data-id=\"" +  post.id + "\">";
+    str +=  "<div class=\"post-header d-flex justify-content-between\">";
+    str += "<div class=\"post-header-left\">";
+    str += "<a href=\"/users/" + post.author_id + "\"><i class=\"icon-user post-user-icon\"></i>" + post.name + "</a>";
+    str += "</div>";
+    str += " <a class=\"delete-post\"><i class=\"icon-trash post-delete\"></i></a>";
+    str += "</div>";
+    str += "<div class=\"card-body\">" + post.content + "</div>";
+    str += "<div class=\"post-footer\"><a href=\"#\" class=\"number-comments\">X comments</a></div></article>";
+    return str;
+}
+
 function getFeed() {
     about_btn.style.textDecoration = "";
     classes_btn.style.textDecoration = "";
@@ -291,12 +335,18 @@ function getFeed() {
 
     req.onload = function () {
         if (req.status >= 200 && req.status < 400){
-            let content_str = "<section id=\"posts\">" +this.responseText + "</section>";
+            posts = JSON.parse(this.responseText);
+            posts_html = "";
+            console.log(posts);
+            for (let i = 0; i < posts.length; i++)
+              posts_html += post_to_string(posts[i]);
+            
+            let content_str = "<section id=\"posts\">" + posts_html  + "</section>";
             content_elem.innerHTML = content_str;
             addEventListeners();
         }
 
-        else content_elem.innerHTML = "There was an error retrieving this CUs posts from our database, try another time";
+        else failure_fb_msg("There was an error retrieving this CUs posts from our database, status: " + this.status);
     };
 
     req.send();
@@ -316,11 +366,18 @@ function getDoubts() {
     req.open("GET", "/cu/" + id + "/doubts/", true);
 
     req.onload = function () {
-        if (req.status >= 200 && req.status < 400){
-            let content_str = "<section id=\"posts\">" +this.responseText + "</section>";
-            content_elem.innerHTML = content_str;
-            addEventListeners();
-        }
+      if (req.status >= 200 && req.status < 400){
+        posts = JSON.parse(this.responseText);
+        posts_html = "";
+        for (let i = 0; i < posts.length; i++)
+          posts_html += post_to_string(posts[i]);
+        
+        let content_str = "<section id=\"posts\">" + posts_html  + "</section>";
+        content_elem.innerHTML = content_str;
+        addEventListeners(); 
+      }
+
+      else failure_fb_msg("There was an error retrieving this CUs posts from our database, status: " + this.status);
     };
 
     req.send();
@@ -340,11 +397,18 @@ function getTutoring(){
     req.open("GET",  "/cu/" + id + "/tutoring/", true);
 
     req.onload = function () {
-        if (req.status >= 200 && req.status < 400){
-            let content_str = "<section id=\"posts\">" +this.responseText + "</section>";
-            content_elem.innerHTML = content_str;
-            addEventListeners();
-        }
+      if (req.status >= 200 && req.status < 400){
+        posts = JSON.parse(this.responseText);
+        posts_html = "";
+        for (let i = 0; i < posts.length; i++)
+          posts_html += post_to_string(posts[i]);
+        
+        let content_str = "<section id=\"posts\">" + posts_html  + "</section>";
+        content_elem.innerHTML = content_str;
+        addEventListeners();
+      }
+
+      else failure_fb_msg("There was an error retrieving this CUs posts from our database, status: " + this.status);
     };
 
     req.send();
@@ -392,6 +456,8 @@ function getAbout(){
                 content_elem.innerHTML += '<div class="card-header d-flex"><div class="flex-column"><p>' + aux.review[i].review + '</p></div></div>';
           }
         }
+
+        else failure_fb_msg("There was an error retrieving this CUs info from our database, status: " + this.status);
     };
 
     req.send();
@@ -464,7 +530,7 @@ function getNotifications(){
         bell.classList.add("icon-notification");
       }
 
-      else console.log(this.responseText);
+      else failure_fb_msg("Failed to fetch notifications, status: " + this.status);
 
       window.onclick = function(){
         notification_area.className = "d-none";

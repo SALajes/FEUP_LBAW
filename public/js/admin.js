@@ -48,7 +48,7 @@ function getAllCUs(){
             }
             data.innerHTML = "<section class=\"row\"><table class=\"table text-center table-hover\"><thead><tr><th scope=\"col\">Abbreviature</th></th><th scope=\"col\">Name</th><th scope=\"col\">Number of enrolled students</th></tr></thead><tbody>" + cu_data + "</tbody></table></section>";
         }		
-        else console.log(req.status);        
+        else failure_fb_msg("Failed to fetch CUs from DB, status: " + this.status);       
     };
     
     req.onerror = function (){ //SE não ligar ao srv
