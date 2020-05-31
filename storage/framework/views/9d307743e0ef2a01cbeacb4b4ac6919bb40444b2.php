@@ -5,6 +5,17 @@
 
 <body>
 	<header class="background-gradient-blue">
+	<?php if($errors->any()): ?>
+    <div class="alert alert-danger alert-dismissible fade show">
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <p><?php echo e($error); ?></p>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+	<?php endif; ?>
+	
 		<section class="masthead mb-auto pt-3 d-flex pr-5 justify-content-end">
 			<div class="inner">
 				<nav class="nav nav-masthead justify-content-center">
@@ -35,17 +46,6 @@
 	</header>
 
 	<main class="container marketing mt-5">
-
-	<?php if($errors->any()): ?>
-    <div class="alert alert-danger alert-dismissible fade show">
-            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <p><?php echo e($error); ?></p>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <?php endif; ?>
 		<!-- START THE FEATURETTES -->
 		<section class="row featurette">
 			<blockquote class="col-md-7 order-md-2">

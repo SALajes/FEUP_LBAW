@@ -6,6 +6,17 @@
 
 <body>
 	<header class="background-gradient-blue">
+	@if ($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show">
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+	@endif
+	
 		<section class="masthead mb-auto pt-3 d-flex pr-5 justify-content-end">
 			<div class="inner">
 				<nav class="nav nav-masthead justify-content-center">
@@ -36,17 +47,6 @@
 	</header>
 
 	<main class="container marketing mt-5">
-
-	@if ($errors->any())
-    <div class="alert alert-danger alert-dismissible fade show">
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    @endif
 		<!-- START THE FEATURETTES -->
 		<section class="row featurette">
 			<blockquote class="col-md-7 order-md-2">
