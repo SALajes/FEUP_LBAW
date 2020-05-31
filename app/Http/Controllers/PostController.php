@@ -60,6 +60,8 @@ class PostController extends Controller
 
     public function createPost(Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         $post = new Post();
         $this->authorize('createPublic', $post);
         
@@ -75,7 +77,10 @@ class PostController extends Controller
         return ['post'=>$post, 'name'=>$name, 'id'=>$id];
     }
 
-    public function createPostInCUInFeed(Request $request, $cu_id, $feed){
+    public function createPostInCUInFeed(Request $request, $cu_id, $feed)
+    {
+        if(!Auth::check()) return redirect('/');
+
         $post = new Post();
 
         //$this->authorize('createCU', CurricularUnit::find($cu_id));
@@ -97,6 +102,8 @@ class PostController extends Controller
 
     public function deletePost($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         $post = Post::find($id);
         $this->authorize('deletePost', $post);
         $post->delete();
