@@ -67,7 +67,7 @@ class PostController extends Controller
         
         $id = Auth::user()->id;
 
-        $post->content = $request->input('content');
+        $post->content = htmlentities($request->input('content'));
         $post->public_feed = true;
         $post->author_id = $id;
         $post->save();
@@ -88,7 +88,7 @@ class PostController extends Controller
         
         $id = Auth::user()->id;
 
-        $post->content = $request->input('content');
+        $post->content = htmlentities($request->input('content'));
         $post->public_feed = false;
         $post->cu_id = $cu_id;
         $post->feed_type = $feed;

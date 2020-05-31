@@ -108,7 +108,7 @@ class CUController extends Controller
 
         DB::table('curricular_unit')
             ->select('curricular_unit.abbrev')
-            ->where('curricular_unit.abbrev', '=', $request->input('content'))
+            ->where('curricular_unit.abbrev', '=', htmlentities($request->input('content')))
             ->delete();
 
         return response()->json([]);
@@ -120,7 +120,7 @@ class CUController extends Controller
 
         $saved = DB::table('curricular_unit')
                 ->where('id', '=', $id)
-                ->update(['name' => $request->input('cu_name')]);
+                ->update(['name' => htmlentities($request->input('cu_name'))]);
 
         if ($saved) return redirect()->back()->with('success', 'You have successfully updated the name');
         else return back()->with('error', 'Update on name failed.');
@@ -131,7 +131,7 @@ class CUController extends Controller
         if(!Auth::check()) return redirect('/');
         $saved = DB::table('curricular_unit')
                 ->where('id', '=', $id)
-                ->update(['abbrev' => $request->input('cu_abbrev')]);
+                ->update(['abbrev' => htmlentities($request->input('cu_abbrev'))]);
 
         if ($saved) return back()->with('success', 'You have successfully updated the abbrev.');
         else return back()->with('error', 'Update on abbrev failed.');
@@ -142,7 +142,7 @@ class CUController extends Controller
         if(!Auth::check()) return redirect('/');
         $saved = DB::table('curricular_unit')
                 ->where('id', '=', $id)
-                ->update(['description' => $request->input('cu_description')]);
+                ->update(['description' => htmlentities($request->input('cu_description'))]);
 
         if ($saved) return back()->with('success', 'You have successfully updated the description.');
         else return back()->with('error', 'Update on description failed.');
@@ -167,8 +167,8 @@ class CUController extends Controller
             $a = DB::table('rating')
                 ->insert(['reviewer_id' => Auth::user()->id, 
                 'has_voted' => true,
-                'review' => $request->input('cu_review'),
-                'cu_id' => $reviewed_cu]);
+                'review' => htmlentities($request->input('cu_review')),
+                'cu_id' => htmlentities($reviewed_cu)]);
             
             if ($a) return back()->with('success', 'You have successfully rated this CU.');
             else return back()->with('error', 'Failed to rated this CU.');
