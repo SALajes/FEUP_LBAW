@@ -16,37 +16,6 @@ class StudentController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Student  $student
@@ -54,6 +23,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         $student = Student::find($id);
         $owner = false;
         $likeCounter = DB::table('rating')
@@ -65,6 +36,8 @@ class StudentController extends Controller
 
     public function requestCUs($id)
     {
+        if(!Auth::check()) return redirect('/');
+        
         $cus = DB::table('enrolled')
             ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
             ->select('curricular_unit.abbrev', 'curricular_unit.id', 'curricular_unit.name')
@@ -76,6 +49,8 @@ class StudentController extends Controller
 
     public function requestRatings($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         $reviews = DB::table('rating')
             ->select('review')
             ->join('student', 'student.id', '=', 'rating.student_id')
@@ -86,6 +61,8 @@ class StudentController extends Controller
 
     public function pollNotifications($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         $notification = Student::find($id)->notifications()->orderBy('date', 'desc')->limit(1)->get();
         if ($notification[0]->seen == false) return "true";
         return "false";
@@ -93,6 +70,8 @@ class StudentController extends Controller
 
     public function notifications($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         $notifications = Student::find($id)->notifications()->orderBy('date', 'desc')->limit(25)->get();
         for ($i = 0; $i < sizeof($notifications); $i++) DB::table('notification')->where('id', $notifications[$i]->id)->update(['seen' => TRUE]);
         return response()->json(['notifications' => $notifications]);
@@ -100,6 +79,8 @@ class StudentController extends Controller
 
     public function editPassword(Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
             return redirect()->back()->with("error", "Your current password does not match the password you provided. Please try again.");
@@ -127,6 +108,8 @@ class StudentController extends Controller
 
     public function editProfilePicture(Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         $request->validate([
             'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -146,6 +129,8 @@ class StudentController extends Controller
 
     public function editBio(Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         $request->validate([
             'bio' => 'string|min:6',
         ]);
@@ -159,7 +144,10 @@ class StudentController extends Controller
         else return back()->with('error', 'Failed to update the bio.');
     }
 
-    public function deleteAccount() {
+    public function deleteAccount()
+    {
+        if(!Auth::check()) return redirect('/');
+
         $user = Auth::user();
         $deleted = $user->delete();
         if ($deleted){
@@ -169,7 +157,10 @@ class StudentController extends Controller
         else return back()->with('error', 'Failed to delete account.');
     }
 
-    public function rateStudent($reviewed_student, Request $request) {
+    public function rateStudent($reviewed_student, Request $request)
+    {
+        if(!Auth::check()) return redirect('/');
+
         if ($reviewed_student == Auth::user()->id)
             return redirect('/users/' . Auth::user()->id)->with('error', 'You can\'t rate  yourself.' );
 

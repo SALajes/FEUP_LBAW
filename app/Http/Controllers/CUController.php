@@ -18,6 +18,8 @@ class CUController extends Controller
 
     public function show($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         $cu = CurricularUnit::find($id);
         $teachers = DB::table('teaches')
             ->select('professor.name', 'professor.id')
@@ -33,6 +35,8 @@ class CUController extends Controller
 
     public function showAll()
     {
+        if(!Auth::check()) return redirect('/');
+
         $cus = DB::table('curricular_unit')
             ->select('curricular_unit.abbrev', 'curricular_unit.name as cu_name', 'curricular_unit.description as description', 'curricular_unit.id as cu_id', 'student.id as su_id', 'student.student_number', 'student.name', 'student.email')
             ->leftJoin('enrolled', 'curricular_unit.id', '=', 'enrolled.cu_id')
@@ -43,6 +47,7 @@ class CUController extends Controller
 
     public function feed($id)
     {
+        if(!Auth::check()) return redirect('/');
         $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')
             ->select('post.id', 'post.author_id', 'student.name', 'post.content')
             ->where('feed_type', 'General')
@@ -53,6 +58,8 @@ class CUController extends Controller
 
     public function doubts($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')
             ->select('post.id', 'post.author_id', 'student.name', 'post.content')
             ->where('feed_type', 'Doubts')
@@ -62,7 +69,8 @@ class CUController extends Controller
     }
 
     public function tutoring($id)
-    {
+    {   
+        if(!Auth::check()) return redirect('/');
         $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')
             ->select('post.id', 'post.author_id', 'student.name', 'post.content')
             ->where('feed_type', 'Tutoring')
@@ -73,11 +81,15 @@ class CUController extends Controller
 
     public function classes($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         return "classes";
     }
 
     public function about($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         $review = DB::table('rating')
         ->where('cu_id', '=', $id)
         ->get();
@@ -92,6 +104,8 @@ class CUController extends Controller
 
     public function destroy(Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         DB::table('curricular_unit')
             ->select('curricular_unit.abbrev')
             ->where('curricular_unit.abbrev', '=', $request->input('content'))
@@ -102,6 +116,8 @@ class CUController extends Controller
 
     public function editName(Request $request, $id)
     {
+        if(!Auth::check()) return redirect('/');
+
         $saved = DB::table('curricular_unit')
                 ->where('id', '=', $id)
                 ->update(['name' => $request->input('cu_name')]);
@@ -111,7 +127,8 @@ class CUController extends Controller
     }
 
     public function editAbbrev(Request $request, $id)
-    {
+    {   
+        if(!Auth::check()) return redirect('/');
         $saved = DB::table('curricular_unit')
                 ->where('id', '=', $id)
                 ->update(['abbrev' => $request->input('cu_abbrev')]);
@@ -121,7 +138,8 @@ class CUController extends Controller
     }
 
     public function editDescription(Request $request, $id)
-    {
+    {   
+        if(!Auth::check()) return redirect('/');
         $saved = DB::table('curricular_unit')
                 ->where('id', '=', $id)
                 ->update(['description' => $request->input('cu_description')]);
@@ -130,7 +148,10 @@ class CUController extends Controller
         else return back()->with('error', 'Update on description failed.');
     }
 
-    public function rateCU($reviewed_cu, Request $request) {
+    public function rateCU($reviewed_cu, Request $request)
+    {
+        if(!Auth::check()) return redirect('/');
+
         $enrolled = DB::table('enrolled')
             ->where('student_id', '=', Auth::user()->id)
             ->where('cu_id', '=', $reviewed_cu)

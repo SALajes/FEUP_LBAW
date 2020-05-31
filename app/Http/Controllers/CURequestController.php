@@ -13,6 +13,8 @@ class CURequestController extends Controller
 
     public function requestCU()
     {
+        if(!Auth::check()) return redirect('/');
+
         $cus = DB::table('enrolled')
             ->join('curricular_unit', 'enrolled.cu_id', '=', 'curricular_unit.id')
             ->select('curricular_unit.abbrev', 'curricular_unit.id')
@@ -23,6 +25,8 @@ class CURequestController extends Controller
 
     public function submitRequest(Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         $cu_request = new CURequest();
 
         $cu_request->student_id = Auth::user()->id;
@@ -73,6 +77,8 @@ class CURequestController extends Controller
 
     public function manageCreateRequests()
     {
+        if(!Auth::check()) return redirect('/');
+
         $student = Auth::user();
 
         $likeCounter = DB::table('rating')
@@ -103,6 +109,8 @@ class CURequestController extends Controller
     
     public function manageJoinRequests()
     {
+        if(!Auth::check()) return redirect('/');
+
         $student = Auth::user();
         $requests = DB::table('cu_join_request')
             ->join('student', 'student.id', '=', 'cu_join_request.student_id')
@@ -121,6 +129,8 @@ class CURequestController extends Controller
 
     public function acceptCreateRequest($id)
     {
+        if(!Auth::check()) return redirect('/');
+
         DB::table('cu_request')
             ->where('id', '=', $id)
             ->update(['request_status' => 'Accepted']);
@@ -151,7 +161,8 @@ class CURequestController extends Controller
     }
 
     public function denyCreateRequest($id)
-    {
+    {   
+        if(!Auth::check()) return redirect('/');
         $a = DB::table('cu_request')
             ->where('id', '=', $id)
             ->update(['request_status' => 'Rejected']);
@@ -162,6 +173,7 @@ class CURequestController extends Controller
 
     public function acceptJoinRequest($id)
     {
+        if(!Auth::check()) return redirect('/');
         $a = DB::table('cu_join_request')
             ->where('id', '=', $id)
             ->update(['request_status' => 'Accepted']);
@@ -184,6 +196,7 @@ class CURequestController extends Controller
 
     public function denyJoinRequest($id)
     {
+        if(!Auth::check()) return redirect('/');
         $a = DB::table('cu_join_request')
             ->where('id', '=', $id)
             ->update(['request_status' => 'Rejected']);
@@ -192,7 +205,10 @@ class CURequestController extends Controller
         else return redirect()->back()->with('error', 'Failed to reject request.');
     }
 
-    public function askJoinCU($id) {
+    public function askJoinCU($id)
+    {
+        if(!Auth::check()) return redirect('/');
+
         $isEnrolled = DB::table('enrolled')
             ->where('enrolled.cu_id', '=', $id)
             ->where('enrolled.student_id', '=', Auth::user()->id)

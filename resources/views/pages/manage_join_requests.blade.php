@@ -1,13 +1,13 @@
+@extends('layouts.app')
+@section('content')
+
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/post.css') }}">
 
-@extends('layouts.app')
-
 @include('partials.navbar')
 @include('partials.sidebar')
 
-@section('content')
 <div class="container-fluid">
     <div class="row">
         <?php
@@ -54,4 +54,5 @@
         </section>
     </div>
 </div>
+
 @endsection

@@ -21,13 +21,13 @@
     <button class="add-comment-button" type="button" data-toggle="collapse" data-target="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
         +
     </button>
-    
+
     <div id="collapseForm" class="collapse">
         <form class="newComment">
             <div class="form-group">
                 <textarea class="comment-content form-control" rows="1" placeholder="Write a comment"></textarea>
             </div>
-            
+
             <button id="postComment" type="submit" class="btn btn-primary">Make comment</button>
         </form>
     </div>

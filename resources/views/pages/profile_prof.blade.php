@@ -1,19 +1,18 @@
+@extends('layouts.app')
+@section('title', $professor->name)
+@section('content')
+
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
 <script src={{ asset('js/profile_prof.js') }} defer></script>
 
-@extends('layouts.app')
-
 @include('partials.navbar')
 @include('partials.sidebar')
 @include('partials.edit_professor_modal')
 @include('partials.rate_prof_modal')
 
-@section('title', $professor->name)
-
-@section('content')
 <div class="container-fluid">
     <div class="row">
        <?php
@@ -34,4 +33,5 @@
         </div>
     </div>
 </div>
+
 @endsection
