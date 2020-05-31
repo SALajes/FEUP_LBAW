@@ -1,16 +1,13 @@
 <link rel="stylesheet" href="<?php echo e(asset('css/sidebar.css')); ?>">
 
-<?php
+<?php use Illuminate\Support\Facades\Auth; ?>
 
-use Illuminate\Support\Facades\Auth;
-
-function draw_sidebar_Top_CU($cu, $teachers)
-{ ?>
+<?php function draw_sidebar_Top_CU($cu, $teachers) { ?>
 	<aside class="col-lg-3 sticky-top align-self-start" id="page-title">
 		<section class="row-md-auto">
 			<div class="text-center">
 				<h2 class="d-block pt-md-4"><?= $cu->abbrev ?> </h2>
-				<hr id="student_identification">
+				<hr class="division">
 
 				<?php foreach ($teachers as $teacher) { ?>
 					<a href="/professors/<?= $teacher->id ?>">
@@ -18,12 +15,11 @@ function draw_sidebar_Top_CU($cu, $teachers)
 					</a>
 				<?php } ?>
 			</div>
+			<hr class="division">
 		</section>
-		<hr id="student_identification">
-	<?php } ?>
+<?php } ?>
 
-	<?php function draw_sidebar_Top_prof($breadcrumb, $professor)
-	{ ?>
+<?php function draw_sidebar_Top_prof($breadcrumb, $professor) { ?>
 		<aside class="col-lg-3 sticky-top align-self-start" id="page-title">
 			<section class="row-md-auto">
 				<div class="text-center">
@@ -45,10 +41,9 @@ function draw_sidebar_Top_CU($cu, $teachers)
 				</div>
 			</section>
 			<hr id="student_identification">
-		<?php } ?>
+<?php } ?>
 
-		<?php function draw_sidebar_Top($breadcrumb, $userNo,  $username, $studentNo)
-		{ ?>
+<?php function draw_sidebar_Top($breadcrumb, $userNo,  $username, $studentNo) { ?>
 			<aside class="col-lg-3 sticky-top align-self-start" id="page-title">
 				<section class="row-md-auto">
 					<div class="text-center">
@@ -70,10 +65,9 @@ function draw_sidebar_Top_CU($cu, $teachers)
 					</div>
 				</section>
 				<hr id="student_identification">
-			<?php } ?>
+<?php } ?>
 
-			<?php function draw_sidebar_Profile_prof($likeCounter)
-			{ ?>
+<?php function draw_sidebar_Profile_prof($likeCounter) { ?>
 				<section class="row-md-auto justify-content-center ">
 					<?php
 					if (Auth::user()->administrator) { ?>
@@ -90,10 +84,9 @@ function draw_sidebar_Top_CU($cu, $teachers)
 					</div>
 				</section>
 			</aside>
-		<?php } ?>
+<?php } ?>
 
-		<?php function draw_sidebar_Profile($bio, $likeCounter, $owner)
-		{ ?>
+<?php function draw_sidebar_Profile($bio, $likeCounter, $owner) { ?>
 			<section class="row-md-auto justify-content-center ">
 				<blockquote class="text-center col-md-10 mx-auto">
 					<?php
@@ -138,10 +131,9 @@ function draw_sidebar_Top_CU($cu, $teachers)
 				</div>
 			</section>
 		</aside>
-	<?php } ?>
+<?php } ?>
 
-	<?php function draw_sidebar_CU($id, $likeCounter)
-	{ ?>
+<?php function draw_sidebar_CU($id, $likeCounter) { ?>
 		<section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
 			<div class="d-flex justify-content-around likes_friend">
 				<a data-toggle="modal" data-target="#rateCUModal" class="btn btn-default">
@@ -161,27 +153,27 @@ function draw_sidebar_Top_CU($cu, $teachers)
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
 				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
 					<button id="feed_btn" type="button" class="btn btn-link">
-						<h3>Feed</h3>
+						Feed
 					</button>
 				</div>
 				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
 					<button id="doubts_btn" type="button" class="btn btn-link">
-						<h3>Doubts</h3>
+						Doubts
 					</button>
 				</div>
 				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
 					<button id="tutor_btn" type="button" class="btn btn-link">
-						<h3>Tutoring</h3>
+						Tutoring
 					</button>
 				</div>
 				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
 					<button id="classes_btn" type="button" class="btn btn-link">
-						<h3>Classes</h3>
+						Classes
 					</button>
 				</div>
 				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
 					<button id="about_btn" type="button" class="btn btn-link">
-						<h3>About</h3>
+						About
 					</button>
 				</div>
 			</div>
@@ -189,11 +181,11 @@ function draw_sidebar_Top_CU($cu, $teachers)
 		<!-- Divisao Vertical -->
 	</aside>
 
-	<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+	<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="loginLabel">Edit curricular unit</h5>
+					<h5 class="modal-title">Edit curricular unit</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -245,8 +237,7 @@ function draw_sidebar_Top_CU($cu, $teachers)
 
 <?php } ?>
 
-<?php function draw_sidebar_Search()
-{ ?>
+<?php function draw_sidebar_Search() { ?>
 	<section class="row-md-auto justify-content-center">
 
 		<div class="row d-flex flex-wrap justify-content-center">
