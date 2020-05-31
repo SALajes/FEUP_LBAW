@@ -102,29 +102,32 @@ class CUController extends Controller
 
     public function editName(Request $request, $id)
     {
-        DB::table('curricular_unit')
-            ->where('id', '=', $id)
-            ->update(['name' => $request->input('cu_name')]);
+        $saved = DB::table('curricular_unit')
+                ->where('id', '=', $id)
+                ->update(['name' => $request->input('cu_name')]);
 
-        return redirect()->back();
+        if ($saved) return redirect()->back()->with('success', 'You have successfully updated the name');
+        else return back()->with('error', 'Update on name failed.');
     }
 
     public function editAbbrev(Request $request, $id)
     {
-        DB::table('curricular_unit')
-            ->where('id', '=', $id)
-            ->update(['abbrev' => $request->input('cu_abbrev')]);
+        $saved = DB::table('curricular_unit')
+                ->where('id', '=', $id)
+                ->update(['abbrev' => $request->input('cu_abbrev')]);
 
-        return redirect()->back();
+        if ($saved) return back()->with('success', 'You have successfully updated the abbrev.');
+        else return back()->with('error', 'Update on abbrev failed.');
     }
 
     public function editDescription(Request $request, $id)
     {
-        DB::table('curricular_unit')
-            ->where('id', '=', $id)
-            ->update(['description' => $request->input('cu_description')]);
+        $saved = DB::table('curricular_unit')
+                ->where('id', '=', $id)
+                ->update(['description' => $request->input('cu_description')]);
 
-        return redirect()->back();
+        if ($saved) return back()->with('success', 'You have successfully updated the description.');
+        else return back()->with('error', 'Update on description failed.');
     }
 
     public function rateCU($reviewed_cu, Request $request) {
@@ -140,12 +143,16 @@ class CUController extends Controller
         ->count();
 
         if ($review == 0 && $enrolled != 0) {
-            DB::table('rating')
-            ->insert(['reviewer_id' => Auth::user()->id, 
-                  'has_voted' => true,
-                  'review' => $request->input('cu_review'),
-                  'cu_id' => $reviewed_cu]);
+            $a = DB::table('rating')
+                ->insert(['reviewer_id' => Auth::user()->id, 
+                'has_voted' => true,
+                'review' => $request->input('cu_review'),
+                'cu_id' => $reviewed_cu]);
+            
+            if ($a) return back()->with('success', 'You have successfully rated this CU.');
+            else return back()->with('error', 'Failed to rated this CU.');
         }
-        return redirect('/cu/' . $reviewed_cu);    
+        
+        return back()->with('error', 'Failed to rated this profile.');
     }
 }

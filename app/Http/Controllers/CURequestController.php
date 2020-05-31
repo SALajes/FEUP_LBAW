@@ -130,37 +130,39 @@ class CURequestController extends Controller
             ->where('id', '=', $id)
             ->get();
 
-        DB::table('curricular_unit')
+        $a = DB::table('curricular_unit')
             ->insert([
                 'name' => $cu[0]->cu_name,
                 'abbrev' => $cu[0]->abbrev,
                 'description' => $cu[0]->additional_info
             ]);
 
-        DB::table('moderator')
+        $a |= DB::table('moderator')
             ->insert([
                 'student_id' => Auth::user()->id,
                 'cu_id' => $cu[0]->id
             ]);
 
-        DB::table('student')
+        $a |= DB::table('student')
             ->update(['administrator' => true]);
-
-        return redirect()->back();
+        
+        if ($a) return redirect()->back()->with('success', 'Accepted Request!');
+        else return redirect()->back()->with('error', 'Failed to accept request.');
     }
 
     public function denyCreateRequest($id)
     {
-        DB::table('cu_request')
+        $a = DB::table('cu_request')
             ->where('id', '=', $id)
             ->update(['request_status' => 'Rejected']);
 
-        return redirect()->back();
+        if ($a) return redirect()->back()->with('success', 'Rejected Request!');
+        else return redirect()->back()->with('error', 'Failed to reject request.');
     }
 
     public function acceptJoinRequest($id)
     {
-        DB::table('cu_join_request')
+        $a = DB::table('cu_join_request')
             ->where('id', '=', $id)
             ->update(['request_status' => 'Accepted']);
 
@@ -169,23 +171,25 @@ class CURequestController extends Controller
             ->where('id', '=', $id)
             ->get();
 
-        DB::table('enrolled')
+        $a |= DB::table('enrolled')
             ->insert([
                 'cu_id' => $req[0]->cu_id,
                 'student_id' => $req[0]->student_id,
                 'identifier' => 'TBD'
             ]);
 
-        return redirect()->back();
+        if ($a) return redirect()->back()->with('success', 'Accepted Request!');
+        else return redirect()->back()->with('error', 'Failed to accept request.');
     }
 
     public function denyJoinRequest($id)
     {
-        DB::table('cu_join_request')
+        $a = DB::table('cu_join_request')
             ->where('id', '=', $id)
             ->update(['request_status' => 'Rejected']);
 
-        return redirect()->back();
+        if ($a) return redirect()->back()->with('success', 'Rejected Request!');
+        else return redirect()->back()->with('error', 'Failed to reject request.');
     }
 
     public function askJoinCU($id) {
@@ -195,7 +199,7 @@ class CURequestController extends Controller
             ->get();
 
         if ($isEnrolled->count() != 0) {
-            return redirect('/cu/' . $id);
+            return redirect('/cu/' . $id)->with('error', 'Already enrolled in that CU.');
         }
 
         $aux = DB::table('cu_join_request')
@@ -206,13 +210,16 @@ class CURequestController extends Controller
             ->get();
 
         if ($aux != null) {
-            DB::table('cu_join_request')
+            $a = DB::table('cu_join_request')
                ->insert([
                 'cu_id' => $id,
                 'student_id' => Auth::user()->id
             ]);
+
+            if ($a) return back()->with('success', 'Submit request to join CU!');
+            else return back()->with('error', 'Failed to submit request to join CU!');
         }
 
-        return redirect('/cu/' . $id);
+        return back()->with('error', 'Non existent CU!');
     }
 }
