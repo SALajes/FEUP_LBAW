@@ -187,8 +187,8 @@ CREATE INDEX post_date_idx ON post USING USING btree(date);
 CREATE INDEX comment_date_idx ON comment USING USING btree(date);
 CREATE INDEX message_date_idx ON message USING USING btree(date);
 CREATE INDEX group_message_date_idx ON group_message USING USING btree(date);
-CREATE INDEX search_post_idx ON post USING GIST (to_tsvector('english', content));
-CREATE INDEX search_cu_idx ON curricular_unit USING GIST (to_tsvector('portuguese', name || description));
+CREATE INDEX search_post_idx ON post USING GIST (to_tsvector('portuguese', content));
+CREATE INDEX search_cu_idx ON curricular_unit USING GIST (to_tsvector('portuguese', name || ' ' || abbrev || ' ' || description));
 
 --Triggers--
 

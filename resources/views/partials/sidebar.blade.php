@@ -140,40 +140,37 @@
 
 <?php function draw_sidebar_Search() { ?>
     <section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
-        <div class="btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs" id="fields">
-            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label" for="inlineRadio1">My CUs</label>
+        <form id="search_form">
+            <div id="fields" class="btn-group-vertical d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs">
+                <div>
+                    <input name="query" type="text" value="" placeholder="Search">
+                </div>  
+                <div>
+                    <input name="professors" type="checkbox" value="professors">
+                    <label class="form-check-label" for="professors">Professors</label>
                 </div>
-            </div>     
-            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
-                <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                        <label class="form-check-label" for="inlineRadio2">All CUs </label>
+                <div>
+                    <input name="students" type="checkbox" value="students">
+                    <label class="form-check-label" for="students">Students</label>
                 </div>
-            </div>
-            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="professors">
-                    <label class="form-check-label" for="inlineCheckbox1">Include Professors</label>
+                <div>
+                    <input name="curricular_units" type="checkbox" value="curricular_units">
+                    <label class="form-check-label" for="curricular_units">Curricular Units</label>
+                </div>  
+                <div>
+                    <input name="inlineRadioOptions" type="radio" value="my_cus">
+                    <label class="form-check-label" for="my_cus">My CUs</label>
+                </div>     
+                <div>
+                    <input name="inlineRadioOptions" type="radio" value="all_cus">
+                    <label class="form-check-label" for="all_cus">All CUs </label>
                 </div>
-            </div>
-            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="students">
-                    <label class="form-check-label" for="inlineCheckbox2">Include Students</label>
-                </div>
-            </div>
-            <div class="row col-xl-12 col-md-4 col-6 justify-content-center">
-                <div class="col-12 text-center">
-                    <label for="customRange2" class=" text-center">Curricular year</label>
-                </div>
-                <div class="col-lg-10 col-6">
-                    <input type="range" class="custom-range" min="1" max="5" id="customRange2">
+                <div>
+                    <label for="year">Curricular year</label>
+                    <input name="year" type="range" min="1" max="5">
                 </div>
             </div>
-        </div>
+        </form>
     </section>
     <!-- Divisao Vertical -->
     </aside>

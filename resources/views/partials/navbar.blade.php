@@ -21,7 +21,7 @@
             </section>
 
             <form id="search" class="form-inline my-2 my-lg-0" action="{{ route('submitSearch') }}" method="POST">
-                {{ csrf_field() }}
+                @csrf
                 <input id="query" name="query" class="form-control mr-sm-2" type="search" placeholder="Search">
                 <button type="submit" class="btn btn-light"><i class="icon-search"></i></button>
             </form>

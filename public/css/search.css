@@ -1,0 +1,33 @@
+#content, #results_title, #results{
+    background-color: ghostwhite;
+}
+
+#page-title{
+    background-color: white;
+}
+
+#fields > div{
+    margin: 0.25rem;
+}
+
+#fields input[type="range"] {
+    -webkit-appearance: none;
+    background-color: silver;
+    opacity: 0.5;
+
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+
+    width: 90%;
+    height: 0.2em;
+    margin-top: 0.5rem;
+}
+
+#fields input[type="range"]:hover, #fields input[type="range"]:focus {
+    opacity: 1;
+}
+
+#fields input[type=range]:focus::-moz-range-thumb {
+    background: #65bad4;
+    cursor: pointer;
+}
