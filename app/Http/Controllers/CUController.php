@@ -176,4 +176,9 @@ class CUController extends Controller
         
         return back()->with('error', 'Failed to rated this profile.');
     }
+
+    public function preventError()
+    {
+        return redirect('/');
+    }
 }

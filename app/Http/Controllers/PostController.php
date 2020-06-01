@@ -110,4 +110,9 @@ class PostController extends Controller
 
         return $post;
     }
+
+    public function preventError()
+    {
+        return redirect('/');
+    }
 }
