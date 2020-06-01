@@ -305,7 +305,7 @@ function sendCreateTutorPostRequest(event) {
     event.preventDefault();
 }
 
-function post_to_string(post, numComments) {
+function post_to_string(post, numComments, admin, userId) {
   let nComment
 
   numComments.forEach(n => {
@@ -315,27 +315,48 @@ function post_to_string(post, numComments) {
   if(nComment == undefined)
   	nComment = 0;
 
+  let bin = admin || userId == post.author_id;
   let new_post = document.createElement('div');
+
+  if(bin) {
+	new_post.innerHTML = `
+	<article class="card post post-margins" data-id="${post.id}">
+	  <div class="post-header d-flex justify-content-between">
+		<div class="post-header-left">
+		  <a href="/users/${post.author_id}"><i class="icon-user post-user-icon"></i>${post.name}</a>
+		</div>
   
-  new_post.innerHTML = `
-  <article class="card post post-margins" data-id="${post.id}">
-    <div class="post-header d-flex justify-content-between">
-      <div class="post-header-left">
-        <a href="/users/${post.author_id}"><i class="icon-user post-user-icon"></i>${post.name}</a>
-      </div>
-
-      <a class="delete-post"><i class="icon-trash post-delete"></i></a>
-    </div>
-
-    <div class="card-body">
-      ${post.content }
-    </div>
-
-    <div class="post-footer">
-      <a href="/post/${post.id}" class="number-comments">${nComment} comments</a>
-	</div>
-  </article>
-  `;
+		<a class="delete-post"><i class="icon-trash post-delete"></i></a>
+	  </div>
+  
+	  <div class="card-body">
+		${post.content }
+	  </div>
+  
+	  <div class="post-footer">
+		<a href="/post/${post.id}" class="number-comments">${nComment} comments</a>
+	  </div>
+	</article>
+	`;
+  } else {
+	new_post.innerHTML = `
+	<article class="card post post-margins" data-id="${post.id}">
+	  <div class="post-header d-flex justify-content-between">
+		<div class="post-header-left">
+		  <a href="/users/${post.author_id}"><i class="icon-user post-user-icon"></i>${post.name}</a>
+		</div>
+  	  </div>
+  
+	  <div class="card-body">
+		${post.content }
+	  </div>
+  
+	  <div class="post-footer">
+		<a href="/post/${post.id}" class="number-comments">${nComment} comments</a>
+	  </div>
+	</article>
+	`;
+  }
 
   return new_post.innerHTML;
 }
@@ -353,13 +374,15 @@ function getFeed() {
         if (req.status >= 200 && req.status < 400){
             response = JSON.parse(this.responseText);
 
-            posts_html = "";
+			posts_html = "";
 
 			let posts = response.posts;
             let numComments = response.numComments;
+			let admin = response.admin;
+			let userId = response.userId;
 
 			for (let i = 0; i < posts.length; i++)
-              posts_html += post_to_string(posts[i], numComments);
+              posts_html += post_to_string(posts[i], numComments, admin, userId);
             
             let content_str = "<section id=\"posts\">" + posts_html  + "</section>";
             content_elem.innerHTML = content_str;
@@ -388,13 +411,16 @@ function getDoubts() {
     req.onload = function () {
       if (req.status >= 200 && req.status < 400){
         response = JSON.parse(this.responseText);
+
 		posts_html = "";
-		
+
 		let posts = response.posts;
 		let numComments = response.numComments;
-	
-        for (let i = 0; i < posts.length; i++)
-          posts_html += post_to_string(posts[i], numComments);
+		let admin = response.admin;
+		let userId = response.userId;
+
+		for (let i = 0; i < posts.length; i++)
+			posts_html += post_to_string(posts[i], numComments, admin, userId);
         
         let content_str = "<section id=\"posts\">" + posts_html  + "</section>";
         content_elem.innerHTML = content_str;
@@ -422,14 +448,16 @@ function getTutoring(){
 
     req.onload = function () {
       if (req.status >= 200 && req.status < 400){
-        response = JSON.parse(this.responseText);
+        
 		posts_html = "";
-		
+
 		let posts = response.posts;
 		let numComments = response.numComments;
-	
-        for (let i = 0; i < posts.length; i++)
-          posts_html += post_to_string(posts[i], numComments)
+		let admin = response.admin;
+		let userId = response.userId;
+
+		for (let i = 0; i < posts.length; i++)
+			posts_html += post_to_string(posts[i], numComments, admin, userId);
         
         let content_str = "<section id=\"posts\">" + posts_html  + "</section>";
         content_elem.innerHTML = content_str;

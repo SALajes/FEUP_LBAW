@@ -84,7 +84,7 @@ class CUController extends Controller
                         ->groupBy('comment.post_id')
                         ->get();
         
-        return ['posts'=>$posts, 'numComments'=>$numComments];
+        return ['posts'=>$posts, 'numComments'=>$numComments, 'userId' => Auth::user()->id, 'admin' => Auth::user()->administrator];
     }
 
     public function doubts($id)
@@ -112,7 +112,7 @@ class CUController extends Controller
                         ->groupBy('comment.post_id')
                         ->get();
         
-        return ['posts'=>$posts, 'numComments'=>$numComments];
+        return ['posts'=>$posts, 'numComments'=>$numComments, 'userId' => Auth::user()->id, 'admin' => Auth::user()->administrator];
     }
 
     public function tutoring($id)
@@ -136,7 +136,7 @@ class CUController extends Controller
                         ->groupBy('comment.post_id')
                         ->get();
         
-        return ['posts'=>$posts, 'numComments'=>$numComments];
+        return ['posts'=>$posts, 'numComments'=>$numComments, 'userId' => Auth::user()->id, 'admin' => Auth::user()->administrator];
     }
 
     public function classes($id)
