@@ -153,7 +153,10 @@
 				</form>
 			</div>
 			<div class="btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs" id="cu_tabs">
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
+				<?php if(Auth::user()->administrator) { ?>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
+				<?php }?>
+				
 				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
 					<button id="feed_btn" type="button" class="btn btn-link">
 						Feed
