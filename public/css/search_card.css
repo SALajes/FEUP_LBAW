@@ -1,6 +1,16 @@
-div.card > div.card-header{
+#student_card > div.card-header{
     color: white;
-    background-color: #2c6faf;
+    background-color: #3356ae;
+}
+
+#professor_card > div.card-header{
+    color: white;
+    background-color: #2294b0;
+}
+
+#cu_card > div.card-header{
+    color: white;
+    background-color: #17beb1;
 }
 
 .card {
@@ -21,6 +31,16 @@ div.card > div.card-header{
     color: #dfdfdf;
 }
 
-#student_card h5.card-title, #professor_card h5.card-title, #cu_card h5.card-title, .card-text{
+.card-text{
     margin: 0;
+}
+
+#student_card > a, #professor_card > a, #cu_card > a, #student_card > a:visited, #professor_card > a:visited, #cu_card > a:visited{
+    text-decoration: none;
+    color: black;
+}
+
+#student_card > a:hover, #professor_card > a:hover, #cu_card > a:hover{
+    text-decoration: none;
+    color: #2294b0;
 }

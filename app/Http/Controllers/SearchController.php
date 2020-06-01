@@ -23,43 +23,43 @@ class SearchController extends Controller
             
         if($query != ""){
             $stud = DB::table('student')
-                    -> select('student.id', 'student.student_number', 'student.name', 'student.bio', 'student.picture_path')
+                    -> select('id', 'student_number', 'name', 'profile_image')
                     -> selectRaw('ts_rank(
-                                    setweight(to_tsvector(\'portuguese\', student."student_number"), \'A\') ||
-                                    setweight(to_tsvector(\'portuguese\', student."name"), \'B\') ||
-                                    setweight(to_tsvector(\'portuguese\', student."bio"), \'C\'),
-                                    plainto_tsquery(\'portuguese\', ?)
-                                ) AS rank', [$query])
-                    -> where('rank > 1')
-                    -> orderByDesc('rank')
+                                setweight(to_tsvector(\'portuguese\', "student_number"), \'A\') ||
+                                setweight(to_tsvector(\'portuguese\', "name"), \'B\'),
+                                plainto_tsquery(\'portuguese\', ?)
+                            ) AS rank', [$query])
+                    -> orderByRaw('rank DESC')
                     -> get();
 
             $prof = DB::table('professor')
-                    -> select('professor.id', 'professor.name', 'professor.abbrev')
+                    -> select('id', 'name', 'abbrev', 'picture_path')
                     -> selectRaw('ts_rank(
-                                    setweight(to_tsvector(\'portuguese\', professor."name"), \'A\') ||
-                                    setweight(to_tsvector(\'portuguese\', professor."abbrev"), \'B\'),
-                                    plainto_tsquery(\'portuguese\', ?)
-                                ) AS rank', [$query])
-                    -> where('rank > 1')
-                    -> orderByDesc('rank')
+                                setweight(to_tsvector(\'portuguese\', "name"), \'A\') ||
+                                setweight(to_tsvector(\'portuguese\', "abbrev"), \'B\'),
+                                plainto_tsquery(\'portuguese\', ?)
+                            ) AS rank', [$query])
+                    -> orderByRaw('rank DESC')
                     -> get();
 
             $cu = DB::table('curricular_unit')
-                    -> select('curricular_unit.id', 'curricular_unit.name', 'curricular_unit.abbrev', 'curricular_unit.description')
+                    -> select('id', 'name', 'abbrev', 'description')
                     -> selectRaw('ts_rank(
-                                    setweight(to_tsvector(\'portuguese\', curricular_unit."name"), \'A\') ||
-                                    setweight(to_tsvector(\'portuguese\', curricular_unit."abbrev"), \'B\') ||
-                                    setweight(to_tsvector(\'portuguese\', curricular_unit."description"), \'C\'),
-                                    plainto_tsquery(\'portuguese\', ?)
-                                ) AS rank', [$query])
-                    -> where('rank > 1')
-                    -> orderByDesc('rank')
+                                setweight(to_tsvector(\'portuguese\', "name"), \'A\') ||
+                                setweight(to_tsvector(\'portuguese\', "abbrev"), \'B\') ||
+                                setweight(to_tsvector(\'portuguese\', "description"), \'C\'),
+                                plainto_tsquery(\'portuguese\', ?)
+                            ) AS rank', [$query])
+                    -> orderByRaw('rank DESC')
                     -> get();
 
-            $results = array(0=>$stud, 1=>$prof, 2=>$cu);
+            $results = array(0=>$stud, 1=>$prof, 2=>$cu, 3=>[$query]);
         }
 
         return view('pages.search', ['results' => $results]);
+    }
+
+    public function filter(){
+
     }
 }

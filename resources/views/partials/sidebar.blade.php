@@ -138,40 +138,25 @@
 
 <?php } ?>
 
-<?php function draw_sidebar_Search() { ?>
+<?php function draw_sidebar_Search($input) { ?>
     <section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
         <form id="search_form">
             <div id="fields" class="btn-group-vertical d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs">
-                <div>
-                    <input name="query" type="text" value="" placeholder="Search">
-                </div>  
-                <div>
-                    <input name="professors" type="checkbox" value="professors">
-                    <label class="form-check-label" for="professors">Professors</label>
-                </div>
-                <div>
-                    <input name="students" type="checkbox" value="students">
-                    <label class="form-check-label" for="students">Students</label>
-                </div>
-                <div>
-                    <input name="curricular_units" type="checkbox" value="curricular_units">
-                    <label class="form-check-label" for="curricular_units">Curricular Units</label>
-                </div>  
-                <div>
-                    <input name="inlineRadioOptions" type="radio" value="my_cus">
-                    <label class="form-check-label" for="my_cus">My CUs</label>
-                </div>     
-                <div>
-                    <input name="inlineRadioOptions" type="radio" value="all_cus">
-                    <label class="form-check-label" for="all_cus">All CUs </label>
-                </div>
-                <div>
-                    <label for="year">Curricular year</label>
-                    <input name="year" type="range" min="1" max="5">
-                </div>
+                <input name="query" type="text" value="<?= $input ?>" placeholder="Search">
+                <label class="form-check-label" for="students">
+                    <input name="students" type="checkbox" value="students" checked>
+                    Students
+                </label>
+                <label class="form-check-label" for="professors">
+                    <input name="professors" type="checkbox" value="professors" checked>
+                    Professors
+                </label>
+                <label class="form-check-label" for="curricular_units">
+                    <input name="curricular_units" type="checkbox" value="curricular_units" checked>
+                    Curricular Units
+                </label>
             </div>
         </form>
     </section>
-    <!-- Divisao Vertical -->
     </aside>
 <?php } ?>

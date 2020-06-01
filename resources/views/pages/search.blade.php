@@ -14,7 +14,7 @@
 
 <div class="container-fluid">
     <div class="row">
-       <?php
+        <?php
             $bc = "Search";
             $student = Auth::user();
         ?>
@@ -27,18 +27,25 @@
         <hr id="student_identification">
         
         <?php
-            draw_sidebar_Search();
+            $input="";
+            if($results != NULL){
+                $input=$results[3][0];
+            }
+
+            draw_sidebar_Search($input);
         ?>
         <div id="content" class="col-12 col-lg-9">
             <aside class="sticky-top align-self-start" id="page-title">
             <section class="row-md-auto">
-                <div class="text-center">
-                    <h2 id="results_title" class="d-block pt-md-4">Results</h2>
+                <div id="results_info" class="text-center">
+                    <h2 class="d-block pt-md-4">Results</h2>
                 </div>
             </section>
             <div id="results" class="d-flex flex-row flex-wrap  justify-content-around">
                 <?php
-                    draw_results($results);
+                    if($results != NULL){
+                        draw_results($results);
+                    }
                 ?>
             </div>
         </div>
