@@ -19,9 +19,12 @@ DROP TABLE IF EXISTS message CASCADE;
 DROP TABLE IF EXISTS group_message CASCADE;
 DROP TABLE IF EXISTS group_message_receiver CASCADE;
 DROP TABLE IF EXISTS notification CASCADE;
+DROP TABLE IF EXISTS cu_request CASCADE;
+DROP TABLE IF EXISTS cu_join_request CASCADE;
 
 DROP TYPE IF EXISTS feed_type_enum;
 DROP TYPE IF EXISTS notification_type_enum;
+DROP TYPE IF EXISTS request_status_enum;
 
 DROP FUNCTION IF EXISTS set_friends() CASCADE;
 DROP FUNCTION IF EXISTS ban_student() CASCADE;
@@ -33,6 +36,7 @@ DROP FUNCTION IF EXISTS notify_cu_entry() CASCADE;
 
 CREATE TYPE feed_type_enum AS ENUM ('General', 'Doubts', 'Tutoring');
 CREATE TYPE notification_type_enum AS ENUM ('FriendRequest', 'FriendRequestAccepted','NewPost', 'LikeOnPost', 'CommentOnPost', 'RequestAccessCU', 'RequestCU', 'AccessGrantedCU', 'NewMessage', 'NewRating', 'GroupInvite', 'ReplyInvite', 'Tag', 'UserBan', 'UserReport', 'UpdateProf', 'UpdateCU');
+CREATE TYPE request_status_enum AS ENUM ('NotSeen', 'Seen', 'Accepted', 'Rejected');
 
 -- Tables
 
@@ -53,7 +57,7 @@ CREATE TABLE professor (
    id              SERIAL PRIMARY KEY,
    name            TEXT NOT NULL,
    email           TEXT NOT NULL CONSTRAINT professor_email_uk UNIQUE,
-   picture_path    TEXT,
+   profile_image    TEXT,
    abbrev          TEXT NOT NULL CONSTRAINT professor_abbrev_uk UNIQUE,
 
    CONSTRAINT email_ck CHECK (email !~ '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][a-za-z]+\$'::TEXT)
@@ -182,12 +186,29 @@ CREATE TABLE group_message_receiver (
 );
 
 CREATE TABLE notification (
-   id          SERIAL PRIMARY KEY,
-   content     TEXT NOT NULL,
-   "date"      TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-   student_id INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   id                   SERIAL PRIMARY KEY,
+   content              TEXT NOT NULL,
+   "date"               TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+   student_id           INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
    notification_type    notification_type_enum,
-   seen        BOOLEAN NOT NULL DEFAULT FALSE
+   seen                 BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE cu_request(
+   id                SERIAL PRIMARY KEY,
+   cu_name              TEXT NOT NULL,
+   abbrev            TEXT NOT NULL,
+   link_to_cu_page   TEXT NOT NULL,
+   additional_info   TEXT,
+   request_status    request_status_enum DEFAULT 'NotSeen',
+   student_id        INTEGER NOT NULL REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE cu_join_request(
+   id             SERIAL PRIMARY KEY,
+   cu_id          INTEGER NOT NULL REFERENCES curricular_unit(id) ON UPDATE CASCADE ON DELETE CASCADE,
+   student_id     INTEGER NOT NULL REFERENCES student(id) ON UPDATE CASCADE ON DELETE CASCADE,
+   request_status request_status_enum DEFAULT 'NotSeen'
 );
 
 --Index--
@@ -406,7 +427,12 @@ INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 7, 8,
 INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 8, 1, 'So para dizer que hoje esta um belo dia');
 INSERT INTO message (id, sender_id, receiver_id, content) VALUES (DEFAULT, 4, 5, 'Ja fizeste o que faltava??');
 
-INSERT INTO notification (id, content, student_id, notification_type) VALUES (DEFAULT, 'AAAABBBB', 4, 'Tag');
+INSERT INTO cu_request (id, cu_name, abbrev, link_to_cu_page, additional_info, request_status, student_id) VALUES (DEFAULT, 'Engenharia de Software', 'ESOF', 'https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=436443', 'Familiarizar-se com os metodos de engenharia e gestao necessarios ao desenvolvimento de sistemas de software complexos e/ou em larga escala, de forma economicamente eficaz e com elevada qualidade.', 'NotSeen', 1);
+INSERT INTO cu_request (id, cu_name, abbrev, link_to_cu_page, additional_info, request_status, student_id) VALUES (DEFAULT, 'Programacao em Logica', 'PLOG', 'https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=436444', 'O paradigma da Programação em Logica apresenta uma abordagem declarativa e baseada em processos formais de raciocinio a programação, mais apropriada para a resolucao de alguns tipos de problemas. A programaçao em logica com restricoes permite abordar problemas de satisfacao de restricoes e de optimizacao, modelando-os de uma forma directa e elegante.', 'NotSeen', 2);
+INSERT INTO cu_request (id, cu_name, abbrev, link_to_cu_page, additional_info, request_status, student_id) VALUES (DEFAULT, 'Fisica II', 'ESOF', 'https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=419992', 'Esta unidade curricular visa dotar os estudantes com conhecimentos basicos de eletromagnetismo e processamento de sinais. A abordagem e experimental, com recurso a experiencias simples que os estudantes podem realizar durante as aulas teorico-praticas para consolidar os conhecimentos teoricos e adquirir experiencia no uso dos instrumentos de medicao. O Sistema de Computacao Algrbrica (CAS) usado na unidade curricular Fisica 1 e tambem aproveitado para facilitar a resolucao de problemas e para visualizar campos eletricos e magneticos.', 'NotSeen', 3);
+INSERT INTO cu_request (id, cu_name, abbrev, link_to_cu_page, additional_info, request_status, student_id) VALUES (DEFAULT, 'Microprocessadores e Computadores Pessoais', 'MPCP', 'https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=399884', 'Os computadores pessoais (PC), tanto computadores de mesa como portateis, constituem uma ferramenta ubiqua nas sociedades modernas. A sua arquitetura reflete o avanço tecnologico atual, mas tambem estabelece os limites das suas capacidades e desempenho. O conjunto de instrucoes IA-32 esta no centro de todos os computadores pessoais atualmente em uso. Tanto a arquitetura como o conjunto de instrucoes tem um impacto profundo na pratica diaria dos engenheiros informaticos.', 'NotSeen', 4);
+
+INSERT INTO cu_join_request(id, cu_id, student_id, request_status) VALUES (DEFAULT, 2, 2, 'NotSeen');
 
 --group_message_receiver--
 -- INSERT INTO group_message_receiver (group_id, student_id, group_name) VALUES (0, 0, 'LBAW');

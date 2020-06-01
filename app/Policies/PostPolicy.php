@@ -49,20 +49,20 @@ class PostPolicy
     }
 
     public function deletePost(Student $student, Post $post){
-      if(Auth::user()->administrator || $student->id == $post->author_id)
-        return true && Auth::check();
+      if(Auth::user()->administrator || Auth::user()->id == $post->author_id)
+        return Auth::check() && true;
 
       //se for mod da cu onde o post foi publicado 
-      if($post->public_feed == FALSE){
-        $result = DB::table('moderator')
-        ->select('moderator.student_id')
-        ->where('moderator.student_id', '=', $student->id)
-        ->where('moderator.cu_id', '=', $post->cu_id)
-        ->get();
+      // if($post->public_feed == FALSE){
+      //   $result = DB::table('moderator')
+      //   ->select('moderator.student_id')
+      //   ->where('moderator.student_id', '=', $student->id)
+      //   ->where('moderator.cu_id', '=', $post->cu_id)
+      //   ->get();
         
-        if(sizeof($result) > 0)
-          return true && Auth::check();
-      }
+      //   if(sizeof($result) > 0)
+      //     return true && Auth::check();
+      // }
 
       return false;
     }

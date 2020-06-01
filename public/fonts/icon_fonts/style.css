@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Icons';
-  src:  url('fonts/Icons.eot?9c82xi');
-  src:  url('fonts/Icons.eot?9c82xi#iefix') format('embedded-opentype'),
-    url('fonts/Icons.ttf?9c82xi') format('truetype'),
-    url('fonts/Icons.woff?9c82xi') format('woff'),
-    url('fonts/Icons.svg?9c82xi#Icons') format('svg');
+  src:  url('fonts/Icons.eot?kp05op');
+  src:  url('fonts/Icons.eot?kp05op#iefix') format('embedded-opentype'),
+    url('fonts/Icons.ttf?kp05op') format('truetype'),
+    url('fonts/Icons.woff?kp05op') format('woff'),
+    url('fonts/Icons.svg?kp05op#Icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -61,6 +61,12 @@ i {
 .icon-like:before {
   content: "\e90b";
 }
+.icon-folder:before {
+  content: "\e90c";
+}
+.icon-trash:before {
+  content: "\e90d";
+}
 .icon-download:before {
   content: "\e91f";
 }
@@ -73,9 +79,9 @@ i {
 .icon-teamwork:before {
   content: "\e92f";
 }
-.icon-folder:before {
-  content: "\e90c";
+.icon-bell:before {
+  content: "\e90e";
 }
-.icon-trash:before {
-  content: "\e90d";
+.icon-more:before {
+  content: "\e90f";
 }

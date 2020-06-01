@@ -1,8 +1,8 @@
-<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="loginLabel">Edit profile</h5>
+                <h5 class="modal-title">Edit profile</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -68,16 +68,26 @@
                         </div>
                     </div>
                 </form>
-                
+
                 <form id="bio-form" class="form-horizontal" method="POST" action="{{ route('editBio', Auth::user()->id) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label class="col-md-4 control-label">New bio</label>
                         <div class="col-md-6">
-                            <input name="bio" type="text" id="bio" form="bio-form" placeholder="{{Auth::user()->bio}}"/>
+                            <input name="bio" type="text" id="bio" form="bio-form" placeholder="{{Auth::user()->bio}}" />
                         </div>
                         <div class="col-md-6 col-md-offset-4">
                             <button type="submit" class="btn btn-primary">Update bio</button>
+                        </div>
+                    </div>
+                </form>
+
+                <form id="delete-account-form" class="form-horizontal" method="POST" action="{{ route('deleteAccount') }}" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Delete account</label>
+                        <div class="col-md-6 col-md-offset-4">
+                            <button type="submit" class="btn btn-danger">Delete account</button>
                         </div>
                     </div>
                 </form>

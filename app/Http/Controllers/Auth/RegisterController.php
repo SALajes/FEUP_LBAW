@@ -70,4 +70,9 @@ class RegisterController extends Controller
             'student_number' => $data['student_number']
         ]);
     }
+
+    public function preventError()
+    {
+        return redirect('/');
+    }
 }

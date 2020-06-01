@@ -29,4 +29,9 @@ class LandingController extends Controller
 
         return view('pages.landing', []);
     }
+
+    public function showAbout()
+    {
+        return view('pages.about', []);
+    }
 }

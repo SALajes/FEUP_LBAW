@@ -65,8 +65,10 @@ class PostPageController extends Controller
 
     public function createComment(Request $request)
     {
+        if(!Auth::check()) return redirect('/');
+
         $comment = new Comment();
-        // $this->authorize('createComment', $comment);
+        $this->authorize('createComment', $comment);
         
         $id = Auth::user()->id;
 
@@ -82,8 +84,10 @@ class PostPageController extends Controller
 
     public function createSubcomment(Request $request, $commentId)
     {
+        if(!Auth::check()) return redirect('/');
+
         $subcomment = new Comment();
-        // $this->authroize('createSubcomment, $subcomment);
+        $this->authorize('createSubcomment', $subcomment);
 
         $id = Auth::user()->id;
 
@@ -101,5 +105,10 @@ class PostPageController extends Controller
         $name = Auth::user()->name;
 
         return ['subcomment'=>$subcomment, 'name'=>$name, 'parentId'=>$commentId];
+    }
+
+    public function preventError()
+    {
+        return redirect('/');
     }
 }

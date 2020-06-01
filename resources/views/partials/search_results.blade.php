@@ -48,17 +48,18 @@
 { ?>
     <div id="professor_card" class="card bg-light mb-3" style="width: 16rem; height: 16rem;">
         <div class="card-header">Professor</div>
-        <div class="card-body">
-            <!-- <a href="/professors/{{$id}}"></a> -->
-            <?php if($path != NULL): ?>
-                <div id="profile_picture" class="img-circle d-flex justify-content-between align-items-center">
-                    <img src="<?php $path ?>" class="img-profile"/>
-                </div>
-            <?php else: ?>
-                <i id="profile_picture" class="icon-user profile-button d-flex justify-content-center"></i>
-            <?php endif; ?>
-            <p class="card-text"><b><?= $name ?></b></p>
-        </div>
+        <a href="/professors/{{$id}}">
+            <div class="card-body">
+                <?php if($path != NULL): ?>
+                    <div id="profile_picture" class="img-circle d-flex justify-content-between align-items-center">
+                        <img src="<?php $path ?>" class="img-profile"/>
+                    </div>
+                <?php else: ?>
+                    <i id="profile_picture" class="icon-user profile-button d-flex justify-content-center"></i>
+                <?php endif; ?>
+                <p class="card-text"><b><?= $name ?></b></p>
+            </div>
+        </a>
     </div>
 <?php } ?>
 

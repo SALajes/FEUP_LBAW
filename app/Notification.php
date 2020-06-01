@@ -11,7 +11,7 @@ class Notification extends Model
     protected $table = 'notification';
     
     protected $fillable = [
-        'content','notification_type', 'seen'
+        'content','notification_type', 'seen', 'student_id'
     ];
 
     public function owner(){

@@ -15,7 +15,7 @@ LIMIT 20
 OFFSET 0;
 
 --SELECT03
-SELECT p.id, p.content, p.date, s.name, s.picture_path 
+SELECT p.id, p.content, p.date, s.name, s.profile_image 
 FROM post JOIN student s
 ON author_id = s.id
 WHERE cu_id = $cu_id AND feed_type = $feed
@@ -24,7 +24,7 @@ LIMIT 10
 OFFSET 0;
 
 --SELECT04
-SELECT p.id, p.content, p.date, s.name, s.picture_path
+SELECT p.id, p.content, p.date, s.name, s.profile_image
 FROM post p JOIN student s
 ON author_id = s.id
 WHERE public_feed = TRUE
@@ -33,7 +33,7 @@ LIMIT 10
 OFFSET 0;
 
 --SELCT05
-SELECT c.id, c.content, c.date, s.name, s.picture_path
+SELECT c.id, c.content, c.date, s.name, s.profile_image
 FROM comment c JOIN student s
 ON c.author_id = s.id
 WHERE post_id = $id
@@ -42,7 +42,7 @@ LIMIT 10
 OFFSET 0;
 
 --SELECT06
-SELECT c.id, c.content, c.date, s.name, s.picture_path
+SELECT c.id, c.content, c.date, s.name, s.profile_image
 FROM comment c JOIN student s
 ON c.author_id = s.id
 WHERE c.id in (
@@ -62,7 +62,7 @@ WHERE id in (
 );
 
 --SELECT08
-SELECT id, student_number, name, bio, email, picture_path 
+SELECT id, student_number, name, bio, email, profile_image 
 FROM student 
 WHERE id = $uid;
 
@@ -108,7 +108,7 @@ WHERE query @@ textsearch
 ORDER BY name;
 
 --SELECT16
-SELECT p.id, p.content, p.date, s.name, s.picture_path 
+SELECT p.id, p.content, p.date, s.name, s.profile_image 
 FROM post AS p JOIN student AS s ON p.author_id = s.id
 WHERE p.cu_id in (
     SELECT e.cu_id
