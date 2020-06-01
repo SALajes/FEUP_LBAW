@@ -13,7 +13,7 @@
 
         for($i=0; $i < sizeof($prof); $i++){
             if($prof[$i]->rank > 0){
-                draw_professor_card_search($prof[$i]->name, $prof[$i]->picture_path, $prof[$i]->id);
+                draw_professor_card_search($prof[$i]->name, $prof[$i]->profile_image, $prof[$i]->id);
             }
         }
 

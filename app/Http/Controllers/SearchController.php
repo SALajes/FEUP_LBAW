@@ -33,7 +33,7 @@ class SearchController extends Controller
                     -> get();
 
             $prof = DB::table('professor')
-                    -> select('id', 'name', 'abbrev', 'picture_path')
+                    -> select('id', 'name', 'abbrev', 'profile_image')
                     -> selectRaw('ts_rank(
                                 setweight(to_tsvector(\'portuguese\', "name"), \'A\') ||
                                 setweight(to_tsvector(\'portuguese\', "abbrev"), \'B\'),
