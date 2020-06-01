@@ -238,4 +238,9 @@ class CURequestController extends Controller
 
         return back()->with('error', 'Non existent CU!');
     }
+
+    public function preventError()
+    {
+        return redirect('/');
+    }
 }

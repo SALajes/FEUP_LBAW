@@ -57,7 +57,7 @@ class StudentController extends Controller
             ->where('student_id', '=', $id)
             ->get();
             return response()->json(['reviews' => $reviews]);
-        }
+    }
 
     public function pollNotifications($id)
     {
@@ -180,5 +180,10 @@ class StudentController extends Controller
             if ($inserted)  return redirect('/users/' . $reviewed_student)->with('success', 'You have successfully rated this student.');
         }
         return redirect('/users/' . $reviewed_student)->with('error', 'Failed to rate student.');
+    }
+
+    public function preventError()
+    {
+        return redirect('/');
     }
 }
