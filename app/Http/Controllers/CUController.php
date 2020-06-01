@@ -21,6 +21,7 @@ class CUController extends Controller
         if(!Auth::check()) return redirect('/');
 
         $cu = CurricularUnit::find($id);
+
         $teachers = DB::table('teaches')
             ->select('professor.name', 'professor.id')
             ->join('professor', 'professor.id', '=', 'teaches.professor_id')
@@ -30,7 +31,20 @@ class CUController extends Controller
         $likeCounter = DB::table('rating')
                        ->where('cu_id', '=', $id)
                        ->count();
-        return view('pages.cupage', ['cu' => $cu, 'likeCounter' => $likeCounter, 'teachers' => $teachers]);
+
+        $enrolled = DB::table('enrolled')
+                    ->select('enrolled.student_id')
+                    ->from('enrolled')
+                    ->where('enrolled.cu_id', '=', $id)
+                    ->where('enrolled.student_id', '=', Auth::user()->id)
+                    ->get();
+        
+        if($enrolled->isEmpty())
+            $enrolled = true;
+        else
+            $enrolled = false;
+
+        return view('pages.cupage', ['cu' => $cu, 'likeCounter' => $likeCounter, 'teachers' => $teachers, 'enrolled'=>$enrolled]);
     }
 
     public function showAll()
