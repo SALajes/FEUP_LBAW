@@ -111,10 +111,13 @@
 						</a>
 					</div>
 				<?php } ?>
-
-				<div class="d-flex justify-content-around">
-					<button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
-				</div>
+				
+				<?php if($owner) { ?>
+					<div class="d-flex justify-content-around">
+						<button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
+					</div>
+				<?php } ?>
+				
 				<div class="d-flex justify-content-around likes_friend">
 					<div>
 						<a data-toggle="modal" data-target="#rateStudentModal" class="btn btn-default">
