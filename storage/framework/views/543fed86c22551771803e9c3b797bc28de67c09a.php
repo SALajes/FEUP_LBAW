@@ -208,7 +208,7 @@
 						<?php echo e(csrf_field()); ?>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">New abbreviature:</label>
+							<label class="col-md-4 control-label">New abbreviation:</label>
 							<div class="col-md-6">
 								<input name="cu_abbrev" type="text" id="cu_abbrev" form="edit-cu-abbrev-form" />
 							</div>

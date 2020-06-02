@@ -1,19 +1,4 @@
-"use strict";
-
-let entityMap = {
-	"&": "&amp;",
-	"<": "&lt;",
-	">": "&gt;",
-	'"': '&quot;',
-	"'": '&#39;',
-	"/": '&#x2F;'
-  };
-
-function escapeHtml(string) {
-	return String(string).replace(/[&<>"'\/]/g, function (s) {
-	  return entityMap[s];
-	});
-}
+"use strict"
 
 let cu_name_input = document.getElementById("cu_name");
 let cu_abbrev_input = document.getElementById("cu_abbrev");
@@ -67,7 +52,7 @@ cu_abbrev_input.onkeyup = () => {
 
 cu_page_input.onkeyup = () => {
 	cu_page_ready = validate_cu_page();
-
+	
 	if (!cu_page_ready) cu_page_errors.innerHTML = "<p style=\"color:red\">The CU page must be an URL.</p>"
 	else cu_page_errors.innerHTML = "";
 

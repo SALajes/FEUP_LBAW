@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="<?php echo e(asset('css/sidebar.css')); ?>">
 <link rel="stylesheet" href="<?php echo e(asset('css/profile.css')); ?>">
 <script src=<?php echo e(asset('js/requestCU.js')); ?> defer></script>
+<script src=<?php echo e(asset('js/encodeHTML.js')); ?> defer></script>
 
 <?php echo $__env->make('partials.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('partials.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

@@ -1,3 +1,6 @@
+<script src={{ asset('js/register.js') }} defer></script>
+<script src={{ asset('js/encodeHTML.js') }} defer></script>
+
 <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">

@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 <script src={{ asset('js/requestCU.js') }} defer></script>
+<script src={{ asset('js/encodeHTML.js') }} defer></script>
 
 @include('partials.navbar')
 @include('partials.sidebar')
