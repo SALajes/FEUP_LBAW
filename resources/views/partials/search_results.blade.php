@@ -26,7 +26,7 @@
             <div class="card-body">
                 <?php if($path != NULL){ ?>
                     <div id="profile_picture" class="img-circle d-flex justify-content-between align-items-center">
-                        <img src="/storage/profile_image/<?php $path ?>" class="img-profile"/>
+                        <img src="/storage/profile_image/<?= $path ?>" class="img-profile"/>
                     </div>
                 <?php } else { ?>
                     <i id="profile_picture" class="icon-user profile-button d-flex justify-content-center"></i>
@@ -46,7 +46,7 @@
             <div class="card-body">
                 <?php if($path != NULL): ?>
                     <div id="profile_picture" class="img-circle d-flex justify-content-between align-items-center">
-                        <img src="/storage/profile_image/<?php $path ?>" class="img-profile"/>
+                        <img src="/public/storage/profile_image/<?= $path ?>" class="img-profile"/>
                     </div>
                 <?php else: ?>
                     <i id="profile_picture" class="icon-user profile-button d-flex justify-content-center"></i>
