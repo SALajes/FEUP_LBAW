@@ -1,3 +1,5 @@
+<?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
 <article class="card post post-margins" data-id="<?php echo e($post->id); ?>">
 	<div class="post-header d-flex justify-content-between">
 		<div class="post-header-left">
@@ -6,11 +8,8 @@
 		</div>
 
 		<?php
-
-		use Illuminate\Support\Facades\Auth;
-
-		if (Auth::user()->administrator != null || Auth::user()->id == $post->author_id) { ?>
-			<a class="delete-post"><i class="icon-trash post-delete"></i></a>
+			if (Auth::user()->administrator != null || Auth::user()->id == $post->author_id) { ?>
+				<a class="delete-post"><i class="icon-trash post-delete"></i></a>
 		<?php } else {
 			echo ("");
 		} ?>
@@ -38,4 +37,6 @@
 			?>
 		</a>
 	</div>
-</article><?php /**PATH /home/meias/Work/GitHub/lbaw2013/resources/views/partials/post.blade.php ENDPATH**/ ?>
+</article>
+
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php /**PATH /home/meias/Work/GitHub/lbaw2013/resources/views/partials/post.blade.php ENDPATH**/ ?>
