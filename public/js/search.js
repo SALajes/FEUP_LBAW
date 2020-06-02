@@ -122,7 +122,7 @@ function student_card(name, student_number, profile_image, id){
         "<a href=\"/users/" + id + "\">" + 
             "<div class=\"card-body\">" +
                 (profile_image != null ?
-                    "<div id=\"profile_picture\" class=\"img-circle d-flex justify-content-between align-items-center\">" +
+                    "<div id=\"profile_picture\" class=\"img-circle d-flex justify-content-center flex-shrink-0\">" +
                         "<img src=\"/storage/profile_image/" + profile_image + "\" class=\"img-profile\"/>" +
                     "</div>"
                 :
@@ -141,7 +141,7 @@ function professor_card(name, profile_image, id){
         "<a href=\"/professors/" + id + "\">" + 
             "<div class=\"card-body\">" +
                 (profile_image != null ?
-                    "<div id=\"profile_picture\" class=\"img-circle d-flex justify-content-between align-items-center\">" +
+                    "<div id=\"profile_picture\" class=\"img-circle d-flex justify-content-center flex-shrink-0\">" +
                         "<img src=\"/storage/profile_image/" + profile_image + "\" class=\"img-profile\"/>" +
                     "</div>"
                 :

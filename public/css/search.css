@@ -2,8 +2,13 @@
     margin-bottom: 0;
 }
 
-html, body, #results_info, #content, #results_title, #results{
+#results_info, #results{
     background-color: ghostwhite;
+}
+
+#results{
+    padding-top: 2rem;
+    padding-bottom: 5rem;
 }
 
 #page-title{
