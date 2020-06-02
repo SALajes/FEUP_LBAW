@@ -29,7 +29,7 @@ function addEventListeners() {
   if (editProfileButton != null) editProfileButton.addEventListener('click', openEditProfileModal);
 
   let notificationsButton = document.getElementById('notifications');
-  notificationsButton.onclick = getNotifications;
+  if (notificationsButton != null) notificationsButton.onclick = getNotifications;
 
   // New comment listener
   let commentCreator = document.querySelector('section.add-comment div#collapseForm form.newComment');
@@ -485,19 +485,21 @@ function accessGrantedCU(notification){
 
 function pollNotifications(){
   let new_not = document.getElementById("notifications");
-  let bell = new_not.children[0];
+  if (new_not != null){
+    let bell = new_not.children[0];
   
-  if (bell.classList.contains("icon-bell")){
-    let req = new XMLHttpRequest();
-    let id = document.getElementById("studentId").value;
-    req.open("GET",  "/users/myNotifications/poll/" + id, true);
-    req.onload = function(){
-      if (this.responseText == "true"){
-        bell.classList.remove("icon-bell");
-        bell.classList.add("icon-notification");
-      } 
+    if (bell.classList.contains("icon-bell")){
+      let req = new XMLHttpRequest();
+      let id = document.getElementById("studentId").value;
+      req.open("GET",  "/users/myNotifications/poll/" + id, true);
+      req.onload = function(){
+        if (this.responseText == "true"){
+          bell.classList.remove("icon-bell");
+          bell.classList.add("icon-notification");
+        } 
+      }
+      req.send();
     }
-    req.send();
   }
 }
 
