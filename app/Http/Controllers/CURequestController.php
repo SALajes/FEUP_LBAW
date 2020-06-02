@@ -154,15 +154,19 @@ class CURequestController extends Controller
                 'abbrev' => $cu[0]->abbrev,
                 'description' => $cu[0]->additional_info
             ]);
+        
+        if ($a){
+            $a |= DB::table('moderator')
+                ->insert([
+                    'student_id' => Auth::user()->id,
+                    'cu_id' => $cu[0]->id
+                ]);
+        }
 
-        $a |= DB::table('moderator')
-            ->insert([
-                'student_id' => Auth::user()->id,
-                'cu_id' => $cu[0]->id
-            ]);
-
-        $a |= DB::table('student')
-            ->update(['administrator' => true]);
+        if ($a){
+            $a |= DB::table('student')
+                ->update(['administrator' => true]);
+        }
         
         if ($a) return redirect()->back()->with('success', 'Accepted Request!');
         else return redirect()->back()->with('error', 'Failed to accept request.');
@@ -193,12 +197,14 @@ class CURequestController extends Controller
             ->where('id', '=', $id)
             ->get();
 
-        $a |= DB::table('enrolled')
-            ->insert([
-                'cu_id' => $req[0]->cu_id,
-                'student_id' => $req[0]->student_id,
-                'identifier' => 'TBD'
-            ]);
+        if($a){
+            $a |= DB::table('enrolled')
+                ->insert([
+                    'cu_id' => $req[0]->cu_id,
+                    'student_id' => $req[0]->student_id,
+                    'identifier' => 'TBD'
+                ]);
+        }
 
         if ($a) return redirect()->back()->with('success', 'Accepted Request!');
         else return redirect()->back()->with('error', 'Failed to accept request.');

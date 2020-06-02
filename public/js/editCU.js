@@ -74,7 +74,3 @@ cu_page_input.onkeyup = () => {
 	if (cu_name_input && cu_abbrev_ready && cu_page_ready) sub_btn.disabled = false;
 	else sub_btn.disabled = true;
 };
-
-sub_btn.addEventListener('submit', () => {
-	add_info_input.value = escapeHtml(add_info_input.value);
-});
