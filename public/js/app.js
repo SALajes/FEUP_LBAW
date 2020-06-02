@@ -337,7 +337,6 @@ function getFeed() {
         if (req.status >= 200 && req.status < 400){
             posts = JSON.parse(this.responseText);
             posts_html = "";
-            console.log(posts);
             for (let i = 0; i < posts.length; i++)
               posts_html += post_to_string(posts[i]);
             
@@ -495,7 +494,6 @@ function pollNotifications(){
     req.onload = function(){
       if (this.responseText == "true"){
         bell.classList.remove("icon-bell");
-        console.log("AAA");
         bell.classList.add("icon-notification");
       } 
     }
@@ -521,7 +519,6 @@ function getNotifications(){
           if(notifications[i].notification_type == "AccessGrantedCU") req_str += accessGrantedCU(notifications[i]);
           else {
             req_str += "<div class=\"text-primary\">" + notifications[i].content + "</div>";
-            console.log(req_str);
           }
           notification_area.innerHTML += req_str;
           notification_area.className = ""; 

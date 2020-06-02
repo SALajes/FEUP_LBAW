@@ -64,10 +64,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return Student::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name' => htmlentities($data['name']),
+            'email' => htmlentities($data['email']),
             'password' => bcrypt($data['password']),
-            'student_number' => $data['student_number']
+            'student_number' => htmlentities($data['student_number'])
         ]);
     }
 }
