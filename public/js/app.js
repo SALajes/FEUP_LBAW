@@ -495,6 +495,7 @@ function pollNotifications(){
     req.onload = function(){
       if (this.responseText == "true"){
         bell.classList.remove("icon-bell");
+        console.log("AAA");
         bell.classList.add("icon-notification");
       } 
     }

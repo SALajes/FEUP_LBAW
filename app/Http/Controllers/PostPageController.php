@@ -72,9 +72,9 @@ class PostPageController extends Controller
         
         $id = Auth::user()->id;
 
-        $comment->content = $request->input('content');
+        $comment->content = htmlentities($request->input('content'));
         $comment->author_id = $id;
-        $comment->post_id = $request->input('postId');
+        $comment->post_id = htmlentities($request->input('postId'));
         $comment->save();
 
         $name = Auth::user()->name;
@@ -91,9 +91,9 @@ class PostPageController extends Controller
 
         $id = Auth::user()->id;
 
-        $subcomment->content = $request->input('content');
+        $subcomment->content = htmlentities($request->input('content'));
         $subcomment->author_id = $id;
-        $subcomment->post_id = $request->input('postId');
+        $subcomment->post_id = htmlentities($request->input('postId'));
         $subcomment->save();
         
         $commentThread = new CommentThread();

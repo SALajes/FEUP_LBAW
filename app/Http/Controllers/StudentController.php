@@ -78,7 +78,7 @@ class StudentController extends Controller
     }
 
     public function editPassword(Request $request)
-    {
+    {   
         if(!Auth::check()) return redirect('/');
 
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
@@ -91,6 +91,7 @@ class StudentController extends Controller
             return redirect()->back()->with("error", "New password cannot be your current password. Please choose a different password.");
         }
 
+        //Verificar que não tem chars mamados
         $validatedData = $request->validate([
             'current-password' => '',
             'new-password' => 'string|min:6|confirmed'
@@ -137,7 +138,7 @@ class StudentController extends Controller
 
         $user = Auth::user();
 
-        $user->bio = $request->bio;
+        $user->bio = htmlentities($request->bio);
         $saved = $user->save();
 
         if ($saved) return back()->with('success', 'You have successfully updated the bio.');
@@ -166,7 +167,7 @@ class StudentController extends Controller
 
         $review = DB::table('rating')
         ->where('reviewer_id', '=', Auth::user()->id)
-        ->where('student_id', '=', $reviewed_student)
+        ->where('student_id', '=', htmlentities($reviewed_student))
         ->where('has_voted', '=', true)
         ->count();
 
@@ -174,7 +175,7 @@ class StudentController extends Controller
             $inserted = DB::table('rating')
                         ->insert(['reviewer_id' => Auth::user()->id, 
                         'has_voted' => true,
-                        'review' => $request->review,
+                        'review' => htmlentities($request->review),
                         'student_id' => $reviewed_student]);
             
             if ($inserted)  return redirect('/users/' . $reviewed_student)->with('success', 'You have successfully rated this student.');

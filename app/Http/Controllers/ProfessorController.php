@@ -32,7 +32,7 @@ class ProfessorController extends Controller
         $prof = Professor::find($id);
         
         if ($prof != null){
-            $prof->name = $request->input('prof_name');
+            $prof->name = htmlentities($request->input('prof_name'));
             $saved = $prof->save();
 
             if ($saved) return back()->with('success', 'You have successfully updated the name.');
@@ -52,7 +52,7 @@ class ProfessorController extends Controller
 
         $prof = Professor::find($id);
         if ($prof != null){
-            $prof->email = $request->input('prof_email');
+            $prof->email = htmlentities($request->input('prof_email'));
             $saved = $prof->save();
 
             if ($saved) return back()->with('success', 'You have successfully updated the email.');
@@ -74,7 +74,7 @@ class ProfessorController extends Controller
         $prof = Professor::find($id);
         
         if ($prof != null){
-            $prof->abbrev = $request->input('prof_abbrev');
+            $prof->abbrev = htmlentities($request->input('prof_abbrev'));
             $saved = $prof->save();
 
             if ($saved) return back()->with('success', 'You have successfully updated the abbrev.');
@@ -128,7 +128,7 @@ class ProfessorController extends Controller
             $inserted = DB::table('rating')
                         ->insert(['reviewer_id' => Auth::user()->id, 
                         'has_voted' => true,
-                        'review' => $request->review,
+                        'review' => htmlentities($request->review),
                         'professor_id' => $reviewed_prof]);
 
             if ($inserted) return back()->with('success', 'You have successfully rated this profile.');
