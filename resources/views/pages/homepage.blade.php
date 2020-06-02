@@ -34,10 +34,9 @@
 			<!-- <hr id="post-division"> -->
 
 			<section id="posts">
-				@foreach($posts as $post)
 				@include('partials.post')
-				@endforeach
 			</section>
+			{{ $posts->links() }}
 		</main>
 
 		<section class="col-3">
