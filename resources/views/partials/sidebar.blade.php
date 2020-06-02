@@ -234,7 +234,7 @@
 <?php } ?>
 
 <?php function draw_sidebar_Search() { ?>
-    <section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
+    <section class="d-flex justify-content-center flex-wrap">
         <form id="search_form">
             <div id="fields" class="btn-group-vertical d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs">
                 <label class="form-check-label" for="students">
