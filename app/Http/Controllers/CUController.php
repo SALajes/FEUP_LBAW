@@ -21,6 +21,7 @@ class CUController extends Controller
         if(!Auth::check()) return redirect('/');
 
         $cu = CurricularUnit::find($id);
+
         $teachers = DB::table('teaches')
             ->select('professor.name', 'professor.id')
             ->join('professor', 'professor.id', '=', 'teaches.professor_id')
@@ -30,7 +31,20 @@ class CUController extends Controller
         $likeCounter = DB::table('rating')
                        ->where('cu_id', '=', $id)
                        ->count();
-        return view('pages.cupage', ['cu' => $cu, 'likeCounter' => $likeCounter, 'teachers' => $teachers]);
+
+        $enrolled = DB::table('enrolled')
+                    ->select('enrolled.student_id')
+                    ->from('enrolled')
+                    ->where('enrolled.cu_id', '=', $id)
+                    ->where('enrolled.student_id', '=', Auth::user()->id)
+                    ->get();
+        
+        if($enrolled->isEmpty())
+            $enrolled = true;
+        else
+            $enrolled = false;
+
+        return view('pages.cupage', ['cu' => $cu, 'likeCounter' => $likeCounter, 'teachers' => $teachers, 'enrolled'=>$enrolled]);
     }
 
     public function showAll()
@@ -48,24 +62,57 @@ class CUController extends Controller
     public function feed($id)
     {
         if(!Auth::check()) return redirect('/');
-        $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')
+        
+        $posts = CurricularUnit::find($id)
+            ->posts()
             ->select('post.id', 'post.author_id', 'student.name', 'post.content')
+            ->join('student', 'post.author_id', '=', 'student.id')
             ->where('feed_type', 'General')
             ->orderBy('post.date', 'desc')
-            ->limit(10)->get();
-        return response()->json($posts);
+            ->limit(10)
+            ->get();
+
+        $postsId = array_column($posts->toArray(), 'id');
+
+        $numComments = DB::table('comment')
+                        ->select('comment.post_id', DB::raw('count(*)'))
+                        ->whereIn('comment.post_id', $postsId)
+                        ->whereNotIn('comment.id', function($query) {
+                            $query->select('comment_id')
+                                    ->from('comment_thread');
+                        })                    
+                        ->groupBy('comment.post_id')
+                        ->get();
+        
+        return ['posts'=>$posts, 'numComments'=>$numComments, 'userId' => Auth::user()->id, 'admin' => Auth::user()->administrator];
     }
 
     public function doubts($id)
     {
         if(!Auth::check()) return redirect('/');
 
-        $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')
+        $posts = CurricularUnit::find($id)
+            ->posts()
+            ->join('student', 'post.author_id', '=', 'student.id')
             ->select('post.id', 'post.author_id', 'student.name', 'post.content')
             ->where('feed_type', 'Doubts')
             ->orderBy('post.date', 'desc')
-            ->limit(10)->get();
-        return response()->json($posts);
+            ->limit(10)
+            ->get();
+        
+        $postsId = array_column($posts->toArray(), 'id');
+
+        $numComments = DB::table('comment')
+                        ->select('comment.post_id', DB::raw('count(*)'))
+                        ->whereIn('comment.post_id', $postsId)
+                        ->whereNotIn('comment.id', function($query) {
+                            $query->select('comment_id')
+                                    ->from('comment_thread');
+                        })                    
+                        ->groupBy('comment.post_id')
+                        ->get();
+        
+        return ['posts'=>$posts, 'numComments'=>$numComments, 'userId' => Auth::user()->id, 'admin' => Auth::user()->administrator];
     }
 
     public function tutoring($id)
@@ -76,7 +123,20 @@ class CUController extends Controller
             ->where('feed_type', 'Tutoring')
             ->orderBy('post.date', 'desc')
             ->limit(10)->get();
-        return response()->json($posts);
+
+        $postsId = array_column($posts->toArray(), 'id');
+
+        $numComments = DB::table('comment')
+                        ->select('comment.post_id', DB::raw('count(*)'))
+                        ->whereIn('comment.post_id', $postsId)
+                        ->whereNotIn('comment.id', function($query) {
+                            $query->select('comment_id')
+                                    ->from('comment_thread');
+                        })                    
+                        ->groupBy('comment.post_id')
+                        ->get();
+        
+        return ['posts'=>$posts, 'numComments'=>$numComments, 'userId' => Auth::user()->id, 'admin' => Auth::user()->administrator];
     }
 
     public function classes($id)
