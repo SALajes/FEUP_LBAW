@@ -1,3 +1,5 @@
+@foreach($posts as $post)
+
 <article class="card post post-margins" data-id="{{$post->id}}">
 	<div class="post-header d-flex justify-content-between">
 		<div class="post-header-left">
@@ -6,11 +8,8 @@
 		</div>
 
 		<?php
-
-		use Illuminate\Support\Facades\Auth;
-
-		if (Auth::user()->administrator != null || Auth::user()->id == $post->author_id) { ?>
-			<a class="delete-post"><i class="icon-trash post-delete"></i></a>
+			if (Auth::user()->administrator != null || Auth::user()->id == $post->author_id) { ?>
+				<a class="delete-post"><i class="icon-trash post-delete"></i></a>
 		<?php } else {
 			echo ("");
 		} ?>
@@ -38,3 +37,5 @@
 		</a>
 	</div>
 </article>
+
+@endforeach
