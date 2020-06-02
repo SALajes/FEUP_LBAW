@@ -37,8 +37,8 @@ Route::put('api/comment/{commentId}/subcomments', 'PostPageController@createSubc
 Route::get('api/comment/{commentId}/subcomments', 'PostPageController@preventError');
 
 //Search page
-Route::post('/search', 'SearchController@search')->name('submitSearch');
-Route::get('/search', 'SearchController@show')->name('showResults');
+Route::get('/search', 'SearchController@search')->name('submitSearch');
+Route::get('/search/advanced/{query}/{stud}/{prof}/{cu}', 'SearchController@advanced');
 
 // Students
 Route::get('/users/{id}', 'StudentController@show');

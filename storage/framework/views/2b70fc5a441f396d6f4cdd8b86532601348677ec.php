@@ -6,33 +6,28 @@
         $cu = $results[2];
 
         for($i=0; $i < sizeof($stud); $i++){
-            if($stud[$i]->rank > 0){
-                draw_student_card_search($stud[$i]->name, $stud[$i]->student_number, $stud[$i]->profile_image, $stud[$i]->id);
-            }
+            draw_student_card_search($stud[$i]->name, $stud[$i]->student_number, $stud[$i]->profile_image, $stud[$i]->id);
         }
 
         for($i=0; $i < sizeof($prof); $i++){
-            if($prof[$i]->rank > 0){
-                draw_professor_card_search($prof[$i]->name, $prof[$i]->profile_image, $prof[$i]->id);
-            }
+            draw_professor_card_search($prof[$i]->name, $prof[$i]->profile_image, $prof[$i]->id);
         }
 
         for($i=0; $i < sizeof($cu); $i++){
-            if($cu[$i]->rank > 0){
-                draw_cu_card_search($cu[$i]->abbrev, $cu[$i]->name, $cu[$i]->id);
-            }
+            draw_cu_card_search($cu[$i]->abbrev, $cu[$i]->name, $cu[$i]->id);
         }
 } ?>
 
 <?php function draw_student_card_search($name, $number, $path, $id)
 { ?>
-    <div id="student_card" class="card bg-light mb-3" style="width: 16rem; height: 16rem;">
+    <div id="student_card" class="card bg-light mb-3" style="display: block; width: 16rem; height: 16rem;">
         <div class="card-header">Student</div>
         <a href="/users/<?php echo e($id); ?>">
             <div class="card-body">
                 <?php if($path != NULL){ ?>
                     <div id="profile_picture" class="img-circle d-flex justify-content-between align-items-center">
-                        <img src="<?php $path ?>" class="img-profile"/>
+                    <img src="/storage/profile_image/<?php echo e(Auth::user()->profile_image); ?>" class="img-profile" />    
+                    <img src="/storage/profile_image/<?php $path ?>" class="img-profile"/>
                     </div>
                 <?php } else { ?>
                     <i id="profile_picture" class="icon-user profile-button d-flex justify-content-center"></i>
@@ -46,13 +41,13 @@
 
 <?php function draw_professor_card_search($name, $path, $id)
 { ?>
-    <div id="professor_card" class="card bg-light mb-3" style="width: 16rem; height: 16rem;">
+    <div id="professor_card" class="card bg-light mb-3" style="display: block; width: 16rem; height: 16rem;">
         <div class="card-header">Professor</div>
         <a href="/professors/<?php echo e($id); ?>">
             <div class="card-body">
                 <?php if($path != NULL): ?>
                     <div id="profile_picture" class="img-circle d-flex justify-content-between align-items-center">
-                        <img src="<?php $path ?>" class="img-profile"/>
+                        <img src="/storage/profile_image/<?php $path ?>" class="img-profile"/>
                     </div>
                 <?php else: ?>
                     <i id="profile_picture" class="icon-user profile-button d-flex justify-content-center"></i>
@@ -65,7 +60,7 @@
 
 <?php function draw_cu_card_search($abbrev, $name, $id)
 { ?>
-    <div id="cu_card" class="card bg-light mb-3" style="width: 16rem; height: 16rem;">
+    <div id="cu_card" class="card bg-light mb-3" style="display: block; width: 16rem; height: 16rem;">
         <div class="card-header">Curricular Unit</div>
         <a href="/cu/<?php echo e($id); ?>">
             <div class="card-body">

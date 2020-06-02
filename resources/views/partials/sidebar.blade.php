@@ -233,21 +233,20 @@
 
 <?php } ?>
 
-<?php function draw_sidebar_Search($input) { ?>
+<?php function draw_sidebar_Search() { ?>
     <section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
         <form id="search_form">
             <div id="fields" class="btn-group-vertical d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs">
-                <input name="query" type="text" value="<?= $input ?>" placeholder="Search">
                 <label class="form-check-label" for="students">
-                    <input name="students" type="checkbox" value="students" checked>
+                    <input name="students" type="checkbox" value="yes" checked>
                     Students
                 </label>
                 <label class="form-check-label" for="professors">
-                    <input name="professors" type="checkbox" value="professors" checked>
+                    <input name="professors" type="checkbox" value="yes" checked>
                     Professors
                 </label>
                 <label class="form-check-label" for="curricular_units">
-                    <input name="curricular_units" type="checkbox" value="curricular_units" checked>
+                    <input name="curricular_units" type="checkbox" value="yes" checked>
                     Curricular Units
                 </label>
             </div>

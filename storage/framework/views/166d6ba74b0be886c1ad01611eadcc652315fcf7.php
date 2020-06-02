@@ -2,6 +2,8 @@
 <link rel="stylesheet" href="<?php echo e(asset('css/sidebar.css')); ?>">
 <link rel="stylesheet" href="<?php echo e(asset('css/search.css')); ?>">
 
+<script src=<?php echo e(asset('js/search.js')); ?> defer></script>
+
 
 
 <?php echo $__env->make('partials.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -27,12 +29,7 @@
         <hr id="student_identification">
         
         <?php
-            $input="";
-            if($results != NULL){
-                $input=$results[3][0];
-            }
-
-            draw_sidebar_Search($input);
+            draw_sidebar_Search();
         ?>
         <div id="content" class="col-12 col-lg-9">
             <aside class="sticky-top align-self-start" id="page-title">
