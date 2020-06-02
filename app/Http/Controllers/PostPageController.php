@@ -16,7 +16,8 @@ class PostPageController extends Controller
     }
 
     public function show($postId)
-    {
+    {   
+        if (!is_numeric($postId)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         // Post content
@@ -67,14 +68,20 @@ class PostPageController extends Controller
     {
         if(!Auth::check()) return redirect('/');
 
+        $request->validate([
+            'content' => 'string|min:1',
+            'postId' => 'numeric|min:1'
+
+        ]);
+
         $comment = new Comment();
         $this->authorize('createComment', $comment);
         
         $id = Auth::user()->id;
 
-        $comment->content = htmlentities($request->input('content'));
+        $comment->content = htmlspecialchars($request->input('content'));
         $comment->author_id = $id;
-        $comment->post_id = htmlentities($request->input('postId'));
+        $comment->post_id = htmlspecialchars($request->input('postId'));
         $comment->save();
 
         $name = Auth::user()->name;
@@ -83,17 +90,24 @@ class PostPageController extends Controller
     }
 
     public function createSubcomment(Request $request, $commentId)
-    {
+    {   
+        if (!is_numeric($commentId)) return redirect('/');
         if(!Auth::check()) return redirect('/');
+        
+        $request->validate([
+            'content' => 'string|min:1',
+            'postId' => 'numeric|min:1'
+
+        ]);
 
         $subcomment = new Comment();
         $this->authorize('createSubcomment', $subcomment);
 
         $id = Auth::user()->id;
 
-        $subcomment->content = htmlentities($request->input('content'));
+        $subcomment->content = htmlspecialchars($request->input('content'));
         $subcomment->author_id = $id;
-        $subcomment->post_id = htmlentities($request->input('postId'));
+        $subcomment->post_id = htmlspecialchars($request->input('postId'));
         $subcomment->save();
         
         $commentThread = new CommentThread();

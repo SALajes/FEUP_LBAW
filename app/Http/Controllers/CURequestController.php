@@ -27,13 +27,20 @@ class CURequestController extends Controller
     {
         if(!Auth::check()) return redirect('/');
 
+        $request->validate([
+            'cu_name' => 'string|min:6',
+            'cu_abbrev' => 'string|min:2',
+            'cu_page' => 'string|min:6|url',
+            'additional_info' => 'string|nullable',
+        ]);
+
         $cu_request = new CURequest();
 
         $cu_request->student_id = Auth::user()->id;
-        $cu_request->cu_name = htmlentities($request->input('cu_name'));
-        $cu_request->abbrev = htmlentities($request->input('cu_abbrev'));
-        $cu_request->link_to_cu_page = htmlentities($request->input('cu_page'));
-        $cu_request->additional_info = htmlentities($request->input('additional_info'));
+        $cu_request->cu_name = htmlspecialchars($request->input('cu_name'));
+        $cu_request->abbrev = htmlspecialchars($request->input('cu_abbrev'));
+        $cu_request->link_to_cu_page = htmlspecialchars($request->input('cu_page'));
+        $cu_request->additional_info = htmlspecialchars($request->input('additional_info'));
         $cu_request->request_status = 'NotSeen';
 
         $saved = $cu_request->save();
@@ -128,7 +135,8 @@ class CURequestController extends Controller
     }
 
     public function acceptCreateRequest($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         DB::table('cu_request')
@@ -161,7 +169,8 @@ class CURequestController extends Controller
     }
 
     public function denyCreateRequest($id)
-    {   
+    {       
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
         $a = DB::table('cu_request')
             ->where('id', '=', $id)
@@ -172,7 +181,8 @@ class CURequestController extends Controller
     }
 
     public function acceptJoinRequest($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
         $a = DB::table('cu_join_request')
             ->where('id', '=', $id)
@@ -195,7 +205,8 @@ class CURequestController extends Controller
     }
 
     public function denyJoinRequest($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
         $a = DB::table('cu_join_request')
             ->where('id', '=', $id)
@@ -206,7 +217,8 @@ class CURequestController extends Controller
     }
 
     public function askJoinCU($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $isEnrolled = DB::table('enrolled')

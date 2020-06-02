@@ -17,7 +17,8 @@ class CUController extends Controller
     }
 
     public function show($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $cu = CurricularUnit::find($id);
@@ -47,6 +48,7 @@ class CUController extends Controller
 
     public function feed($id)
     {
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
         $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')
             ->select('post.id', 'post.author_id', 'student.name', 'post.content')
@@ -57,7 +59,8 @@ class CUController extends Controller
     }
 
     public function doubts($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')
@@ -69,7 +72,8 @@ class CUController extends Controller
     }
 
     public function tutoring($id)
-    {   
+    {      
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
         $posts = CurricularUnit::find($id)->posts()->join('student', 'post.author_id', '=', 'student.id')
             ->select('post.id', 'post.author_id', 'student.name', 'post.content')
@@ -80,14 +84,16 @@ class CUController extends Controller
     }
 
     public function classes($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         return "classes";
     }
 
     public function about($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $review = DB::table('rating')
@@ -103,24 +109,29 @@ class CUController extends Controller
     }
 
     public function destroy(Request $request)
-    {
+    {   
         if(!Auth::check()) return redirect('/');
+
+        $request->validate([
+            'content' => 'string|min:1',
+        ]);
 
         DB::table('curricular_unit')
             ->select('curricular_unit.abbrev')
-            ->where('curricular_unit.abbrev', '=', htmlentities($request->input('content')))
+            ->where('curricular_unit.abbrev', '=', htmlspecialchars($request->input('content')))
             ->delete();
 
         return response()->json([]);
     }
 
     public function editName(Request $request, $id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $saved = DB::table('curricular_unit')
                 ->where('id', '=', $id)
-                ->update(['name' => htmlentities($request->input('cu_name'))]);
+                ->update(['name' => htmlspecialchars($request->input('cu_name'))]);
 
         if ($saved) return redirect()->back()->with('success', 'You have successfully updated the name');
         else return back()->with('error', 'Update on name failed.');
@@ -128,10 +139,17 @@ class CUController extends Controller
 
     public function editAbbrev(Request $request, $id)
     {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
+
+        $request->validate([
+            'cu_abbrev' => 'string|min:1',
+        ]);
+
+
         $saved = DB::table('curricular_unit')
                 ->where('id', '=', $id)
-                ->update(['abbrev' => htmlentities($request->input('cu_abbrev'))]);
+                ->update(['abbrev' => htmlspecialchars($request->input('cu_abbrev'))]);
 
         if ($saved) return back()->with('success', 'You have successfully updated the abbrev.');
         else return back()->with('error', 'Update on abbrev failed.');
@@ -139,10 +157,16 @@ class CUController extends Controller
 
     public function editDescription(Request $request, $id)
     {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
+
+        $request->validate([
+            'cu_description' => 'string|min:6',
+        ]);
+
         $saved = DB::table('curricular_unit')
                 ->where('id', '=', $id)
-                ->update(['description' => htmlentities($request->input('cu_description'))]);
+                ->update(['description' => htmlspecialchars($request->input('cu_description'))]);
 
         if ($saved) return back()->with('success', 'You have successfully updated the description.');
         else return back()->with('error', 'Update on description failed.');
@@ -150,7 +174,12 @@ class CUController extends Controller
 
     public function rateCU($reviewed_cu, Request $request)
     {
+        if (!is_numeric($reviewed_cu)) return redirect('/');
         if(!Auth::check()) return redirect('/');
+
+        $request->validate([
+            'cu_review' => 'string|nullable',
+        ]);
 
         $enrolled = DB::table('enrolled')
             ->where('student_id', '=', Auth::user()->id)
@@ -167,13 +196,13 @@ class CUController extends Controller
             $a = DB::table('rating')
                 ->insert(['reviewer_id' => Auth::user()->id, 
                 'has_voted' => true,
-                'review' => htmlentities($request->input('cu_review')),
-                'cu_id' => htmlentities($reviewed_cu)]);
+                'review' => htmlspecialchars($request->input('cu_review')),
+                'cu_id' => htmlspecialchars($reviewed_cu)]);
             
             if ($a) return back()->with('success', 'You have successfully rated this CU.');
             else return back()->with('error', 'Failed to rated this CU.');
         }
         
-        return back()->with('error', 'Failed to rated this profile.');
+        return back()->with('error', 'Failed to rated this CU.');
     }
 }

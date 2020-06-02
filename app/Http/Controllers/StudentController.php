@@ -22,7 +22,8 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $student = Student::find($id);
@@ -35,7 +36,8 @@ class StudentController extends Controller
     }
 
     public function requestCUs($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
         
         $cus = DB::table('enrolled')
@@ -48,7 +50,8 @@ class StudentController extends Controller
     }
 
     public function requestRatings($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $reviews = DB::table('rating')
@@ -60,7 +63,8 @@ class StudentController extends Controller
         }
 
     public function pollNotifications($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $notification = Student::find($id)->notifications()->orderBy('date', 'desc')->limit(1)->get();
@@ -69,7 +73,8 @@ class StudentController extends Controller
     }
 
     public function notifications($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $notifications = Student::find($id)->notifications()->orderBy('date', 'desc')->limit(25)->get();
@@ -78,7 +83,7 @@ class StudentController extends Controller
     }
 
     public function editPassword(Request $request)
-    {   
+    {       
         if(!Auth::check()) return redirect('/');
 
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
@@ -92,7 +97,7 @@ class StudentController extends Controller
         }
 
         //Verificar que não tem chars mamados
-        $validatedData = $request->validate([
+        $request->validate([
             'current-password' => '',
             'new-password' => 'string|min:6|confirmed'
         ]);
@@ -138,7 +143,7 @@ class StudentController extends Controller
 
         $user = Auth::user();
 
-        $user->bio = htmlentities($request->bio);
+        $user->bio = htmlspecialchars($request->bio);
         $saved = $user->save();
 
         if ($saved) return back()->with('success', 'You have successfully updated the bio.');
@@ -159,15 +164,19 @@ class StudentController extends Controller
     }
 
     public function rateStudent($reviewed_student, Request $request)
-    {
+    {   
+        if (!is_numeric($reviewed_student)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         if ($reviewed_student == Auth::user()->id)
             return redirect('/users/' . Auth::user()->id)->with('error', 'You can\'t rate  yourself.' );
-
+        
+        $request->validate([
+            'review' => 'string|nullable',
+        ]);
         $review = DB::table('rating')
         ->where('reviewer_id', '=', Auth::user()->id)
-        ->where('student_id', '=', htmlentities($reviewed_student))
+        ->where('student_id', '=', htmlspecialchars($reviewed_student))
         ->where('has_voted', '=', true)
         ->count();
 
@@ -175,7 +184,7 @@ class StudentController extends Controller
             $inserted = DB::table('rating')
                         ->insert(['reviewer_id' => Auth::user()->id, 
                         'has_voted' => true,
-                        'review' => htmlentities($request->review),
+                        'review' => htmlspecialchars($request->review),
                         'student_id' => $reviewed_student]);
             
             if ($inserted)  return redirect('/users/' . $reviewed_student)->with('success', 'You have successfully rated this student.');
