@@ -35,8 +35,10 @@
 			<section id="posts">
 				<?php echo $__env->make('partials.post', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 			</section>
-			<?php echo e($posts->links()); ?>
+			<section id="pages">
+				<?php echo e($posts->links()); ?>
 
+			</section>
 		</main>
 
 		<section class="col-3">

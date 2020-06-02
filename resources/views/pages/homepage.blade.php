@@ -36,7 +36,9 @@
 			<section id="posts">
 				@include('partials.post')
 			</section>
-			{{ $posts->links() }}
+			<section id="pages">
+				{{ $posts->links() }}
+			</section>
 		</main>
 
 		<section class="col-3">
