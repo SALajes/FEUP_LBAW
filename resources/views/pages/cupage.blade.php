@@ -13,12 +13,10 @@
 <div class="container-fluid">
     <div class="row">
         <?php
-
-        use Illuminate\Support\Facades\Auth;
-
         draw_sidebar_Top_CU($cu, $teachers);
-        draw_sidebar_CU($cu->id, $likeCounter);
+        draw_sidebar_CU($cu->id, $likeCounter, $enrolled);
         ?>
+
         <div id="cuArea" class="col-12 col-lg-9">
             <section id="mainArea" class="col-12 col-lg-9">
                 <div>
