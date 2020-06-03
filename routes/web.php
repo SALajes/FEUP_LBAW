@@ -36,6 +36,10 @@ Route::get('api/comments', 'PostPageController@preventError');
 Route::put('api/comment/{commentId}/subcomments', 'PostPageController@createSubcomment');
 Route::get('api/comment/{commentId}/subcomments', 'PostPageController@preventError');
 
+//Search page
+Route::get('/search', 'SearchController@search')->name('submitSearch');
+Route::get('/search/advanced/{query}/{stud}/{prof}/{cu}', 'SearchController@advanced');
+
 // Students
 Route::get('/users/{id}', 'StudentController@show');
 Route::post('/users/{id}/editPassword', 'StudentController@editPassword')->middleware('UserAuth')->name('editPassword');
@@ -110,3 +114,4 @@ Route::get('register', 'Auth\RegisterController@preventError');
 //Notifications
 Route::get('/users/myNotifications/{id}', 'StudentController@notifications');
 Route::get('/users/myNotifications/poll/{id}', 'StudentController@pollNotifications');
+

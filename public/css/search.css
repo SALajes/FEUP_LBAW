@@ -1,0 +1,20 @@
+#results_info > h2, #results_info > p{
+    margin-bottom: 0;
+}
+
+#results_info, #results{
+    background-color: ghostwhite;
+}
+
+#results{
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+}
+
+#page-title{
+    background-color: white;
+}
+
+#fields > *{
+    margin: 0.25rem;
+}

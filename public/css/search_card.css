@@ -1,0 +1,51 @@
+#student_card > div.card-header{
+    color: white;
+    background-color: #3356ae;
+}
+
+#professor_card > div.card-header{
+    color: white;
+    background-color: #2294b0;
+}
+
+#cu_card > div.card-header{
+    color: white;
+    background-color: #17beb1;
+}
+
+.card {
+    border-radius: 3px;
+    margin: 1rem;
+
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);
+    transition: all 0.2s cubic-bezier(.20,.7,.20,0.8);
+}
+
+.card:hover {
+    cursor: pointer;
+    box-shadow: 0 7px 15px rgba(0,0,0,0.25), 0 6px 6px rgba(0,0,0,0.22);
+}
+
+#profile_picture {
+    margin-bottom: 0.20rem;
+    color: #dfdfdf;
+}
+
+#profile_picture.img-circle {
+    height: 7rem;
+    width: 7rem;
+}
+
+.card-text{
+    margin: 0;
+}
+
+#student_card > a, #professor_card > a, #cu_card > a, #student_card > a:visited, #professor_card > a:visited, #cu_card > a:visited{
+    text-decoration: none;
+    color: black;
+}
+
+#student_card > a:hover, #professor_card > a:hover, #cu_card > a:hover{
+    text-decoration: none;
+    color: #2294b0;
+}
