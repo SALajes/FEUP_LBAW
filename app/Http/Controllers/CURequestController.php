@@ -162,11 +162,6 @@ class CURequestController extends Controller
                     'cu_id' => $cu[0]->id
                 ]);
         }
-
-        if ($a){
-            $a |= DB::table('student')
-                ->update(['administrator' => true]);
-        }
         
         if ($a) return redirect()->back()->with('success', 'Accepted Request!');
         else return redirect()->back()->with('error', 'Failed to accept request.');
