@@ -86,7 +86,7 @@
 			</aside>
 <?php } ?>
 
-<?php function draw_sidebar_Profile($bio, $likeCounter, $owner) { ?>
+<?php function draw_sidebar_Profile($bio, $likeCounter, $owner, $in_profile) { ?>
 			<section class="row-md-auto justify-content-center ">
 				<blockquote class="text-center col-md-10 mx-auto">
 					<?php
@@ -95,7 +95,7 @@
 					?>
 				</blockquote>
 				<?php
-				if (Auth::user()->administrator) { ?>
+				if (Auth::user()->administrator && $owner) { ?>
 					<div class="d-flex justify-content-around">
 						<a href="{{ url('/manageCreateRequests/') }}" class="btn btn-default">
 							<button id="manage_create_requests_button" class="btn btn-primary" type="button">
@@ -112,17 +112,16 @@
 					</div>
 				<?php } ?>
 				
-				<?php if($owner) { ?>
+				<?php if($owner && $in_profile) { ?>
 					<div class="d-flex justify-content-around">
 						<button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
 					</div>
 				<?php } ?>
 				
-				<div class="d-flex justify-content-around likes_friend">
-					<div>
-						<a data-toggle="modal" data-target="#rateStudentModal" class="btn btn-default">
-							<i class="icon-like" style="color: #0aedb3"></i> <?= $likeCounter ?>
-						</a>
+				<div class="d-flex align-items-center justify-content-center likes_friend">
+					<div class="d-flex align-items-center">
+						<a data-toggle="modal" data-target="#rateStudentModal" class="btn btn-default"><i class="icon-like" style="color: #0aedb3"></i></a>
+						<?= $likeCounter ?>
 					</div>
 					<?php
 					if (!$owner) { ?>

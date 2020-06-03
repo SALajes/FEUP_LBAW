@@ -21,7 +21,7 @@
         $bc = "Profile";
         if ($owner) $bc = "My " . $bc;
         draw_sidebar_Top($bc, $student->id, $student->name, $student->student_number);
-        draw_sidebar_Profile($student->bio, $likeCounter, $owner);
+        draw_sidebar_Profile($student->bio, $likeCounter, $owner, true);
         ?>
 
         <!-- offset-lg-0 offset-md-2 offset-3 -->
