@@ -1,3 +1,4 @@
+<script src={{ asset('js/editProfile.js') }} defer></script>
 <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -16,7 +17,7 @@
 
                         <div>
                             <input id="current-password" type="password" class="form-control" name="current-password">
-
+                            <div id="cpw_error"></div>
                             @if ($errors->has('current-password'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('current-password') }}</strong>
@@ -30,7 +31,7 @@
 
                         <div>
                             <input id="new-password" type="password" class="form-control" name="new-password">
-
+                            <div id="npw_error"></div>
                             @if ($errors->has('new-password'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('new-password') }}</strong>
@@ -44,6 +45,7 @@
 
                         <div>
                             <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation">
+                            <div id="npc_error"></div>
                         </div>
                     </div>
 

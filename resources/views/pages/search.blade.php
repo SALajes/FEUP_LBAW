@@ -1,44 +1,48 @@
+@extends('layouts.app')
+@section('title', 'Search')
+@section('content')
+
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
-<?php
-include_once('../templates/header.php');
+<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+<link rel="stylesheet" href="{{ asset('css/search.css') }}">
+<link rel="stylesheet" href="{{ asset('css/identity.css') }}">
 
-include_once('../templates/navbar.php');
+<script src={{ asset('js/search.js') }} defer></script>
 
+@include('partials.navbar')
+@include('partials.sidebar')
+@include('partials.search_results')
 
-include_once('../templates/card.php');
-
-include_once('../templates/sidebar.php');
-?>
-
-<script src="../scripts/cu_sidebar.js" defer></script>
-<body id="cupage" class="container-fluid ">
-    
-
-        <div class="row">
-            <?php
-            draw_sidebar_Top("Search", "Alvaro Campos", "up188800613");
-            draw_sidebar_Search();
-            ?>
-            <main id="posts" class="col-lg-6 col-md-12">
-
-                <div id="content" class="col-12 offset-lg-0">
-
-                    <!-- VAI DAR Reflected XSS aqui, preparar isto dps-->
-
-                    <div>
-                    <h4>Showing results for: "BDAD"</h4>
-                    </div>
-
-                    <?php include('../templates/card_teacher.php'); ?>
-                    <?php include('../templates/card_cu.php'); ?>
+<div class="container-fluid">
+    <div class="row">
+        <aside class="col-lg-3 sticky-top align-self-start" id="page-title">
+            <section class="row-md-auto">
+                <div class="text-center">
+                    <h2 class="d-block pt-md-4">Search</h2>
+                        <?php
+                            draw_sidebar_Search();
+                        ?>
                 </div>
-            </main>
-        <div>
+            </section>
+        </aside>
 
-        <div class="col-3">
+        <div id="mainArea" class="col-12 col-lg-9">
+            <section class="row-md-auto">
+                <div id="results_info" class="text-center">
+                    <h2 class="d-block pt-md-4">Results</h2>
+                </div>
+            </section>
+            <div id="results" class="d-flex flex-row flex-wrap  justify-content-around">
+                <?php
+                    if($results != NULL){
+                        draw_results($results);
+                    }
+                ?>
+            </div>
         </div>
+        <section class="col-3">
+        </section>
+    </div>
+</div>
 
-</body>
-<?php
-include_once('../templates/footer.php');
-?>
+@endsection

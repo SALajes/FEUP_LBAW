@@ -1,0 +1,12 @@
+#results_info > h2, #results_info > p{
+    margin-bottom: 0;
+}
+
+#results{
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+}
+
+#fields > *{
+    margin: 0.25rem;
+}

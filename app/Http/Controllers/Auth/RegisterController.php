@@ -48,10 +48,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|regex:/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]+$/ui',
             'email' => 'required|string|email|max:255|unique:student',
-            'password' => 'required|string|min:6|confirmed',
-            'student_number' => 'required|string|max:255'
+            'password' => 'required|string|min:6|confirmed|regex:/^[A-Z, 0-9, @$!%*#?&]{6,}$/i',
+            'student_number' => 'required|string|max:255|regex:/^(up)*[0-9]{9}$/'
         ]);
     }
 
@@ -64,10 +64,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return Student::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name' => htmlspecialchars($data['name']),
+            'email' => htmlspecialchars($data['email']),
             'password' => bcrypt($data['password']),
-            'student_number' => $data['student_number']
+            'student_number' => htmlspecialchars($data['student_number'])
         ]);
     }
 

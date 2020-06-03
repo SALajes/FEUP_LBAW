@@ -186,8 +186,8 @@
 		</section>
 		<!-- Divisao Vertical -->
 	</aside>
-
-	<div class="modal fade" id="editCUModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<script src=<?php echo e(asset('js/editCU.js')); ?> defer></script>
+	<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -204,6 +204,7 @@
 							<label class="control-label">New name:</label>
 							<div>
 								<input name="cu_name" type="text" id="cu_name" form="edit-cu-name-form" />
+								<div id="name_error"></div>
 							</div>
 							<div>
 								<button type="submit" class="btn btn-primary" style="margin-top:1rem;">Update</button>
@@ -217,6 +218,7 @@
 							<label class="control-label">New abbreviature:</label>
 							<div>
 								<input name="cu_abbrev" type="text" id="cu_abbrev" form="edit-cu-abbrev-form" />
+								<div id="abbrev_error"></div>
 							</div>
 							<div>
 								<button type="submit" class="btn btn-primary" style="margin-top:1rem;">Update</button>
@@ -230,6 +232,7 @@
 							<label class="control-label">New description:</label>
 							<div>
 								<input name="cu_description" type="text" id="cu_description" form="edit-cu-description-form" />
+								<div id="description_error"></div>
 							</div>
 							<div>
 								<button type="submit" class="btn btn-primary" style="margin-top:1rem;">Update</button>
@@ -244,47 +247,22 @@
 <?php } ?>
 
 <?php function draw_sidebar_Search() { ?>
-	<section class="row-md-auto justify-content-center">
-
-		<div class="row d-flex flex-wrap justify-content-center">
-
-			<div class="row d-inline-flex flex-wrap">
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-					<label class="form-check-label" for="inlineRadio1">My CUs</label>
-				</div>
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-					<label class="form-check-label" for="inlineRadio2">All CUs </label>
-				</div>
-			</div>
-		</div>
-
-		<div class="row d-flex flex-wrap justify-content-center">
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="profs">
-				<label class="form-check-label" for="inlineCheckbox1">Include Professors</label>
-			</div>
-		</div>
-
-		<div class="row d-flex flex-wrap justify-content-center">
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="students">
-				<label class="form-check-label" for="inlineCheckbox2">Include Students</label>
-			</div>
-		</div>
-
-		<div class="row d-flex flex-wrap justify-content-center">
-			<div class="col-12 text-center">
-				<label for="customRange2" class=" text-center">Curricular year</label>
-			</div>
-			<div class="col-lg-10 col-6">
-				<input type="range" class="custom-range" min="1" max="5" id="customRange2">
-			</div>
-		</div>
-
-	</section>
-
-	<!-- Divisao Vertical -->
-	</aside>
+    <section class="d-flex justify-content-center flex-wrap">
+        <form id="search_form">
+            <div id="fields" class="btn-group-vertical d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs">
+                <label class="form-check-label" for="students">
+                    <input name="students" type="checkbox" value="yes" checked>
+                    Students
+                </label>
+                <label class="form-check-label" for="professors">
+                    <input name="professors" type="checkbox" value="yes" checked>
+                    Professors
+                </label>
+                <label class="form-check-label" for="curricular_units">
+                    <input name="curricular_units" type="checkbox" value="yes" checked>
+                    Curricular Units
+                </label>
+            </div>
+        </form>
+    </section>
 <?php } ?><?php /**PATH /home/simawatt/Documents/FEUP/lbaw2013/resources/views/partials/sidebar.blade.php ENDPATH**/ ?>

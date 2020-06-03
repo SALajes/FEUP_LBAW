@@ -1,3 +1,4 @@
+<script src={{ asset('js/editProfProfile.js') }} defer></script>
 <div class="modal fade" id="editProfModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -13,7 +14,8 @@
                     <div class="form-group">
                         <label class="control-label">New name</label>
                         <div>
-                            <input name="prof_name" type="text" id="prof_name" form="prof_name_form" placeholder="{{$professor->name}}" style="margin-bottom:0.5rem;"/>
+                            <input name="prof_name" type="text" id="prof_name" form="prof_name_form" placeholder="{{$professor->name}}"/>
+                            <div id="name_error"></div>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-primary">Update</button>
@@ -25,7 +27,8 @@
                     <div class="form-group">
                         <label class="control-label">New abbrev</label>
                         <div>
-                            <input name="prof_abbrev" type="text" id="prof_abbrev" form="prof_abbrev_form" placeholder="{{$professor->abbrev}}" style="margin-bottom:0.5rem;"/>
+                            <input name="prof_abbrev" type="text" id="prof_abbrev" form="prof_abbrev_form" placeholder="{{$professor->abbrev}}"/>
+                            <div id="abbrev_error"></div>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-primary">Update</button>
@@ -37,7 +40,8 @@
                     <div class="form-group">
                         <label class="control-label">New email</label>
                         <div>
-                            <input name="prof_email" type="text" id="prof_email" form="prof_email_form" placeholder="{{$professor->email}}" style="margin-bottom:0.5rem;"/>
+                            <input name="prof_email" type="text" id="prof_email" form="prof_email_form" placeholder="{{$professor->email}}"/>
+                            <div id="email_error"></div>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-primary">Update</button>
