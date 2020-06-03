@@ -140,9 +140,11 @@
 				<div>
 					<form action="{{ url('/askJoinCU/' . $id) }}" method="post">
 						{{ csrf_field() }}
+					<div class="d-flex justify-content-around">
 						<button id="manage_join_requests_button" class="btn btn-primary" type="submit">
 							Join
 						</button>
+					</div>
 					</form>
 				</div>
 			<?php } ?>
