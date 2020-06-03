@@ -28,7 +28,7 @@ class ProfessorController extends Controller
         if(!Auth::check()) return redirect('/');
 
         $request->validate([
-            'prof_name' => 'string|min:6',
+            'prof_name' => 'string|min:6|regex:/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]+$/ui',
         ]);
 
         $prof = Professor::find($id);
@@ -72,7 +72,7 @@ class ProfessorController extends Controller
         if(!Auth::check()) return redirect('/');
 
         $request->validate([
-            'prof_abbrev' => 'string|min:1',
+            'prof_abbrev' => 'string|min:2|regex:/[A-Z]{2,8}/',
         ]);
 
         $prof = Professor::find($id);
