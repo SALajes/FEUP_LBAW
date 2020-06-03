@@ -19,7 +19,7 @@
 
 					</span>
 					<?php endif; ?>
-					<input id="email-register" type="email" name="email" class="form-control" placeholder="Email" required>
+					<input id="email-register" type="email" name="email" class="form-control elem-help" placeholder="Email" required>
 					<?php if($errors->has('email')): ?>
 					<span class="error">
 						<?php echo e($errors->first('email')); ?>

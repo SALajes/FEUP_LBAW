@@ -274,7 +274,7 @@ function enable_posting(){
 
 function vert_hor() {
     if (window.innerWidth < 992) btn_grp.className = "btn-group btn-group-toggle d-flex flex-wrap justify-content-center";
-    else btn_grp.className = "btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center";
+    else btn_grp.className = "d-flex flex-column";
 
 }
 

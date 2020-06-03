@@ -29,11 +29,16 @@
         <div id="profileArea" class="col-12 col-lg-9">
             <div id="nav">
                 <div id="tabs" class="nav nav-tabs nav-fill">
-                    <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">My CUs</a>
-                    <a class="nav-item nav-link" href="#" role="button">My Ratings</a>
-                    <?php
-
+                <?php
                     use Illuminate\Support\Facades\Auth;
+
+                    if(Auth::user()->id == $student->id) { ?>
+                        <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">My CUs</a>
+                        <a class="nav-item nav-link" href="#" role="button">My Ratings</a>
+                    <?php }else { ?>
+                        <a class="nav-item nav-link" href="#" role="button" aria-pressed="true">CUs</a>
+                        <a class="nav-item nav-link" href="#" role="button">Ratings</a>
+                    <?php }
 
                     if ($owner && Auth::user()->administrator) { ?>
                         <a class="nav-item nav-link" href="#" role="button">Manage CUs</a>

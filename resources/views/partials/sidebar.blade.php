@@ -87,7 +87,7 @@
 <?php } ?>
 
 <?php function draw_sidebar_Profile($bio, $likeCounter, $owner, $in_profile) { ?>
-			<section class="row-md-auto justify-content-center ">
+			<section class="row-md-auto justify-content-center">
 				<blockquote class="text-center col-md-10 mx-auto">
 					<?php
 					if ($bio != null) echo $bio;
@@ -123,20 +123,13 @@
 						<a data-toggle="modal" data-target="#rateStudentModal" class="btn btn-default"><i class="icon-like" style="color: #0aedb3"></i></a>
 						<?= $likeCounter ?>
 					</div>
-					<?php
-					if (!$owner) { ?>
-						<div>
-							<i class="icon-add_friend" style="color: #0aedb3"></i>
-						</div>
-					<?php
-					} ?>
 				</div>
 			</section>
 		</aside>
 <?php } ?>
 
 <?php function draw_sidebar_CU($id, $likeCounter, $enrolled) { ?>
-		<section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center align-items-center flex-wrap">
+		<section class="row-md-auto justify-content-center">
 			<div class="d-flex justify-content-center align-items-center likes_friend">
 				<a data-toggle="modal" data-target="#rateCUModal" class="btn btn-default">
 					<i class="icon-like" style="color: #0aedb3"></i>
@@ -155,31 +148,33 @@
 			<?php } ?>
 
 			<?php if(Auth::user()->administrator) { ?>
+				<div class="d-flex justify-content-around">
 					<button id="editCUButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCUModal">Edit</button>
+				</div>
 			<?php }?>
 			
-			<div class="btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs" id="cu_tabs">				
-				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+			<div id="cu_tabs" class="d-flex flex-column">				
+				<div class="d-flex justify-content-around">
 					<button id="feed_btn" type="button" class="btn btn-link">
-						Feed
+						 Feed 
 					</button>
 				</div>
-				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+				<div class="d-flex justify-content-around">
 					<button id="doubts_btn" type="button" class="btn btn-link">
 						Doubts
 					</button>
 				</div>
-				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+				<div class="d-flex justify-content-around">
 					<button id="tutor_btn" type="button" class="btn btn-link">
 						Tutoring
 					</button>
 				</div>
-				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+				<div class="d-flex justify-content-around">
 					<button id="classes_btn" type="button" class="btn btn-link">
 						Classes
 					</button>
 				</div>
-				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+				<div class="d-flex justify-content-around">
 					<button id="about_btn" type="button" class="btn btn-link">
 						About
 					</button>

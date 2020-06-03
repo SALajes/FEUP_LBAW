@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="<?php echo e(asset('css/homepage.css')); ?>">
 <link rel="stylesheet" href="<?php echo e(asset('css/sidebar.css')); ?>">
 <link rel="stylesheet" href="<?php echo e(asset('css/post.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('css/profile.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('css/cupage.css')); ?>">
 
 <?php echo $__env->make('partials.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('partials.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
