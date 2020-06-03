@@ -1,0 +1,11 @@
+#cuArea{
+    padding:0;
+}
+
+#editCUButton{
+    margin-top: 0.5rem;
+    width: 15rem;
+    font-size: small;
+    background-color: #24c6dc;
+    border: #24c6dc;
+}
