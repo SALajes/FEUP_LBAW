@@ -20,7 +20,7 @@
             </div>
         </section>
     </header>
-    <main class="container marketing mt-5">
+    <main class="container marketing mt-5" style="padding:2rem;">
         <section class="row featurette">
             <blockquote>
                 <h2 class="featurette-heading">

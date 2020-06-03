@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ asset('css/help.css') }}">
+
 <article class="card post" data-id="{{ $post[0]->id }}">
     <div class="post-header d-flex justify-content-between">
         <div class="post-header-left">
@@ -18,9 +20,12 @@
 </article>
 
 <section class="add-comment">
-    <button class="add-comment-button" type="button" data-toggle="collapse" data-target="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
-        +
-    </button>
+    <div>
+        <button class="add-comment-button elem-help" type="button" data-toggle="collapse" data-target="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
+            +
+        </button>
+        <p class="help-tip" style="margin-left:1rem;margin-top:2rem;">Comment Post</p>
+    </div>
 
     <div id="collapseForm" class="collapse">
         <form class="newComment">
