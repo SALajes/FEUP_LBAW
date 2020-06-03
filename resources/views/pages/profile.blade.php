@@ -20,7 +20,7 @@
         <?php
         $bc = "Profile";
         if ($owner) $bc = "My " . $bc;
-        draw_sidebar_Top($bc, $student->id, $student->name, $student->student_number);
+        draw_sidebar_Top($bc, $student->id, $student->name, $student->student_number, $student->profile_image);
         draw_sidebar_Profile($student->bio, $likeCounter, $owner, true);
         ?>
 

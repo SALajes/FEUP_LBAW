@@ -43,20 +43,20 @@
 			<hr id="student_identification">
 <?php } ?>
 
-<?php function draw_sidebar_Top($breadcrumb, $userNo,  $username, $studentNo) { ?>
+<?php function draw_sidebar_Top($breadcrumb, $userNo,  $username, $studentNo, $profile_image) { ?>
 			<aside class="col-lg-3 sticky-top align-self-start" id="page-title">
 				<section class="row-md-auto">
 					<div class="text-center">
 						<h2 class="d-block pt-md-4"><?= $breadcrumb ?> </h2>
 						<div class="d-flex justify-content-center align-items-center">
 							<a class="nav-item nav-link d-none d-sm-block d-md-block" href="/users/{{ $userNo }}">
-								@if (auth()->user()->profile_image)
-								<div class="img-circle d-flex justify-content-between align-items-center">
-									<img src="/storage/profile_image/{{ Auth::user()->profile_image }}" class="img-profile" />
-								</div>
-								@else
-								<i id="profile_picture" class="icon-user profile-button"></i>
-								@endif
+								<?php if($profile_image != "") { ?>
+									<div class="img-circle d-flex justify-content-between align-items-center">
+										<img src="/storage/profile_image/<?=$profile_image?>" class="img-profile" />
+									</div>
+								<?php } else { ?>
+									<i id="profile_picture" class="icon-user profile-button"></i>
+								<?php } ?>
 							</a>
 						</div>
 

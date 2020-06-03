@@ -31,7 +31,9 @@ class StudentController extends Controller
         $likeCounter = DB::table('rating')
                        ->where('student_id', '=', $id)
                        ->count();
+
         if ($id == Auth::user()->id) $owner = true;
+        
         return view('pages.profile', ['student' => $student, 'owner' => $owner, 'likeCounter' => $likeCounter]);
     }
 

@@ -17,7 +17,7 @@
 
         use Illuminate\Support\Facades\Auth;
 
-        draw_sidebar_Top("Post", Auth::user()->id, Auth::user()->name, Auth::user()->student_number);
+        draw_sidebar_Top("Post", Auth::user()->id, Auth::user()->name, Auth::user()->student_number, Auth::user()->profile_image);
         ?>
         <section></section>
         </aside>

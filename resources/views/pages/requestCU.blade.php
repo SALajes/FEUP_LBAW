@@ -14,8 +14,11 @@
 <div class="container-fluid">
     <div class="row">
        <?php
-            $bc = "Request CU";
-            draw_sidebar_Top($bc, Auth::user() -> id, Auth::user() -> name, Auth::user() -> student_number);
+
+use Illuminate\Support\Facades\Auth;
+
+$bc = "Request CU";
+            draw_sidebar_Top($bc, Auth::user() -> id, Auth::user() -> name, Auth::user() -> student_number, Auth::user()->profile_image);
         ?>
 		<section id="MyCUs" >
             <h4 class="text-center">My CU's</h4>

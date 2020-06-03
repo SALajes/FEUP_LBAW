@@ -13,7 +13,7 @@
     <div class="row">
         <?php
             use Illuminate\Support\Facades\Auth;
-            draw_sidebar_Top("Manage Join Requests", Auth::user() -> id, Auth::user() -> name, Auth::user() -> student_number);
+            draw_sidebar_Top("Manage Join Requests", Auth::user() -> id, Auth::user() -> name, Auth::user() -> student_number, Auth::user()->profile_image);
             draw_sidebar_Profile($student->bio, 0, true, false);
         ?>
     <div id="content" class="col-12 col-lg-9">

@@ -16,7 +16,7 @@
 
 		use Illuminate\Support\Facades\Auth;
 
-		draw_sidebar_Top("Home", Auth::user()->id, Auth::user()->name, Auth::user()->student_number);
+		draw_sidebar_Top("Home", Auth::user()->id, Auth::user()->name, Auth::user()->student_number, Auth::user()->profile_image);
 		?>
 
 		<section id="MyCUs">
