@@ -66,6 +66,8 @@ Route::post('/professors/{id}/editPicture', 'ProfessorController@editProfilePict
 Route::get('/professors/{id}/editPicture', 'ProfessorController@preventError');
 Route::get('professors/{id}/cus', 'ProfessorController@listCUs')->name('listProfCUs');
 Route::get('professors/{id}/ratings', 'ProfessorController@requestRatings');
+Route::post('/professors/{id}/deleteAccount', 'ProfessorController@deleteAccount')->middleware('AdminAuth')->name('deleteProfessor');
+Route::get('/professors/{id}/deleteAccount', 'ProfessorController@preventError');
 
 //CUs
 Route::get('/cu', 'CUController@showAll');
@@ -78,7 +80,7 @@ Route::get('/cu/{id}/tutoring/', 'CUController@tutoring');
 Route::get('/cu/{id}/about/', 'CUController@about');
 Route::get('/cu/{id}/classes/', 'CUController@classes');
 Route::delete('/cu', 'CUController@destroy')->middleware('AdminAuth');
-Route::post('/cu/{id}/editName', 'CUController@editName')->middleware('AdminAuth');
+Route::post('/cu/{id}/editName', 'CUController@editName')->middleware('AdminAuth')->name('editCUName');
 Route::get('/cu/{id}/editName', 'CUController@preventError');
 Route::post('/cu/{id}/editAbbrev', 'CUController@editAbbrev')->middleware('AdminAuth');
 Route::get('/cu/{id}/editAbbrev', 'CUController@preventError');

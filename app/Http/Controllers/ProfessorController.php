@@ -176,6 +176,16 @@ class ProfessorController extends Controller
         return response()->json(['reviews' => $reviews]);
     }
 
+    public function deleteAccount($id)
+    {
+        if(!Auth::check()) return redirect('/');
+
+        $professor = Professor::find($id);
+        $professor->delete();
+
+        return redirect('/');
+    }
+
     public function preventError()
     {
         return redirect('/');

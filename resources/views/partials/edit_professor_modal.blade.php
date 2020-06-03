@@ -60,7 +60,7 @@
                         </div>
                     </div>
                 </form>
-                <form id="delete-account-form" class="form-horizontal" method="POST" action="{{ route('deleteAccount') }}" enctype="multipart/form-data">
+                <form id="delete-account-form" class="form-horizontal" method="POST" action="{{ route('deleteProfessor', $professor->id) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <div>
