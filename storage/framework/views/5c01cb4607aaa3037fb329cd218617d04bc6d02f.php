@@ -1,9 +1,11 @@
 <link rel="stylesheet" href="<?php echo e(asset('css/navbar.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('css/help.css')); ?>">
 
 <header>
     <input type="hidden" id="studentId" value="<?php echo e(Auth::user() -> id); ?>" readonly>
     <nav id="header" class="navbar fixed-top navbar-expand-md navbar-dark">
-        <a class="navbar-brand" href="<?php echo e(url('/homepage')); ?>"><i id="logo" class="icon-logo align-middle"></i></a>
+        <a class="navbar-brand elem-help" href="<?php echo e(url('/homepage')); ?>"><i id="logo" class="icon-logo align-middle"></i></a>
+        <p class="help-tip" style="left:3rem;top:2rem;">Homepage</p>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
             <i class="icon-menu"></i>
@@ -18,14 +20,15 @@
                 </section>
             </section>
 
-            <form id="search" class="form-inline my-2 my-lg-0" action="../actions/search.php">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search">
+            <form id="search" class="form-inline my-2 my-lg-0" action="<?php echo e(route('submitSearch')); ?>" method="GET">
+                <?php echo csrf_field(); ?>
+                <input id="query" name="query" class="form-control mr-sm-2" type="search" placeholder="Search">
                 <button type="submit" class="btn btn-light"><i class="icon-search"></i></button>
             </form>
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" id="notifications" href="#"><i class="icon-bell align-middle"></i></a>
+                    <a class="nav-link elem-help" id="notifications" href="#"><i class="icon-bell align-middle"></i></a>
                     <span class="d-md-none"> Notifications</span>
                 </li>
                 <li class="nav-item d-none d-md-block">

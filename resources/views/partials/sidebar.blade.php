@@ -86,8 +86,8 @@
 			</aside>
 <?php } ?>
 
-<?php function draw_sidebar_Profile($bio, $likeCounter, $owner) { ?>
-			<section class="row-md-auto justify-content-center ">
+<?php function draw_sidebar_Profile($bio, $likeCounter, $owner, $in_profile) { ?>
+			<section class="row-md-auto justify-content-center">
 				<blockquote class="text-center col-md-10 mx-auto">
 					<?php
 					if ($bio != null) echo $bio;
@@ -95,7 +95,7 @@
 					?>
 				</blockquote>
 				<?php
-				if (Auth::user()->administrator) { ?>
+				if (Auth::user()->administrator && $owner) { ?>
 					<div class="d-flex justify-content-around">
 						<a href="{{ url('/manageCreateRequests/') }}" class="btn btn-default">
 							<button id="manage_create_requests_button" class="btn btn-primary" type="button">
@@ -112,74 +112,71 @@
 					</div>
 				<?php } ?>
 				
-				<?php if($owner) { ?>
+				<?php if($owner && $in_profile) { ?>
 					<div class="d-flex justify-content-around">
 						<button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
 					</div>
 				<?php } ?>
 				
-				<div class="d-flex justify-content-around likes_friend">
-					<div>
-						<a data-toggle="modal" data-target="#rateStudentModal" class="btn btn-default">
-							<i class="icon-like" style="color: #0aedb3"></i> <?= $likeCounter ?>
-						</a>
+				<div class="d-flex align-items-center justify-content-center likes_friend">
+					<div class="d-flex align-items-center">
+						<a data-toggle="modal" data-target="#rateStudentModal" class="btn btn-default"><i class="icon-like" style="color: #0aedb3"></i></a>
+						<?= $likeCounter ?>
 					</div>
-					<?php
-					if (!$owner) { ?>
-						<div>
-							<i class="icon-add_friend" style="color: #0aedb3"></i>
-						</div>
-					<?php
-					} ?>
 				</div>
 			</section>
 		</aside>
 <?php } ?>
 
 <?php function draw_sidebar_CU($id, $likeCounter, $enrolled) { ?>
-		<section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
-			<div class="d-flex justify-content-around likes_friend">
+		<section class="row-md-auto justify-content-center">
+			<div class="d-flex justify-content-center align-items-center likes_friend">
 				<a data-toggle="modal" data-target="#rateCUModal" class="btn btn-default">
-					<i class="icon-like" style="color: #0aedb3"></i> <?= $likeCounter ?>
+					<i class="icon-like" style="color: #0aedb3"></i>
 				</a>
+				<?= $likeCounter ?>
 			</div>
 			<?php if($enrolled) { ?>
-				<div class="d-flex justify-content-around">
+				<div>
 					<form action="{{ url('/askJoinCU/' . $id) }}" method="post">
 						{{ csrf_field() }}
+					<div class="d-flex justify-content-around">
 						<button id="manage_join_requests_button" class="btn btn-primary" type="submit">
 							Join
 						</button>
+					</div>
 					</form>
 				</div>
 			<?php } ?>
+
+			<?php if(Auth::user()->administrator) { ?>
+				<div class="d-flex justify-content-around">
+					<button id="editCUButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCUModal">Edit</button>
+				</div>
+			<?php }?>
 			
-			<div class="btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs" id="cu_tabs">
-				<?php if(Auth::user()->administrator) { ?>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
-				<?php }?>
-				
-				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+			<div id="cu_tabs" class="d-flex flex-column">				
+				<div class="d-flex justify-content-around">
 					<button id="feed_btn" type="button" class="btn btn-link">
-						Feed
+						 Feed 
 					</button>
 				</div>
-				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+				<div class="d-flex justify-content-around">
 					<button id="doubts_btn" type="button" class="btn btn-link">
 						Doubts
 					</button>
 				</div>
-				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+				<div class="d-flex justify-content-around">
 					<button id="tutor_btn" type="button" class="btn btn-link">
 						Tutoring
 					</button>
 				</div>
-				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+				<div class="d-flex justify-content-around">
 					<button id="classes_btn" type="button" class="btn btn-link">
 						Classes
 					</button>
 				</div>
-				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
+				<div class="d-flex justify-content-around">
 					<button id="about_btn" type="button" class="btn btn-link">
 						About
 					</button>
@@ -198,43 +195,43 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body d-flex flex-column">
 					<form id="edit-cu-name-form" class="form-horizontal" method="POST" action="/cu/<?= $id ?>/editName" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						<div class="form-group">
-							<label class="col-md-4 control-label">New name:</label>
-							<div class="col-md-6">
+							<label class="control-label">New name:</label>
+							<div>
 								<input name="cu_name" type="text" id="cu_name" form="edit-cu-name-form" />
 								<div id="name_error"></div>
 							</div>
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Update</button>
+							<div>
+								<button type="submit" class="btn btn-primary" style="margin-top:1rem;">Update</button>
 							</div>
 						</div>
 					</form>
 					<form id="edit-cu-abbrev-form" class="form-horizontal" method="POST" action="/cu/<?= $id ?>/editAbbrev" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						<div class="form-group">
-							<label class="col-md-4 control-label">New abbreviation:</label>
-							<div class="col-md-6">
+							<label class="control-label">New abbreviature:</label>
+							<div>
 								<input name="cu_abbrev" type="text" id="cu_abbrev" form="edit-cu-abbrev-form" />
 								<div id="abbrev_error"></div>
 							</div>
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Update</button>
+							<div>
+								<button type="submit" class="btn btn-primary" style="margin-top:1rem;">Update</button>
 							</div>
 						</div>
 					</form>
 					<form id="edit-cu-description-form" class="form-horizontal" method="POST" action="/cu/<?= $id ?>/editDescription" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						<div class="form-group">
-							<label class="col-md-4 control-label">New description:</label>
-							<div class="col-md-6">
+							<label class="control-label">New description:</label>
+							<div>
 								<input name="cu_description" type="text" id="cu_description" form="edit-cu-description-form" />
 								<div id="description_error"></div>
 							</div>
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Update</button>
+							<div>
+								<button type="submit" class="btn btn-primary" style="margin-top:1rem;">Update</button>
 							</div>
 						</div>
 					</form>
@@ -264,5 +261,4 @@
             </div>
         </form>
     </section>
-    </aside>
 <?php } ?>

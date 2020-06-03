@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/post.css') }}">
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
 @include('partials.navbar')
 @include('partials.sidebar')
@@ -12,8 +13,8 @@
     <div class="row">
         <?php
             use Illuminate\Support\Facades\Auth;
-            draw_sidebar_Top("Manage join requests", Auth::user() -> id, Auth::user() -> name, Auth::user() -> student_number);
-            draw_sidebar_Profile($student->bio, 0, true);
+            draw_sidebar_Top("Manage Join Requests", Auth::user() -> id, Auth::user() -> name, Auth::user() -> student_number);
+            draw_sidebar_Profile($student->bio, 0, true, false);
         ?>
     <div id="content" class="col-12 col-lg-9">
         <section id="mainArea" class="col-12 col-lg-9">

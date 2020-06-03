@@ -1,9 +1,11 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+<link rel="stylesheet" href="{{ asset('css/help.css') }}">
 
 <header>
     <input type="hidden" id="studentId" value="{{Auth::user() -> id}}" readonly>
     <nav id="header" class="navbar fixed-top navbar-expand-md navbar-dark">
-        <a class="navbar-brand" href="{{ url('/homepage') }}"><i id="logo" class="icon-logo align-middle"></i></a>
+        <a class="navbar-brand elem-help" href="{{ url('/homepage') }}"><i id="logo" class="icon-logo align-middle"></i></a>
+        <p class="help-tip" style="left:3rem;top:2rem;">Homepage</p>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
             <i class="icon-menu"></i>
@@ -26,7 +28,7 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" id="notifications" href="#"><i class="icon-bell align-middle"></i></a>
+                    <a class="nav-link elem-help" id="notifications" href="#"><i class="icon-bell align-middle"></i></a>
                     <span class="d-md-none"> Notifications</span>
                 </li>
                 <li class="nav-item d-none d-md-block">

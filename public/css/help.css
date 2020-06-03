@@ -1,0 +1,21 @@
+p.help-tip{
+    display: none;
+    margin: 0;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+    background-color: black;
+    color: white;
+    font-size: x-small;
+    opacity: 0.6;
+}
+
+.elem-help:hover + p.help-tip {
+    position: absolute;
+    display: inline;
+}
+
+@media (max-width: 768){
+    .elem-help:hover + p.help-tip {
+        display: none;
+    }
+}

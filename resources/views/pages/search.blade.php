@@ -19,30 +19,29 @@
             <section class="row-md-auto">
                 <div class="text-center">
                     <h2 class="d-block pt-md-4">Search</h2>
-                    <div class="d-flex justify-content-center align-items-center">    
                         <?php
                             draw_sidebar_Search();
-                        ?>         
-                    </div>
+                        ?>
                 </div>
             </section>
-
-            <div id="content" class="col-12 col-lg-9">
-                <aside class="sticky-top align-self-start" id="page-title">
-                <section class="row-md-auto">
-                    <div id="results_info" class="text-center">
-                        <h2 class="d-block pt-md-4">Results</h2>
-                    </div>
-                </section>
-                <div id="results" class="d-flex flex-row flex-wrap  justify-content-around">
-                    <?php
-                        if($results != NULL){
-                            draw_results($results);
-                        }
-                    ?>
-                </div>
-            </div>
         </aside>
+
+        <div id="mainArea" class="col-12 col-lg-9">
+            <section class="row-md-auto">
+                <div id="results_info" class="text-center">
+                    <h2 class="d-block pt-md-4">Results</h2>
+                </div>
+            </section>
+            <div id="results" class="d-flex flex-row flex-wrap  justify-content-around">
+                <?php
+                    if($results != NULL){
+                        draw_results($results);
+                    }
+                ?>
+            </div>
+        </div>
+        <section class="col-3">
+        </section>
     </div>
 </div>
 

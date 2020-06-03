@@ -43,17 +43,18 @@
     margin-top: 1rem;
     margin-left: 1.3rem;
     margin-bottom: 1rem;
-    background-color: gray;
+    background-color: rgb(175, 175, 175);
     border: none;
     border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
     font-weight: bold;
     color: white;
     padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
 
 .add-subcomment-button:hover{
-    background-color: lightgray;
-    color: black;
+    background-color: #1ca9b1;
 }
 
 .subcomment-form {

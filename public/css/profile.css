@@ -42,3 +42,31 @@ main {
 #MyRatings p {
     font-size: larger;
 }
+
+#manage_create_requests_button, #manage_join_requests_button{
+    width: 15rem;
+    font-size: small;
+    background-color: #3355ae;
+    border: #3355ae;
+}
+
+div.justify-content-around > a:nth-child(1){
+    padding: 0;
+    margin-bottom: 0.5rem;
+}
+
+#editProfileButton{
+    margin-top: 0.5rem;
+    width: 15rem;
+    font-size: small;
+    background-color: #24c6dc;
+    border: #24c6dc;
+}
+
+/* div.d-flex:nth-child(1){
+    margin-right: 2rem;
+} */
+
+.icon-like, .icon-add_friend{
+    font-size: 2.5rem;
+}

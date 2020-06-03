@@ -8,16 +8,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body d-flex flex-column ">
                 <form id="prof_name_form" class="form-horizontal" method="POST" action="{{ route('editProfName', $professor->id) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label class="col-md-4 control-label">New name</label>
-                        <div class="col-md-6">
+                        <label class="control-label">New name</label>
+                        <div>
                             <input name="prof_name" type="text" id="prof_name" form="prof_name_form" placeholder="{{$professor->name}}"/>
                             <div id="name_error"></div>
                         </div>
-                        <div class="col-md-6 col-md-offset-4">
+                        <div>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
@@ -25,12 +25,12 @@
                 <form id="prof_abbrev_form" class="form-horizontal" method="POST" action="{{ route('editProfAbbrev', $professor->id) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label class="col-md-4 control-label">New abbrev</label>
-                        <div class="col-md-6">
+                        <label class="control-label">New abbrev</label>
+                        <div>
                             <input name="prof_abbrev" type="text" id="prof_abbrev" form="prof_abbrev_form" placeholder="{{$professor->abbrev}}"/>
                             <div id="abbrev_error"></div>
                         </div>
-                        <div class="col-md-6 col-md-offset-4">
+                        <div>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
@@ -38,12 +38,12 @@
                 <form id="prof_email_form" class="form-horizontal" method="POST" action="{{ route('editProfEmail', $professor->id) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label class="col-md-4 control-label">New email</label>
-                        <div class="col-md-6">
+                        <label class="control-label">New email</label>
+                        <div>
                             <input name="prof_email" type="text" id="prof_email" form="prof_email_form" placeholder="{{$professor->email}}"/>
                             <div id="email_error"></div>
                         </div>
-                        <div class="col-md-6 col-md-offset-4">
+                        <div>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
@@ -51,19 +51,19 @@
                 <form action="{{ route('editProfPicture', $professor->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <input type="file" class="form-control-file" name="profile_image" id="profile_image" aria-describedby="fileHelp">
+                        <input type="file" class="form-control-file" name="profile_image" id="profile_image" aria-describedby="fileHelp" style="margin-bottom:0.5rem;"/>
                         <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
                     </div>
-                    <div class="col-md-6 col-md-offset-4">
-                        <div class="col-md-6 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                    <div>
+                        <div>
+                            <button type="submit" class="btn btn-primary" style="margin-bottom:1.5rem;">Update</button>
                         </div>
                     </div>
                 </form>
                 <form id="delete-account-form" class="form-horizontal" method="POST" action="{{ route('deleteAccount') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <div class="col-md-6 col-md-offset-4">
+                        <div>
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </div>
                     </div>

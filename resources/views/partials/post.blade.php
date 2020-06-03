@@ -9,7 +9,10 @@
 
 		<?php
 			if (Auth::user()->administrator != null || Auth::user()->id == $post->author_id) { ?>
-				<a class="delete-post"><i class="icon-trash post-delete"></i></a>
+				<div>
+					<a class="delete-post elem-help"><i class="icon-trash post-delete"></i></a>
+					<p class="help-tip" style="margin-top:0.5rem;">Delete Post</p>
+				</div>
 		<?php } else {
 			echo ("");
 		} ?>

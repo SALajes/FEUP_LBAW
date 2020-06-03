@@ -10,9 +10,12 @@
 	</article>
 
 	<section class="add-subcomment">
-		<button class="add-subcomment-button" type="button" data-toggle="collapse" data-target=".comment{{$comment->id}}" role="button">
-			+
-		</button>
+		<div>
+			<button class="add-subcomment-button elem-help" type="button" data-toggle="collapse" data-target=".comment{{$comment->id}}" role="button">
+				+
+			</button>
+			<p class="help-tip" style="margin-left:1rem;margin-top:1rem;">Comment Thread</p>
+		</div>
 
 		<div class="collapse subcomment-form comment{{$comment->id}}">
 			<form class="new-subcomment" data-id="{{$comment->id}}">

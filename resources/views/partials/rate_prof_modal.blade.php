@@ -16,7 +16,7 @@
                             <textarea class="form-control" id="review" name="review" rows="3"></textarea>
                         </div>
                         <div class="col-md-6 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" style="margin-top:0.5rem">Submit</button>
                         </div>
                     </div>
                 </form>

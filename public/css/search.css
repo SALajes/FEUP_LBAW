@@ -2,17 +2,9 @@
     margin-bottom: 0;
 }
 
-#results_info, #results{
-    background-color: ghostwhite;
-}
-
 #results{
     padding-top: 2rem;
     padding-bottom: 5rem;
-}
-
-#page-title{
-    background-color: white;
 }
 
 #fields > *{
