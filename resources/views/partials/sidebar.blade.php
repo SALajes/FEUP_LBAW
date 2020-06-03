@@ -188,7 +188,7 @@
 		</section>
 		<!-- Divisao Vertical -->
 	</aside>
-
+	<script src={{ asset('js/editCU.js') }} defer></script>
 	<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -205,6 +205,7 @@
 							<label class="col-md-4 control-label">New name:</label>
 							<div class="col-md-6">
 								<input name="cu_name" type="text" id="cu_name" form="edit-cu-name-form" />
+								<div id="name_error"></div>
 							</div>
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">Update</button>
@@ -214,9 +215,10 @@
 					<form id="edit-cu-abbrev-form" class="form-horizontal" method="POST" action="/cu/<?= $id ?>/editAbbrev" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						<div class="form-group">
-							<label class="col-md-4 control-label">New abbreviature:</label>
+							<label class="col-md-4 control-label">New abbreviation:</label>
 							<div class="col-md-6">
 								<input name="cu_abbrev" type="text" id="cu_abbrev" form="edit-cu-abbrev-form" />
+								<div id="abbrev_error"></div>
 							</div>
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">Update</button>
@@ -229,6 +231,7 @@
 							<label class="col-md-4 control-label">New description:</label>
 							<div class="col-md-6">
 								<input name="cu_description" type="text" id="cu_description" form="edit-cu-description-form" />
+								<div id="description_error"></div>
 							</div>
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">Update</button>

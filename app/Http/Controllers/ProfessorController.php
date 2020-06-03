@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 class ProfessorController extends Controller
 {
     public function show($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $professor = Professor::find($id);
@@ -22,17 +23,18 @@ class ProfessorController extends Controller
     }
     
     public function editName($id, Request $request)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $request->validate([
-            'prof_name' => 'string|min:1',
+            'prof_name' => 'string|min:6|regex:/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]+$/ui',
         ]);
 
         $prof = Professor::find($id);
         
         if ($prof != null){
-            $prof->name = $request->input('prof_name');
+            $prof->name = htmlspecialchars($request->input('prof_name'));
             $saved = $prof->save();
 
             if ($saved) return back()->with('success', 'You have successfully updated the name.');
@@ -43,16 +45,17 @@ class ProfessorController extends Controller
     }
 
     public function editEmail($id, Request $request)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $request->validate([
-            'prof_email' => 'string|min:1',
+            'prof_email' => 'string|min:1|email',
         ]);
 
         $prof = Professor::find($id);
         if ($prof != null){
-            $prof->email = $request->input('prof_email');
+            $prof->email = htmlspecialchars($request->input('prof_email'));
             $saved = $prof->save();
 
             if ($saved) return back()->with('success', 'You have successfully updated the email.');
@@ -64,17 +67,18 @@ class ProfessorController extends Controller
     }
 
     public function editAbbrev($id, Request $request)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $request->validate([
-            'prof_abbrev' => 'string|min:1',
+            'prof_abbrev' => 'string|min:2|regex:/[A-Z]{2,8}/',
         ]);
 
         $prof = Professor::find($id);
         
         if ($prof != null){
-            $prof->abbrev = $request->input('prof_abbrev');
+            $prof->abbrev = htmlspecialchars($request->input('prof_abbrev'));
             $saved = $prof->save();
 
             if ($saved) return back()->with('success', 'You have successfully updated the abbrev.');
@@ -87,7 +91,8 @@ class ProfessorController extends Controller
     }
 
     public function editProfilePicture($id, Request $request)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $request->validate([
@@ -115,8 +120,13 @@ class ProfessorController extends Controller
     }
 
     public function rateProf($reviewed_prof, Request $request)
-    {
+    {   
+        if (!is_numeric($reviewed_prof)) return redirect('/');
         if(!Auth::check()) return redirect('/');
+
+        $request->validate([
+            'review' => 'string|nullable'
+        ]);
 
         $review = DB::table('rating')
         ->where('reviewer_id', '=', Auth::user()->id)
@@ -128,7 +138,7 @@ class ProfessorController extends Controller
             $inserted = DB::table('rating')
                         ->insert(['reviewer_id' => Auth::user()->id, 
                         'has_voted' => true,
-                        'review' => $request->review,
+                        'review' => htmlspecialchars($request->review),
                         'professor_id' => $reviewed_prof]);
 
             if ($inserted) return back()->with('success', 'You have successfully rated this profile.');
@@ -140,7 +150,8 @@ class ProfessorController extends Controller
     }
 
     public function listCUs($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $cus = DB::table('teaches')
@@ -153,7 +164,8 @@ class ProfessorController extends Controller
     }
 
     public function requestRatings($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
         
         $reviews = DB::table('rating')

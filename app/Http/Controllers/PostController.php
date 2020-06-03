@@ -60,12 +60,16 @@ class PostController extends Controller
     {
         if(!Auth::check()) return redirect('/');
 
+        $request->validate([
+            'content' => 'string|min:1'
+        ]);
+
         $post = new Post();
         $this->authorize('createPublic', $post);
         
         $id = Auth::user()->id;
 
-        $post->content = $request->input('content');
+        $post->content = htmlspecialchars($request->input('content'));
         $post->public_feed = true;
         $post->author_id = $id;
         $post->save();
@@ -76,9 +80,14 @@ class PostController extends Controller
     }
 
     public function createPostInCUInFeed(Request $request, $cu_id, $feed)
-    {
+    {   
+        if (!is_numeric($cu_id)) return redirect('/');
+        if ($feed !== 'General' && $feed !== 'Doubts' && $feed !== 'Tutoring') return redirect('/');
         if(!Auth::check()) return redirect('/');
 
+        $request->validate([
+            'content' => 'string|min:1'
+        ]);
         $post = new Post();
 
         //$this->authorize('createCU', CurricularUnit::find($cu_id));
@@ -86,7 +95,7 @@ class PostController extends Controller
         
         $id = Auth::user()->id;
 
-        $post->content = $request->input('content');
+        $post->content = htmlspecialchars($request->input('content'));
         $post->public_feed = false;
         $post->cu_id = $cu_id;
         $post->feed_type = $feed;
@@ -99,7 +108,8 @@ class PostController extends Controller
     }
 
     public function deletePost($id)
-    {
+    {   
+        if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
         $post = Post::find($id);

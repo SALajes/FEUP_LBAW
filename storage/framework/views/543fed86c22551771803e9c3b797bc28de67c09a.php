@@ -111,10 +111,13 @@
 						</a>
 					</div>
 				<?php } ?>
-
-				<div class="d-flex justify-content-around">
-					<button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
-				</div>
+				
+				<?php if($owner) { ?>
+					<div class="d-flex justify-content-around">
+						<button id="editProfileButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
+					</div>
+				<?php } ?>
+				
 				<div class="d-flex justify-content-around likes_friend">
 					<div>
 						<a data-toggle="modal" data-target="#rateStudentModal" class="btn btn-default">
@@ -133,24 +136,30 @@
 		</aside>
 <?php } ?>
 
-<?php function draw_sidebar_CU($id, $likeCounter) { ?>
+<?php function draw_sidebar_CU($id, $likeCounter, $enrolled) { ?>
 		<section class="d-lg-block offset-lg-6 offset-xl-1 d-flex justify-content-center flex-wrap">
 			<div class="d-flex justify-content-around likes_friend">
 				<a data-toggle="modal" data-target="#rateCUModal" class="btn btn-default">
 					<i class="icon-like" style="color: #0aedb3"></i> <?= $likeCounter ?>
 				</a>
 			</div>
-			<div class="d-flex justify-content-around">
-				<form action="<?php echo e(url('/askJoinCU/' . $id)); ?>" method="post">
-					<?php echo e(csrf_field()); ?>
+			<?php if($enrolled) { ?>
+				<div class="d-flex justify-content-around">
+					<form action="<?php echo e(url('/askJoinCU/' . $id)); ?>" method="post">
+						<?php echo e(csrf_field()); ?>
 
-					<button id="manage_join_requests_button" class="btn btn-primary" type="submit">
-						Join
-					</button>
-				</form>
-			</div>
+						<button id="manage_join_requests_button" class="btn btn-primary" type="submit">
+							Join
+						</button>
+					</form>
+				</div>
+			<?php } ?>
+			
 			<div class="btn-group-vertical btn-group-toggle d-flex flex-wrap justify-content-center" role="group" aria-label="Tabs" id="cu_tabs">
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
+				<?php if(Auth::user()->administrator) { ?>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit</button>
+				<?php }?>
+				
 				<div class="row col-xl-12 col-md-4 col-6 justify-content-center">
 					<button id="feed_btn" type="button" class="btn btn-link">
 						Feed
@@ -180,7 +189,7 @@
 		</section>
 		<!-- Divisao Vertical -->
 	</aside>
-
+	<script src=<?php echo e(asset('js/editCU.js')); ?> defer></script>
 	<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -198,6 +207,7 @@
 							<label class="col-md-4 control-label">New name:</label>
 							<div class="col-md-6">
 								<input name="cu_name" type="text" id="cu_name" form="edit-cu-name-form" />
+								<div id="name_error"></div>
 							</div>
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">Update</button>
@@ -208,9 +218,10 @@
 						<?php echo e(csrf_field()); ?>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">New abbreviature:</label>
+							<label class="col-md-4 control-label">New abbreviation:</label>
 							<div class="col-md-6">
 								<input name="cu_abbrev" type="text" id="cu_abbrev" form="edit-cu-abbrev-form" />
+								<div id="abbrev_error"></div>
 							</div>
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">Update</button>
@@ -224,6 +235,7 @@
 							<label class="col-md-4 control-label">New description:</label>
 							<div class="col-md-6">
 								<input name="cu_description" type="text" id="cu_description" form="edit-cu-description-form" />
+								<div id="description_error"></div>
 							</div>
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">Update</button>
