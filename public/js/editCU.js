@@ -1,76 +1,66 @@
-// "use strict";
+"use strict"
 
-// let entityMap = {
-// 	"&": "&amp;",
-// 	"<": "&lt;",
-// 	">": "&gt;",
-// 	'"': '&quot;',
-// 	"'": '&#39;',
-// 	"/": '&#x2F;'
-//   };
+let name_input = document.getElementById("cu_name");
+let abbrev_input = document.getElementById("cu_abbrev");
+let description_input = document.getElementById("cu_description");
 
-// function escapeHtml(string) {
-// 	return String(string).replace(/[&<>"'\/]/g, function (s) {
-// 	  return entityMap[s];
-// 	});
-// }
+let name_error = document.getElementById("name_error");
+let abbrev_error = document.getElementById("abbrev_error");
+let description_error = document.getElementById("description_error");
 
-// let cu_name_input = document.getElementById("cu_name");
-// let cu_abbrev_input = document.getElementById("cu_abbrev");
-// let cu_page_input = document.getElementById("cu_page");
-// let add_info_input = document.getElementById("additional_info");
-// let sub_btn = document.getElementById('sub_btn');
+let name_sub_btn = document.querySelector("#edit-cu-name-form > div:nth-child(2) > div:nth-child(3) > button:nth-child(1)");
+let abbrev_sub_btn = document.querySelector("#edit-cu-abbrev-form > div:nth-child(2) > div:nth-child(3) > button:nth-child(1)");
+let description_sub_btn = document.querySelector("#edit-cu-description-form > div:nth-child(2) > div:nth-child(3) > button:nth-child(1)");
 
+name_sub_btn.disabled = true;
+abbrev_sub_btn.disabled = true;
+description_sub_btn.disabled = true;
 
-// function validate_cu_name(){
-// 	if (/^[A-Z, a-z, 0-9]+\s*$/g.test(cu_name_input.value)) return true
-// 	else return false
-// }
+function validate_name(){
+	if (/^[0-9, a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/ui.test(name_input.value)) return true;
+	else return false;
+}
 
-// function validate_cu_abbrev(){
-// 	if (/^[A-Z, a-z, 0-9]+$/g.test(cu_abbrev_input.value)) return true
-// 	else return false
-// }
+function validate_abbrev(){
+	if (/[0-9, A-Z]{2,8}/.test(abbrev_input.value)) return true;
+	else return false;
+}
 
-// function validate_cu_page(){
-// 	if (/^\S+\.\S+$/.test(cu_page_input.value)) return true
-// 	else return false
-// }
+function validate_description(){
+	if(description_input.value.length < 6) return false;
+	else return true;
+}
 
-// let cu_name_ready = false;
-// let cu_abbrev_ready = false;
-// let cu_page_ready = false;
+name_input.onkeyup = () => {
+	if (validate_name()){
+		 name_sub_btn.disabled = false;
+		 name_error.innerHTML = "";
+	}
+	else{
+		 name_sub_btn.disabled = true;
+		 name_error.innerHTML = "<p style=\"color:red\">The input name is invalid.</p>";
+	}
+};
 
-// let cu_name_errors = document.getElementById("cu_name_errors");
-// let cu_abbrev_errors = document.getElementById("cu_abbrev_errors");
-// let cu_page_errors = document.getElementById("cu_page_errors");
+abbrev_input.onkeyup = () => {
+	if (validate_abbrev()){
+		 abbrev_sub_btn.disabled = false;
+		 abbrev_error.innerHTML = "";
+	}
+	else{
+		 abbrev_sub_btn.disabled = true;
+		 abbrev_error.innerHTML = "<p style=\"color:red\">The input abbrev is invalid.</p>";
+	}
+};
 
-// cu_name_input.onkeyup = () => {
-// 	cu_name_ready = validate_cu_name();
+description_input.onkeyup = () => {
+	if (validate_description()){
+		 description_sub_btn.disabled = false;
+		 description_error.innerHTML = "";
+	}
+	else{
+		 description_sub_btn.disabled = true;
+		 description_error.innerHTML = "<p style=\"color:red\">The input description should be over 6 characters</p>";
+	}
+};
 
-// 	if (!cu_name_ready) cu_name_errors.innerHTML = "<p style=\"color:red\">The CU name must contain only letters or digits.</p>"
-// 	else cu_name_errors.innerHTML = "";
-
-// 	if (cu_name_input && cu_abbrev_ready && cu_page_ready) sub_btn.disabled = false;
-// 	else sub_btn.disabled = true;
-// };
-
-// cu_abbrev_input.onkeyup = () => {
-// 	cu_abbrev_ready = validate_cu_abbrev();
-
-// 	if (!cu_abbrev_ready) cu_abbrev_errors.innerHTML = "<p style=\"color:red\">The CU abbrev must contain only letters or digits.</p>"
-// 	else cu_abbrev_errors.innerHTML = "";
-
-// 	if (cu_name_input && cu_abbrev_ready && cu_page_ready) sub_btn.disabled = false;
-// 	else sub_btn.disabled = true;
-// };
-
-// cu_page_input.onkeyup = () => {
-// 	cu_page_ready = validate_cu_page();
-
-// 	if (!cu_page_ready) cu_page_errors.innerHTML = "<p style=\"color:red\">The CU page must be an URL.</p>"
-// 	else cu_page_errors.innerHTML = "";
-
-// 	if (cu_name_input && cu_abbrev_ready && cu_page_ready) sub_btn.disabled = false;
-// 	else sub_btn.disabled = true;
-// };

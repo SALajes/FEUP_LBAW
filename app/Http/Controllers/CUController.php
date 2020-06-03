@@ -129,6 +129,10 @@ class CUController extends Controller
         if (!is_numeric($id)) return redirect('/');
         if(!Auth::check()) return redirect('/');
 
+        $request->validate([
+            'cu_name' => 'string|min:6|regex:/^[0-9, a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]+$/ui',
+        ]);
+
         $saved = DB::table('curricular_unit')
                 ->where('id', '=', $id)
                 ->update(['name' => htmlspecialchars($request->input('cu_name'))]);
@@ -143,7 +147,7 @@ class CUController extends Controller
         if(!Auth::check()) return redirect('/');
 
         $request->validate([
-            'cu_abbrev' => 'string|min:1',
+            'cu_abbrev' => 'string|min:2|regex:/[A-Z]{2,8}/',
         ]);
 
 
