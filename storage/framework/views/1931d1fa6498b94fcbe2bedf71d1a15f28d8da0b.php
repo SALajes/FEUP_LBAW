@@ -52,23 +52,23 @@
         <div class="row">
           <div class="col-lg-3">
             <img class="rounded-circle" src="<?php echo e(asset('images/cadu.jpg')); ?>" alt="Generic placeholder image" width="140" height="140">
-            <h2>Carlos Duarte</h2>
-            <p>Descrição pipi</p>
+            <h2>Carlos "Cadu" Duarte</h2>
+            <p>Ouço Nickleback e digo que é irónico para não gozarem comigo...</p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-3">
             <img class="rounded-circle" src="<?php echo e(asset('images/pedro.jpg')); ?>" alt="Generic placeholder image" width="140" height="140">
-            <h2>Maria do Carmo</h2>
-            <p>Descrição pipi</p>
+            <h2>Pedro "Maria do Carmo" Pereira</h2>
+            <p>Presidente do BDC.</p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-3">
             <img class="rounded-circle" src="<?php echo e(asset('images/simão.jpg')); ?>" alt="Generic placeholder image" width="140" height="140">
-            <h2>Simão Oliveira</h2>
-            <p>Descrição pipi</p>
+            <h2>Simão "Simon" Oliveira</h2>
+            <p>Gosta de lamber maçanetas, a situação do Corona obrigou-o a tomar decisões muito difíceis.</p>
           </div><!-- /.col-lg-4 -->
           <div class="col-lg-3">
             <img class="rounded-circle" src="<?php echo e(asset('images/sofia.jpeg')); ?>" alt="Generic placeholder image" width="140" height="140">
-            <h2>Sofia Lajes</h2>
-            <p>Descrição pipi</p>
+            <h2>Sofia "SoFacho" Lajes</h2>
+            <p>Chamei ao meu gato Mickey e ele teve uma crise de identidade quando descobriu a inspiração do seu nome, agora é vegan.</p>
           </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
     </div>

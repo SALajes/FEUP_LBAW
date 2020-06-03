@@ -47,4 +47,8 @@ class LoginController extends Controller
         return redirect('login');
     }
 
+    public function preventError()
+    {
+        return redirect('/');
+    }
 }

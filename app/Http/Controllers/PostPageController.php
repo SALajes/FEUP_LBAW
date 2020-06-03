@@ -120,4 +120,9 @@ class PostPageController extends Controller
 
         return ['subcomment'=>$subcomment, 'name'=>$name, 'parentId'=>$commentId];
     }
+
+    public function preventError()
+    {
+        return redirect('/');
+    }
 }

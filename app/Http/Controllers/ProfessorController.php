@@ -175,4 +175,9 @@ class ProfessorController extends Controller
         ->get();
         return response()->json(['reviews' => $reviews]);
     }
+
+    public function preventError()
+    {
+        return redirect('/');
+    }
 }

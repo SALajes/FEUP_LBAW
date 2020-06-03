@@ -33,11 +33,9 @@ class PostController extends Controller
                     })
                     ->orWhere('post.public_feed', '=', True)
                     ->orderBy('post.date', 'desc')
-                    ->limit(10)
-                    ->get();
-        
-
-        $postsId = array_column($posts->toArray(), 'id');
+                    ->paginate(10);
+                
+        $postsId = array_column($posts->toArray()['data'], 'id');
 
         $numComments = DB::table('comment')
                         ->select('comment.post_id', DB::raw('count(*)'))
@@ -119,5 +117,10 @@ class PostController extends Controller
         $post->delete();
 
         return $post;
+    }
+
+    public function preventError()
+    {
+        return redirect('/');
     }
 }

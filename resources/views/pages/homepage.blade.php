@@ -34,9 +34,10 @@
 			<!-- <hr id="post-division"> -->
 
 			<section id="posts">
-				@foreach($posts as $post)
 				@include('partials.post')
-				@endforeach
+			</section>
+			<section id="pages">
+				{{ $posts->links() }}
 			</section>
 		</main>
 

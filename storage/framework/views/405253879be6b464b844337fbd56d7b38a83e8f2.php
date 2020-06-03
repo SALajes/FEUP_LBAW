@@ -1,8 +1,8 @@
-<div class="modal fade" id="rateStudentModal" tabindex="-1" role="dialog" aria-labelledby="rateStudentModalLabel" aria-hidden="true">
+<div class="modal fade" id="rateStudentModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="loginLabel">Rate student</h5>
+                <h5 class="modal-title">Rate student</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -24,5 +24,4 @@
             </div>
         </div>
     </div>
-</div>
-<?php /**PATH /home/simawatt/Documents/FEUP/lbaw2013/resources/views/partials/rate_student_modal.blade.php ENDPATH**/ ?>
+</div><?php /**PATH /home/simawatt/Documents/FEUP/lbaw2013/resources/views/partials/rate_student_modal.blade.php ENDPATH**/ ?>
