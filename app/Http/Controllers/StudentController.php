@@ -98,8 +98,8 @@ class StudentController extends Controller
 
         //Verificar que não tem chars mamados
         $request->validate([
-            'current-password' => '',
-            'new-password' => 'string|min:6|confirmed'
+            'current-password' => 'string|regex:/^[A-Z, 0-9, @$!%*#?&]{4,}$/i',
+            'new-password' => 'string|confirmed|regex:/^[A-Z, 0-9, @$!%*#?&]{6,}$/i'
         ]);
 
         //Change Password
